@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "outDir": ".", 
+    "target": "esnext",
+    "module": "esnext",
+    // "declaration": true,
+    "diagnostics": true,
+    "newLine": "LF",
+    "strict": true,
+    "moduleResolution": "node",
+    "rootDirs": [
+      "./"
+    ]
+  },
+  "include": [
+    "./esi-request.mts"
+  ],
+  "exclude": []
+}
