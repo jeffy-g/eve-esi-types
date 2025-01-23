@@ -1,37 +1,31 @@
 /**
- * ESI endpoint: /universe/categories/{category_id}/
- */
-
-/**
- * category_id integer
- */
-type GetUniverseCategoriesCategoryIdCategoryId = number;
-/**
- * group integer
- */
-type GetUniverseCategoriesCategoryIdGroup = number;
+* ESI endpoint: /universe/categories/{category_id}/
+*/
 /**
  * groups array
  *
  * @maxItems 10000
  */
-type GetUniverseCategoriesCategoryIdGroups = GetUniverseCategoriesCategoryIdGroup[];
-/**
- * name string
- */
-type GetUniverseCategoriesCategoryIdName = string;
-/**
- * published boolean
- */
-type GetUniverseCategoriesCategoryIdPublished = boolean;
 
 /**
  * 200 ok object
  */
 interface GetUniverseCategoriesCategoryIdOk {
-  category_id: GetUniverseCategoriesCategoryIdCategoryId;
-  groups: GetUniverseCategoriesCategoryIdGroups;
-  name: GetUniverseCategoriesCategoryIdName;
-  published: GetUniverseCategoriesCategoryIdPublished;
+/**
+ * category_id integer
+ */
+  category_id: number;
+/**
+ * group integer
+ */
+  groups: number[];
+/**
+ * name string
+ */
+  name: string;
+/**
+ * published boolean
+ */
+  published: boolean;
   [k: string]: unknown | undefined;
 }

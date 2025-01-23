@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/facilities/
- */
-
-/**
- * facility_id integer
- */
-type GetCorporationsCorporationIdFacilitiesFacilityId = number;
-/**
- * system_id integer
- */
-type GetCorporationsCorporationIdFacilitiesSystemId = number;
-/**
- * type_id integer
- */
-type GetCorporationsCorporationIdFacilitiesTypeId = number;
+* ESI endpoint: /corporations/{corporation_id}/facilities/
+*/
 /**
  * 200 ok array
  *
@@ -25,8 +12,17 @@ type GetCorporationsCorporationIdFacilitiesOk = GetCorporationsCorporationIdFaci
  * 200 ok object
  */
 interface GetCorporationsCorporationIdFacilities_200Ok {
-  facility_id: GetCorporationsCorporationIdFacilitiesFacilityId;
-  system_id: GetCorporationsCorporationIdFacilitiesSystemId;
-  type_id: GetCorporationsCorporationIdFacilitiesTypeId;
+/**
+ * facility_id integer
+ */
+  facility_id: number;
+/**
+ * system_id integer
+ */
+  system_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

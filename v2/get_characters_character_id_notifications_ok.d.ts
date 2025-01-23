@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/notifications/
- */
-
-/**
- * is_read boolean
- */
-type GetCharactersCharacterIdNotificationsIsRead = boolean;
-/**
- * notification_id integer
- */
-type GetCharactersCharacterIdNotificationsNotificationId = number;
-/**
- * sender_id integer
- */
-type GetCharactersCharacterIdNotificationsSenderId = number;
+* ESI endpoint: /characters/{character_id}/notifications/
+*/
 /**
  * sender_type string
  */
@@ -23,14 +10,6 @@ type GetCharactersCharacterIdNotificationsSenderType =
   | "alliance"
   | "faction"
   | "other";
-/**
- * text string
- */
-type GetCharactersCharacterIdNotificationsText = string;
-/**
- * timestamp string
- */
-type GetCharactersCharacterIdNotificationsTimestamp = string;
 /**
  * type string
  */
@@ -286,12 +265,27 @@ type GetCharactersCharacterIdNotificationsOk = GetCharactersCharacterIdNotificat
  * 200 ok object
  */
 interface GetCharactersCharacterIdNotifications_200Ok {
-  is_read?: GetCharactersCharacterIdNotificationsIsRead;
-  notification_id: GetCharactersCharacterIdNotificationsNotificationId;
-  sender_id: GetCharactersCharacterIdNotificationsSenderId;
+/**
+ * is_read boolean
+ */
+  is_read?: boolean;
+/**
+ * notification_id integer
+ */
+  notification_id: number;
+/**
+ * sender_id integer
+ */
+  sender_id: number;
   sender_type: GetCharactersCharacterIdNotificationsSenderType;
-  text?: GetCharactersCharacterIdNotificationsText;
-  timestamp: GetCharactersCharacterIdNotificationsTimestamp;
+/**
+ * text string
+ */
+  text?: string;
+/**
+ * timestamp string
+ */
+  timestamp: string;
   type: GetCharactersCharacterIdNotificationsType;
   [k: string]: unknown | undefined;
 }

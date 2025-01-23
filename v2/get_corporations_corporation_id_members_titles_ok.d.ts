@@ -1,11 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/members/titles/
- */
-
-/**
- * character_id integer
- */
-type GetCorporationsCorporationIdMembersTitlesCharacterId = number;
+* ESI endpoint: /corporations/{corporation_id}/members/titles/
+*/
 /**
  * A list of title_id
  *
@@ -13,173 +8,574 @@ type GetCorporationsCorporationIdMembersTitlesCharacterId = number;
  */
 type GetCorporationsCorporationIdMembersTitlesTitles =
   | []
-  | [GetCorporationsCorporationIdMembersTitlesTitle]
-  | [GetCorporationsCorporationIdMembersTitlesTitle, GetCorporationsCorporationIdMembersTitlesTitle]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ]
-  | [
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle,
-      GetCorporationsCorporationIdMembersTitlesTitle
-    ];
 /**
  * title integer
  */
-type GetCorporationsCorporationIdMembersTitlesTitle = number;
+  | [number]
+/**
+ * title integer
+ */
+  | [GetCorporationsCorporationIdMembersTitlesTitle, number]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ]
+  | [
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number,
+/**
+ * title integer
+ */
+      number
+    ];
 /**
  * 200 ok array
  *
@@ -191,7 +587,10 @@ type GetCorporationsCorporationIdMembersTitlesOk = GetCorporationsCorporationIdM
  * 200 ok object
  */
 interface GetCorporationsCorporationIdMembersTitles_200Ok {
-  character_id: GetCorporationsCorporationIdMembersTitlesCharacterId;
+/**
+ * character_id integer
+ */
+  character_id: number;
   titles: GetCorporationsCorporationIdMembersTitlesTitles;
   [k: string]: unknown | undefined;
 }

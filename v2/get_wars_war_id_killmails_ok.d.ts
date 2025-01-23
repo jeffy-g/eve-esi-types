@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /wars/{war_id}/killmails/
- */
-
-/**
- * A hash of this killmail
- */
-type GetWarsWarIdKillmailsKillmailHash = string;
-/**
- * ID of this killmail
- */
-type GetWarsWarIdKillmailsKillmailId = number;
+* ESI endpoint: /wars/{war_id}/killmails/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetWarsWarIdKillmailsOk = GetWarsWarIdKillmails_200Ok[];
  * 200 ok object
  */
 interface GetWarsWarIdKillmails_200Ok {
-  killmail_hash: GetWarsWarIdKillmailsKillmailHash;
-  killmail_id: GetWarsWarIdKillmailsKillmailId;
+/**
+ * A hash of this killmail
+ */
+  killmail_hash: string;
+/**
+ * ID of this killmail
+ */
+  killmail_id: number;
   [k: string]: unknown | undefined;
 }

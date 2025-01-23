@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /universe/system_jumps/
- */
-
-/**
- * ship_jumps integer
- */
-type GetUniverseSystemJumpsShipJumps = number;
-/**
- * system_id integer
- */
-type GetUniverseSystemJumpsSystemId = number;
+* ESI endpoint: /universe/system_jumps/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetUniverseSystemJumpsOk = GetUniverseSystemJumps_200Ok[];
  * 200 ok object
  */
 interface GetUniverseSystemJumps_200Ok {
-  ship_jumps: GetUniverseSystemJumpsShipJumps;
-  system_id: GetUniverseSystemJumpsSystemId;
+/**
+ * ship_jumps integer
+ */
+  ship_jumps: number;
+/**
+ * system_id integer
+ */
+  system_id: number;
   [k: string]: unknown | undefined;
 }

@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/killmails/recent/
- */
-
-/**
- * A hash of this killmail
- */
-type GetCorporationsCorporationIdKillmailsRecentKillmailHash = string;
-/**
- * ID of this killmail
- */
-type GetCorporationsCorporationIdKillmailsRecentKillmailId = number;
+* ESI endpoint: /corporations/{corporation_id}/killmails/recent/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetCorporationsCorporationIdKillmailsRecentOk = GetCorporationsCorporationI
  * 200 ok object
  */
 interface GetCorporationsCorporationIdKillmailsRecent_200Ok {
-  killmail_hash: GetCorporationsCorporationIdKillmailsRecentKillmailHash;
-  killmail_id: GetCorporationsCorporationIdKillmailsRecentKillmailId;
+/**
+ * A hash of this killmail
+ */
+  killmail_hash: string;
+/**
+ * ID of this killmail
+ */
+  killmail_id: number;
   [k: string]: unknown | undefined;
 }

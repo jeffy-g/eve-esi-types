@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /universe/races/
- */
-
+* ESI endpoint: /universe/races/
+*/
 /**
  * 200 ok array
  *
@@ -28,30 +27,26 @@ type GetUniverseRacesOk =
       GetUniverseRaces_200Ok,
       GetUniverseRaces_200Ok
     ];
-/**
- * The alliance generally associated with this race
- */
-type GetUniverseRacesAllianceId = number;
-/**
- * description string
- */
-type GetUniverseRacesDescription = string;
-/**
- * name string
- */
-type GetUniverseRacesName = string;
-/**
- * race_id integer
- */
-type GetUniverseRacesRaceId = number;
 
 /**
  * 200 ok object
  */
 interface GetUniverseRaces_200Ok {
-  alliance_id: GetUniverseRacesAllianceId;
-  description: GetUniverseRacesDescription;
-  name: GetUniverseRacesName;
-  race_id: GetUniverseRacesRaceId;
+/**
+ * The alliance generally associated with this race
+ */
+  alliance_id: number;
+/**
+ * description string
+ */
+  description: string;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * race_id integer
+ */
+  race_id: number;
   [k: string]: unknown | undefined;
 }

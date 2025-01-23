@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/planets/{planet_id}/
- */
-
-/**
- * destination_pin_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdDestinationPinId = number;
-/**
- * link_level integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdLinkLevel = number;
-/**
- * source_pin_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdSourcePinId = number;
+* ESI endpoint: /characters/{character_id}/planets/{planet_id}/
+*/
 /**
  * links array
  *
@@ -21,31 +8,11 @@ type GetCharactersCharacterIdPlanetsPlanetIdSourcePinId = number;
  */
 type GetCharactersCharacterIdPlanetsPlanetIdLinks = GetCharactersCharacterIdPlanetsPlanetIdLink[];
 /**
- * amount integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdAmount = number;
-/**
- * type_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdContentTypeId = number;
-/**
  * contents array
  *
  * @maxItems 90
  */
 type GetCharactersCharacterIdPlanetsPlanetIdContents = GetCharactersCharacterIdPlanetsPlanetIdContent[];
-/**
- * expiry_time string
- */
-type GetCharactersCharacterIdPlanetsPlanetIdExpiryTime = string;
-/**
- * in seconds
- */
-type GetCharactersCharacterIdPlanetsPlanetIdCycleTime = number;
-/**
- * head_radius number
- */
-type GetCharactersCharacterIdPlanetsPlanetIdHeadRadius = number;
 /**
  * heads array
  *
@@ -124,83 +91,11 @@ type GetCharactersCharacterIdPlanetsPlanetIdHeads =
       GetCharactersCharacterIdPlanetsPlanetIdHead
     ];
 /**
- * head_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdHeadId = number;
-/**
- * latitude number
- */
-type GetCharactersCharacterIdPlanetsPlanetIdHeadLatitude = number;
-/**
- * longitude number
- */
-type GetCharactersCharacterIdPlanetsPlanetIdHeadLongitude = number;
-/**
- * product_type_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdProductTypeId = number;
-/**
- * qty_per_cycle integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdQtyPerCycle = number;
-/**
- * schematic_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdFactoryDetailsSchematicId = number;
-/**
- * install_time string
- */
-type GetCharactersCharacterIdPlanetsPlanetIdInstallTime = string;
-/**
- * last_cycle_start string
- */
-type GetCharactersCharacterIdPlanetsPlanetIdLastCycleStart = string;
-/**
- * latitude number
- */
-type GetCharactersCharacterIdPlanetsPlanetIdLatitude = number;
-/**
- * longitude number
- */
-type GetCharactersCharacterIdPlanetsPlanetIdLongitude = number;
-/**
- * pin_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdPinId = number;
-/**
- * schematic_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdSchematicId = number;
-/**
- * type_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdTypeId = number;
-/**
  * pins array
  *
  * @maxItems 100
  */
 type GetCharactersCharacterIdPlanetsPlanetIdPins = GetCharactersCharacterIdPlanetsPlanetIdPin[];
-/**
- * content_type_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdRouteContentTypeId = number;
-/**
- * destination_pin_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdRouteDestinationPinId = number;
-/**
- * quantity number
- */
-type GetCharactersCharacterIdPlanetsPlanetIdQuantity = number;
-/**
- * route_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdRouteId = number;
-/**
- * source_pin_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetIdRouteSourcePinId = number;
 /**
  * list of pin ID waypoints
  *
@@ -208,30 +103,68 @@ type GetCharactersCharacterIdPlanetsPlanetIdRouteSourcePinId = number;
  */
 type GetCharactersCharacterIdPlanetsPlanetIdWaypoints =
   | []
-  | [GetCharactersCharacterIdPlanetsPlanetIdWaypoint]
-  | [GetCharactersCharacterIdPlanetsPlanetIdWaypoint, GetCharactersCharacterIdPlanetsPlanetIdWaypoint]
-  | [
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint
-    ]
-  | [
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint
-    ]
-  | [
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint,
-      GetCharactersCharacterIdPlanetsPlanetIdWaypoint
-    ];
 /**
  * waypoint integer
  */
-type GetCharactersCharacterIdPlanetsPlanetIdWaypoint = number;
+  | [number]
+/**
+ * waypoint integer
+ */
+  | [GetCharactersCharacterIdPlanetsPlanetIdWaypoint, number]
+  | [
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number
+    ]
+  | [
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number
+    ]
+  | [
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number,
+/**
+ * waypoint integer
+ */
+      number
+    ];
 /**
  * routes array
  *
@@ -252,9 +185,18 @@ interface GetCharactersCharacterIdPlanetsPlanetIdOk {
  * link object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdLink {
-  destination_pin_id: GetCharactersCharacterIdPlanetsPlanetIdDestinationPinId;
-  link_level: GetCharactersCharacterIdPlanetsPlanetIdLinkLevel;
-  source_pin_id: GetCharactersCharacterIdPlanetsPlanetIdSourcePinId;
+/**
+ * destination_pin_id integer
+ */
+  destination_pin_id: number;
+/**
+ * link_level integer
+ */
+  link_level: number;
+/**
+ * source_pin_id integer
+ */
+  source_pin_id: number;
   [k: string]: unknown | undefined;
 }
 /**
@@ -262,62 +204,131 @@ interface GetCharactersCharacterIdPlanetsPlanetIdLink {
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdPin {
   contents?: GetCharactersCharacterIdPlanetsPlanetIdContents;
-  expiry_time?: GetCharactersCharacterIdPlanetsPlanetIdExpiryTime;
+/**
+ * expiry_time string
+ */
+  expiry_time?: string;
   extractor_details?: GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails;
   factory_details?: GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails;
-  install_time?: GetCharactersCharacterIdPlanetsPlanetIdInstallTime;
-  last_cycle_start?: GetCharactersCharacterIdPlanetsPlanetIdLastCycleStart;
-  latitude: GetCharactersCharacterIdPlanetsPlanetIdLatitude;
-  longitude: GetCharactersCharacterIdPlanetsPlanetIdLongitude;
-  pin_id: GetCharactersCharacterIdPlanetsPlanetIdPinId;
-  schematic_id?: GetCharactersCharacterIdPlanetsPlanetIdSchematicId;
-  type_id: GetCharactersCharacterIdPlanetsPlanetIdTypeId;
+/**
+ * install_time string
+ */
+  install_time?: string;
+/**
+ * last_cycle_start string
+ */
+  last_cycle_start?: string;
+/**
+ * latitude number
+ */
+  latitude: number;
+/**
+ * longitude number
+ */
+  longitude: number;
+/**
+ * pin_id integer
+ */
+  pin_id: number;
+/**
+ * schematic_id integer
+ */
+  schematic_id?: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * content object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdContent {
-  amount: GetCharactersCharacterIdPlanetsPlanetIdAmount;
-  type_id: GetCharactersCharacterIdPlanetsPlanetIdContentTypeId;
+/**
+ * amount integer
+ */
+  amount: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * extractor_details object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails {
-  cycle_time?: GetCharactersCharacterIdPlanetsPlanetIdCycleTime;
-  head_radius?: GetCharactersCharacterIdPlanetsPlanetIdHeadRadius;
+/**
+ * in seconds
+ */
+  cycle_time?: number;
+/**
+ * head_radius number
+ */
+  head_radius?: number;
   heads: GetCharactersCharacterIdPlanetsPlanetIdHeads;
-  product_type_id?: GetCharactersCharacterIdPlanetsPlanetIdProductTypeId;
-  qty_per_cycle?: GetCharactersCharacterIdPlanetsPlanetIdQtyPerCycle;
+/**
+ * product_type_id integer
+ */
+  product_type_id?: number;
+/**
+ * qty_per_cycle integer
+ */
+  qty_per_cycle?: number;
   [k: string]: unknown | undefined;
 }
 /**
  * head object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdHead {
-  head_id: GetCharactersCharacterIdPlanetsPlanetIdHeadId;
-  latitude: GetCharactersCharacterIdPlanetsPlanetIdHeadLatitude;
-  longitude: GetCharactersCharacterIdPlanetsPlanetIdHeadLongitude;
+/**
+ * head_id integer
+ */
+  head_id: number;
+/**
+ * latitude number
+ */
+  latitude: number;
+/**
+ * longitude number
+ */
+  longitude: number;
   [k: string]: unknown | undefined;
 }
 /**
  * factory_details object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails {
-  schematic_id: GetCharactersCharacterIdPlanetsPlanetIdFactoryDetailsSchematicId;
+/**
+ * schematic_id integer
+ */
+  schematic_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * route object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdRoute {
-  content_type_id: GetCharactersCharacterIdPlanetsPlanetIdRouteContentTypeId;
-  destination_pin_id: GetCharactersCharacterIdPlanetsPlanetIdRouteDestinationPinId;
-  quantity: GetCharactersCharacterIdPlanetsPlanetIdQuantity;
-  route_id: GetCharactersCharacterIdPlanetsPlanetIdRouteId;
-  source_pin_id: GetCharactersCharacterIdPlanetsPlanetIdRouteSourcePinId;
+/**
+ * content_type_id integer
+ */
+  content_type_id: number;
+/**
+ * destination_pin_id integer
+ */
+  destination_pin_id: number;
+/**
+ * quantity number
+ */
+  quantity: number;
+/**
+ * route_id integer
+ */
+  route_id: number;
+/**
+ * source_pin_id integer
+ */
+  source_pin_id: number;
   waypoints?: GetCharactersCharacterIdPlanetsPlanetIdWaypoints;
   [k: string]: unknown | undefined;
 }

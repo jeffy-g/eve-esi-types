@@ -1,16 +1,6 @@
 /**
- * ESI endpoint: /corporation/{corporation_id}/mining/observers/
- */
-
-/**
- * last_updated string
- */
-type GetCorporationCorporationIdMiningObserversLastUpdated = string;
-/**
- * The entity that was observing the asteroid field when it was mined.
- *
- */
-type GetCorporationCorporationIdMiningObserversObserverId = number;
+* ESI endpoint: /corporation/{corporation_id}/mining/observers/
+*/
 /**
  * The category of the observing entity
  */
@@ -26,8 +16,15 @@ type GetCorporationCorporationIdMiningObserversOk = GetCorporationCorporationIdM
  * 200 ok object
  */
 interface GetCorporationCorporationIdMiningObservers_200Ok {
-  last_updated: GetCorporationCorporationIdMiningObserversLastUpdated;
-  observer_id: GetCorporationCorporationIdMiningObserversObserverId;
+/**
+ * last_updated string
+ */
+  last_updated: string;
+/**
+ * The entity that was observing the asteroid field when it was mined.
+ *
+ */
+  observer_id: number;
   observer_type: GetCorporationCorporationIdMiningObserversObserverType;
   [k: string]: unknown | undefined;
 }

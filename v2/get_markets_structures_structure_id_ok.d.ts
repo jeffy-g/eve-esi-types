@@ -1,35 +1,6 @@
 /**
- * ESI endpoint: /markets/structures/{structure_id}/
- */
-
-/**
- * duration integer
- */
-type GetMarketsStructuresStructureIdDuration = number;
-/**
- * is_buy_order boolean
- */
-type GetMarketsStructuresStructureIdIsBuyOrder = boolean;
-/**
- * issued string
- */
-type GetMarketsStructuresStructureIdIssued = string;
-/**
- * location_id integer
- */
-type GetMarketsStructuresStructureIdLocationId = number;
-/**
- * min_volume integer
- */
-type GetMarketsStructuresStructureIdMinVolume = number;
-/**
- * order_id integer
- */
-type GetMarketsStructuresStructureIdOrderId = number;
-/**
- * price number
- */
-type GetMarketsStructuresStructureIdPrice = number;
+* ESI endpoint: /markets/structures/{structure_id}/
+*/
 /**
  * range string
  */
@@ -47,18 +18,6 @@ type GetMarketsStructuresStructureIdRange =
   | "30"
   | "40";
 /**
- * type_id integer
- */
-type GetMarketsStructuresStructureIdTypeId = number;
-/**
- * volume_remain integer
- */
-type GetMarketsStructuresStructureIdVolumeRemain = number;
-/**
- * volume_total integer
- */
-type GetMarketsStructuresStructureIdVolumeTotal = number;
-/**
  * 200 ok array
  *
  * @maxItems 1000
@@ -69,16 +28,46 @@ type GetMarketsStructuresStructureIdOk = GetMarketsStructuresStructureId_200Ok[]
  * 200 ok object
  */
 interface GetMarketsStructuresStructureId_200Ok {
-  duration: GetMarketsStructuresStructureIdDuration;
-  is_buy_order: GetMarketsStructuresStructureIdIsBuyOrder;
-  issued: GetMarketsStructuresStructureIdIssued;
-  location_id: GetMarketsStructuresStructureIdLocationId;
-  min_volume: GetMarketsStructuresStructureIdMinVolume;
-  order_id: GetMarketsStructuresStructureIdOrderId;
-  price: GetMarketsStructuresStructureIdPrice;
+/**
+ * duration integer
+ */
+  duration: number;
+/**
+ * is_buy_order boolean
+ */
+  is_buy_order: boolean;
+/**
+ * issued string
+ */
+  issued: string;
+/**
+ * location_id integer
+ */
+  location_id: number;
+/**
+ * min_volume integer
+ */
+  min_volume: number;
+/**
+ * order_id integer
+ */
+  order_id: number;
+/**
+ * price number
+ */
+  price: number;
   range: GetMarketsStructuresStructureIdRange;
-  type_id: GetMarketsStructuresStructureIdTypeId;
-  volume_remain: GetMarketsStructuresStructureIdVolumeRemain;
-  volume_total: GetMarketsStructuresStructureIdVolumeTotal;
+/**
+ * type_id integer
+ */
+  type_id: number;
+/**
+ * volume_remain integer
+ */
+  volume_remain: number;
+/**
+ * volume_total integer
+ */
+  volume_total: number;
   [k: string]: unknown | undefined;
 }

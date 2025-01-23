@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/contacts/
- */
-
+* ESI endpoint: /characters/{character_id}/contacts/
+*/
 /**
  * contact_ids array
  *
@@ -9,10 +8,12 @@
  * @maxItems 100
  */
 type PutCharactersCharacterIdContactsContactIds = [
-  PutCharactersCharacterIdContactsContactId,
-  ...PutCharactersCharacterIdContactsContactId[]
-];
 /**
  * ID of the contact to edit
  */
-type PutCharactersCharacterIdContactsContactId = number;
+  number,
+/**
+ * ID of the contact to edit
+ */
+  ...number[]
+];

@@ -1,11 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/roles/
- */
-
-/**
- * character_id integer
- */
-type GetCorporationsCorporationIdRolesCharacterId = number;
+* ESI endpoint: /corporations/{corporation_id}/roles/
+*/
 /**
  * grantable_role string
  */
@@ -532,7 +527,10 @@ type GetCorporationsCorporationIdRolesOk = GetCorporationsCorporationIdRoles_200
  * 200 ok object
  */
 interface GetCorporationsCorporationIdRoles_200Ok {
-  character_id: GetCorporationsCorporationIdRolesCharacterId;
+/**
+ * character_id integer
+ */
+  character_id: number;
   grantable_roles?: GetCorporationsCorporationIdRolesGrantableRoles;
   grantable_roles_at_base?: GetCorporationsCorporationIdRolesGrantableRolesAtBase;
   grantable_roles_at_hq?: GetCorporationsCorporationIdRolesGrantableRolesAtHq;

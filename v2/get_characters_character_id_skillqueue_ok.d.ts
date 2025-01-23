@@ -1,39 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/skillqueue/
- */
-
-/**
- * Date on which training of the skill will complete. Omitted if the skill queue is paused.
- */
-type GetCharactersCharacterIdSkillqueueFinishDate = string;
-/**
- * finished_level integer
- */
-type GetCharactersCharacterIdSkillqueueFinishedLevel = number;
-/**
- * level_end_sp integer
- */
-type GetCharactersCharacterIdSkillqueueLevelEndSp = number;
-/**
- * Amount of SP that was in the skill when it started training it's current level. Used to calculate % of current level complete.
- */
-type GetCharactersCharacterIdSkillqueueLevelStartSp = number;
-/**
- * queue_position integer
- */
-type GetCharactersCharacterIdSkillqueueQueuePosition = number;
-/**
- * skill_id integer
- */
-type GetCharactersCharacterIdSkillqueueSkillId = number;
-/**
- * start_date string
- */
-type GetCharactersCharacterIdSkillqueueStartDate = string;
-/**
- * training_start_sp integer
- */
-type GetCharactersCharacterIdSkillqueueTrainingStartSp = number;
+* ESI endpoint: /characters/{character_id}/skillqueue/
+*/
 /**
  * 200 ok array
  *
@@ -45,13 +12,37 @@ type GetCharactersCharacterIdSkillqueueOk = GetCharactersCharacterIdSkillqueue_2
  * 200 ok object
  */
 interface GetCharactersCharacterIdSkillqueue_200Ok {
-  finish_date?: GetCharactersCharacterIdSkillqueueFinishDate;
-  finished_level: GetCharactersCharacterIdSkillqueueFinishedLevel;
-  level_end_sp?: GetCharactersCharacterIdSkillqueueLevelEndSp;
-  level_start_sp?: GetCharactersCharacterIdSkillqueueLevelStartSp;
-  queue_position: GetCharactersCharacterIdSkillqueueQueuePosition;
-  skill_id: GetCharactersCharacterIdSkillqueueSkillId;
-  start_date?: GetCharactersCharacterIdSkillqueueStartDate;
-  training_start_sp?: GetCharactersCharacterIdSkillqueueTrainingStartSp;
+/**
+ * Date on which training of the skill will complete. Omitted if the skill queue is paused.
+ */
+  finish_date?: string;
+/**
+ * finished_level integer
+ */
+  finished_level: number;
+/**
+ * level_end_sp integer
+ */
+  level_end_sp?: number;
+/**
+ * Amount of SP that was in the skill when it started training it's current level. Used to calculate % of current level complete.
+ */
+  level_start_sp?: number;
+/**
+ * queue_position integer
+ */
+  queue_position: number;
+/**
+ * skill_id integer
+ */
+  skill_id: number;
+/**
+ * start_date string
+ */
+  start_date?: string;
+/**
+ * training_start_sp integer
+ */
+  training_start_sp?: number;
   [k: string]: unknown | undefined;
 }

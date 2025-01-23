@@ -1,14 +1,12 @@
 /**
- * ESI endpoint: /wars/
- */
-
-/**
- * 200 ok integer
- */
-type GetWars_200Ok = number;
+* ESI endpoint: /wars/
+*/
 /**
  * 200 ok array
  *
  * @maxItems 2000
  */
-type GetWarsOk = GetWars_200Ok[];
+/**
+ * 200 ok integer
+ */
+type GetWarsOk = number[];

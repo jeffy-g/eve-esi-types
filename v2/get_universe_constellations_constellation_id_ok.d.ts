@@ -1,59 +1,50 @@
 /**
- * ESI endpoint: /universe/constellations/{constellation_id}/
- */
-
-/**
- * constellation_id integer
- */
-type GetUniverseConstellationsConstellationIdConstellationId = number;
-/**
- * name string
- */
-type GetUniverseConstellationsConstellationIdName = string;
-/**
- * x number
- */
-type GetUniverseConstellationsConstellationIdX = number;
-/**
- * y number
- */
-type GetUniverseConstellationsConstellationIdY = number;
-/**
- * z number
- */
-type GetUniverseConstellationsConstellationIdZ = number;
-/**
- * The region this constellation is in
- */
-type GetUniverseConstellationsConstellationIdRegionId = number;
-/**
- * system integer
- */
-type GetUniverseConstellationsConstellationIdSystem = number;
+* ESI endpoint: /universe/constellations/{constellation_id}/
+*/
 /**
  * systems array
  *
  * @maxItems 10000
  */
-type GetUniverseConstellationsConstellationIdSystems = GetUniverseConstellationsConstellationIdSystem[];
 
 /**
  * 200 ok object
  */
 interface GetUniverseConstellationsConstellationIdOk {
-  constellation_id: GetUniverseConstellationsConstellationIdConstellationId;
-  name: GetUniverseConstellationsConstellationIdName;
+/**
+ * constellation_id integer
+ */
+  constellation_id: number;
+/**
+ * name string
+ */
+  name: string;
   position: GetUniverseConstellationsConstellationIdPosition;
-  region_id: GetUniverseConstellationsConstellationIdRegionId;
-  systems: GetUniverseConstellationsConstellationIdSystems;
+/**
+ * The region this constellation is in
+ */
+  region_id: number;
+/**
+ * system integer
+ */
+  systems: number[];
   [k: string]: unknown | undefined;
 }
 /**
  * position object
  */
 interface GetUniverseConstellationsConstellationIdPosition {
-  x: GetUniverseConstellationsConstellationIdX;
-  y: GetUniverseConstellationsConstellationIdY;
-  z: GetUniverseConstellationsConstellationIdZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

@@ -1,27 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/medals/
- */
-
-/**
- * created_at string
- */
-type GetCorporationsCorporationIdMedalsCreatedAt = string;
-/**
- * ID of the character who created this medal
- */
-type GetCorporationsCorporationIdMedalsCreatorId = number;
-/**
- * description string
- */
-type GetCorporationsCorporationIdMedalsDescription = string;
-/**
- * medal_id integer
- */
-type GetCorporationsCorporationIdMedalsMedalId = number;
-/**
- * title string
- */
-type GetCorporationsCorporationIdMedalsTitle = string;
+* ESI endpoint: /corporations/{corporation_id}/medals/
+*/
 /**
  * 200 ok array
  *
@@ -33,10 +12,25 @@ type GetCorporationsCorporationIdMedalsOk = GetCorporationsCorporationIdMedals_2
  * 200 ok object
  */
 interface GetCorporationsCorporationIdMedals_200Ok {
-  created_at: GetCorporationsCorporationIdMedalsCreatedAt;
-  creator_id: GetCorporationsCorporationIdMedalsCreatorId;
-  description: GetCorporationsCorporationIdMedalsDescription;
-  medal_id: GetCorporationsCorporationIdMedalsMedalId;
-  title: GetCorporationsCorporationIdMedalsTitle;
+/**
+ * created_at string
+ */
+  created_at: string;
+/**
+ * ID of the character who created this medal
+ */
+  creator_id: number;
+/**
+ * description string
+ */
+  description: string;
+/**
+ * medal_id integer
+ */
+  medal_id: number;
+/**
+ * title string
+ */
+  title: string;
   [k: string]: unknown | undefined;
 }

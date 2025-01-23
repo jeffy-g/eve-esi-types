@@ -1,43 +1,6 @@
 /**
- * ESI endpoint: /fw/stats/
- */
-
-/**
- * faction_id integer
- */
-type GetFwStatsFactionId = number;
-/**
- * Last week's total number of kills against enemy factions
- */
-type GetFwStatsLastWeek = number;
-/**
- * Total number of kills against enemy factions since faction warfare began
- */
-type GetFwStatsTotal = number;
-/**
- * Yesterday's total number of kills against enemy factions
- */
-type GetFwStatsYesterday = number;
-/**
- * How many pilots fight for the given faction
- */
-type GetFwStatsPilots = number;
-/**
- * The number of solar systems controlled by the given faction
- */
-type GetFwStatsSystemsControlled = number;
-/**
- * Last week's victory points gained
- */
-type GetFwStatsVictoryPointsLastWeek = number;
-/**
- * Total victory points gained since faction warfare began
- */
-type GetFwStatsVictoryPointsTotal = number;
-/**
- * Yesterday's victory points gained
- */
-type GetFwStatsVictoryPointsYesterday = number;
+* ESI endpoint: /fw/stats/
+*/
 /**
  * 200 ok array
  *
@@ -49,10 +12,19 @@ type GetFwStatsOk = GetFwStats_200Ok[];
  * 200 ok object
  */
 interface GetFwStats_200Ok {
-  faction_id: GetFwStatsFactionId;
+/**
+ * faction_id integer
+ */
+  faction_id: number;
   kills: GetFwStatsKills;
-  pilots: GetFwStatsPilots;
-  systems_controlled: GetFwStatsSystemsControlled;
+/**
+ * How many pilots fight for the given faction
+ */
+  pilots: number;
+/**
+ * The number of solar systems controlled by the given faction
+ */
+  systems_controlled: number;
   victory_points: GetFwStatsVictoryPoints;
   [k: string]: unknown | undefined;
 }
@@ -60,17 +32,35 @@ interface GetFwStats_200Ok {
  * Summary of kills against an enemy faction for the given faction
  */
 interface GetFwStatsKills {
-  last_week: GetFwStatsLastWeek;
-  total: GetFwStatsTotal;
-  yesterday: GetFwStatsYesterday;
+/**
+ * Last week's total number of kills against enemy factions
+ */
+  last_week: number;
+/**
+ * Total number of kills against enemy factions since faction warfare began
+ */
+  total: number;
+/**
+ * Yesterday's total number of kills against enemy factions
+ */
+  yesterday: number;
   [k: string]: unknown | undefined;
 }
 /**
  * Summary of victory points gained for the given faction
  */
 interface GetFwStatsVictoryPoints {
-  last_week: GetFwStatsVictoryPointsLastWeek;
-  total: GetFwStatsVictoryPointsTotal;
-  yesterday: GetFwStatsVictoryPointsYesterday;
+/**
+ * Last week's victory points gained
+ */
+  last_week: number;
+/**
+ * Total victory points gained since faction warfare began
+ */
+  total: number;
+/**
+ * Yesterday's victory points gained
+ */
+  yesterday: number;
   [k: string]: unknown | undefined;
 }

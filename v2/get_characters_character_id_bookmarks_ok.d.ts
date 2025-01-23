@@ -1,55 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/bookmarks/
- */
-
-/**
- * bookmark_id integer
- */
-type GetCharactersCharacterIdBookmarksBookmarkId = number;
-/**
- * x number
- */
-type GetCharactersCharacterIdBookmarksX = number;
-/**
- * y number
- */
-type GetCharactersCharacterIdBookmarksY = number;
-/**
- * z number
- */
-type GetCharactersCharacterIdBookmarksZ = number;
-/**
- * created string
- */
-type GetCharactersCharacterIdBookmarksCreated = string;
-/**
- * creator_id integer
- */
-type GetCharactersCharacterIdBookmarksCreatorId = number;
-/**
- * folder_id integer
- */
-type GetCharactersCharacterIdBookmarksFolderId = number;
-/**
- * item_id integer
- */
-type GetCharactersCharacterIdBookmarksItemId = number;
-/**
- * type_id integer
- */
-type GetCharactersCharacterIdBookmarksTypeId = number;
-/**
- * label string
- */
-type GetCharactersCharacterIdBookmarksLabel = string;
-/**
- * location_id integer
- */
-type GetCharactersCharacterIdBookmarksLocationId = number;
-/**
- * notes string
- */
-type GetCharactersCharacterIdBookmarksNotes = string;
+* ESI endpoint: /characters/{character_id}/bookmarks/
+*/
 /**
  * 200 ok array
  *
@@ -61,31 +12,67 @@ type GetCharactersCharacterIdBookmarksOk = GetCharactersCharacterIdBookmarks_200
  * 200 ok object
  */
 interface GetCharactersCharacterIdBookmarks_200Ok {
-  bookmark_id: GetCharactersCharacterIdBookmarksBookmarkId;
+/**
+ * bookmark_id integer
+ */
+  bookmark_id: number;
   coordinates?: GetCharactersCharacterIdBookmarksCoordinates;
-  created: GetCharactersCharacterIdBookmarksCreated;
-  creator_id: GetCharactersCharacterIdBookmarksCreatorId;
-  folder_id?: GetCharactersCharacterIdBookmarksFolderId;
+/**
+ * created string
+ */
+  created: string;
+/**
+ * creator_id integer
+ */
+  creator_id: number;
+/**
+ * folder_id integer
+ */
+  folder_id?: number;
   item?: GetCharactersCharacterIdBookmarksItem;
-  label: GetCharactersCharacterIdBookmarksLabel;
-  location_id: GetCharactersCharacterIdBookmarksLocationId;
-  notes: GetCharactersCharacterIdBookmarksNotes;
+/**
+ * label string
+ */
+  label: string;
+/**
+ * location_id integer
+ */
+  location_id: number;
+/**
+ * notes string
+ */
+  notes: string;
   [k: string]: unknown | undefined;
 }
 /**
  * Optional object that is returned if a bookmark was made on a planet or a random location in space.
  */
 interface GetCharactersCharacterIdBookmarksCoordinates {
-  x: GetCharactersCharacterIdBookmarksX;
-  y: GetCharactersCharacterIdBookmarksY;
-  z: GetCharactersCharacterIdBookmarksZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }
 /**
  * Optional object that is returned if a bookmark was made on a particular item.
  */
 interface GetCharactersCharacterIdBookmarksItem {
-  item_id: GetCharactersCharacterIdBookmarksItemId;
-  type_id: GetCharactersCharacterIdBookmarksTypeId;
+/**
+ * item_id integer
+ */
+  item_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

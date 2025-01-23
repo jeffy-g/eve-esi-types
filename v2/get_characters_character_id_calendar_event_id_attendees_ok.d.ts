@@ -1,11 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/calendar/{event_id}/attendees/
- */
-
-/**
- * character_id integer
- */
-type GetCharactersCharacterIdCalendarEventIdAttendeesCharacterId = number;
+* ESI endpoint: /characters/{character_id}/calendar/{event_id}/attendees/
+*/
 /**
  * event_response string
  */
@@ -26,7 +21,10 @@ type GetCharactersCharacterIdCalendarEventIdAttendeesOk =
  * character_id and response of an attendee
  */
 interface GetCharactersCharacterIdCalendarEventIdAttendees_200Ok {
-  character_id?: GetCharactersCharacterIdCalendarEventIdAttendeesCharacterId;
+/**
+ * character_id integer
+ */
+  character_id?: number;
   event_response?: GetCharactersCharacterIdCalendarEventIdAttendeesEventResponse;
   [k: string]: unknown | undefined;
 }

@@ -1,26 +1,22 @@
 /**
- * ESI endpoint: /characters/{character_id}/location/
- */
-
-/**
- * solar_system_id integer
- */
-type GetCharactersCharacterIdLocationSolarSystemId = number;
-/**
- * station_id integer
- */
-type GetCharactersCharacterIdLocationStationId = number;
-/**
- * structure_id integer
- */
-type GetCharactersCharacterIdLocationStructureId = number;
+* ESI endpoint: /characters/{character_id}/location/
+*/
 
 /**
  * 200 ok object
  */
 interface GetCharactersCharacterIdLocationOk {
-  solar_system_id: GetCharactersCharacterIdLocationSolarSystemId;
-  station_id?: GetCharactersCharacterIdLocationStationId;
-  structure_id?: GetCharactersCharacterIdLocationStructureId;
+/**
+ * solar_system_id integer
+ */
+  solar_system_id: number;
+/**
+ * station_id integer
+ */
+  station_id?: number;
+/**
+ * structure_id integer
+ */
+  structure_id?: number;
   [k: string]: unknown | undefined;
 }

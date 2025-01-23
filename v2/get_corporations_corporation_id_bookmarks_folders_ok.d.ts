@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/bookmarks/folders/
- */
-
-/**
- * creator_id integer
- */
-type GetCorporationsCorporationIdBookmarksFoldersCreatorId = number;
-/**
- * folder_id integer
- */
-type GetCorporationsCorporationIdBookmarksFoldersFolderId = number;
-/**
- * name string
- */
-type GetCorporationsCorporationIdBookmarksFoldersName = string;
+* ESI endpoint: /corporations/{corporation_id}/bookmarks/folders/
+*/
 /**
  * 200 ok array
  *
@@ -25,8 +12,17 @@ type GetCorporationsCorporationIdBookmarksFoldersOk = GetCorporationsCorporation
  * 200 ok object
  */
 interface GetCorporationsCorporationIdBookmarksFolders_200Ok {
-  creator_id?: GetCorporationsCorporationIdBookmarksFoldersCreatorId;
-  folder_id: GetCorporationsCorporationIdBookmarksFoldersFolderId;
-  name: GetCorporationsCorporationIdBookmarksFoldersName;
+/**
+ * creator_id integer
+ */
+  creator_id?: number;
+/**
+ * folder_id integer
+ */
+  folder_id: number;
+/**
+ * name string
+ */
+  name: string;
   [k: string]: unknown | undefined;
 }

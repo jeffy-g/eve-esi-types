@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/planets/
- */
-
+* ESI endpoint: /characters/{character_id}/planets/
+*/
 /**
  * 200 ok array
  *
@@ -80,22 +79,6 @@ type GetCharactersCharacterIdPlanetsOk =
       GetCharactersCharacterIdPlanets_200Ok
     ];
 /**
- * last_update string
- */
-type GetCharactersCharacterIdPlanetsLastUpdate = string;
-/**
- * num_pins integer
- */
-type GetCharactersCharacterIdPlanetsNumPins = number;
-/**
- * owner_id integer
- */
-type GetCharactersCharacterIdPlanetsOwnerId = number;
-/**
- * planet_id integer
- */
-type GetCharactersCharacterIdPlanetsPlanetId = number;
-/**
  * planet_type string
  */
 type GetCharactersCharacterIdPlanetsPlanetType =
@@ -107,25 +90,35 @@ type GetCharactersCharacterIdPlanetsPlanetType =
   | "lava"
   | "storm"
   | "plasma";
-/**
- * solar_system_id integer
- */
-type GetCharactersCharacterIdPlanetsSolarSystemId = number;
-/**
- * upgrade_level integer
- */
-type GetCharactersCharacterIdPlanetsUpgradeLevel = number;
 
 /**
  * 200 ok object
  */
 interface GetCharactersCharacterIdPlanets_200Ok {
-  last_update: GetCharactersCharacterIdPlanetsLastUpdate;
-  num_pins: GetCharactersCharacterIdPlanetsNumPins;
-  owner_id: GetCharactersCharacterIdPlanetsOwnerId;
-  planet_id: GetCharactersCharacterIdPlanetsPlanetId;
+/**
+ * last_update string
+ */
+  last_update: string;
+/**
+ * num_pins integer
+ */
+  num_pins: number;
+/**
+ * owner_id integer
+ */
+  owner_id: number;
+/**
+ * planet_id integer
+ */
+  planet_id: number;
   planet_type: GetCharactersCharacterIdPlanetsPlanetType;
-  solar_system_id: GetCharactersCharacterIdPlanetsSolarSystemId;
-  upgrade_level: GetCharactersCharacterIdPlanetsUpgradeLevel;
+/**
+ * solar_system_id integer
+ */
+  solar_system_id: number;
+/**
+ * upgrade_level integer
+ */
+  upgrade_level: number;
   [k: string]: unknown | undefined;
 }

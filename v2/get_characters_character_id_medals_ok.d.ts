@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/medals/
- */
-
-/**
- * corporation_id integer
- */
-type GetCharactersCharacterIdMedalsCorporationId = number;
-/**
- * date string
- */
-type GetCharactersCharacterIdMedalsDate = string;
-/**
- * description string
- */
-type GetCharactersCharacterIdMedalsDescription = string;
+* ESI endpoint: /characters/{character_id}/medals/
+*/
 /**
  * graphics array
  *
@@ -78,41 +65,9 @@ type GetCharactersCharacterIdMedalsGraphics =
       GetCharactersCharacterIdMedalsGraphic
     ];
 /**
- * color integer
- */
-type GetCharactersCharacterIdMedalsColor = number;
-/**
- * graphic string
- */
-type GetCharactersCharacterIdMedalsGraphicGraphic = string;
-/**
- * layer integer
- */
-type GetCharactersCharacterIdMedalsLayer = number;
-/**
- * part integer
- */
-type GetCharactersCharacterIdMedalsPart = number;
-/**
- * issuer_id integer
- */
-type GetCharactersCharacterIdMedalsIssuerId = number;
-/**
- * medal_id integer
- */
-type GetCharactersCharacterIdMedalsMedalId = number;
-/**
- * reason string
- */
-type GetCharactersCharacterIdMedalsReason = string;
-/**
  * status string
  */
 type GetCharactersCharacterIdMedalsStatus = "public" | "private";
-/**
- * title string
- */
-type GetCharactersCharacterIdMedalsTitle = string;
 /**
  * 200 ok array
  *
@@ -124,24 +79,57 @@ type GetCharactersCharacterIdMedalsOk = GetCharactersCharacterIdMedals_200Ok[];
  * 200 ok object
  */
 interface GetCharactersCharacterIdMedals_200Ok {
-  corporation_id: GetCharactersCharacterIdMedalsCorporationId;
-  date: GetCharactersCharacterIdMedalsDate;
-  description: GetCharactersCharacterIdMedalsDescription;
+/**
+ * corporation_id integer
+ */
+  corporation_id: number;
+/**
+ * date string
+ */
+  date: string;
+/**
+ * description string
+ */
+  description: string;
   graphics: GetCharactersCharacterIdMedalsGraphics;
-  issuer_id: GetCharactersCharacterIdMedalsIssuerId;
-  medal_id: GetCharactersCharacterIdMedalsMedalId;
-  reason: GetCharactersCharacterIdMedalsReason;
+/**
+ * issuer_id integer
+ */
+  issuer_id: number;
+/**
+ * medal_id integer
+ */
+  medal_id: number;
+/**
+ * reason string
+ */
+  reason: string;
   status: GetCharactersCharacterIdMedalsStatus;
-  title: GetCharactersCharacterIdMedalsTitle;
+/**
+ * title string
+ */
+  title: string;
   [k: string]: unknown | undefined;
 }
 /**
  * graphic object
  */
 interface GetCharactersCharacterIdMedalsGraphic {
-  color?: GetCharactersCharacterIdMedalsColor;
-  graphic: GetCharactersCharacterIdMedalsGraphicGraphic;
-  layer: GetCharactersCharacterIdMedalsLayer;
-  part: GetCharactersCharacterIdMedalsPart;
+/**
+ * color integer
+ */
+  color?: number;
+/**
+ * graphic string
+ */
+  graphic: string;
+/**
+ * layer integer
+ */
+  layer: number;
+/**
+ * part integer
+ */
+  part: number;
   [k: string]: unknown | undefined;
 }

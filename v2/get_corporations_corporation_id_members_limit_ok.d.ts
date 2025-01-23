@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/members/limit/
- */
-
+* ESI endpoint: /corporations/{corporation_id}/members/limit/
+*/
 /**
  * 200 ok integer
  */

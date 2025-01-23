@@ -1,23 +1,6 @@
 /**
- * ESI endpoint: /characters/affiliation/
- */
-
-/**
- * The character's alliance ID, if their corporation is in an alliance
- */
-type PostCharactersAffiliationAllianceId = number;
-/**
- * The character's ID
- */
-type PostCharactersAffiliationCharacterId = number;
-/**
- * The character's corporation ID
- */
-type PostCharactersAffiliationCorporationId = number;
-/**
- * The character's faction ID, if their corporation is in a faction
- */
-type PostCharactersAffiliationFactionId = number;
+* ESI endpoint: /characters/affiliation/
+*/
 /**
  * 200 ok array
  *
@@ -29,9 +12,21 @@ type PostCharactersAffiliationOk = PostCharactersAffiliation_200Ok[];
  * 200 ok object
  */
 interface PostCharactersAffiliation_200Ok {
-  alliance_id?: PostCharactersAffiliationAllianceId;
-  character_id: PostCharactersAffiliationCharacterId;
-  corporation_id: PostCharactersAffiliationCorporationId;
-  faction_id?: PostCharactersAffiliationFactionId;
+/**
+ * The character's alliance ID, if their corporation is in an alliance
+ */
+  alliance_id?: number;
+/**
+ * The character's ID
+ */
+  character_id: number;
+/**
+ * The character's corporation ID
+ */
+  corporation_id: number;
+/**
+ * The character's faction ID, if their corporation is in a faction
+ */
+  faction_id?: number;
   [k: string]: unknown | undefined;
 }

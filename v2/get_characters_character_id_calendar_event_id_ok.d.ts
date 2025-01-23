@@ -1,31 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/calendar/{event_id}/
- */
-
-/**
- * date string
- */
-type GetCharactersCharacterIdCalendarEventIdDate = string;
-/**
- * Length in minutes
- */
-type GetCharactersCharacterIdCalendarEventIdDuration = number;
-/**
- * event_id integer
- */
-type GetCharactersCharacterIdCalendarEventIdEventId = number;
-/**
- * importance integer
- */
-type GetCharactersCharacterIdCalendarEventIdImportance = number;
-/**
- * owner_id integer
- */
-type GetCharactersCharacterIdCalendarEventIdOwnerId = number;
-/**
- * owner_name string
- */
-type GetCharactersCharacterIdCalendarEventIdOwnerName = string;
+* ESI endpoint: /characters/{character_id}/calendar/{event_id}/
+*/
 /**
  * owner_type string
  */
@@ -35,32 +10,47 @@ type GetCharactersCharacterIdCalendarEventIdOwnerType =
   | "faction"
   | "character"
   | "alliance";
-/**
- * response string
- */
-type GetCharactersCharacterIdCalendarEventIdResponse = string;
-/**
- * text string
- */
-type GetCharactersCharacterIdCalendarEventIdText = string;
-/**
- * title string
- */
-type GetCharactersCharacterIdCalendarEventIdTitle = string;
 
 /**
  * Full details of a specific event
  */
 interface GetCharactersCharacterIdCalendarEventIdOk {
-  date: GetCharactersCharacterIdCalendarEventIdDate;
-  duration: GetCharactersCharacterIdCalendarEventIdDuration;
-  event_id: GetCharactersCharacterIdCalendarEventIdEventId;
-  importance: GetCharactersCharacterIdCalendarEventIdImportance;
-  owner_id: GetCharactersCharacterIdCalendarEventIdOwnerId;
-  owner_name: GetCharactersCharacterIdCalendarEventIdOwnerName;
+/**
+ * date string
+ */
+  date: string;
+/**
+ * Length in minutes
+ */
+  duration: number;
+/**
+ * event_id integer
+ */
+  event_id: number;
+/**
+ * importance integer
+ */
+  importance: number;
+/**
+ * owner_id integer
+ */
+  owner_id: number;
+/**
+ * owner_name string
+ */
+  owner_name: string;
   owner_type: GetCharactersCharacterIdCalendarEventIdOwnerType;
-  response: GetCharactersCharacterIdCalendarEventIdResponse;
-  text: GetCharactersCharacterIdCalendarEventIdText;
-  title: GetCharactersCharacterIdCalendarEventIdTitle;
+/**
+ * response string
+ */
+  response: string;
+/**
+ * text string
+ */
+  text: string;
+/**
+ * title string
+ */
+  title: string;
   [k: string]: unknown | undefined;
 }

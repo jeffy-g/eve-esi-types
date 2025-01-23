@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/mail/labels/
- */
-
+* ESI endpoint: /characters/{character_id}/mail/labels/
+*/
 /**
  * color string
  */
@@ -25,34 +24,21 @@ type GetCharactersCharacterIdMailLabelsColor =
   | "#ffffcd"
   | "#ffffff";
 /**
- * label_id integer
- */
-type GetCharactersCharacterIdMailLabelsLabelId = number;
-/**
- * name string
- */
-type GetCharactersCharacterIdMailLabelsName = string;
-/**
- * unread_count integer
- */
-type GetCharactersCharacterIdMailLabelsUnreadCount = number;
-/**
  * labels array
  *
  * @maxItems 30
  */
 type GetCharactersCharacterIdMailLabelsLabels = GetCharactersCharacterIdMailLabelsLabel[];
-/**
- * total_unread_count integer
- */
-type GetCharactersCharacterIdMailLabelsTotalUnreadCount = number;
 
 /**
  * 200 ok object
  */
 interface GetCharactersCharacterIdMailLabelsOk {
   labels?: GetCharactersCharacterIdMailLabelsLabels;
-  total_unread_count?: GetCharactersCharacterIdMailLabelsTotalUnreadCount;
+/**
+ * total_unread_count integer
+ */
+  total_unread_count?: number;
   [k: string]: unknown | undefined;
 }
 /**
@@ -60,8 +46,17 @@ interface GetCharactersCharacterIdMailLabelsOk {
  */
 interface GetCharactersCharacterIdMailLabelsLabel {
   color?: GetCharactersCharacterIdMailLabelsColor;
-  label_id?: GetCharactersCharacterIdMailLabelsLabelId;
-  name?: GetCharactersCharacterIdMailLabelsName;
-  unread_count?: GetCharactersCharacterIdMailLabelsUnreadCount;
+/**
+ * label_id integer
+ */
+  label_id?: number;
+/**
+ * name string
+ */
+  name?: string;
+/**
+ * unread_count integer
+ */
+  unread_count?: number;
   [k: string]: unknown | undefined;
 }

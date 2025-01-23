@@ -1,14 +1,12 @@
 /**
- * ESI endpoint: /universe/graphics/
- */
-
-/**
- * 200 ok integer
- */
-type GetUniverseGraphics_200Ok = number;
+* ESI endpoint: /universe/graphics/
+*/
 /**
  * 200 ok array
  *
  * @maxItems 10000
  */
-type GetUniverseGraphicsOk = GetUniverseGraphics_200Ok[];
+/**
+ * 200 ok integer
+ */
+type GetUniverseGraphicsOk = number[];

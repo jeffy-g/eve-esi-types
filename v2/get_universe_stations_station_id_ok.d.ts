@@ -1,47 +1,6 @@
 /**
- * ESI endpoint: /universe/stations/{station_id}/
- */
-
-/**
- * max_dockable_ship_volume number
- */
-type GetUniverseStationsStationIdMaxDockableShipVolume = number;
-/**
- * name string
- */
-type GetUniverseStationsStationIdName = string;
-/**
- * office_rental_cost number
- */
-type GetUniverseStationsStationIdOfficeRentalCost = number;
-/**
- * ID of the corporation that controls this station
- */
-type GetUniverseStationsStationIdOwner = number;
-/**
- * x number
- */
-type GetUniverseStationsStationIdX = number;
-/**
- * y number
- */
-type GetUniverseStationsStationIdY = number;
-/**
- * z number
- */
-type GetUniverseStationsStationIdZ = number;
-/**
- * race_id integer
- */
-type GetUniverseStationsStationIdRaceId = number;
-/**
- * reprocessing_efficiency number
- */
-type GetUniverseStationsStationIdReprocessingEfficiency = number;
-/**
- * reprocessing_stations_take number
- */
-type GetUniverseStationsStationIdReprocessingStationsTake = number;
+* ESI endpoint: /universe/stations/{station_id}/
+*/
 /**
  * service string
  */
@@ -79,43 +38,70 @@ type GetUniverseStationsStationIdService =
  * @maxItems 30
  */
 type GetUniverseStationsStationIdServices = GetUniverseStationsStationIdService[];
-/**
- * station_id integer
- */
-type GetUniverseStationsStationIdStationId = number;
-/**
- * The solar system this station is in
- */
-type GetUniverseStationsStationIdSystemId = number;
-/**
- * type_id integer
- */
-type GetUniverseStationsStationIdTypeId = number;
 
 /**
  * 200 ok object
  */
 interface GetUniverseStationsStationIdOk {
-  max_dockable_ship_volume: GetUniverseStationsStationIdMaxDockableShipVolume;
-  name: GetUniverseStationsStationIdName;
-  office_rental_cost: GetUniverseStationsStationIdOfficeRentalCost;
-  owner?: GetUniverseStationsStationIdOwner;
+/**
+ * max_dockable_ship_volume number
+ */
+  max_dockable_ship_volume: number;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * office_rental_cost number
+ */
+  office_rental_cost: number;
+/**
+ * ID of the corporation that controls this station
+ */
+  owner?: number;
   position: GetUniverseStationsStationIdPosition;
-  race_id?: GetUniverseStationsStationIdRaceId;
-  reprocessing_efficiency: GetUniverseStationsStationIdReprocessingEfficiency;
-  reprocessing_stations_take: GetUniverseStationsStationIdReprocessingStationsTake;
+/**
+ * race_id integer
+ */
+  race_id?: number;
+/**
+ * reprocessing_efficiency number
+ */
+  reprocessing_efficiency: number;
+/**
+ * reprocessing_stations_take number
+ */
+  reprocessing_stations_take: number;
   services: GetUniverseStationsStationIdServices;
-  station_id: GetUniverseStationsStationIdStationId;
-  system_id: GetUniverseStationsStationIdSystemId;
-  type_id: GetUniverseStationsStationIdTypeId;
+/**
+ * station_id integer
+ */
+  station_id: number;
+/**
+ * The solar system this station is in
+ */
+  system_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * position object
  */
 interface GetUniverseStationsStationIdPosition {
-  x: GetUniverseStationsStationIdX;
-  y: GetUniverseStationsStationIdY;
-  z: GetUniverseStationsStationIdZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

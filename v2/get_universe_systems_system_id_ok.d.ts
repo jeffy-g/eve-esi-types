@@ -1,39 +1,16 @@
 /**
- * ESI endpoint: /universe/systems/{system_id}/
- */
-
-/**
- * The constellation this solar system is in
- */
-type GetUniverseSystemsSystemIdConstellationId = number;
-/**
- * name string
- */
-type GetUniverseSystemsSystemIdName = string;
-/**
- * asteroid_belt integer
- */
-type GetUniverseSystemsSystemIdAsteroidBelt = number;
+* ESI endpoint: /universe/systems/{system_id}/
+*/
 /**
  * asteroid_belts array
  *
  * @maxItems 100
  */
-type GetUniverseSystemsSystemIdAsteroidBelts = GetUniverseSystemsSystemIdAsteroidBelt[];
-/**
- * moon integer
- */
-type GetUniverseSystemsSystemIdMoon = number;
 /**
  * moons array
  *
  * @maxItems 1000
  */
-type GetUniverseSystemsSystemIdMoons = GetUniverseSystemsSystemIdMoon[];
-/**
- * planet_id integer
- */
-type GetUniverseSystemsSystemIdPlanetId = number;
 /**
  * planets array
  *
@@ -41,85 +18,89 @@ type GetUniverseSystemsSystemIdPlanetId = number;
  */
 type GetUniverseSystemsSystemIdPlanets = GetUniverseSystemsSystemIdPlanet[];
 /**
- * x number
- */
-type GetUniverseSystemsSystemIdX = number;
-/**
- * y number
- */
-type GetUniverseSystemsSystemIdY = number;
-/**
- * z number
- */
-type GetUniverseSystemsSystemIdZ = number;
-/**
- * security_class string
- */
-type GetUniverseSystemsSystemIdSecurityClass = string;
-/**
- * security_status number
- */
-type GetUniverseSystemsSystemIdSecurityStatus = number;
-/**
- * star_id integer
- */
-type GetUniverseSystemsSystemIdStarId = number;
-/**
- * stargate integer
- */
-type GetUniverseSystemsSystemIdStargate = number;
-/**
  * stargates array
  *
  * @maxItems 25
  */
-type GetUniverseSystemsSystemIdStargates = GetUniverseSystemsSystemIdStargate[];
-/**
- * station integer
- */
-type GetUniverseSystemsSystemIdStation = number;
 /**
  * stations array
  *
  * @maxItems 25
  */
-type GetUniverseSystemsSystemIdStations = GetUniverseSystemsSystemIdStation[];
-/**
- * system_id integer
- */
-type GetUniverseSystemsSystemIdSystemId = number;
 
 /**
  * 200 ok object
  */
 interface GetUniverseSystemsSystemIdOk {
-  constellation_id: GetUniverseSystemsSystemIdConstellationId;
-  name: GetUniverseSystemsSystemIdName;
+/**
+ * The constellation this solar system is in
+ */
+  constellation_id: number;
+/**
+ * name string
+ */
+  name: string;
   planets?: GetUniverseSystemsSystemIdPlanets;
   position: GetUniverseSystemsSystemIdPosition;
-  security_class?: GetUniverseSystemsSystemIdSecurityClass;
-  security_status: GetUniverseSystemsSystemIdSecurityStatus;
-  star_id?: GetUniverseSystemsSystemIdStarId;
-  stargates?: GetUniverseSystemsSystemIdStargates;
-  stations?: GetUniverseSystemsSystemIdStations;
-  system_id: GetUniverseSystemsSystemIdSystemId;
+/**
+ * security_class string
+ */
+  security_class?: string;
+/**
+ * security_status number
+ */
+  security_status: number;
+/**
+ * star_id integer
+ */
+  star_id?: number;
+/**
+ * stargate integer
+ */
+  stargates?: number[];
+/**
+ * station integer
+ */
+  stations?: number[];
+/**
+ * system_id integer
+ */
+  system_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * planet object
  */
 interface GetUniverseSystemsSystemIdPlanet {
-  asteroid_belts?: GetUniverseSystemsSystemIdAsteroidBelts;
-  moons?: GetUniverseSystemsSystemIdMoons;
-  planet_id: GetUniverseSystemsSystemIdPlanetId;
+/**
+ * asteroid_belt integer
+ */
+  asteroid_belts?: number[];
+/**
+ * moon integer
+ */
+  moons?: number[];
+/**
+ * planet_id integer
+ */
+  planet_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * position object
  */
 interface GetUniverseSystemsSystemIdPosition {
-  x: GetUniverseSystemsSystemIdX;
-  y: GetUniverseSystemsSystemIdY;
-  z: GetUniverseSystemsSystemIdZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

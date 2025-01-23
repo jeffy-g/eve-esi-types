@@ -1,11 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/fleet/
- */
-
-/**
- * The character's current fleet ID
- */
-type GetCharactersCharacterIdFleetFleetId = number;
+* ESI endpoint: /characters/{character_id}/fleet/
+*/
 /**
  * Member’s role in fleet
  */
@@ -14,22 +9,23 @@ type GetCharactersCharacterIdFleetRole =
   | "squad_commander"
   | "squad_member"
   | "wing_commander";
-/**
- * ID of the squad the member is in. If not applicable, will be set to -1
- */
-type GetCharactersCharacterIdFleetSquadId = number;
-/**
- * ID of the wing the member is in. If not applicable, will be set to -1
- */
-type GetCharactersCharacterIdFleetWingId = number;
 
 /**
  * 200 ok object
  */
 interface GetCharactersCharacterIdFleetOk {
-  fleet_id: GetCharactersCharacterIdFleetFleetId;
+/**
+ * The character's current fleet ID
+ */
+  fleet_id: number;
   role: GetCharactersCharacterIdFleetRole;
-  squad_id: GetCharactersCharacterIdFleetSquadId;
-  wing_id: GetCharactersCharacterIdFleetWingId;
+/**
+ * ID of the squad the member is in. If not applicable, will be set to -1
+ */
+  squad_id: number;
+/**
+ * ID of the wing the member is in. If not applicable, will be set to -1
+ */
+  wing_id: number;
   [k: string]: unknown | undefined;
 }

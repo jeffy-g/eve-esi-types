@@ -1,23 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/assets/locations/
- */
-
-/**
- * item_id integer
- */
-type PostCorporationsCorporationIdAssetsLocationsItemId = number;
-/**
- * x number
- */
-type PostCorporationsCorporationIdAssetsLocationsX = number;
-/**
- * y number
- */
-type PostCorporationsCorporationIdAssetsLocationsY = number;
-/**
- * z number
- */
-type PostCorporationsCorporationIdAssetsLocationsZ = number;
+* ESI endpoint: /corporations/{corporation_id}/assets/locations/
+*/
 /**
  * 200 ok array
  *
@@ -29,7 +12,10 @@ type PostCorporationsCorporationIdAssetsLocationsOk = PostCorporationsCorporatio
  * 200 ok object
  */
 interface PostCorporationsCorporationIdAssetsLocations_200Ok {
-  item_id: PostCorporationsCorporationIdAssetsLocationsItemId;
+/**
+ * item_id integer
+ */
+  item_id: number;
   position: PostCorporationsCorporationIdAssetsLocationsPosition;
   [k: string]: unknown | undefined;
 }
@@ -37,8 +23,17 @@ interface PostCorporationsCorporationIdAssetsLocations_200Ok {
  * position object
  */
 interface PostCorporationsCorporationIdAssetsLocationsPosition {
-  x: PostCorporationsCorporationIdAssetsLocationsX;
-  y: PostCorporationsCorporationIdAssetsLocationsY;
-  z: PostCorporationsCorporationIdAssetsLocationsZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

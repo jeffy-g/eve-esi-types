@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/divisions/
- */
-
+* ESI endpoint: /corporations/{corporation_id}/divisions/
+*/
 /**
  * hangar array
  *
@@ -47,14 +46,6 @@ type GetCorporationsCorporationIdDivisionsHangar =
       GetCorporationsCorporationIdDivisionsHangarHangar
     ];
 /**
- * division integer
- */
-type GetCorporationsCorporationIdDivisionsDivision = number;
-/**
- * name string
- */
-type GetCorporationsCorporationIdDivisionsName = string;
-/**
  * wallet array
  *
  * @maxItems 7
@@ -98,14 +89,6 @@ type GetCorporationsCorporationIdDivisionsWallet =
       GetCorporationsCorporationIdDivisionsWalletWallet,
       GetCorporationsCorporationIdDivisionsWalletWallet
     ];
-/**
- * division integer
- */
-type GetCorporationsCorporationIdDivisionsWalletDivision = number;
-/**
- * name string
- */
-type GetCorporationsCorporationIdDivisionsWalletName = string;
 
 /**
  * 200 ok object
@@ -119,15 +102,27 @@ interface GetCorporationsCorporationIdDivisionsOk {
  * hangar object
  */
 interface GetCorporationsCorporationIdDivisionsHangarHangar {
-  division?: GetCorporationsCorporationIdDivisionsDivision;
-  name?: GetCorporationsCorporationIdDivisionsName;
+/**
+ * division integer
+ */
+  division?: number;
+/**
+ * name string
+ */
+  name?: string;
   [k: string]: unknown | undefined;
 }
 /**
  * wallet object
  */
 interface GetCorporationsCorporationIdDivisionsWalletWallet {
-  division?: GetCorporationsCorporationIdDivisionsWalletDivision;
-  name?: GetCorporationsCorporationIdDivisionsWalletName;
+/**
+ * division integer
+ */
+  division?: number;
+/**
+ * name string
+ */
+  name?: string;
   [k: string]: unknown | undefined;
 }

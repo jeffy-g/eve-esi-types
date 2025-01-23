@@ -1,45 +1,28 @@
 /**
- * ESI endpoint: /universe/structures/{structure_id}/
- */
-
-/**
- * The full name of the structure
- */
-type GetUniverseStructuresStructureIdName = string;
-/**
- * The ID of the corporation who owns this particular structure
- */
-type GetUniverseStructuresStructureIdOwnerId = number;
-/**
- * x number
- */
-type GetUniverseStructuresStructureIdX = number;
-/**
- * y number
- */
-type GetUniverseStructuresStructureIdY = number;
-/**
- * z number
- */
-type GetUniverseStructuresStructureIdZ = number;
-/**
- * solar_system_id integer
- */
-type GetUniverseStructuresStructureIdSolarSystemId = number;
-/**
- * type_id integer
- */
-type GetUniverseStructuresStructureIdTypeId = number;
+* ESI endpoint: /universe/structures/{structure_id}/
+*/
 
 /**
  * 200 ok object
  */
 interface GetUniverseStructuresStructureIdOk {
-  name: GetUniverseStructuresStructureIdName;
-  owner_id: GetUniverseStructuresStructureIdOwnerId;
+/**
+ * The full name of the structure
+ */
+  name: string;
+/**
+ * The ID of the corporation who owns this particular structure
+ */
+  owner_id: number;
   position?: GetUniverseStructuresStructureIdPosition;
-  solar_system_id: GetUniverseStructuresStructureIdSolarSystemId;
-  type_id?: GetUniverseStructuresStructureIdTypeId;
+/**
+ * solar_system_id integer
+ */
+  solar_system_id: number;
+/**
+ * type_id integer
+ */
+  type_id?: number;
   [k: string]: unknown | undefined;
 }
 /**
@@ -47,8 +30,17 @@ interface GetUniverseStructuresStructureIdOk {
  *
  */
 interface GetUniverseStructuresStructureIdPosition {
-  x: GetUniverseStructuresStructureIdX;
-  y: GetUniverseStructuresStructureIdY;
-  z: GetUniverseStructuresStructureIdZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

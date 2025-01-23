@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/containers/logs/
- */
-
+* ESI endpoint: /corporations/{corporation_id}/containers/logs/
+*/
 /**
  * action string
  */
@@ -16,18 +15,6 @@ type GetCorporationsCorporationIdContainersLogsAction =
   | "set_name"
   | "set_password"
   | "unlock";
-/**
- * ID of the character who performed the action.
- */
-type GetCorporationsCorporationIdContainersLogsCharacterId = number;
-/**
- * ID of the container
- */
-type GetCorporationsCorporationIdContainersLogsContainerId = number;
-/**
- * Type ID of the container
- */
-type GetCorporationsCorporationIdContainersLogsContainerTypeId = number;
 /**
  * location_flag string
  */
@@ -150,33 +137,9 @@ type GetCorporationsCorporationIdContainersLogsLocationFlag =
   | "Wallet"
   | "Wardrobe";
 /**
- * location_id integer
- */
-type GetCorporationsCorporationIdContainersLogsLocationId = number;
-/**
- * Timestamp when this log was created
- */
-type GetCorporationsCorporationIdContainersLogsLoggedAt = string;
-/**
- * new_config_bitmask integer
- */
-type GetCorporationsCorporationIdContainersLogsNewConfigBitmask = number;
-/**
- * old_config_bitmask integer
- */
-type GetCorporationsCorporationIdContainersLogsOldConfigBitmask = number;
-/**
  * Type of password set if action is of type SetPassword or EnterPassword
  */
 type GetCorporationsCorporationIdContainersLogsPasswordType = "config" | "general";
-/**
- * Quantity of the item being acted upon
- */
-type GetCorporationsCorporationIdContainersLogsQuantity = number;
-/**
- * Type ID of the item being acted upon
- */
-type GetCorporationsCorporationIdContainersLogsTypeId = number;
 /**
  * 200 ok array
  *
@@ -189,16 +152,43 @@ type GetCorporationsCorporationIdContainersLogsOk = GetCorporationsCorporationId
  */
 interface GetCorporationsCorporationIdContainersLogs_200Ok {
   action: GetCorporationsCorporationIdContainersLogsAction;
-  character_id: GetCorporationsCorporationIdContainersLogsCharacterId;
-  container_id: GetCorporationsCorporationIdContainersLogsContainerId;
-  container_type_id: GetCorporationsCorporationIdContainersLogsContainerTypeId;
+/**
+ * ID of the character who performed the action.
+ */
+  character_id: number;
+/**
+ * ID of the container
+ */
+  container_id: number;
+/**
+ * Type ID of the container
+ */
+  container_type_id: number;
   location_flag: GetCorporationsCorporationIdContainersLogsLocationFlag;
-  location_id: GetCorporationsCorporationIdContainersLogsLocationId;
-  logged_at: GetCorporationsCorporationIdContainersLogsLoggedAt;
-  new_config_bitmask?: GetCorporationsCorporationIdContainersLogsNewConfigBitmask;
-  old_config_bitmask?: GetCorporationsCorporationIdContainersLogsOldConfigBitmask;
+/**
+ * location_id integer
+ */
+  location_id: number;
+/**
+ * Timestamp when this log was created
+ */
+  logged_at: string;
+/**
+ * new_config_bitmask integer
+ */
+  new_config_bitmask?: number;
+/**
+ * old_config_bitmask integer
+ */
+  old_config_bitmask?: number;
   password_type?: GetCorporationsCorporationIdContainersLogsPasswordType;
-  quantity?: GetCorporationsCorporationIdContainersLogsQuantity;
-  type_id?: GetCorporationsCorporationIdContainersLogsTypeId;
+/**
+ * Quantity of the item being acted upon
+ */
+  quantity?: number;
+/**
+ * Type ID of the item being acted upon
+ */
+  type_id?: number;
   [k: string]: unknown | undefined;
 }

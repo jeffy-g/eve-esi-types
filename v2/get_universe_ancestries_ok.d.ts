@@ -1,31 +1,6 @@
 /**
- * ESI endpoint: /universe/ancestries/
- */
-
-/**
- * The bloodline associated with this ancestry
- */
-type GetUniverseAncestriesBloodlineId = number;
-/**
- * description string
- */
-type GetUniverseAncestriesDescription = string;
-/**
- * icon_id integer
- */
-type GetUniverseAncestriesIconId = number;
-/**
- * id integer
- */
-type GetUniverseAncestriesId = number;
-/**
- * name string
- */
-type GetUniverseAncestriesName = string;
-/**
- * short_description string
- */
-type GetUniverseAncestriesShortDescription = string;
+* ESI endpoint: /universe/ancestries/
+*/
 /**
  * 200 ok array
  *
@@ -37,11 +12,29 @@ type GetUniverseAncestriesOk = GetUniverseAncestries_200Ok[];
  * 200 ok object
  */
 interface GetUniverseAncestries_200Ok {
-  bloodline_id: GetUniverseAncestriesBloodlineId;
-  description: GetUniverseAncestriesDescription;
-  icon_id?: GetUniverseAncestriesIconId;
-  id: GetUniverseAncestriesId;
-  name: GetUniverseAncestriesName;
-  short_description?: GetUniverseAncestriesShortDescription;
+/**
+ * The bloodline associated with this ancestry
+ */
+  bloodline_id: number;
+/**
+ * description string
+ */
+  description: string;
+/**
+ * icon_id integer
+ */
+  icon_id?: number;
+/**
+ * id integer
+ */
+  id: number;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * short_description string
+ */
+  short_description?: string;
   [k: string]: unknown | undefined;
 }

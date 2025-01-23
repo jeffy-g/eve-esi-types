@@ -1,31 +1,26 @@
 /**
- * ESI endpoint: /opportunities/tasks/{task_id}/
- */
-
-/**
- * description string
- */
-type GetOpportunitiesTasksTaskIdDescription = string;
-/**
- * name string
- */
-type GetOpportunitiesTasksTaskIdName = string;
-/**
- * notification string
- */
-type GetOpportunitiesTasksTaskIdNotification = string;
-/**
- * task_id integer
- */
-type GetOpportunitiesTasksTaskIdTaskId = number;
+* ESI endpoint: /opportunities/tasks/{task_id}/
+*/
 
 /**
  * 200 ok object
  */
 interface GetOpportunitiesTasksTaskIdOk {
-  description: GetOpportunitiesTasksTaskIdDescription;
-  name: GetOpportunitiesTasksTaskIdName;
-  notification: GetOpportunitiesTasksTaskIdNotification;
-  task_id: GetOpportunitiesTasksTaskIdTaskId;
+/**
+ * description string
+ */
+  description: string;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * notification string
+ */
+  notification: string;
+/**
+ * task_id integer
+ */
+  task_id: number;
   [k: string]: unknown | undefined;
 }

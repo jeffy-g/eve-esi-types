@@ -1,51 +1,6 @@
 /**
- * ESI endpoint: /universe/bloodlines/
- */
-
-/**
- * bloodline_id integer
- */
-type GetUniverseBloodlinesBloodlineId = number;
-/**
- * charisma integer
- */
-type GetUniverseBloodlinesCharisma = number;
-/**
- * corporation_id integer
- */
-type GetUniverseBloodlinesCorporationId = number;
-/**
- * description string
- */
-type GetUniverseBloodlinesDescription = string;
-/**
- * intelligence integer
- */
-type GetUniverseBloodlinesIntelligence = number;
-/**
- * memory integer
- */
-type GetUniverseBloodlinesMemory = number;
-/**
- * name string
- */
-type GetUniverseBloodlinesName = string;
-/**
- * perception integer
- */
-type GetUniverseBloodlinesPerception = number;
-/**
- * race_id integer
- */
-type GetUniverseBloodlinesRaceId = number;
-/**
- * ship_type_id integer
- */
-type GetUniverseBloodlinesShipTypeId = number;
-/**
- * willpower integer
- */
-type GetUniverseBloodlinesWillpower = number;
+* ESI endpoint: /universe/bloodlines/
+*/
 /**
  * 200 ok array
  *
@@ -57,16 +12,49 @@ type GetUniverseBloodlinesOk = GetUniverseBloodlines_200Ok[];
  * 200 ok object
  */
 interface GetUniverseBloodlines_200Ok {
-  bloodline_id: GetUniverseBloodlinesBloodlineId;
-  charisma: GetUniverseBloodlinesCharisma;
-  corporation_id: GetUniverseBloodlinesCorporationId;
-  description: GetUniverseBloodlinesDescription;
-  intelligence: GetUniverseBloodlinesIntelligence;
-  memory: GetUniverseBloodlinesMemory;
-  name: GetUniverseBloodlinesName;
-  perception: GetUniverseBloodlinesPerception;
-  race_id: GetUniverseBloodlinesRaceId;
-  ship_type_id: GetUniverseBloodlinesShipTypeId;
-  willpower: GetUniverseBloodlinesWillpower;
+/**
+ * bloodline_id integer
+ */
+  bloodline_id: number;
+/**
+ * charisma integer
+ */
+  charisma: number;
+/**
+ * corporation_id integer
+ */
+  corporation_id: number;
+/**
+ * description string
+ */
+  description: string;
+/**
+ * intelligence integer
+ */
+  intelligence: number;
+/**
+ * memory integer
+ */
+  memory: number;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * perception integer
+ */
+  perception: number;
+/**
+ * race_id integer
+ */
+  race_id: number;
+/**
+ * ship_type_id integer
+ */
+  ship_type_id: number;
+/**
+ * willpower integer
+ */
+  willpower: number;
   [k: string]: unknown | undefined;
 }

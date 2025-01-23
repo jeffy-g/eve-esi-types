@@ -1,29 +1,6 @@
 /**
- * ESI endpoint: /corporation/{corporation_id}/mining/observers/{observer_id}/
- */
-
-/**
- * The character that did the mining
- *
- */
-type GetCorporationCorporationIdMiningObserversObserverIdCharacterId = number;
-/**
- * last_updated string
- */
-type GetCorporationCorporationIdMiningObserversObserverIdLastUpdated = string;
-/**
- * quantity integer
- */
-type GetCorporationCorporationIdMiningObserversObserverIdQuantity = number;
-/**
- * The corporation id of the character at the time data was recorded.
- *
- */
-type GetCorporationCorporationIdMiningObserversObserverIdRecordedCorporationId = number;
-/**
- * type_id integer
- */
-type GetCorporationCorporationIdMiningObserversObserverIdTypeId = number;
+* ESI endpoint: /corporation/{corporation_id}/mining/observers/{observer_id}/
+*/
 /**
  * 200 ok array
  *
@@ -36,10 +13,27 @@ type GetCorporationCorporationIdMiningObserversObserverIdOk =
  * 200 ok object
  */
 interface GetCorporationCorporationIdMiningObserversObserverId_200Ok {
-  character_id: GetCorporationCorporationIdMiningObserversObserverIdCharacterId;
-  last_updated: GetCorporationCorporationIdMiningObserversObserverIdLastUpdated;
-  quantity: GetCorporationCorporationIdMiningObserversObserverIdQuantity;
-  recorded_corporation_id: GetCorporationCorporationIdMiningObserversObserverIdRecordedCorporationId;
-  type_id: GetCorporationCorporationIdMiningObserversObserverIdTypeId;
+/**
+ * The character that did the mining
+ *
+ */
+  character_id: number;
+/**
+ * last_updated string
+ */
+  last_updated: string;
+/**
+ * quantity integer
+ */
+  quantity: number;
+/**
+ * The corporation id of the character at the time data was recorded.
+ *
+ */
+  recorded_corporation_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

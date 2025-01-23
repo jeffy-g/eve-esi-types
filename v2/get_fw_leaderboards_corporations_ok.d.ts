@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /fw/leaderboards/corporations/
- */
-
+* ESI endpoint: /fw/leaderboards/corporations/
+*/
 /**
  * Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered "active" if they have participated in faction warfare in the past 14 days
  *
@@ -80,14 +79,6 @@ type GetFwLeaderboardsCorporationsActiveTotal =
       GetFwLeaderboardsCorporationsActiveTotalActiveTotal
     ];
 /**
- * Amount of kills
- */
-type GetFwLeaderboardsCorporationsAmount = number;
-/**
- * corporation_id integer
- */
-type GetFwLeaderboardsCorporationsCorporationId = number;
-/**
  * Top 10 ranking of corporations by kills in the past week
  *
  * @maxItems 10
@@ -164,14 +155,6 @@ type GetFwLeaderboardsCorporationsLastWeek =
       GetFwLeaderboardsCorporationsLastWeekLastWeek,
       GetFwLeaderboardsCorporationsLastWeekLastWeek
     ];
-/**
- * Amount of kills
- */
-type GetFwLeaderboardsCorporationsLastWeekAmount = number;
-/**
- * corporation_id integer
- */
-type GetFwLeaderboardsCorporationsLastWeekCorporationId = number;
 /**
  * Top 10 ranking of corporations by kills in the past day
  *
@@ -250,14 +233,6 @@ type GetFwLeaderboardsCorporationsYesterday =
       GetFwLeaderboardsCorporationsYesterdayYesterday
     ];
 /**
- * Amount of kills
- */
-type GetFwLeaderboardsCorporationsYesterdayAmount = number;
-/**
- * corporation_id integer
- */
-type GetFwLeaderboardsCorporationsYesterdayCorporationId = number;
-/**
  * Top 10 ranking of corporations active in faction warfare by total victory points. A corporation is considered "active" if they have participated in faction warfare in the past 14 days
  *
  * @maxItems 10
@@ -334,14 +309,6 @@ type GetFwLeaderboardsCorporationsVictoryPointsActiveTotal =
       GetFwLeaderboardsCorporationsActiveTotalActiveTotal_1,
       GetFwLeaderboardsCorporationsActiveTotalActiveTotal_1
     ];
-/**
- * Amount of victory points
- */
-type GetFwLeaderboardsCorporationsActiveTotalAmount = number;
-/**
- * corporation_id integer
- */
-type GetFwLeaderboardsCorporationsActiveTotalCorporationId = number;
 /**
  * Top 10 ranking of corporations by victory points in the past week
  *
@@ -420,14 +387,6 @@ type GetFwLeaderboardsCorporationsVictoryPointsLastWeek =
       GetFwLeaderboardsCorporationsLastWeekLastWeek_1
     ];
 /**
- * Amount of victory points
- */
-type GetFwLeaderboardsCorporationsLastWeekAmount_1 = number;
-/**
- * corporation_id integer
- */
-type GetFwLeaderboardsCorporationsLastWeekCorporationId_1 = number;
-/**
  * Top 10 ranking of corporations by victory points in the past day
  *
  * @maxItems 10
@@ -504,14 +463,6 @@ type GetFwLeaderboardsCorporationsVictoryPointsYesterday =
       GetFwLeaderboardsCorporationsYesterdayYesterday_1,
       GetFwLeaderboardsCorporationsYesterdayYesterday_1
     ];
-/**
- * Amount of victory points
- */
-type GetFwLeaderboardsCorporationsYesterdayAmount_1 = number;
-/**
- * corporation_id integer
- */
-type GetFwLeaderboardsCorporationsYesterdayCorporationId_1 = number;
 
 /**
  * 200 ok object
@@ -534,24 +485,42 @@ interface GetFwLeaderboardsCorporationsKills {
  * active_total object
  */
 interface GetFwLeaderboardsCorporationsActiveTotalActiveTotal {
-  amount?: GetFwLeaderboardsCorporationsAmount;
-  corporation_id?: GetFwLeaderboardsCorporationsCorporationId;
+/**
+ * Amount of kills
+ */
+  amount?: number;
+/**
+ * corporation_id integer
+ */
+  corporation_id?: number;
   [k: string]: unknown | undefined;
 }
 /**
  * last_week object
  */
 interface GetFwLeaderboardsCorporationsLastWeekLastWeek {
-  amount?: GetFwLeaderboardsCorporationsLastWeekAmount;
-  corporation_id?: GetFwLeaderboardsCorporationsLastWeekCorporationId;
+/**
+ * Amount of kills
+ */
+  amount?: number;
+/**
+ * corporation_id integer
+ */
+  corporation_id?: number;
   [k: string]: unknown | undefined;
 }
 /**
  * yesterday object
  */
 interface GetFwLeaderboardsCorporationsYesterdayYesterday {
-  amount?: GetFwLeaderboardsCorporationsYesterdayAmount;
-  corporation_id?: GetFwLeaderboardsCorporationsYesterdayCorporationId;
+/**
+ * Amount of kills
+ */
+  amount?: number;
+/**
+ * corporation_id integer
+ */
+  corporation_id?: number;
   [k: string]: unknown | undefined;
 }
 /**
@@ -567,23 +536,41 @@ interface GetFwLeaderboardsCorporationsVictoryPoints {
  * active_total object
  */
 interface GetFwLeaderboardsCorporationsActiveTotalActiveTotal_1 {
-  amount?: GetFwLeaderboardsCorporationsActiveTotalAmount;
-  corporation_id?: GetFwLeaderboardsCorporationsActiveTotalCorporationId;
+/**
+ * Amount of victory points
+ */
+  amount?: number;
+/**
+ * corporation_id integer
+ */
+  corporation_id?: number;
   [k: string]: unknown | undefined;
 }
 /**
  * last_week object
  */
 interface GetFwLeaderboardsCorporationsLastWeekLastWeek_1 {
-  amount?: GetFwLeaderboardsCorporationsLastWeekAmount_1;
-  corporation_id?: GetFwLeaderboardsCorporationsLastWeekCorporationId_1;
+/**
+ * Amount of victory points
+ */
+  amount?: number;
+/**
+ * corporation_id integer
+ */
+  corporation_id?: number;
   [k: string]: unknown | undefined;
 }
 /**
  * yesterday object
  */
 interface GetFwLeaderboardsCorporationsYesterdayYesterday_1 {
-  amount?: GetFwLeaderboardsCorporationsYesterdayAmount_1;
-  corporation_id?: GetFwLeaderboardsCorporationsYesterdayCorporationId_1;
+/**
+ * Amount of victory points
+ */
+  amount?: number;
+/**
+ * corporation_id integer
+ */
+  corporation_id?: number;
   [k: string]: unknown | undefined;
 }

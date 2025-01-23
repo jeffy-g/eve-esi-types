@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /industry/systems/
- */
-
+* ESI endpoint: /industry/systems/
+*/
 /**
  * cost_indices array
  *
@@ -90,14 +89,6 @@ type GetIndustrySystemsActivity =
   | "researching_time_efficiency"
   | "reverse_engineering";
 /**
- * cost_index number
- */
-type GetIndustrySystemsCostIndex = number;
-/**
- * solar_system_id integer
- */
-type GetIndustrySystemsSolarSystemId = number;
-/**
  * 200 ok array
  *
  * @maxItems 10000
@@ -109,7 +100,10 @@ type GetIndustrySystemsOk = GetIndustrySystems_200Ok[];
  */
 interface GetIndustrySystems_200Ok {
   cost_indices: GetIndustrySystemsCostIndices;
-  solar_system_id: GetIndustrySystemsSolarSystemId;
+/**
+ * solar_system_id integer
+ */
+  solar_system_id: number;
   [k: string]: unknown | undefined;
 }
 /**
@@ -117,6 +111,9 @@ interface GetIndustrySystems_200Ok {
  */
 interface GetIndustrySystemsCostIndice {
   activity: GetIndustrySystemsActivity;
-  cost_index: GetIndustrySystemsCostIndex;
+/**
+ * cost_index number
+ */
+  cost_index: number;
   [k: string]: unknown | undefined;
 }

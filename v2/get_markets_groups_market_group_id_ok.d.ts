@@ -1,42 +1,35 @@
 /**
- * ESI endpoint: /markets/groups/{market_group_id}/
- */
-
-/**
- * description string
- */
-type GetMarketsGroupsMarketGroupIdDescription = string;
-/**
- * market_group_id integer
- */
-type GetMarketsGroupsMarketGroupIdMarketGroupId = number;
-/**
- * name string
- */
-type GetMarketsGroupsMarketGroupIdName = string;
-/**
- * parent_group_id integer
- */
-type GetMarketsGroupsMarketGroupIdParentGroupId = number;
-/**
- * type integer
- */
-type GetMarketsGroupsMarketGroupIdType = number;
+* ESI endpoint: /markets/groups/{market_group_id}/
+*/
 /**
  * types array
  *
  * @maxItems 5000
  */
-type GetMarketsGroupsMarketGroupIdTypes = GetMarketsGroupsMarketGroupIdType[];
 
 /**
  * 200 ok object
  */
 interface GetMarketsGroupsMarketGroupIdOk {
-  description: GetMarketsGroupsMarketGroupIdDescription;
-  market_group_id: GetMarketsGroupsMarketGroupIdMarketGroupId;
-  name: GetMarketsGroupsMarketGroupIdName;
-  parent_group_id?: GetMarketsGroupsMarketGroupIdParentGroupId;
-  types: GetMarketsGroupsMarketGroupIdTypes;
+/**
+ * description string
+ */
+  description: string;
+/**
+ * market_group_id integer
+ */
+  market_group_id: number;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * parent_group_id integer
+ */
+  parent_group_id?: number;
+/**
+ * type integer
+ */
+  types: number[];
   [k: string]: unknown | undefined;
 }

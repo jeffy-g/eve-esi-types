@@ -1,23 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/alliancehistory/
- */
-
-/**
- * alliance_id integer
- */
-type GetCorporationsCorporationIdAlliancehistoryAllianceId = number;
-/**
- * True if the alliance has been closed
- */
-type GetCorporationsCorporationIdAlliancehistoryIsDeleted = boolean;
-/**
- * An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous
- */
-type GetCorporationsCorporationIdAlliancehistoryRecordId = number;
-/**
- * start_date string
- */
-type GetCorporationsCorporationIdAlliancehistoryStartDate = string;
+* ESI endpoint: /corporations/{corporation_id}/alliancehistory/
+*/
 /**
  * 200 ok array
  *
@@ -29,9 +12,21 @@ type GetCorporationsCorporationIdAlliancehistoryOk = GetCorporationsCorporationI
  * 200 ok object
  */
 interface GetCorporationsCorporationIdAlliancehistory_200Ok {
-  alliance_id?: GetCorporationsCorporationIdAlliancehistoryAllianceId;
-  is_deleted?: GetCorporationsCorporationIdAlliancehistoryIsDeleted;
-  record_id: GetCorporationsCorporationIdAlliancehistoryRecordId;
-  start_date: GetCorporationsCorporationIdAlliancehistoryStartDate;
+/**
+ * alliance_id integer
+ */
+  alliance_id?: number;
+/**
+ * True if the alliance has been closed
+ */
+  is_deleted?: boolean;
+/**
+ * An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous
+ */
+  record_id: number;
+/**
+ * start_date string
+ */
+  start_date: string;
   [k: string]: unknown | undefined;
 }

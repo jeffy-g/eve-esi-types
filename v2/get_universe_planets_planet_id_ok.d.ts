@@ -1,53 +1,45 @@
 /**
- * ESI endpoint: /universe/planets/{planet_id}/
- */
-
-/**
- * name string
- */
-type GetUniversePlanetsPlanetIdName = string;
-/**
- * planet_id integer
- */
-type GetUniversePlanetsPlanetIdPlanetId = number;
-/**
- * x number
- */
-type GetUniversePlanetsPlanetIdX = number;
-/**
- * y number
- */
-type GetUniversePlanetsPlanetIdY = number;
-/**
- * z number
- */
-type GetUniversePlanetsPlanetIdZ = number;
-/**
- * The solar system this planet is in
- */
-type GetUniversePlanetsPlanetIdSystemId = number;
-/**
- * type_id integer
- */
-type GetUniversePlanetsPlanetIdTypeId = number;
+* ESI endpoint: /universe/planets/{planet_id}/
+*/
 
 /**
  * 200 ok object
  */
 interface GetUniversePlanetsPlanetIdOk {
-  name: GetUniversePlanetsPlanetIdName;
-  planet_id: GetUniversePlanetsPlanetIdPlanetId;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * planet_id integer
+ */
+  planet_id: number;
   position: GetUniversePlanetsPlanetIdPosition;
-  system_id: GetUniversePlanetsPlanetIdSystemId;
-  type_id: GetUniversePlanetsPlanetIdTypeId;
+/**
+ * The solar system this planet is in
+ */
+  system_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * position object
  */
 interface GetUniversePlanetsPlanetIdPosition {
-  x: GetUniversePlanetsPlanetIdX;
-  y: GetUniversePlanetsPlanetIdY;
-  z: GetUniversePlanetsPlanetIdZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

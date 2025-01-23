@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/assets/
- */
-
-/**
- * is_blueprint_copy boolean
- */
-type GetCorporationsCorporationIdAssetsIsBlueprintCopy = boolean;
-/**
- * is_singleton boolean
- */
-type GetCorporationsCorporationIdAssetsIsSingleton = boolean;
-/**
- * item_id integer
- */
-type GetCorporationsCorporationIdAssetsItemId = number;
+* ESI endpoint: /corporations/{corporation_id}/assets/
+*/
 /**
  * location_flag string
  */
@@ -142,21 +129,9 @@ type GetCorporationsCorporationIdAssetsLocationFlag =
   | "Wallet"
   | "Wardrobe";
 /**
- * location_id integer
- */
-type GetCorporationsCorporationIdAssetsLocationId = number;
-/**
  * location_type string
  */
 type GetCorporationsCorporationIdAssetsLocationType = "station" | "solar_system" | "item" | "other";
-/**
- * quantity integer
- */
-type GetCorporationsCorporationIdAssetsQuantity = number;
-/**
- * type_id integer
- */
-type GetCorporationsCorporationIdAssetsTypeId = number;
 /**
  * 200 ok array
  *
@@ -168,13 +143,31 @@ type GetCorporationsCorporationIdAssetsOk = GetCorporationsCorporationIdAssets_2
  * 200 ok object
  */
 interface GetCorporationsCorporationIdAssets_200Ok {
-  is_blueprint_copy?: GetCorporationsCorporationIdAssetsIsBlueprintCopy;
-  is_singleton: GetCorporationsCorporationIdAssetsIsSingleton;
-  item_id: GetCorporationsCorporationIdAssetsItemId;
+/**
+ * is_blueprint_copy boolean
+ */
+  is_blueprint_copy?: boolean;
+/**
+ * is_singleton boolean
+ */
+  is_singleton: boolean;
+/**
+ * item_id integer
+ */
+  item_id: number;
   location_flag: GetCorporationsCorporationIdAssetsLocationFlag;
-  location_id: GetCorporationsCorporationIdAssetsLocationId;
+/**
+ * location_id integer
+ */
+  location_id: number;
   location_type: GetCorporationsCorporationIdAssetsLocationType;
-  quantity: GetCorporationsCorporationIdAssetsQuantity;
-  type_id: GetCorporationsCorporationIdAssetsTypeId;
+/**
+ * quantity integer
+ */
+  quantity: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

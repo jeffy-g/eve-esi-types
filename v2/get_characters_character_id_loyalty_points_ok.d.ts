@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/loyalty/points/
- */
-
-/**
- * corporation_id integer
- */
-type GetCharactersCharacterIdLoyaltyPointsCorporationId = number;
-/**
- * loyalty_points integer
- */
-type GetCharactersCharacterIdLoyaltyPointsLoyaltyPoints = number;
+* ESI endpoint: /characters/{character_id}/loyalty/points/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetCharactersCharacterIdLoyaltyPointsOk = GetCharactersCharacterIdLoyaltyPo
  * 200 ok object
  */
 interface GetCharactersCharacterIdLoyaltyPoints_200Ok {
-  corporation_id: GetCharactersCharacterIdLoyaltyPointsCorporationId;
-  loyalty_points: GetCharactersCharacterIdLoyaltyPointsLoyaltyPoints;
+/**
+ * corporation_id integer
+ */
+  corporation_id: number;
+/**
+ * loyalty_points integer
+ */
+  loyalty_points: number;
   [k: string]: unknown | undefined;
 }

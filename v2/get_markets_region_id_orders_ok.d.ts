@@ -1,35 +1,6 @@
 /**
- * ESI endpoint: /markets/{region_id}/orders/
- */
-
-/**
- * duration integer
- */
-type GetMarketsRegionIdOrdersDuration = number;
-/**
- * is_buy_order boolean
- */
-type GetMarketsRegionIdOrdersIsBuyOrder = boolean;
-/**
- * issued string
- */
-type GetMarketsRegionIdOrdersIssued = string;
-/**
- * location_id integer
- */
-type GetMarketsRegionIdOrdersLocationId = number;
-/**
- * min_volume integer
- */
-type GetMarketsRegionIdOrdersMinVolume = number;
-/**
- * order_id integer
- */
-type GetMarketsRegionIdOrdersOrderId = number;
-/**
- * price number
- */
-type GetMarketsRegionIdOrdersPrice = number;
+* ESI endpoint: /markets/{region_id}/orders/
+*/
 /**
  * range string
  */
@@ -47,22 +18,6 @@ type GetMarketsRegionIdOrdersRange =
   | "30"
   | "40";
 /**
- * The solar system this order was placed
- */
-type GetMarketsRegionIdOrdersSystemId = number;
-/**
- * type_id integer
- */
-type GetMarketsRegionIdOrdersTypeId = number;
-/**
- * volume_remain integer
- */
-type GetMarketsRegionIdOrdersVolumeRemain = number;
-/**
- * volume_total integer
- */
-type GetMarketsRegionIdOrdersVolumeTotal = number;
-/**
  * 200 ok array
  *
  * @maxItems 1000
@@ -73,17 +28,50 @@ type GetMarketsRegionIdOrdersOk = GetMarketsRegionIdOrders_200Ok[];
  * 200 ok object
  */
 interface GetMarketsRegionIdOrders_200Ok {
-  duration: GetMarketsRegionIdOrdersDuration;
-  is_buy_order: GetMarketsRegionIdOrdersIsBuyOrder;
-  issued: GetMarketsRegionIdOrdersIssued;
-  location_id: GetMarketsRegionIdOrdersLocationId;
-  min_volume: GetMarketsRegionIdOrdersMinVolume;
-  order_id: GetMarketsRegionIdOrdersOrderId;
-  price: GetMarketsRegionIdOrdersPrice;
+/**
+ * duration integer
+ */
+  duration: number;
+/**
+ * is_buy_order boolean
+ */
+  is_buy_order: boolean;
+/**
+ * issued string
+ */
+  issued: string;
+/**
+ * location_id integer
+ */
+  location_id: number;
+/**
+ * min_volume integer
+ */
+  min_volume: number;
+/**
+ * order_id integer
+ */
+  order_id: number;
+/**
+ * price number
+ */
+  price: number;
   range: GetMarketsRegionIdOrdersRange;
-  system_id: GetMarketsRegionIdOrdersSystemId;
-  type_id: GetMarketsRegionIdOrdersTypeId;
-  volume_remain: GetMarketsRegionIdOrdersVolumeRemain;
-  volume_total: GetMarketsRegionIdOrdersVolumeTotal;
+/**
+ * The solar system this order was placed
+ */
+  system_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
+/**
+ * volume_remain integer
+ */
+  volume_remain: number;
+/**
+ * volume_total integer
+ */
+  volume_total: number;
   [k: string]: unknown | undefined;
 }

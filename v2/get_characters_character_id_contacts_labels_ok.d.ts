@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/contacts/labels/
- */
-
-/**
- * label_id integer
- */
-type GetCharactersCharacterIdContactsLabelsLabelId = number;
-/**
- * label_name string
- */
-type GetCharactersCharacterIdContactsLabelsLabelName = string;
+* ESI endpoint: /characters/{character_id}/contacts/labels/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetCharactersCharacterIdContactsLabelsOk = GetCharactersCharacterIdContacts
  * 200 ok object
  */
 interface GetCharactersCharacterIdContactsLabels_200Ok {
-  label_id: GetCharactersCharacterIdContactsLabelsLabelId;
-  label_name: GetCharactersCharacterIdContactsLabelsLabelName;
+/**
+ * label_id integer
+ */
+  label_id: number;
+/**
+ * label_name string
+ */
+  label_name: string;
   [k: string]: unknown | undefined;
 }

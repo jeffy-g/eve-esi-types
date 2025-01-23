@@ -1,14 +1,12 @@
 /**
- * ESI endpoint: /universe/types/
- */
-
-/**
- * 200 ok integer
- */
-type GetUniverseTypes_200Ok = number;
+* ESI endpoint: /universe/types/
+*/
 /**
  * 200 ok array
  *
  * @maxItems 1000
  */
-type GetUniverseTypesOk = GetUniverseTypes_200Ok[];
+/**
+ * 200 ok integer
+ */
+type GetUniverseTypesOk = number[];

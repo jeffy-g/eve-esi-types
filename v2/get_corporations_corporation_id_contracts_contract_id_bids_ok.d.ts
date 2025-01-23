@@ -1,23 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/contracts/{contract_id}/bids/
- */
-
-/**
- * The amount bid, in ISK
- */
-type GetCorporationsCorporationIdContractsContractIdBidsAmount = number;
-/**
- * Unique ID for the bid
- */
-type GetCorporationsCorporationIdContractsContractIdBidsBidId = number;
-/**
- * Character ID of the bidder
- */
-type GetCorporationsCorporationIdContractsContractIdBidsBidderId = number;
-/**
- * Datetime when the bid was placed
- */
-type GetCorporationsCorporationIdContractsContractIdBidsDateBid = string;
+* ESI endpoint: /corporations/{corporation_id}/contracts/{contract_id}/bids/
+*/
 /**
  * 200 ok array
  *
@@ -30,9 +13,21 @@ type GetCorporationsCorporationIdContractsContractIdBidsOk =
  * 200 ok object
  */
 interface GetCorporationsCorporationIdContractsContractIdBids_200Ok {
-  amount: GetCorporationsCorporationIdContractsContractIdBidsAmount;
-  bid_id: GetCorporationsCorporationIdContractsContractIdBidsBidId;
-  bidder_id: GetCorporationsCorporationIdContractsContractIdBidsBidderId;
-  date_bid: GetCorporationsCorporationIdContractsContractIdBidsDateBid;
+/**
+ * The amount bid, in ISK
+ */
+  amount: number;
+/**
+ * Unique ID for the bid
+ */
+  bid_id: number;
+/**
+ * Character ID of the bidder
+ */
+  bidder_id: number;
+/**
+ * Datetime when the bid was placed
+ */
+  date_bid: string;
   [k: string]: unknown | undefined;
 }

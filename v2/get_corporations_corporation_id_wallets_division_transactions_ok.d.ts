@@ -1,43 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/wallets/{division}/transactions/
- */
-
-/**
- * client_id integer
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsClientId = number;
-/**
- * Date and time of transaction
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsDate = string;
-/**
- * is_buy boolean
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsIsBuy = boolean;
-/**
- * -1 if there is no corresponding wallet journal entry
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsJournalRefId = number;
-/**
- * location_id integer
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsLocationId = number;
-/**
- * quantity integer
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsQuantity = number;
-/**
- * Unique transaction ID
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsTransactionId = number;
-/**
- * type_id integer
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsTypeId = number;
-/**
- * Amount paid per unit
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsUnitPrice = number;
+* ESI endpoint: /corporations/{corporation_id}/wallets/{division}/transactions/
+*/
 /**
  * Wallet transactions
  *
@@ -50,14 +13,41 @@ type GetCorporationsCorporationIdWalletsDivisionTransactionsOk =
  * wallet transaction
  */
 interface GetCorporationsCorporationIdWalletsDivisionTransactions_200Ok {
-  client_id: GetCorporationsCorporationIdWalletsDivisionTransactionsClientId;
-  date: GetCorporationsCorporationIdWalletsDivisionTransactionsDate;
-  is_buy: GetCorporationsCorporationIdWalletsDivisionTransactionsIsBuy;
-  journal_ref_id: GetCorporationsCorporationIdWalletsDivisionTransactionsJournalRefId;
-  location_id: GetCorporationsCorporationIdWalletsDivisionTransactionsLocationId;
-  quantity: GetCorporationsCorporationIdWalletsDivisionTransactionsQuantity;
-  transaction_id: GetCorporationsCorporationIdWalletsDivisionTransactionsTransactionId;
-  type_id: GetCorporationsCorporationIdWalletsDivisionTransactionsTypeId;
-  unit_price: GetCorporationsCorporationIdWalletsDivisionTransactionsUnitPrice;
+/**
+ * client_id integer
+ */
+  client_id: number;
+/**
+ * Date and time of transaction
+ */
+  date: string;
+/**
+ * is_buy boolean
+ */
+  is_buy: boolean;
+/**
+ * -1 if there is no corresponding wallet journal entry
+ */
+  journal_ref_id: number;
+/**
+ * location_id integer
+ */
+  location_id: number;
+/**
+ * quantity integer
+ */
+  quantity: number;
+/**
+ * Unique transaction ID
+ */
+  transaction_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
+/**
+ * Amount paid per unit
+ */
+  unit_price: number;
   [k: string]: unknown | undefined;
 }

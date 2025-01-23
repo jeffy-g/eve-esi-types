@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /markets/prices/
- */
-
-/**
- * adjusted_price number
- */
-type GetMarketsPricesAdjustedPrice = number;
-/**
- * average_price number
- */
-type GetMarketsPricesAveragePrice = number;
-/**
- * type_id integer
- */
-type GetMarketsPricesTypeId = number;
+* ESI endpoint: /markets/prices/
+*/
 /**
  * 200 ok array
  *
@@ -25,8 +12,17 @@ type GetMarketsPricesOk = GetMarketsPrices_200Ok[];
  * 200 ok object
  */
 interface GetMarketsPrices_200Ok {
-  adjusted_price?: GetMarketsPricesAdjustedPrice;
-  average_price?: GetMarketsPricesAveragePrice;
-  type_id: GetMarketsPricesTypeId;
+/**
+ * adjusted_price number
+ */
+  adjusted_price?: number;
+/**
+ * average_price number
+ */
+  average_price?: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

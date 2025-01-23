@@ -1,27 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/medals/issued/
- */
-
-/**
- * ID of the character who was rewarded this medal
- */
-type GetCorporationsCorporationIdMedalsIssuedCharacterId = number;
-/**
- * issued_at string
- */
-type GetCorporationsCorporationIdMedalsIssuedIssuedAt = string;
-/**
- * ID of the character who issued the medal
- */
-type GetCorporationsCorporationIdMedalsIssuedIssuerId = number;
-/**
- * medal_id integer
- */
-type GetCorporationsCorporationIdMedalsIssuedMedalId = number;
-/**
- * reason string
- */
-type GetCorporationsCorporationIdMedalsIssuedReason = string;
+* ESI endpoint: /corporations/{corporation_id}/medals/issued/
+*/
 /**
  * status string
  */
@@ -37,11 +16,26 @@ type GetCorporationsCorporationIdMedalsIssuedOk = GetCorporationsCorporationIdMe
  * 200 ok object
  */
 interface GetCorporationsCorporationIdMedalsIssued_200Ok {
-  character_id: GetCorporationsCorporationIdMedalsIssuedCharacterId;
-  issued_at: GetCorporationsCorporationIdMedalsIssuedIssuedAt;
-  issuer_id: GetCorporationsCorporationIdMedalsIssuedIssuerId;
-  medal_id: GetCorporationsCorporationIdMedalsIssuedMedalId;
-  reason: GetCorporationsCorporationIdMedalsIssuedReason;
+/**
+ * ID of the character who was rewarded this medal
+ */
+  character_id: number;
+/**
+ * issued_at string
+ */
+  issued_at: string;
+/**
+ * ID of the character who issued the medal
+ */
+  issuer_id: number;
+/**
+ * medal_id integer
+ */
+  medal_id: number;
+/**
+ * reason string
+ */
+  reason: string;
   status: GetCorporationsCorporationIdMedalsIssuedStatus;
   [k: string]: unknown | undefined;
 }

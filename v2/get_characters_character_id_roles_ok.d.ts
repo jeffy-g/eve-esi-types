@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/roles/
- */
-
+* ESI endpoint: /characters/{character_id}/roles/
+*/
 /**
  * role string
  */

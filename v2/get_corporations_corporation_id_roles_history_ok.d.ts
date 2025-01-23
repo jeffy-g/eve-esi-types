@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/roles/history/
- */
-
-/**
- * changed_at string
- */
-type GetCorporationsCorporationIdRolesHistoryChangedAt = string;
-/**
- * The character whose roles are changed
- */
-type GetCorporationsCorporationIdRolesHistoryCharacterId = number;
-/**
- * ID of the character who issued this change
- */
-type GetCorporationsCorporationIdRolesHistoryIssuerId = number;
+* ESI endpoint: /corporations/{corporation_id}/roles/history/
+*/
 /**
  * new_role string
  */
@@ -165,9 +152,18 @@ type GetCorporationsCorporationIdRolesHistoryOk = GetCorporationsCorporationIdRo
  * 200 ok object
  */
 interface GetCorporationsCorporationIdRolesHistory_200Ok {
-  changed_at: GetCorporationsCorporationIdRolesHistoryChangedAt;
-  character_id: GetCorporationsCorporationIdRolesHistoryCharacterId;
-  issuer_id: GetCorporationsCorporationIdRolesHistoryIssuerId;
+/**
+ * changed_at string
+ */
+  changed_at: string;
+/**
+ * The character whose roles are changed
+ */
+  character_id: number;
+/**
+ * ID of the character who issued this change
+ */
+  issuer_id: number;
   new_roles: GetCorporationsCorporationIdRolesHistoryNewRoles;
   old_roles: GetCorporationsCorporationIdRolesHistoryOldRoles;
   role_type: GetCorporationsCorporationIdRolesHistoryRoleType;

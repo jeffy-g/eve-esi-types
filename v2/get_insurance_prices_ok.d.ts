@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /insurance/prices/
- */
-
+* ESI endpoint: /insurance/prices/
+*/
 /**
  * A list of a available insurance levels for this ship type
  *
@@ -29,22 +28,6 @@ type GetInsurancePricesLevels =
       GetInsurancePricesLevel
     ];
 /**
- * cost number
- */
-type GetInsurancePricesCost = number;
-/**
- * Localized insurance level
- */
-type GetInsurancePricesName = string;
-/**
- * payout number
- */
-type GetInsurancePricesPayout = number;
-/**
- * type_id integer
- */
-type GetInsurancePricesTypeId = number;
-/**
  * 200 ok array
  *
  * @maxItems 1000
@@ -56,15 +39,27 @@ type GetInsurancePricesOk = GetInsurancePrices_200Ok[];
  */
 interface GetInsurancePrices_200Ok {
   levels: GetInsurancePricesLevels;
-  type_id: GetInsurancePricesTypeId;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * level object
  */
 interface GetInsurancePricesLevel {
-  cost: GetInsurancePricesCost;
-  name: GetInsurancePricesName;
-  payout: GetInsurancePricesPayout;
+/**
+ * cost number
+ */
+  cost: number;
+/**
+ * Localized insurance level
+ */
+  name: string;
+/**
+ * payout number
+ */
+  payout: number;
   [k: string]: unknown | undefined;
 }

@@ -1,19 +1,10 @@
 /**
- * ESI endpoint: /characters/{character_id}/standings/
- */
-
-/**
- * from_id integer
- */
-type GetCharactersCharacterIdStandingsFromId = number;
+* ESI endpoint: /characters/{character_id}/standings/
+*/
 /**
  * from_type string
  */
 type GetCharactersCharacterIdStandingsFromType = "agent" | "npc_corp" | "faction";
-/**
- * standing number
- */
-type GetCharactersCharacterIdStandingsStanding = number;
 /**
  * 200 ok array
  *
@@ -25,8 +16,14 @@ type GetCharactersCharacterIdStandingsOk = GetCharactersCharacterIdStandings_200
  * 200 ok object
  */
 interface GetCharactersCharacterIdStandings_200Ok {
-  from_id: GetCharactersCharacterIdStandingsFromId;
+/**
+ * from_id integer
+ */
+  from_id: number;
   from_type: GetCharactersCharacterIdStandingsFromType;
-  standing: GetCharactersCharacterIdStandingsStanding;
+/**
+ * standing number
+ */
+  standing: number;
   [k: string]: unknown | undefined;
 }

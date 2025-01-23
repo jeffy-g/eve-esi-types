@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/bookmarks/folders/
- */
-
-/**
- * folder_id integer
- */
-type GetCharactersCharacterIdBookmarksFoldersFolderId = number;
-/**
- * name string
- */
-type GetCharactersCharacterIdBookmarksFoldersName = string;
+* ESI endpoint: /characters/{character_id}/bookmarks/folders/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetCharactersCharacterIdBookmarksFoldersOk = GetCharactersCharacterIdBookma
  * 200 ok object
  */
 interface GetCharactersCharacterIdBookmarksFolders_200Ok {
-  folder_id: GetCharactersCharacterIdBookmarksFoldersFolderId;
-  name: GetCharactersCharacterIdBookmarksFoldersName;
+/**
+ * folder_id integer
+ */
+  folder_id: number;
+/**
+ * name string
+ */
+  name: string;
   [k: string]: unknown | undefined;
 }

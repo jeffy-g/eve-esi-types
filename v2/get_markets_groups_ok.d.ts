@@ -1,14 +1,12 @@
 /**
- * ESI endpoint: /markets/groups/
- */
-
-/**
- * 200 ok integer
- */
-type GetMarketsGroups_200Ok = number;
+* ESI endpoint: /markets/groups/
+*/
 /**
  * 200 ok array
  *
  * @maxItems 5000
  */
-type GetMarketsGroupsOk = GetMarketsGroups_200Ok[];
+/**
+ * 200 ok integer
+ */
+type GetMarketsGroupsOk = number[];

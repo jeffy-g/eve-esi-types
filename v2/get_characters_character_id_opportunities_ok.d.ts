@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/opportunities/
- */
-
-/**
- * completed_at string
- */
-type GetCharactersCharacterIdOpportunitiesCompletedAt = string;
-/**
- * task_id integer
- */
-type GetCharactersCharacterIdOpportunitiesTaskId = number;
+* ESI endpoint: /characters/{character_id}/opportunities/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetCharactersCharacterIdOpportunitiesOk = GetCharactersCharacterIdOpportuni
  * 200 ok object
  */
 interface GetCharactersCharacterIdOpportunities_200Ok {
-  completed_at: GetCharactersCharacterIdOpportunitiesCompletedAt;
-  task_id: GetCharactersCharacterIdOpportunitiesTaskId;
+/**
+ * completed_at string
+ */
+  completed_at: string;
+/**
+ * task_id integer
+ */
+  task_id: number;
   [k: string]: unknown | undefined;
 }

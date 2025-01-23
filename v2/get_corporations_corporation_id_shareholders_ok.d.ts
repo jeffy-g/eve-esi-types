@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/shareholders/
- */
-
-/**
- * share_count integer
- */
-type GetCorporationsCorporationIdShareholdersShareCount = number;
-/**
- * shareholder_id integer
- */
-type GetCorporationsCorporationIdShareholdersShareholderId = number;
+* ESI endpoint: /corporations/{corporation_id}/shareholders/
+*/
 /**
  * shareholder_type string
  */
@@ -25,8 +16,14 @@ type GetCorporationsCorporationIdShareholdersOk = GetCorporationsCorporationIdSh
  * 200 ok object
  */
 interface GetCorporationsCorporationIdShareholders_200Ok {
-  share_count: GetCorporationsCorporationIdShareholdersShareCount;
-  shareholder_id: GetCorporationsCorporationIdShareholdersShareholderId;
+/**
+ * share_count integer
+ */
+  share_count: number;
+/**
+ * shareholder_id integer
+ */
+  shareholder_id: number;
   shareholder_type: GetCorporationsCorporationIdShareholdersShareholderType;
   [k: string]: unknown | undefined;
 }

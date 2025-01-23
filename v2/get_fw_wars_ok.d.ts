@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /fw/wars/
- */
-
-/**
- * The faction ID of the enemy faction.
- */
-type GetFwWarsAgainstId = number;
-/**
- * faction_id integer
- */
-type GetFwWarsFactionId = number;
+* ESI endpoint: /fw/wars/
+*/
 /**
  * List of factions at war
  *
@@ -21,7 +12,13 @@ type GetFwWarsOk = GetFwWars_200Ok[];
  * 200 ok object
  */
 interface GetFwWars_200Ok {
-  against_id: GetFwWarsAgainstId;
-  faction_id: GetFwWarsFactionId;
+/**
+ * The faction ID of the enemy faction.
+ */
+  against_id: number;
+/**
+ * faction_id integer
+ */
+  faction_id: number;
   [k: string]: unknown | undefined;
 }

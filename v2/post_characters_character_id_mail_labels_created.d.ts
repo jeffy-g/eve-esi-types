@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/mail/labels/
- */
-
+* ESI endpoint: /characters/{character_id}/mail/labels/
+*/
 /**
  * Label ID
  */

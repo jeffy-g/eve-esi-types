@@ -1,21 +1,18 @@
 /**
- * ESI endpoint: /fleets/{fleet_id}/
- */
-
-/**
- * Should free-move be enabled in the fleet
- */
-type PutFleetsFleetIdIsFreeMove = boolean;
-/**
- * New fleet MOTD in CCP flavoured HTML
- */
-type PutFleetsFleetIdMotd = string;
+* ESI endpoint: /fleets/{fleet_id}/
+*/
 
 /**
  * new_settings object
  */
 interface PutFleetsFleetIdNewSettings {
-  is_free_move?: PutFleetsFleetIdIsFreeMove;
-  motd?: PutFleetsFleetIdMotd;
+/**
+ * Should free-move be enabled in the fleet
+ */
+  is_free_move?: boolean;
+/**
+ * New fleet MOTD in CCP flavoured HTML
+ */
+  motd?: string;
   [k: string]: unknown | undefined;
 }

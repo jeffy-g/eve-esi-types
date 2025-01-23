@@ -1,27 +1,6 @@
 /**
- * ESI endpoint: /universe/stars/{star_id}/
- */
-
-/**
- * Age of star in years
- */
-type GetUniverseStarsStarIdAge = number;
-/**
- * luminosity number
- */
-type GetUniverseStarsStarIdLuminosity = number;
-/**
- * name string
- */
-type GetUniverseStarsStarIdName = string;
-/**
- * radius integer
- */
-type GetUniverseStarsStarIdRadius = number;
-/**
- * solar_system_id integer
- */
-type GetUniverseStarsStarIdSolarSystemId = number;
+* ESI endpoint: /universe/stars/{star_id}/
+*/
 /**
  * spectral_class string
  */
@@ -115,26 +94,39 @@ type GetUniverseStarsStarIdSpectralClass =
   | "A0"
   | "A0IV"
   | "A0IV2";
-/**
- * temperature integer
- */
-type GetUniverseStarsStarIdTemperature = number;
-/**
- * type_id integer
- */
-type GetUniverseStarsStarIdTypeId = number;
 
 /**
  * 200 ok object
  */
 interface GetUniverseStarsStarIdOk {
-  age: GetUniverseStarsStarIdAge;
-  luminosity: GetUniverseStarsStarIdLuminosity;
-  name: GetUniverseStarsStarIdName;
-  radius: GetUniverseStarsStarIdRadius;
-  solar_system_id: GetUniverseStarsStarIdSolarSystemId;
+/**
+ * Age of star in years
+ */
+  age: number;
+/**
+ * luminosity number
+ */
+  luminosity: number;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * radius integer
+ */
+  radius: number;
+/**
+ * solar_system_id integer
+ */
+  solar_system_id: number;
   spectral_class: GetUniverseStarsStarIdSpectralClass;
-  temperature: GetUniverseStarsStarIdTemperature;
-  type_id: GetUniverseStarsStarIdTypeId;
+/**
+ * temperature integer
+ */
+  temperature: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

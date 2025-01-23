@@ -1,48 +1,41 @@
 /**
- * ESI endpoint: /universe/moons/{moon_id}/
- */
-
-/**
- * moon_id integer
- */
-type GetUniverseMoonsMoonIdMoonId = number;
-/**
- * name string
- */
-type GetUniverseMoonsMoonIdName = string;
-/**
- * x number
- */
-type GetUniverseMoonsMoonIdX = number;
-/**
- * y number
- */
-type GetUniverseMoonsMoonIdY = number;
-/**
- * z number
- */
-type GetUniverseMoonsMoonIdZ = number;
-/**
- * The solar system this moon is in
- */
-type GetUniverseMoonsMoonIdSystemId = number;
+* ESI endpoint: /universe/moons/{moon_id}/
+*/
 
 /**
  * 200 ok object
  */
 interface GetUniverseMoonsMoonIdOk {
-  moon_id: GetUniverseMoonsMoonIdMoonId;
-  name: GetUniverseMoonsMoonIdName;
+/**
+ * moon_id integer
+ */
+  moon_id: number;
+/**
+ * name string
+ */
+  name: string;
   position: GetUniverseMoonsMoonIdPosition;
-  system_id: GetUniverseMoonsMoonIdSystemId;
+/**
+ * The solar system this moon is in
+ */
+  system_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * position object
  */
 interface GetUniverseMoonsMoonIdPosition {
-  x: GetUniverseMoonsMoonIdX;
-  y: GetUniverseMoonsMoonIdY;
-  z: GetUniverseMoonsMoonIdZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

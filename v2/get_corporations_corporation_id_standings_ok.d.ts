@@ -1,19 +1,10 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/standings/
- */
-
-/**
- * from_id integer
- */
-type GetCorporationsCorporationIdStandingsFromId = number;
+* ESI endpoint: /corporations/{corporation_id}/standings/
+*/
 /**
  * from_type string
  */
 type GetCorporationsCorporationIdStandingsFromType = "agent" | "npc_corp" | "faction";
-/**
- * standing number
- */
-type GetCorporationsCorporationIdStandingsStanding = number;
 /**
  * 200 ok array
  *
@@ -25,8 +16,14 @@ type GetCorporationsCorporationIdStandingsOk = GetCorporationsCorporationIdStand
  * 200 ok object
  */
 interface GetCorporationsCorporationIdStandings_200Ok {
-  from_id: GetCorporationsCorporationIdStandingsFromId;
+/**
+ * from_id integer
+ */
+  from_id: number;
   from_type: GetCorporationsCorporationIdStandingsFromType;
-  standing: GetCorporationsCorporationIdStandingsStanding;
+/**
+ * standing number
+ */
+  standing: number;
   [k: string]: unknown | undefined;
 }

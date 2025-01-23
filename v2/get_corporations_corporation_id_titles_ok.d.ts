@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/titles/
- */
-
+* ESI endpoint: /corporations/{corporation_id}/titles/
+*/
 /**
  * 200 ok array
  *
@@ -432,10 +431,6 @@ type GetCorporationsCorporationIdTitlesGrantableRolesAtOtherGrantableRolesAtOthe
 type GetCorporationsCorporationIdTitlesGrantableRolesAtOther =
   GetCorporationsCorporationIdTitlesGrantableRolesAtOtherGrantableRolesAtOther[];
 /**
- * name string
- */
-type GetCorporationsCorporationIdTitlesName = string;
-/**
  * role string
  */
 type GetCorporationsCorporationIdTitlesRole =
@@ -692,10 +687,6 @@ type GetCorporationsCorporationIdTitlesRolesAtOtherRolesAtOther =
  */
 type GetCorporationsCorporationIdTitlesRolesAtOther =
   GetCorporationsCorporationIdTitlesRolesAtOtherRolesAtOther[];
-/**
- * title_id integer
- */
-type GetCorporationsCorporationIdTitlesTitleId = number;
 
 /**
  * 200 ok object
@@ -705,11 +696,17 @@ interface GetCorporationsCorporationIdTitles_200Ok {
   grantable_roles_at_base?: GetCorporationsCorporationIdTitlesGrantableRolesAtBase;
   grantable_roles_at_hq?: GetCorporationsCorporationIdTitlesGrantableRolesAtHq;
   grantable_roles_at_other?: GetCorporationsCorporationIdTitlesGrantableRolesAtOther;
-  name?: GetCorporationsCorporationIdTitlesName;
+/**
+ * name string
+ */
+  name?: string;
   roles?: GetCorporationsCorporationIdTitlesRoles;
   roles_at_base?: GetCorporationsCorporationIdTitlesRolesAtBase;
   roles_at_hq?: GetCorporationsCorporationIdTitlesRolesAtHq;
   roles_at_other?: GetCorporationsCorporationIdTitlesRolesAtOther;
-  title_id?: GetCorporationsCorporationIdTitlesTitleId;
+/**
+ * title_id integer
+ */
+  title_id?: number;
   [k: string]: unknown | undefined;
 }

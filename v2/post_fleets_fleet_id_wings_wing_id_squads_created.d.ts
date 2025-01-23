@@ -1,16 +1,14 @@
 /**
- * ESI endpoint: /fleets/{fleet_id}/wings/{wing_id}/squads/
- */
-
-/**
- * The squad_id of the newly created squad
- */
-type PostFleetsFleetIdWingsWingIdSquadsSquadId = number;
+* ESI endpoint: /fleets/{fleet_id}/wings/{wing_id}/squads/
+*/
 
 /**
  * 201 created object
  */
 interface PostFleetsFleetIdWingsWingIdSquadsCreated {
-  squad_id: PostFleetsFleetIdWingsWingIdSquadsSquadId;
+/**
+ * The squad_id of the newly created squad
+ */
+  squad_id: number;
   [k: string]: unknown | undefined;
 }

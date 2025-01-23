@@ -1,19 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/assets/
- */
-
-/**
- * is_blueprint_copy boolean
- */
-type GetCharactersCharacterIdAssetsIsBlueprintCopy = boolean;
-/**
- * is_singleton boolean
- */
-type GetCharactersCharacterIdAssetsIsSingleton = boolean;
-/**
- * item_id integer
- */
-type GetCharactersCharacterIdAssetsItemId = number;
+* ESI endpoint: /characters/{character_id}/assets/
+*/
 /**
  * location_flag string
  */
@@ -106,21 +93,9 @@ type GetCharactersCharacterIdAssetsLocationFlag =
   | "Unlocked"
   | "Wardrobe";
 /**
- * location_id integer
- */
-type GetCharactersCharacterIdAssetsLocationId = number;
-/**
  * location_type string
  */
 type GetCharactersCharacterIdAssetsLocationType = "station" | "solar_system" | "item" | "other";
-/**
- * quantity integer
- */
-type GetCharactersCharacterIdAssetsQuantity = number;
-/**
- * type_id integer
- */
-type GetCharactersCharacterIdAssetsTypeId = number;
 /**
  * 200 ok array
  *
@@ -132,13 +107,31 @@ type GetCharactersCharacterIdAssetsOk = GetCharactersCharacterIdAssets_200Ok[];
  * 200 ok object
  */
 interface GetCharactersCharacterIdAssets_200Ok {
-  is_blueprint_copy?: GetCharactersCharacterIdAssetsIsBlueprintCopy;
-  is_singleton: GetCharactersCharacterIdAssetsIsSingleton;
-  item_id: GetCharactersCharacterIdAssetsItemId;
+/**
+ * is_blueprint_copy boolean
+ */
+  is_blueprint_copy?: boolean;
+/**
+ * is_singleton boolean
+ */
+  is_singleton: boolean;
+/**
+ * item_id integer
+ */
+  item_id: number;
   location_flag: GetCharactersCharacterIdAssetsLocationFlag;
-  location_id: GetCharactersCharacterIdAssetsLocationId;
+/**
+ * location_id integer
+ */
+  location_id: number;
   location_type: GetCharactersCharacterIdAssetsLocationType;
-  quantity: GetCharactersCharacterIdAssetsQuantity;
-  type_id: GetCharactersCharacterIdAssetsTypeId;
+/**
+ * quantity integer
+ */
+  quantity: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

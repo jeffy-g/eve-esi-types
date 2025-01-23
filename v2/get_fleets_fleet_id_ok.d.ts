@@ -1,31 +1,26 @@
 /**
- * ESI endpoint: /fleets/{fleet_id}/
- */
-
-/**
- * Is free-move enabled
- */
-type GetFleetsFleetIdIsFreeMove = boolean;
-/**
- * Does the fleet have an active fleet advertisement
- */
-type GetFleetsFleetIdIsRegistered = boolean;
-/**
- * Is EVE Voice enabled
- */
-type GetFleetsFleetIdIsVoiceEnabled = boolean;
-/**
- * Fleet MOTD in CCP flavoured HTML
- */
-type GetFleetsFleetIdMotd = string;
+* ESI endpoint: /fleets/{fleet_id}/
+*/
 
 /**
  * 200 ok object
  */
 interface GetFleetsFleetIdOk {
-  is_free_move: GetFleetsFleetIdIsFreeMove;
-  is_registered: GetFleetsFleetIdIsRegistered;
-  is_voice_enabled: GetFleetsFleetIdIsVoiceEnabled;
-  motd: GetFleetsFleetIdMotd;
+/**
+ * Is free-move enabled
+ */
+  is_free_move: boolean;
+/**
+ * Does the fleet have an active fleet advertisement
+ */
+  is_registered: boolean;
+/**
+ * Is EVE Voice enabled
+ */
+  is_voice_enabled: boolean;
+/**
+ * Fleet MOTD in CCP flavoured HTML
+ */
+  motd: string;
   [k: string]: unknown | undefined;
 }

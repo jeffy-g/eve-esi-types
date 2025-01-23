@@ -1,14 +1,12 @@
 /**
- * ESI endpoint: /dogma/attributes/
- */
-
-/**
- * 200 ok integer
- */
-type GetDogmaAttributes_200Ok = number;
+* ESI endpoint: /dogma/attributes/
+*/
 /**
  * 200 ok array
  *
  * @maxItems 10000
  */
-type GetDogmaAttributesOk = GetDogmaAttributes_200Ok[];
+/**
+ * 200 ok integer
+ */
+type GetDogmaAttributesOk = number[];

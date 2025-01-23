@@ -1,23 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/mining/
- */
-
-/**
- * date string
- */
-type GetCharactersCharacterIdMiningDate = string;
-/**
- * quantity integer
- */
-type GetCharactersCharacterIdMiningQuantity = number;
-/**
- * solar_system_id integer
- */
-type GetCharactersCharacterIdMiningSolarSystemId = number;
-/**
- * type_id integer
- */
-type GetCharactersCharacterIdMiningTypeId = number;
+* ESI endpoint: /characters/{character_id}/mining/
+*/
 /**
  * 200 ok array
  *
@@ -29,9 +12,21 @@ type GetCharactersCharacterIdMiningOk = GetCharactersCharacterIdMining_200Ok[];
  * 200 ok object
  */
 interface GetCharactersCharacterIdMining_200Ok {
-  date: GetCharactersCharacterIdMiningDate;
-  quantity: GetCharactersCharacterIdMiningQuantity;
-  solar_system_id: GetCharactersCharacterIdMiningSolarSystemId;
-  type_id: GetCharactersCharacterIdMiningTypeId;
+/**
+ * date string
+ */
+  date: string;
+/**
+ * quantity integer
+ */
+  quantity: number;
+/**
+ * solar_system_id integer
+ */
+  solar_system_id: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

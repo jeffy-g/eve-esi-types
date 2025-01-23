@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/fittings/
- */
-
-/**
- * description string
- */
-type GetCharactersCharacterIdFittingsDescription = string;
-/**
- * fitting_id integer
- */
-type GetCharactersCharacterIdFittingsFittingId = number;
+* ESI endpoint: /characters/{character_id}/fittings/
+*/
 /**
  * flag string
  */
@@ -58,27 +49,11 @@ type GetCharactersCharacterIdFittingsFlag =
   | "SubSystemSlot2"
   | "SubSystemSlot3";
 /**
- * quantity integer
- */
-type GetCharactersCharacterIdFittingsQuantity = number;
-/**
- * type_id integer
- */
-type GetCharactersCharacterIdFittingsTypeId = number;
-/**
  * items array
  *
  * @maxItems 512
  */
 type GetCharactersCharacterIdFittingsItems = GetCharactersCharacterIdFittingsItem[];
-/**
- * name string
- */
-type GetCharactersCharacterIdFittingsName = string;
-/**
- * ship_type_id integer
- */
-type GetCharactersCharacterIdFittingsShipTypeId = number;
 /**
  * 200 ok array
  *
@@ -90,11 +65,23 @@ type GetCharactersCharacterIdFittingsOk = GetCharactersCharacterIdFittings_200Ok
  * 200 ok object
  */
 interface GetCharactersCharacterIdFittings_200Ok {
-  description: GetCharactersCharacterIdFittingsDescription;
-  fitting_id: GetCharactersCharacterIdFittingsFittingId;
+/**
+ * description string
+ */
+  description: string;
+/**
+ * fitting_id integer
+ */
+  fitting_id: number;
   items: GetCharactersCharacterIdFittingsItems;
-  name: GetCharactersCharacterIdFittingsName;
-  ship_type_id: GetCharactersCharacterIdFittingsShipTypeId;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * ship_type_id integer
+ */
+  ship_type_id: number;
   [k: string]: unknown | undefined;
 }
 /**
@@ -102,7 +89,13 @@ interface GetCharactersCharacterIdFittings_200Ok {
  */
 interface GetCharactersCharacterIdFittingsItem {
   flag: GetCharactersCharacterIdFittingsFlag;
-  quantity: GetCharactersCharacterIdFittingsQuantity;
-  type_id: GetCharactersCharacterIdFittingsTypeId;
+/**
+ * quantity integer
+ */
+  quantity: number;
+/**
+ * type_id integer
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

@@ -1,14 +1,12 @@
 /**
- * ESI endpoint: /dogma/effects/
- */
-
-/**
- * 200 ok integer
- */
-type GetDogmaEffects_200Ok = number;
+* ESI endpoint: /dogma/effects/
+*/
 /**
  * 200 ok array
  *
  * @maxItems 10000
  */
-type GetDogmaEffectsOk = GetDogmaEffects_200Ok[];
+/**
+ * 200 ok integer
+ */
+type GetDogmaEffectsOk = number[];

@@ -1,14 +1,12 @@
 /**
- * ESI endpoint: /universe/regions/
- */
-
-/**
- * 200 ok integer
- */
-type GetUniverseRegions_200Ok = number;
+* ESI endpoint: /universe/regions/
+*/
 /**
  * 200 ok array
  *
  * @maxItems 1000
  */
-type GetUniverseRegionsOk = GetUniverseRegions_200Ok[];
+/**
+ * 200 ok integer
+ */
+type GetUniverseRegionsOk = number[];

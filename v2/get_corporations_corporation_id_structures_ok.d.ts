@@ -1,31 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/structures/
- */
-
-/**
- * ID of the corporation that owns the structure
- */
-type GetCorporationsCorporationIdStructuresCorporationId = number;
-/**
- * Date on which the structure will run out of fuel
- */
-type GetCorporationsCorporationIdStructuresFuelExpires = string;
-/**
- * The structure name
- */
-type GetCorporationsCorporationIdStructuresName = string;
-/**
- * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect
- */
-type GetCorporationsCorporationIdStructuresNextReinforceApply = string;
-/**
- * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply
- */
-type GetCorporationsCorporationIdStructuresNextReinforceHour = number;
-/**
- * The id of the ACL profile for this citadel
- */
-type GetCorporationsCorporationIdStructuresProfileId = number;
+* ESI endpoint: /corporations/{corporation_id}/structures/
+*/
 /**
  * The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property
  */
@@ -108,10 +83,6 @@ type GetCorporationsCorporationIdStructuresServices =
       GetCorporationsCorporationIdStructuresService
     ];
 /**
- * name string
- */
-type GetCorporationsCorporationIdStructuresServiceName = string;
-/**
  * state string
  */
 type GetCorporationsCorporationIdStructuresServiceState = "online" | "offline" | "cleanup";
@@ -133,30 +104,6 @@ type GetCorporationsCorporationIdStructuresState =
   | "unanchored"
   | "unknown";
 /**
- * Date at which the structure will move to it's next state
- */
-type GetCorporationsCorporationIdStructuresStateTimerEnd = string;
-/**
- * Date at which the structure entered it's current state
- */
-type GetCorporationsCorporationIdStructuresStateTimerStart = string;
-/**
- * The Item ID of the structure
- */
-type GetCorporationsCorporationIdStructuresStructureId = number;
-/**
- * The solar system the structure is in
- */
-type GetCorporationsCorporationIdStructuresSystemId = number;
-/**
- * The type id of the structure
- */
-type GetCorporationsCorporationIdStructuresTypeId = number;
-/**
- * Date at which the structure will unanchor
- */
-type GetCorporationsCorporationIdStructuresUnanchorsAt = string;
-/**
  * 200 ok array
  *
  * @maxItems 250
@@ -167,28 +114,67 @@ type GetCorporationsCorporationIdStructuresOk = GetCorporationsCorporationIdStru
  * 200 ok object
  */
 interface GetCorporationsCorporationIdStructures_200Ok {
-  corporation_id: GetCorporationsCorporationIdStructuresCorporationId;
-  fuel_expires?: GetCorporationsCorporationIdStructuresFuelExpires;
-  name?: GetCorporationsCorporationIdStructuresName;
-  next_reinforce_apply?: GetCorporationsCorporationIdStructuresNextReinforceApply;
-  next_reinforce_hour?: GetCorporationsCorporationIdStructuresNextReinforceHour;
-  profile_id: GetCorporationsCorporationIdStructuresProfileId;
+/**
+ * ID of the corporation that owns the structure
+ */
+  corporation_id: number;
+/**
+ * Date on which the structure will run out of fuel
+ */
+  fuel_expires?: string;
+/**
+ * The structure name
+ */
+  name?: string;
+/**
+ * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect
+ */
+  next_reinforce_apply?: string;
+/**
+ * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply
+ */
+  next_reinforce_hour?: number;
+/**
+ * The id of the ACL profile for this citadel
+ */
+  profile_id: number;
   reinforce_hour?: GetCorporationsCorporationIdStructuresReinforceHour;
   services?: GetCorporationsCorporationIdStructuresServices;
   state: GetCorporationsCorporationIdStructuresState;
-  state_timer_end?: GetCorporationsCorporationIdStructuresStateTimerEnd;
-  state_timer_start?: GetCorporationsCorporationIdStructuresStateTimerStart;
-  structure_id: GetCorporationsCorporationIdStructuresStructureId;
-  system_id: GetCorporationsCorporationIdStructuresSystemId;
-  type_id: GetCorporationsCorporationIdStructuresTypeId;
-  unanchors_at?: GetCorporationsCorporationIdStructuresUnanchorsAt;
+/**
+ * Date at which the structure will move to it's next state
+ */
+  state_timer_end?: string;
+/**
+ * Date at which the structure entered it's current state
+ */
+  state_timer_start?: string;
+/**
+ * The Item ID of the structure
+ */
+  structure_id: number;
+/**
+ * The solar system the structure is in
+ */
+  system_id: number;
+/**
+ * The type id of the structure
+ */
+  type_id: number;
+/**
+ * Date at which the structure will unanchor
+ */
+  unanchors_at?: string;
   [k: string]: unknown | undefined;
 }
 /**
  * service object
  */
 interface GetCorporationsCorporationIdStructuresService {
-  name: GetCorporationsCorporationIdStructuresServiceName;
+/**
+ * name string
+ */
+  name: string;
   state: GetCorporationsCorporationIdStructuresServiceState;
   [k: string]: unknown | undefined;
 }

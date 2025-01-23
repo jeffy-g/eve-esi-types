@@ -1,33 +1,11 @@
 /**
- * ESI endpoint: /characters/{character_id}/mail/
- */
-
-/**
- * From whom the mail was sent
- */
-type GetCharactersCharacterIdMailFrom = number;
-/**
- * is_read boolean
- */
-type GetCharactersCharacterIdMailIsRead = boolean;
-/**
- * label integer
- */
-type GetCharactersCharacterIdMailLabel = number;
+* ESI endpoint: /characters/{character_id}/mail/
+*/
 /**
  * labels array
  *
  * @maxItems 25
  */
-type GetCharactersCharacterIdMailLabels = GetCharactersCharacterIdMailLabel[];
-/**
- * mail_id integer
- */
-type GetCharactersCharacterIdMailMailId = number;
-/**
- * recipient_id integer
- */
-type GetCharactersCharacterIdMailRecipientId = number;
 /**
  * recipient_type string
  */
@@ -40,14 +18,6 @@ type GetCharactersCharacterIdMailRecipientType = "alliance" | "character" | "cor
  */
 type GetCharactersCharacterIdMailRecipients = GetCharactersCharacterIdMailRecipient[];
 /**
- * Mail subject
- */
-type GetCharactersCharacterIdMailSubject = string;
-/**
- * When the mail was sent
- */
-type GetCharactersCharacterIdMailTimestamp = string;
-/**
  * 200 ok array
  *
  * @maxItems 50
@@ -58,20 +28,41 @@ type GetCharactersCharacterIdMailOk = GetCharactersCharacterIdMail_200Ok[];
  * 200 ok object
  */
 interface GetCharactersCharacterIdMail_200Ok {
-  from?: GetCharactersCharacterIdMailFrom;
-  is_read?: GetCharactersCharacterIdMailIsRead;
-  labels?: GetCharactersCharacterIdMailLabels;
-  mail_id?: GetCharactersCharacterIdMailMailId;
+/**
+ * From whom the mail was sent
+ */
+  from?: number;
+/**
+ * is_read boolean
+ */
+  is_read?: boolean;
+/**
+ * label integer
+ */
+  labels?: number[];
+/**
+ * mail_id integer
+ */
+  mail_id?: number;
   recipients?: GetCharactersCharacterIdMailRecipients;
-  subject?: GetCharactersCharacterIdMailSubject;
-  timestamp?: GetCharactersCharacterIdMailTimestamp;
+/**
+ * Mail subject
+ */
+  subject?: string;
+/**
+ * When the mail was sent
+ */
+  timestamp?: string;
   [k: string]: unknown | undefined;
 }
 /**
  * recipient object
  */
 interface GetCharactersCharacterIdMailRecipient {
-  recipient_id: GetCharactersCharacterIdMailRecipientId;
+/**
+ * recipient_id integer
+ */
+  recipient_id: number;
   recipient_type: GetCharactersCharacterIdMailRecipientType;
   [k: string]: unknown | undefined;
 }

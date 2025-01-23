@@ -1,31 +1,6 @@
 /**
- * ESI endpoint: /industry/facilities/
- */
-
-/**
- * ID of the facility
- */
-type GetIndustryFacilitiesFacilityId = number;
-/**
- * Owner of the facility
- */
-type GetIndustryFacilitiesOwnerId = number;
-/**
- * Region ID where the facility is
- */
-type GetIndustryFacilitiesRegionId = number;
-/**
- * Solar system ID where the facility is
- */
-type GetIndustryFacilitiesSolarSystemId = number;
-/**
- * Tax imposed by the facility
- */
-type GetIndustryFacilitiesTax = number;
-/**
- * Type ID of the facility
- */
-type GetIndustryFacilitiesTypeId = number;
+* ESI endpoint: /industry/facilities/
+*/
 /**
  * 200 ok array
  *
@@ -37,11 +12,29 @@ type GetIndustryFacilitiesOk = GetIndustryFacilities_200Ok[];
  * 200 ok object
  */
 interface GetIndustryFacilities_200Ok {
-  facility_id: GetIndustryFacilitiesFacilityId;
-  owner_id: GetIndustryFacilitiesOwnerId;
-  region_id: GetIndustryFacilitiesRegionId;
-  solar_system_id: GetIndustryFacilitiesSolarSystemId;
-  tax?: GetIndustryFacilitiesTax;
-  type_id: GetIndustryFacilitiesTypeId;
+/**
+ * ID of the facility
+ */
+  facility_id: number;
+/**
+ * Owner of the facility
+ */
+  owner_id: number;
+/**
+ * Region ID where the facility is
+ */
+  region_id: number;
+/**
+ * Solar system ID where the facility is
+ */
+  solar_system_id: number;
+/**
+ * Tax imposed by the facility
+ */
+  tax?: number;
+/**
+ * Type ID of the facility
+ */
+  type_id: number;
   [k: string]: unknown | undefined;
 }

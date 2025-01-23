@@ -1,31 +1,26 @@
 /**
- * ESI endpoint: /characters/{character_id}/online/
- */
-
-/**
- * Timestamp of the last login
- */
-type GetCharactersCharacterIdOnlineLastLogin = string;
-/**
- * Timestamp of the last logout
- */
-type GetCharactersCharacterIdOnlineLastLogout = string;
-/**
- * Total number of times the character has logged in
- */
-type GetCharactersCharacterIdOnlineLogins = number;
-/**
- * If the character is online
- */
-type GetCharactersCharacterIdOnlineOnline = boolean;
+* ESI endpoint: /characters/{character_id}/online/
+*/
 
 /**
  * 200 ok object
  */
 interface GetCharactersCharacterIdOnlineOk {
-  last_login?: GetCharactersCharacterIdOnlineLastLogin;
-  last_logout?: GetCharactersCharacterIdOnlineLastLogout;
-  logins?: GetCharactersCharacterIdOnlineLogins;
-  online: GetCharactersCharacterIdOnlineOnline;
+/**
+ * Timestamp of the last login
+ */
+  last_login?: string;
+/**
+ * Timestamp of the last logout
+ */
+  last_logout?: string;
+/**
+ * Total number of times the character has logged in
+ */
+  logins?: number;
+/**
+ * If the character is online
+ */
+  online: boolean;
   [k: string]: unknown | undefined;
 }

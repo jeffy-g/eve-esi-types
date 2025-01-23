@@ -1,42 +1,35 @@
 /**
- * ESI endpoint: /universe/groups/{group_id}/
- */
-
-/**
- * category_id integer
- */
-type GetUniverseGroupsGroupIdCategoryId = number;
-/**
- * group_id integer
- */
-type GetUniverseGroupsGroupIdGroupId = number;
-/**
- * name string
- */
-type GetUniverseGroupsGroupIdName = string;
-/**
- * published boolean
- */
-type GetUniverseGroupsGroupIdPublished = boolean;
-/**
- * type integer
- */
-type GetUniverseGroupsGroupIdType = number;
+* ESI endpoint: /universe/groups/{group_id}/
+*/
 /**
  * types array
  *
  * @maxItems 10000
  */
-type GetUniverseGroupsGroupIdTypes = GetUniverseGroupsGroupIdType[];
 
 /**
  * 200 ok object
  */
 interface GetUniverseGroupsGroupIdOk {
-  category_id: GetUniverseGroupsGroupIdCategoryId;
-  group_id: GetUniverseGroupsGroupIdGroupId;
-  name: GetUniverseGroupsGroupIdName;
-  published: GetUniverseGroupsGroupIdPublished;
-  types: GetUniverseGroupsGroupIdTypes;
+/**
+ * category_id integer
+ */
+  category_id: number;
+/**
+ * group_id integer
+ */
+  group_id: number;
+/**
+ * name string
+ */
+  name: string;
+/**
+ * published boolean
+ */
+  published: boolean;
+/**
+ * type integer
+ */
+  types: number[];
   [k: string]: unknown | undefined;
 }

@@ -1,16 +1,14 @@
 /**
- * ESI endpoint: /characters/{character_id}/fittings/
- */
-
-/**
- * fitting_id integer
- */
-type PostCharactersCharacterIdFittingsFittingId = number;
+* ESI endpoint: /characters/{character_id}/fittings/
+*/
 
 /**
  * 201 created object
  */
 interface PostCharactersCharacterIdFittingsCreated {
-  fitting_id: PostCharactersCharacterIdFittingsFittingId;
+/**
+ * fitting_id integer
+ */
+  fitting_id: number;
   [k: string]: unknown | undefined;
 }

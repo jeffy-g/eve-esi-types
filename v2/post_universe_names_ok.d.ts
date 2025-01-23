@@ -1,7 +1,6 @@
 /**
- * ESI endpoint: /universe/names/
- */
-
+* ESI endpoint: /universe/names/
+*/
 /**
  * category string
  */
@@ -16,14 +15,6 @@ type PostUniverseNamesCategory =
   | "station"
   | "faction";
 /**
- * id integer
- */
-type PostUniverseNamesId = number;
-/**
- * name string
- */
-type PostUniverseNamesName = string;
-/**
  * 200 ok array
  *
  * @maxItems 1000
@@ -35,7 +26,13 @@ type PostUniverseNamesOk = PostUniverseNames_200Ok[];
  */
 interface PostUniverseNames_200Ok {
   category: PostUniverseNamesCategory;
-  id: PostUniverseNamesId;
-  name: PostUniverseNamesName;
+/**
+ * id integer
+ */
+  id: number;
+/**
+ * name string
+ */
+  name: string;
   [k: string]: unknown | undefined;
 }

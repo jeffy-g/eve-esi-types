@@ -1,43 +1,37 @@
 /**
- * ESI endpoint: /universe/asteroid_belts/{asteroid_belt_id}/
- */
-
-/**
- * name string
- */
-type GetUniverseAsteroidBeltsAsteroidBeltIdName = string;
-/**
- * x number
- */
-type GetUniverseAsteroidBeltsAsteroidBeltIdX = number;
-/**
- * y number
- */
-type GetUniverseAsteroidBeltsAsteroidBeltIdY = number;
-/**
- * z number
- */
-type GetUniverseAsteroidBeltsAsteroidBeltIdZ = number;
-/**
- * The solar system this asteroid belt is in
- */
-type GetUniverseAsteroidBeltsAsteroidBeltIdSystemId = number;
+* ESI endpoint: /universe/asteroid_belts/{asteroid_belt_id}/
+*/
 
 /**
  * 200 ok object
  */
 interface GetUniverseAsteroidBeltsAsteroidBeltIdOk {
-  name: GetUniverseAsteroidBeltsAsteroidBeltIdName;
+/**
+ * name string
+ */
+  name: string;
   position: GetUniverseAsteroidBeltsAsteroidBeltIdPosition;
-  system_id: GetUniverseAsteroidBeltsAsteroidBeltIdSystemId;
+/**
+ * The solar system this asteroid belt is in
+ */
+  system_id: number;
   [k: string]: unknown | undefined;
 }
 /**
  * position object
  */
 interface GetUniverseAsteroidBeltsAsteroidBeltIdPosition {
-  x: GetUniverseAsteroidBeltsAsteroidBeltIdX;
-  y: GetUniverseAsteroidBeltsAsteroidBeltIdY;
-  z: GetUniverseAsteroidBeltsAsteroidBeltIdZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }

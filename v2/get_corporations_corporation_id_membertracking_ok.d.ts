@@ -1,35 +1,6 @@
 /**
- * ESI endpoint: /corporations/{corporation_id}/membertracking/
- */
-
-/**
- * base_id integer
- */
-type GetCorporationsCorporationIdMembertrackingBaseId = number;
-/**
- * character_id integer
- */
-type GetCorporationsCorporationIdMembertrackingCharacterId = number;
-/**
- * location_id integer
- */
-type GetCorporationsCorporationIdMembertrackingLocationId = number;
-/**
- * logoff_date string
- */
-type GetCorporationsCorporationIdMembertrackingLogoffDate = string;
-/**
- * logon_date string
- */
-type GetCorporationsCorporationIdMembertrackingLogonDate = string;
-/**
- * ship_type_id integer
- */
-type GetCorporationsCorporationIdMembertrackingShipTypeId = number;
-/**
- * start_date string
- */
-type GetCorporationsCorporationIdMembertrackingStartDate = string;
+* ESI endpoint: /corporations/{corporation_id}/membertracking/
+*/
 /**
  * 200 ok array
  *
@@ -41,12 +12,33 @@ type GetCorporationsCorporationIdMembertrackingOk = GetCorporationsCorporationId
  * 200 ok object
  */
 interface GetCorporationsCorporationIdMembertracking_200Ok {
-  base_id?: GetCorporationsCorporationIdMembertrackingBaseId;
-  character_id: GetCorporationsCorporationIdMembertrackingCharacterId;
-  location_id?: GetCorporationsCorporationIdMembertrackingLocationId;
-  logoff_date?: GetCorporationsCorporationIdMembertrackingLogoffDate;
-  logon_date?: GetCorporationsCorporationIdMembertrackingLogonDate;
-  ship_type_id?: GetCorporationsCorporationIdMembertrackingShipTypeId;
-  start_date?: GetCorporationsCorporationIdMembertrackingStartDate;
+/**
+ * base_id integer
+ */
+  base_id?: number;
+/**
+ * character_id integer
+ */
+  character_id: number;
+/**
+ * location_id integer
+ */
+  location_id?: number;
+/**
+ * logoff_date string
+ */
+  logoff_date?: string;
+/**
+ * logon_date string
+ */
+  logon_date?: string;
+/**
+ * ship_type_id integer
+ */
+  ship_type_id?: number;
+/**
+ * start_date string
+ */
+  start_date?: string;
   [k: string]: unknown | undefined;
 }

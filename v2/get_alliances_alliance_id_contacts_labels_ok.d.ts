@@ -1,15 +1,6 @@
 /**
- * ESI endpoint: /alliances/{alliance_id}/contacts/labels/
- */
-
-/**
- * label_id integer
- */
-type GetAlliancesAllianceIdContactsLabelsLabelId = number;
-/**
- * label_name string
- */
-type GetAlliancesAllianceIdContactsLabelsLabelName = string;
+* ESI endpoint: /alliances/{alliance_id}/contacts/labels/
+*/
 /**
  * 200 ok array
  *
@@ -21,7 +12,13 @@ type GetAlliancesAllianceIdContactsLabelsOk = GetAlliancesAllianceIdContactsLabe
  * 200 ok object
  */
 interface GetAlliancesAllianceIdContactsLabels_200Ok {
-  label_id: GetAlliancesAllianceIdContactsLabelsLabelId;
-  label_name: GetAlliancesAllianceIdContactsLabelsLabelName;
+/**
+ * label_id integer
+ */
+  label_id: number;
+/**
+ * label_name string
+ */
+  label_name: string;
   [k: string]: unknown | undefined;
 }

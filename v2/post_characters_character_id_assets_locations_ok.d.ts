@@ -1,23 +1,6 @@
 /**
- * ESI endpoint: /characters/{character_id}/assets/locations/
- */
-
-/**
- * item_id integer
- */
-type PostCharactersCharacterIdAssetsLocationsItemId = number;
-/**
- * x number
- */
-type PostCharactersCharacterIdAssetsLocationsX = number;
-/**
- * y number
- */
-type PostCharactersCharacterIdAssetsLocationsY = number;
-/**
- * z number
- */
-type PostCharactersCharacterIdAssetsLocationsZ = number;
+* ESI endpoint: /characters/{character_id}/assets/locations/
+*/
 /**
  * 200 ok array
  *
@@ -29,7 +12,10 @@ type PostCharactersCharacterIdAssetsLocationsOk = PostCharactersCharacterIdAsset
  * 200 ok object
  */
 interface PostCharactersCharacterIdAssetsLocations_200Ok {
-  item_id: PostCharactersCharacterIdAssetsLocationsItemId;
+/**
+ * item_id integer
+ */
+  item_id: number;
   position: PostCharactersCharacterIdAssetsLocationsPosition;
   [k: string]: unknown | undefined;
 }
@@ -37,8 +23,17 @@ interface PostCharactersCharacterIdAssetsLocations_200Ok {
  * position object
  */
 interface PostCharactersCharacterIdAssetsLocationsPosition {
-  x: PostCharactersCharacterIdAssetsLocationsX;
-  y: PostCharactersCharacterIdAssetsLocationsY;
-  z: PostCharactersCharacterIdAssetsLocationsZ;
+/**
+ * x number
+ */
+  x: number;
+/**
+ * y number
+ */
+  y: number;
+/**
+ * z number
+ */
+  z: number;
   [k: string]: unknown | undefined;
 }
