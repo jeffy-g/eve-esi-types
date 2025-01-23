@@ -131,8 +131,8 @@ async function getEVEStatus() {
  * fire ESI request
  * @template {TESIEntryMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP
- * @template {IdentifyParameters<TESIResponseOKMap[M][EP] & { result: any }, ESIRequestOptions>} Opt
- * @template {TESIResponseOKMap[M][EP] extends { result: infer U } ? U : never} R
+ * @template {IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>} Opt
+ * @template {InferESIResponseResult<M, EP>} R
  *
  * @param {M} mthd
  * @param {EP} endp - The endpoint to request.
@@ -244,7 +244,9 @@ export async function fire(mthd, endp, pathParams, opt) {
         throw new ESIRequesError(`message: ${e.message}, endpoint=${endp}`);
     }
 }
+// type following and run
 // node v2.mjs
+// or yarn test:v2
 getEVEStatus().then(eveStatus => console.log(eveStatus));
 // {
 //     "players": 16503,

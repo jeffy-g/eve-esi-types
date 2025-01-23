@@ -196,37 +196,52 @@ import "./get_wars_war_id_ok.d.ts";
 import "./get_wars_war_id_killmails_ok.d.ts";
 
 
-// The opposite of Pick. Return type without specified property
-type Flip<T, K extends keyof T> = {
-  [P in Exclude<keyof T, K>]: T[P];
-};
 /**
  * mark a specific property as `required`
  */
 type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
 
-type EndPointEntryMap = TESIResponseOKMap[TESIEntryMethod];
-type AllEndPoints = keyof TESIResponseOKMap[TESIEntryMethod];
-type BasicEntries = EndPointEntryMap[AllEndPoints]
+// type EndPointEntryMap = TESIResponseOKMap[TESIEntryMethod];
+// type AllEndPoints = keyof TESIResponseOKMap[TESIEntryMethod];
+// type BasicEntries = EndPointEntryMap[AllEndPoints];
 
 declare global {
 
   /**
-   * Identify essential items
+   * Infer the result type of an ESI response based on the method and endpoint.
+   * 
+   * @template M - The HTTP method (e.g., "get", "post").
+   * @template EP - The endpoint path.
    */
-  type IdentifyParameters<
-    Entry extends BasicEntries, T,
-    Auth = "auth" extends keyof Entry ? (undefined extends Entry["auth"] ? never : "auth") : never,
-    Body = "body" extends keyof Entry ? (undefined extends Entry["body"] ? never : "body") : never,
-    // For queries, there are cases with default values, which can be omitted.
-    // Q = "query" extends keyof Entry ? (undefined extends Entry["query"] ? never : "queries") : never,
-  > = RequireThese<T, Extract<Auth | Body/*| Q*/, keyof T>>;
+  type InferESIResponseResult<
+    M extends keyof TESIResponseOKMap,
+    EP extends keyof TESIResponseOKMap[M]
+  > = TESIResponseOKMap[M][EP] extends { result: infer U } ? U : never;
 
   /**
-   * response 204, means no content
+   * Identifies the required parameters for a given entry type.
+   *
+   * @template Entry - The entry type to identify parameters for.
+   * @template T - The type of the parameters.
+   * @template Auth - Determines if the "auth" parameter is required. Defaults to `never` if "auth" is not a key in Entry or if "auth" is undefined.
+   * @template Body - Determines if the "body" parameter is required. Defaults to `never` if "body" is not a key in Entry or if "body" is undefined.
+   * @type RequireThese<T, Extract<Auth | Body, keyof T>>
+   */
+  type IdentifyParameters<
+    Entry, T,
+    Auth = "auth" extends keyof Entry ? (undefined extends Entry["auth"] ? never : "auth") : never,
+    Body = "body" extends keyof Entry ? (undefined extends Entry["body"] ? never : "body") : never,
+  > = RequireThese<T, Extract<Auth | Body, keyof T>>;
+
+  /**
+   * Represents a response with no content (HTTP status 204).
+   * Although no data is returned, it indicates successful completion by returning a status of 204.
    */
   type NoContentResponse = { status: 204 };
+
   /**
+   * Represents the HTTP methods supported by ESI.
+   * 
    * ```ts
    * "get" | "post" | "put" | "delete"
    * ```
@@ -234,39 +249,46 @@ declare global {
   type TESIEntryMethod = keyof TESIResponseOKMap;
 
   /**
-   * endpoint of "get"
+   * Represents the endpoints for the "get" method.
    */
   type TEndPointGet = keyof TESIResponseOKMap["get"];
   /**
-   * endpoint of "post"
+   * Represents the endpoints for the "post" method.
    */
   type TEndPointPost = keyof TESIResponseOKMap["post"];
   /**
-   * endpoint of "put"
+   * Represents the endpoints for the "put" method.
    */
   type TEndPointPut = keyof TESIResponseOKMap["put"];
   /**
-   * endpoint of "delete"
+   * Represents the endpoints for the "delete" method.
    */
   type TEndPointDelete = keyof TESIResponseOKMap["delete"];
-  
+
   /**
-   * entry details of "get"
+   * Represents the entry details for the "get" method.
+   * 
+   * @template K - The endpoint key.
    */
-  type TESIResponseGetEntry<K extends TEndPointGet>       = TESIResponseOKMap["get"][K];
+  type TESIResponseGetEntry<K extends TEndPointGet> = TESIResponseOKMap["get"][K];
   /**
-   * entry details of "put"
+   * Represents the entry details for the "put" method.
+   * 
+   * @template K - The endpoint key.
    */
-  type TESIResponsePutEntry<K extends TEndPointPut>       = TESIResponseOKMap["put"][K];
+  type TESIResponsePutEntry<K extends TEndPointPut> = TESIResponseOKMap["put"][K];
   /**
-   * entry details of "post"
+   * Represents the entry details for the "post" method.
+   * 
+   * @template K - The endpoint key.
    */
-  type TESIResponsePostEntry<K extends TEndPointPost>     = TESIResponseOKMap["post"][K];
+  type TESIResponsePostEntry<K extends TEndPointPost> = TESIResponseOKMap["post"][K];
   /**
-   * entry details of "delete"
+   * Represents the entry details for the "delete" method.
+   * 
+   * @template K - The endpoint key.
    */
   type TESIResponseDeleteEntry<K extends TEndPointDelete> = TESIResponseOKMap["delete"][K];
-  // type TESIResponseResult = TESIResponseOKMap[TESIEntryMethod][TEndPoint]["result"];
 }
 
 export type TESIResponseOKMap = {
@@ -891,15 +913,23 @@ export type TESIResponseOKMap = {
   post: {
     "/ui/autopilot/waypoint/": {
       result: NoContentResponse;
+      auth: true;
+      query: true;
     },
     "/ui/openwindow/contract/": {
       result: NoContentResponse;
+      auth: true;
+      query: true;
     },
     "/ui/openwindow/information/": {
       result: NoContentResponse;
+      auth: true;
+      query: true;
     },
     "/ui/openwindow/marketdetails/": {
       result: NoContentResponse;
+      auth: true;
+      query: true;
     },
     "/characters/affiliation/": {
       result: PostCharactersAffiliationOk;
@@ -1019,24 +1049,32 @@ export type TESIResponseOKMap = {
   delete: {
     "/characters/{character_id}/contacts/": {
       result: NoContentResponse;
+      auth: true;
+      query: true;
     },
     "/characters/{character_id}/fittings/{fitting_id}/": {
       result: NoContentResponse;
+      auth: true;
     },
     "/characters/{character_id}/mail/labels/{label_id}/": {
       result: NoContentResponse;
+      auth: true;
     },
     "/characters/{character_id}/mail/{mail_id}/": {
       result: NoContentResponse;
+      auth: true;
     },
     "/fleets/{fleet_id}/members/{member_id}/": {
       result: NoContentResponse;
+      auth: true;
     },
     "/fleets/{fleet_id}/squads/{squad_id}/": {
       result: NoContentResponse;
+      auth: true;
     },
     "/fleets/{fleet_id}/wings/{wing_id}/": {
       result: NoContentResponse;
+      auth: true;
     }
   }
 };

@@ -236,9 +236,9 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
 async function getEVEStatus() {
     return fire("get", "/status/");
 }
-
 // type following and run
 // node esi-request.mjs
+// or yarn test
 getEVEStatus().then(eveStatus => console.log(eveStatus));
 // {
 //     "players": 16503,
