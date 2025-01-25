@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/wallets/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/wallets/
+ */
 /**
  * 200 ok array
  *
@@ -50,13 +50,13 @@ type GetCorporationsCorporationIdWalletsOk =
  * 200 ok object
  */
 interface GetCorporationsCorporationIdWallets_200Ok {
-/**
- * balance number
- */
+  /**
+   * balance number
+   */
   balance: number;
-/**
- * division integer
- */
+  /**
+   * division integer
+   */
   division: number;
   [k: string]: unknown | undefined;
 }

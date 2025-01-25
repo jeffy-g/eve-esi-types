@@ -1,42 +1,42 @@
-/**
-* ESI endpoint: /characters/{character_id}/attributes/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/attributes/
+ */
 
 /**
  * 200 ok object
  */
 interface GetCharactersCharacterIdAttributesOk {
-/**
- * Neural remapping cooldown after a character uses remap accrued over time
- */
+  /**
+   * Neural remapping cooldown after a character uses remap accrued over time
+   */
   accrued_remap_cooldown_date?: string;
-/**
- * Number of available bonus character neural remaps
- */
+  /**
+   * Number of available bonus character neural remaps
+   */
   bonus_remaps?: number;
-/**
- * charisma integer
- */
+  /**
+   * charisma integer
+   */
   charisma: number;
-/**
- * intelligence integer
- */
+  /**
+   * intelligence integer
+   */
   intelligence: number;
-/**
- * Datetime of last neural remap, including usage of bonus remaps
- */
+  /**
+   * Datetime of last neural remap, including usage of bonus remaps
+   */
   last_remap_date?: string;
-/**
- * memory integer
- */
+  /**
+   * memory integer
+   */
   memory: number;
-/**
- * perception integer
- */
+  /**
+   * perception integer
+   */
   perception: number;
-/**
- * willpower integer
- */
+  /**
+   * willpower integer
+   */
   willpower: number;
   [k: string]: unknown | undefined;
 }

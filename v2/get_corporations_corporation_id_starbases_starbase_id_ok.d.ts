@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/starbases/{starbase_id}/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/starbases/{starbase_id}/
+ */
 /**
  * Who can anchor starbase (POS) and its structures
  */
@@ -306,30 +306,30 @@ type GetCorporationsCorporationIdStarbasesStarbaseIdUnanchor =
  * 200 ok object
  */
 interface GetCorporationsCorporationIdStarbasesStarbaseIdOk {
-/**
- * allow_alliance_members boolean
- */
+  /**
+   * allow_alliance_members boolean
+   */
   allow_alliance_members: boolean;
-/**
- * allow_corporation_members boolean
- */
+  /**
+   * allow_corporation_members boolean
+   */
   allow_corporation_members: boolean;
   anchor: GetCorporationsCorporationIdStarbasesStarbaseIdAnchor;
-/**
- * attack_if_at_war boolean
- */
+  /**
+   * attack_if_at_war boolean
+   */
   attack_if_at_war: boolean;
-/**
- * attack_if_other_security_status_dropping boolean
- */
+  /**
+   * attack_if_other_security_status_dropping boolean
+   */
   attack_if_other_security_status_dropping: boolean;
-/**
- * Starbase (POS) will attack if target's security standing is lower than this value
- */
+  /**
+   * Starbase (POS) will attack if target's security standing is lower than this value
+   */
   attack_security_status_threshold?: number;
-/**
- * Starbase (POS) will attack if target's standing is lower than this value
- */
+  /**
+   * Starbase (POS) will attack if target's standing is lower than this value
+   */
   attack_standing_threshold?: number;
   fuel_bay_take: GetCorporationsCorporationIdStarbasesStarbaseIdFuelBayTake;
   fuel_bay_view: GetCorporationsCorporationIdStarbasesStarbaseIdFuelBayView;
@@ -337,9 +337,9 @@ interface GetCorporationsCorporationIdStarbasesStarbaseIdOk {
   offline: GetCorporationsCorporationIdStarbasesStarbaseIdOffline;
   online: GetCorporationsCorporationIdStarbasesStarbaseIdOnline;
   unanchor: GetCorporationsCorporationIdStarbasesStarbaseIdUnanchor;
-/**
- * True if the starbase (POS) is using alliance standings, otherwise using corporation's
- */
+  /**
+   * True if the starbase (POS) is using alliance standings, otherwise using corporation's
+   */
   use_alliance_standings: boolean;
   [k: string]: unknown | undefined;
 }
@@ -347,13 +347,10 @@ interface GetCorporationsCorporationIdStarbasesStarbaseIdOk {
  * fuel object
  */
 interface GetCorporationsCorporationIdStarbasesStarbaseIdFuel {
-/**
- * quantity integer
- */
+  /**
+   * quantity integer
+   */
   quantity: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

@@ -1,10 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/structures/
-*/
-/**
- * The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/structures/
  */
-type GetCorporationsCorporationIdStructuresReinforceHour = number;
 /**
  * Contains a list of service upgrades, and their state
  *
@@ -114,56 +110,56 @@ type GetCorporationsCorporationIdStructuresOk = GetCorporationsCorporationIdStru
  * 200 ok object
  */
 interface GetCorporationsCorporationIdStructures_200Ok {
-/**
- * ID of the corporation that owns the structure
- */
+  /**
+   * ID of the corporation that owns the structure
+   */
   corporation_id: number;
-/**
- * Date on which the structure will run out of fuel
- */
+  /**
+   * Date on which the structure will run out of fuel
+   */
   fuel_expires?: string;
-/**
- * The structure name
- */
+  /**
+   * The structure name
+   */
   name?: string;
-/**
- * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect
- */
+  /**
+   * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect
+   */
   next_reinforce_apply?: string;
-/**
- * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply
- */
+  /**
+   * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply
+   */
   next_reinforce_hour?: number;
-/**
- * The id of the ACL profile for this citadel
- */
+  /**
+   * The id of the ACL profile for this citadel
+   */
   profile_id: number;
-  reinforce_hour?: GetCorporationsCorporationIdStructuresReinforceHour;
+  /**
+   * The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property
+   */
+  reinforce_hour?: number;
   services?: GetCorporationsCorporationIdStructuresServices;
   state: GetCorporationsCorporationIdStructuresState;
-/**
- * Date at which the structure will move to it's next state
- */
+  /**
+   * Date at which the structure will move to it's next state
+   */
   state_timer_end?: string;
-/**
- * Date at which the structure entered it's current state
- */
+  /**
+   * Date at which the structure entered it's current state
+   */
   state_timer_start?: string;
-/**
- * The Item ID of the structure
- */
+  /**
+   * The Item ID of the structure
+   */
   structure_id: number;
-/**
- * The solar system the structure is in
- */
+  /**
+   * The solar system the structure is in
+   */
   system_id: number;
-/**
- * The type id of the structure
- */
   type_id: number;
-/**
- * Date at which the structure will unanchor
- */
+  /**
+   * Date at which the structure will unanchor
+   */
   unanchors_at?: string;
   [k: string]: unknown | undefined;
 }
@@ -171,9 +167,9 @@ interface GetCorporationsCorporationIdStructures_200Ok {
  * service object
  */
 interface GetCorporationsCorporationIdStructuresService {
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
   state: GetCorporationsCorporationIdStructuresServiceState;
   [k: string]: unknown | undefined;

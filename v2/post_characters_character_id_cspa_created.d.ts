@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/cspa/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/cspa/
+ */
 /**
  * 201 created number
  */

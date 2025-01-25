@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/bookmarks/folders/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/bookmarks/folders/
+ */
 /**
  * 200 ok array
  *
@@ -12,13 +12,13 @@ type GetCharactersCharacterIdBookmarksFoldersOk = GetCharactersCharacterIdBookma
  * 200 ok object
  */
 interface GetCharactersCharacterIdBookmarksFolders_200Ok {
-/**
- * folder_id integer
- */
+  /**
+   * folder_id integer
+   */
   folder_id: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
   [k: string]: unknown | undefined;
 }

@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/containers/logs/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/containers/logs/
+ */
 /**
  * action string
  */
@@ -152,43 +152,37 @@ type GetCorporationsCorporationIdContainersLogsOk = GetCorporationsCorporationId
  */
 interface GetCorporationsCorporationIdContainersLogs_200Ok {
   action: GetCorporationsCorporationIdContainersLogsAction;
-/**
- * ID of the character who performed the action.
- */
+  /**
+   * ID of the character who performed the action.
+   */
   character_id: number;
-/**
- * ID of the container
- */
+  /**
+   * ID of the container
+   */
   container_id: number;
-/**
- * Type ID of the container
- */
   container_type_id: number;
   location_flag: GetCorporationsCorporationIdContainersLogsLocationFlag;
-/**
- * location_id integer
- */
+  /**
+   * location_id integer
+   */
   location_id: number;
-/**
- * Timestamp when this log was created
- */
+  /**
+   * Timestamp when this log was created
+   */
   logged_at: string;
-/**
- * new_config_bitmask integer
- */
+  /**
+   * new_config_bitmask integer
+   */
   new_config_bitmask?: number;
-/**
- * old_config_bitmask integer
- */
+  /**
+   * old_config_bitmask integer
+   */
   old_config_bitmask?: number;
   password_type?: GetCorporationsCorporationIdContainersLogsPasswordType;
-/**
- * Quantity of the item being acted upon
- */
+  /**
+   * Quantity of the item being acted upon
+   */
   quantity?: number;
-/**
- * Type ID of the item being acted upon
- */
   type_id?: number;
   [k: string]: unknown | undefined;
 }

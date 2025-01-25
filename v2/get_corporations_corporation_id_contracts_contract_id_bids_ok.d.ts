@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/contracts/{contract_id}/bids/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/contracts/{contract_id}/bids/
+ */
 /**
  * 200 ok array
  *
@@ -13,21 +13,21 @@ type GetCorporationsCorporationIdContractsContractIdBidsOk =
  * 200 ok object
  */
 interface GetCorporationsCorporationIdContractsContractIdBids_200Ok {
-/**
- * The amount bid, in ISK
- */
+  /**
+   * The amount bid, in ISK
+   */
   amount: number;
-/**
- * Unique ID for the bid
- */
+  /**
+   * Unique ID for the bid
+   */
   bid_id: number;
-/**
- * Character ID of the bidder
- */
+  /**
+   * Character ID of the bidder
+   */
   bidder_id: number;
-/**
- * Datetime when the bid was placed
- */
+  /**
+   * Datetime when the bid was placed
+   */
   date_bid: string;
   [k: string]: unknown | undefined;
 }

@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/skills/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/skills/
+ */
 /**
  * skills array
  *
@@ -13,13 +13,13 @@ type GetCharactersCharacterIdSkillsSkills = GetCharactersCharacterIdSkillsSkill[
  */
 interface GetCharactersCharacterIdSkillsOk {
   skills: GetCharactersCharacterIdSkillsSkills;
-/**
- * total_sp integer
- */
+  /**
+   * total_sp integer
+   */
   total_sp: number;
-/**
- * Skill points available to be assigned
- */
+  /**
+   * Skill points available to be assigned
+   */
   unallocated_sp?: number;
   [k: string]: unknown | undefined;
 }
@@ -27,21 +27,21 @@ interface GetCharactersCharacterIdSkillsOk {
  * skill object
  */
 interface GetCharactersCharacterIdSkillsSkill {
-/**
- * active_skill_level integer
- */
+  /**
+   * active_skill_level integer
+   */
   active_skill_level: number;
-/**
- * skill_id integer
- */
+  /**
+   * skill_id integer
+   */
   skill_id: number;
-/**
- * skillpoints_in_skill integer
- */
+  /**
+   * skillpoints_in_skill integer
+   */
   skillpoints_in_skill: number;
-/**
- * trained_skill_level integer
- */
+  /**
+   * trained_skill_level integer
+   */
   trained_skill_level: number;
   [k: string]: unknown | undefined;
 }

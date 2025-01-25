@@ -1,15 +1,10 @@
-/**
-* ESI endpoint: /characters/{character_id}/clones/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/clones/
+ */
 /**
  * location_type string
  */
 type GetCharactersCharacterIdClonesLocationType = "station" | "structure";
-/**
- * implants array
- *
- * @maxItems 64
- */
 /**
  * location_type string
  */
@@ -27,13 +22,13 @@ type GetCharactersCharacterIdClonesJumpClones = GetCharactersCharacterIdClonesJu
 interface GetCharactersCharacterIdClonesOk {
   home_location?: GetCharactersCharacterIdClonesHomeLocation;
   jump_clones: GetCharactersCharacterIdClonesJumpClones;
-/**
- * last_clone_jump_date string
- */
+  /**
+   * last_clone_jump_date string
+   */
   last_clone_jump_date?: string;
-/**
- * last_station_change_date string
- */
+  /**
+   * last_station_change_date string
+   */
   last_station_change_date?: string;
   [k: string]: unknown | undefined;
 }
@@ -41,9 +36,9 @@ interface GetCharactersCharacterIdClonesOk {
  * home_location object
  */
 interface GetCharactersCharacterIdClonesHomeLocation {
-/**
- * location_id integer
- */
+  /**
+   * location_id integer
+   */
   location_id?: number;
   location_type?: GetCharactersCharacterIdClonesLocationType;
   [k: string]: unknown | undefined;
@@ -52,22 +47,24 @@ interface GetCharactersCharacterIdClonesHomeLocation {
  * jump_clone object
  */
 interface GetCharactersCharacterIdClonesJumpClone {
-/**
- * implant integer
- */
+  /**
+   * implants array
+   *
+   * @maxItems 64
+   */
   implants: number[];
-/**
- * jump_clone_id integer
- */
+  /**
+   * jump_clone_id integer
+   */
   jump_clone_id: number;
-/**
- * location_id integer
- */
+  /**
+   * location_id integer
+   */
   location_id: number;
   location_type: GetCharactersCharacterIdClonesJumpCloneLocationType;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }

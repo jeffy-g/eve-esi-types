@@ -1,26 +1,26 @@
-/**
-* ESI endpoint: /status/
-*/
+/*!
+ * ESI endpoint: /status/
+ */
 
 /**
  * 200 ok object
  */
 interface GetStatusOk {
-/**
- * Current online player count
- */
+  /**
+   * Current online player count
+   */
   players: number;
-/**
- * Running version as string
- */
+  /**
+   * Running version as string
+   */
   server_version: string;
-/**
- * Server start timestamp
- */
+  /**
+   * Server start timestamp
+   */
   start_time: string;
-/**
- * If the server is in VIP mode
- */
+  /**
+   * If the server is in VIP mode
+   */
   vip?: boolean;
   [k: string]: unknown | undefined;
 }

@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /loyalty/stores/{corporation_id}/offers/
-*/
+/*!
+ * ESI endpoint: /loyalty/stores/{corporation_id}/offers/
+ */
 /**
  * required_items array
  *
@@ -18,30 +18,27 @@ type GetLoyaltyStoresCorporationIdOffersOk = GetLoyaltyStoresCorporationIdOffers
  * 200 ok object
  */
 interface GetLoyaltyStoresCorporationIdOffers_200Ok {
-/**
- * Analysis kredit cost
- */
+  /**
+   * Analysis kredit cost
+   */
   ak_cost?: number;
-/**
- * isk_cost integer
- */
+  /**
+   * isk_cost integer
+   */
   isk_cost: number;
-/**
- * lp_cost integer
- */
+  /**
+   * lp_cost integer
+   */
   lp_cost: number;
-/**
- * offer_id integer
- */
+  /**
+   * offer_id integer
+   */
   offer_id: number;
-/**
- * quantity integer
- */
+  /**
+   * quantity integer
+   */
   quantity: number;
   required_items: GetLoyaltyStoresCorporationIdOffersRequiredItems;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }
@@ -49,13 +46,10 @@ interface GetLoyaltyStoresCorporationIdOffers_200Ok {
  * required_item object
  */
 interface GetLoyaltyStoresCorporationIdOffersRequiredItem {
-/**
- * quantity integer
- */
+  /**
+   * quantity integer
+   */
   quantity: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

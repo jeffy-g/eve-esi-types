@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/divisions/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/divisions/
+ */
 /**
  * hangar array
  *
@@ -102,13 +102,13 @@ interface GetCorporationsCorporationIdDivisionsOk {
  * hangar object
  */
 interface GetCorporationsCorporationIdDivisionsHangarHangar {
-/**
- * division integer
- */
+  /**
+   * division integer
+   */
   division?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -116,13 +116,13 @@ interface GetCorporationsCorporationIdDivisionsHangarHangar {
  * wallet object
  */
 interface GetCorporationsCorporationIdDivisionsWalletWallet {
-/**
- * division integer
- */
+  /**
+   * division integer
+   */
   division?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }

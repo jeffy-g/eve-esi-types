@@ -1,23 +1,20 @@
-/**
-* ESI endpoint: /characters/{character_id}/mail/{mail_id}/
-*/
-/**
- * Labels to assign to the mail. Pre-existing labels are unassigned.
- *
- * @maxItems 25
+/*!
+ * ESI endpoint: /characters/{character_id}/mail/{mail_id}/
  */
 
 /**
  * contents object
  */
 interface PutCharactersCharacterIdMailMailIdContents {
-/**
- * label integer
- */
+  /**
+   * Labels to assign to the mail. Pre-existing labels are unassigned.
+   *
+   * @maxItems 25
+   */
   labels?: number[];
-/**
- * Whether the mail is flagged as read
- */
+  /**
+   * Whether the mail is flagged as read
+   */
   read?: boolean;
   [k: string]: unknown | undefined;
 }

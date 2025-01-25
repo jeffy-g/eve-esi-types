@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/medals/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/medals/
+ */
 /**
  * 200 ok array
  *
@@ -12,25 +12,25 @@ type GetCorporationsCorporationIdMedalsOk = GetCorporationsCorporationIdMedals_2
  * 200 ok object
  */
 interface GetCorporationsCorporationIdMedals_200Ok {
-/**
- * created_at string
- */
+  /**
+   * created_at string
+   */
   created_at: string;
-/**
- * ID of the character who created this medal
- */
+  /**
+   * ID of the character who created this medal
+   */
   creator_id: number;
-/**
- * description string
- */
+  /**
+   * description string
+   */
   description: string;
-/**
- * medal_id integer
- */
+  /**
+   * medal_id integer
+   */
   medal_id: number;
-/**
- * title string
- */
+  /**
+   * title string
+   */
   title: string;
   [k: string]: unknown | undefined;
 }

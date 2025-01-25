@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/starbases/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/starbases/
+ */
 /**
  * state string
  */
@@ -21,34 +21,31 @@ type GetCorporationsCorporationIdStarbasesOk = GetCorporationsCorporationIdStarb
  * 200 ok object
  */
 interface GetCorporationsCorporationIdStarbases_200Ok {
-/**
- * The moon this starbase (POS) is anchored on, unanchored POSes do not have this information
- */
+  /**
+   * The moon this starbase (POS) is anchored on, unanchored POSes do not have this information
+   */
   moon_id?: number;
-/**
- * When the POS onlined, for starbases (POSes) in online state
- */
+  /**
+   * When the POS onlined, for starbases (POSes) in online state
+   */
   onlined_since?: string;
-/**
- * When the POS will be out of reinforcement, for starbases (POSes) in reinforced state
- */
+  /**
+   * When the POS will be out of reinforcement, for starbases (POSes) in reinforced state
+   */
   reinforced_until?: string;
-/**
- * Unique ID for this starbase (POS)
- */
+  /**
+   * Unique ID for this starbase (POS)
+   */
   starbase_id: number;
   state?: GetCorporationsCorporationIdStarbasesState;
-/**
- * The solar system this starbase (POS) is in, unanchored POSes have this information
- */
+  /**
+   * The solar system this starbase (POS) is in, unanchored POSes have this information
+   */
   system_id: number;
-/**
- * Starbase (POS) type
- */
   type_id: number;
-/**
- * When the POS started unanchoring, for starbases (POSes) in unanchoring state
- */
+  /**
+   * When the POS started unanchoring, for starbases (POSes) in unanchoring state
+   */
   unanchor_at?: string;
   [k: string]: unknown | undefined;
 }

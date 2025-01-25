@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /fw/leaderboards/characters/
-*/
+/*!
+ * ESI endpoint: /fw/leaderboards/characters/
+ */
 /**
  * Top 100 ranking of pilots active in faction warfare by total kills. A pilot is considered "active" if they have participated in faction warfare in the past 14 days
  *
@@ -59,13 +59,13 @@ interface GetFwLeaderboardsCharactersKills {
  * active_total object
  */
 interface GetFwLeaderboardsCharactersActiveTotalActiveTotal {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -73,13 +73,13 @@ interface GetFwLeaderboardsCharactersActiveTotalActiveTotal {
  * last_week object
  */
 interface GetFwLeaderboardsCharactersLastWeekLastWeek {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -87,13 +87,13 @@ interface GetFwLeaderboardsCharactersLastWeekLastWeek {
  * yesterday object
  */
 interface GetFwLeaderboardsCharactersYesterdayYesterday {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -110,13 +110,13 @@ interface GetFwLeaderboardsCharactersVictoryPoints {
  * active_total object
  */
 interface GetFwLeaderboardsCharactersActiveTotalActiveTotal_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -124,13 +124,13 @@ interface GetFwLeaderboardsCharactersActiveTotalActiveTotal_1 {
  * last_week object
  */
 interface GetFwLeaderboardsCharactersLastWeekLastWeek_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -138,13 +138,13 @@ interface GetFwLeaderboardsCharactersLastWeekLastWeek_1 {
  * yesterday object
  */
 interface GetFwLeaderboardsCharactersYesterdayYesterday_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
   [k: string]: unknown | undefined;
 }

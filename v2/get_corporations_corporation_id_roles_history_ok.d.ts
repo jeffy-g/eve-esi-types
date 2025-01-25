@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/roles/history/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/roles/history/
+ */
 /**
  * new_role string
  */
@@ -152,17 +152,17 @@ type GetCorporationsCorporationIdRolesHistoryOk = GetCorporationsCorporationIdRo
  * 200 ok object
  */
 interface GetCorporationsCorporationIdRolesHistory_200Ok {
-/**
- * changed_at string
- */
+  /**
+   * changed_at string
+   */
   changed_at: string;
-/**
- * The character whose roles are changed
- */
+  /**
+   * The character whose roles are changed
+   */
   character_id: number;
-/**
- * ID of the character who issued this change
- */
+  /**
+   * ID of the character who issued this change
+   */
   issuer_id: number;
   new_roles: GetCorporationsCorporationIdRolesHistoryNewRoles;
   old_roles: GetCorporationsCorporationIdRolesHistoryOldRoles;

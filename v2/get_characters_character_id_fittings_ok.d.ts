@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/fittings/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/fittings/
+ */
 /**
  * flag string
  */
@@ -65,22 +65,19 @@ type GetCharactersCharacterIdFittingsOk = GetCharactersCharacterIdFittings_200Ok
  * 200 ok object
  */
 interface GetCharactersCharacterIdFittings_200Ok {
-/**
- * description string
- */
+  /**
+   * description string
+   */
   description: string;
-/**
- * fitting_id integer
- */
+  /**
+   * fitting_id integer
+   */
   fitting_id: number;
   items: GetCharactersCharacterIdFittingsItems;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
-/**
- * ship_type_id integer
- */
   ship_type_id: number;
   [k: string]: unknown | undefined;
 }
@@ -89,13 +86,10 @@ interface GetCharactersCharacterIdFittings_200Ok {
  */
 interface GetCharactersCharacterIdFittingsItem {
   flag: GetCharactersCharacterIdFittingsFlag;
-/**
- * quantity integer
- */
+  /**
+   * quantity integer
+   */
   quantity: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

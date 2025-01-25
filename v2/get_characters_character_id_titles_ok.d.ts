@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/titles/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/titles/
+ */
 /**
  * 200 ok array
  *
@@ -172,13 +172,13 @@ type GetCharactersCharacterIdTitlesOk =
  * 200 ok object
  */
 interface GetCharactersCharacterIdTitles_200Ok {
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
-/**
- * title_id integer
- */
+  /**
+   * title_id integer
+   */
   title_id?: number;
   [k: string]: unknown | undefined;
 }

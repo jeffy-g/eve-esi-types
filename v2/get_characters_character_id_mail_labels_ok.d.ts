@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/mail/labels/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/mail/labels/
+ */
 /**
  * color string
  */
@@ -35,9 +35,9 @@ type GetCharactersCharacterIdMailLabelsLabels = GetCharactersCharacterIdMailLabe
  */
 interface GetCharactersCharacterIdMailLabelsOk {
   labels?: GetCharactersCharacterIdMailLabelsLabels;
-/**
- * total_unread_count integer
- */
+  /**
+   * total_unread_count integer
+   */
   total_unread_count?: number;
   [k: string]: unknown | undefined;
 }
@@ -46,17 +46,17 @@ interface GetCharactersCharacterIdMailLabelsOk {
  */
 interface GetCharactersCharacterIdMailLabelsLabel {
   color?: GetCharactersCharacterIdMailLabelsColor;
-/**
- * label_id integer
- */
+  /**
+   * label_id integer
+   */
   label_id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
-/**
- * unread_count integer
- */
+  /**
+   * unread_count integer
+   */
   unread_count?: number;
   [k: string]: unknown | undefined;
 }

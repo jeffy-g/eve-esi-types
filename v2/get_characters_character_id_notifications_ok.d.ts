@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/notifications/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/notifications/
+ */
 /**
  * sender_type string
  */
@@ -265,26 +265,26 @@ type GetCharactersCharacterIdNotificationsOk = GetCharactersCharacterIdNotificat
  * 200 ok object
  */
 interface GetCharactersCharacterIdNotifications_200Ok {
-/**
- * is_read boolean
- */
+  /**
+   * is_read boolean
+   */
   is_read?: boolean;
-/**
- * notification_id integer
- */
+  /**
+   * notification_id integer
+   */
   notification_id: number;
-/**
- * sender_id integer
- */
+  /**
+   * sender_id integer
+   */
   sender_id: number;
   sender_type: GetCharactersCharacterIdNotificationsSenderType;
-/**
- * text string
- */
+  /**
+   * text string
+   */
   text?: string;
-/**
- * timestamp string
- */
+  /**
+   * timestamp string
+   */
   timestamp: string;
   type: GetCharactersCharacterIdNotificationsType;
   [k: string]: unknown | undefined;

@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/standings/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/standings/
+ */
 /**
  * from_type string
  */
@@ -16,14 +16,14 @@ type GetCorporationsCorporationIdStandingsOk = GetCorporationsCorporationIdStand
  * 200 ok object
  */
 interface GetCorporationsCorporationIdStandings_200Ok {
-/**
- * from_id integer
- */
+  /**
+   * from_id integer
+   */
   from_id: number;
   from_type: GetCorporationsCorporationIdStandingsFromType;
-/**
- * standing number
- */
+  /**
+   * standing number
+   */
   standing: number;
   [k: string]: unknown | undefined;
 }

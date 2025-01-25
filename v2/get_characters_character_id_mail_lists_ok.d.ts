@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/mail/lists/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/mail/lists/
+ */
 /**
  * 200 ok array
  *
@@ -12,13 +12,13 @@ type GetCharactersCharacterIdMailListsOk = GetCharactersCharacterIdMailLists_200
  * 200 ok object
  */
 interface GetCharactersCharacterIdMailLists_200Ok {
-/**
- * Mailing list ID
- */
+  /**
+   * Mailing list ID
+   */
   mailing_list_id: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
   [k: string]: unknown | undefined;
 }

@@ -214,7 +214,7 @@ declare global {
    * @template EP - The endpoint path.
    */
   type InferESIResponseResult<
-    M extends keyof TESIResponseOKMap,
+    M extends TESIEntryMethod,
     EP extends keyof TESIResponseOKMap[M]
   > = TESIResponseOKMap[M][EP] extends { result: infer U } ? U : never;
 

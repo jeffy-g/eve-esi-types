@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/planets/{planet_id}/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/planets/{planet_id}/
+ */
 /**
  * links array
  *
@@ -103,66 +103,27 @@ type GetCharactersCharacterIdPlanetsPlanetIdPins = GetCharactersCharacterIdPlane
  */
 type GetCharactersCharacterIdPlanetsPlanetIdWaypoints =
   | []
-/**
- * waypoint integer
- */
+  /**
+   * waypoint integer
+   */
   | [number]
-/**
- * waypoint integer
- */
-  | [GetCharactersCharacterIdPlanetsPlanetIdWaypoint, number]
+  | [number, number]
   | [
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number
     ]
   | [
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number
     ]
   | [
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number,
-/**
- * waypoint integer
- */
       number
     ];
 /**
@@ -185,17 +146,17 @@ interface GetCharactersCharacterIdPlanetsPlanetIdOk {
  * link object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdLink {
-/**
- * destination_pin_id integer
- */
+  /**
+   * destination_pin_id integer
+   */
   destination_pin_id: number;
-/**
- * link_level integer
- */
+  /**
+   * link_level integer
+   */
   link_level: number;
-/**
- * source_pin_id integer
- */
+  /**
+   * source_pin_id integer
+   */
   source_pin_id: number;
   [k: string]: unknown | undefined;
 }
@@ -204,39 +165,36 @@ interface GetCharactersCharacterIdPlanetsPlanetIdLink {
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdPin {
   contents?: GetCharactersCharacterIdPlanetsPlanetIdContents;
-/**
- * expiry_time string
- */
+  /**
+   * expiry_time string
+   */
   expiry_time?: string;
   extractor_details?: GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails;
   factory_details?: GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails;
-/**
- * install_time string
- */
+  /**
+   * install_time string
+   */
   install_time?: string;
-/**
- * last_cycle_start string
- */
+  /**
+   * last_cycle_start string
+   */
   last_cycle_start?: string;
-/**
- * latitude number
- */
+  /**
+   * latitude number
+   */
   latitude: number;
-/**
- * longitude number
- */
+  /**
+   * longitude number
+   */
   longitude: number;
-/**
- * pin_id integer
- */
+  /**
+   * pin_id integer
+   */
   pin_id: number;
-/**
- * schematic_id integer
- */
+  /**
+   * schematic_id integer
+   */
   schematic_id?: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }
@@ -244,13 +202,10 @@ interface GetCharactersCharacterIdPlanetsPlanetIdPin {
  * content object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdContent {
-/**
- * amount integer
- */
+  /**
+   * amount integer
+   */
   amount: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }
@@ -258,22 +213,19 @@ interface GetCharactersCharacterIdPlanetsPlanetIdContent {
  * extractor_details object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails {
-/**
- * in seconds
- */
+  /**
+   * in seconds
+   */
   cycle_time?: number;
-/**
- * head_radius number
- */
+  /**
+   * head_radius number
+   */
   head_radius?: number;
   heads: GetCharactersCharacterIdPlanetsPlanetIdHeads;
-/**
- * product_type_id integer
- */
   product_type_id?: number;
-/**
- * qty_per_cycle integer
- */
+  /**
+   * qty_per_cycle integer
+   */
   qty_per_cycle?: number;
   [k: string]: unknown | undefined;
 }
@@ -281,17 +233,17 @@ interface GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails {
  * head object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdHead {
-/**
- * head_id integer
- */
+  /**
+   * head_id integer
+   */
   head_id: number;
-/**
- * latitude number
- */
+  /**
+   * latitude number
+   */
   latitude: number;
-/**
- * longitude number
- */
+  /**
+   * longitude number
+   */
   longitude: number;
   [k: string]: unknown | undefined;
 }
@@ -299,9 +251,9 @@ interface GetCharactersCharacterIdPlanetsPlanetIdHead {
  * factory_details object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails {
-/**
- * schematic_id integer
- */
+  /**
+   * schematic_id integer
+   */
   schematic_id: number;
   [k: string]: unknown | undefined;
 }
@@ -309,25 +261,22 @@ interface GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails {
  * route object
  */
 interface GetCharactersCharacterIdPlanetsPlanetIdRoute {
-/**
- * content_type_id integer
- */
   content_type_id: number;
-/**
- * destination_pin_id integer
- */
+  /**
+   * destination_pin_id integer
+   */
   destination_pin_id: number;
-/**
- * quantity number
- */
+  /**
+   * quantity number
+   */
   quantity: number;
-/**
- * route_id integer
- */
+  /**
+   * route_id integer
+   */
   route_id: number;
-/**
- * source_pin_id integer
- */
+  /**
+   * source_pin_id integer
+   */
   source_pin_id: number;
   waypoints?: GetCharactersCharacterIdPlanetsPlanetIdWaypoints;
   [k: string]: unknown | undefined;

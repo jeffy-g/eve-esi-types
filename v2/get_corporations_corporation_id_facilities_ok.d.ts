@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/facilities/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/facilities/
+ */
 /**
  * 200 ok array
  *
@@ -12,17 +12,14 @@ type GetCorporationsCorporationIdFacilitiesOk = GetCorporationsCorporationIdFaci
  * 200 ok object
  */
 interface GetCorporationsCorporationIdFacilities_200Ok {
-/**
- * facility_id integer
- */
+  /**
+   * facility_id integer
+   */
   facility_id: number;
-/**
- * system_id integer
- */
+  /**
+   * system_id integer
+   */
   system_id: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

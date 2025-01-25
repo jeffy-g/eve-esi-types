@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/wallets/{division}/journal/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/wallets/{division}/journal/
+ */
 /**
  * The type of the given context_id if present
  */
@@ -17,10 +17,6 @@ type GetCorporationsCorporationIdWalletsDivisionJournalContextIdType =
   | "planet_id"
   | "system_id"
   | "type_id";
-/**
- * The id of the first party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
- */
-type GetCorporationsCorporationIdWalletsDivisionJournalFirstPartyId = number;
 /**
  * "The transaction type for the given. transaction. Different transaction types will populate different attributes. Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can look at the following file to see string->int mappings: https://github.com/ccpgames/eve-glue/blob/master/eve_glue/wallet_journal_ref.py"
  */
@@ -172,10 +168,6 @@ type GetCorporationsCorporationIdWalletsDivisionJournalRefType =
   | "war_fee"
   | "war_fee_surrender";
 /**
- * The id of the second party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
- */
-type GetCorporationsCorporationIdWalletsDivisionJournalSecondPartyId = number;
-/**
  * Journal entries
  *
  * @maxItems 2500
@@ -187,45 +179,51 @@ type GetCorporationsCorporationIdWalletsDivisionJournalOk =
  * 200 ok object
  */
 interface GetCorporationsCorporationIdWalletsDivisionJournal_200Ok {
-/**
- * The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
- */
+  /**
+   * The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
+   */
   amount?: number;
-/**
- * Wallet balance after transaction occurred
- */
+  /**
+   * Wallet balance after transaction occurred
+   */
   balance?: number;
-/**
- * An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things. It is also possible to not have a context_id
- */
+  /**
+   * An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things. It is also possible to not have a context_id
+   */
   context_id?: number;
   context_id_type?: GetCorporationsCorporationIdWalletsDivisionJournalContextIdType;
-/**
- * Date and time of transaction
- */
+  /**
+   * Date and time of transaction
+   */
   date: string;
-/**
- * The reason for the transaction, mirrors what is seen in the client
- */
+  /**
+   * The reason for the transaction, mirrors what is seen in the client
+   */
   description: string;
-  first_party_id?: GetCorporationsCorporationIdWalletsDivisionJournalFirstPartyId;
-/**
- * Unique journal reference ID
- */
+  /**
+   * The id of the first party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
+   */
+  first_party_id?: number;
+  /**
+   * Unique journal reference ID
+   */
   id: number;
-/**
- * The user stated reason for the transaction. Only applies to some ref_types
- */
+  /**
+   * The user stated reason for the transaction. Only applies to some ref_types
+   */
   reason?: string;
   ref_type: GetCorporationsCorporationIdWalletsDivisionJournalRefType;
-  second_party_id?: GetCorporationsCorporationIdWalletsDivisionJournalSecondPartyId;
-/**
- * Tax amount received. Only applies to tax related transactions
- */
+  /**
+   * The id of the second party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
+   */
+  second_party_id?: number;
+  /**
+   * Tax amount received. Only applies to tax related transactions
+   */
   tax?: number;
-/**
- * The corporation ID receiving any tax paid. Only applies to tax related transactions
- */
+  /**
+   * The corporation ID receiving any tax paid. Only applies to tax related transactions
+   */
   tax_receiver_id?: number;
   [k: string]: unknown | undefined;
 }

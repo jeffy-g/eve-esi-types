@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /universe/names/
-*/
+/*!
+ * ESI endpoint: /universe/names/
+ */
 /**
  * category string
  */
@@ -26,13 +26,13 @@ type PostUniverseNamesOk = PostUniverseNames_200Ok[];
  */
 interface PostUniverseNames_200Ok {
   category: PostUniverseNamesCategory;
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
   [k: string]: unknown | undefined;
 }

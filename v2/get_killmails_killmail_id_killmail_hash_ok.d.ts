@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /killmails/{killmail_id}/{killmail_hash}/
-*/
+/*!
+ * ESI endpoint: /killmails/{killmail_id}/{killmail_hash}/
+ */
 /**
  * attackers array
  *
@@ -25,29 +25,29 @@ type GetKillmailsKillmailIdKillmailHashItems = GetKillmailsKillmailIdKillmailHas
  */
 interface GetKillmailsKillmailIdKillmailHashOk {
   attackers: GetKillmailsKillmailIdKillmailHashAttackers;
-/**
- * ID of the killmail
- */
+  /**
+   * ID of the killmail
+   */
   killmail_id: number;
-/**
- * Time that the victim was killed and the killmail generated
- *
- */
+  /**
+   * Time that the victim was killed and the killmail generated
+   *
+   */
   killmail_time: string;
-/**
- * Moon if the kill took place at one
- */
+  /**
+   * Moon if the kill took place at one
+   */
   moon_id?: number;
-/**
- * Solar system that the kill took place in
- *
- */
+  /**
+   * Solar system that the kill took place in
+   *
+   */
   solar_system_id: number;
   victim: GetKillmailsKillmailIdKillmailHashVictim;
-/**
- * War if the killmail is generated in relation to an official war
- *
- */
+  /**
+   * War if the killmail is generated in relation to an official war
+   *
+   */
   war_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -55,45 +55,37 @@ interface GetKillmailsKillmailIdKillmailHashOk {
  * attacker object
  */
 interface GetKillmailsKillmailIdKillmailHashAttacker {
-/**
- * alliance_id integer
- */
+  /**
+   * alliance_id integer
+   */
   alliance_id?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
-/**
- * damage_done integer
- */
+  /**
+   * damage_done integer
+   */
   damage_done: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
-/**
- * Was the attacker the one to achieve the final blow
- *
- */
+  /**
+   * Was the attacker the one to achieve the final blow
+   *
+   */
   final_blow: boolean;
-/**
- * Security status for the attacker
- *
- */
+  /**
+   * Security status for the attacker
+   *
+   */
   security_status: number;
-/**
- * What ship was the attacker flying
- *
- */
   ship_type_id?: number;
-/**
- * What weapon was used by the attacker for the kill
- *
- */
   weapon_type_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -101,33 +93,29 @@ interface GetKillmailsKillmailIdKillmailHashAttacker {
  * victim object
  */
 interface GetKillmailsKillmailIdKillmailHashVictim {
-/**
- * alliance_id integer
- */
+  /**
+   * alliance_id integer
+   */
   alliance_id?: number;
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
-/**
- * How much total damage was taken by the victim
- *
- */
+  /**
+   * How much total damage was taken by the victim
+   *
+   */
   damage_taken: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
   items?: GetKillmailsKillmailIdKillmailHashItems;
   position?: GetKillmailsKillmailIdKillmailHashPosition;
-/**
- * The ship that the victim was piloting and was destroyed
- *
- */
   ship_type_id: number;
   [k: string]: unknown | undefined;
 }
@@ -135,29 +123,26 @@ interface GetKillmailsKillmailIdKillmailHashVictim {
  * item object
  */
 interface GetKillmailsKillmailIdKillmailHashItem {
-/**
- * Flag for the location of the item
- *
- */
+  /**
+   * Flag for the location of the item
+   *
+   */
   flag: number;
-/**
- * item_type_id integer
- */
   item_type_id: number;
   items?: GetKillmailsKillmailIdKillmailHashItemItems;
-/**
- * How many of the item were destroyed if any
- *
- */
+  /**
+   * How many of the item were destroyed if any
+   *
+   */
   quantity_destroyed?: number;
-/**
- * How many of the item were dropped if any
- *
- */
+  /**
+   * How many of the item were dropped if any
+   *
+   */
   quantity_dropped?: number;
-/**
- * singleton integer
- */
+  /**
+   * singleton integer
+   */
   singleton: number;
   [k: string]: unknown | undefined;
 }
@@ -165,25 +150,22 @@ interface GetKillmailsKillmailIdKillmailHashItem {
  * item object
  */
 interface GetKillmailsKillmailIdKillmailHashItemsItem {
-/**
- * flag integer
- */
+  /**
+   * flag integer
+   */
   flag: number;
-/**
- * item_type_id integer
- */
   item_type_id: number;
-/**
- * quantity_destroyed integer
- */
+  /**
+   * quantity_destroyed integer
+   */
   quantity_destroyed?: number;
-/**
- * quantity_dropped integer
- */
+  /**
+   * quantity_dropped integer
+   */
   quantity_dropped?: number;
-/**
- * singleton integer
- */
+  /**
+   * singleton integer
+   */
   singleton: number;
   [k: string]: unknown | undefined;
 }
@@ -192,17 +174,17 @@ interface GetKillmailsKillmailIdKillmailHashItemsItem {
  *
  */
 interface GetKillmailsKillmailIdKillmailHashPosition {
-/**
- * x number
- */
+  /**
+   * x number
+   */
   x: number;
-/**
- * y number
- */
+  /**
+   * y number
+   */
   y: number;
-/**
- * z number
- */
+  /**
+   * z number
+   */
   z: number;
   [k: string]: unknown | undefined;
 }

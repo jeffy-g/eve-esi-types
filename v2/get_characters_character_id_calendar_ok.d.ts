@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/calendar/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/calendar/
+ */
 /**
  * event_response string
  */
@@ -16,22 +16,22 @@ type GetCharactersCharacterIdCalendarOk = GetCharactersCharacterIdCalendar_200Ok
  * event
  */
 interface GetCharactersCharacterIdCalendar_200Ok {
-/**
- * event_date string
- */
+  /**
+   * event_date string
+   */
   event_date?: string;
-/**
- * event_id integer
- */
+  /**
+   * event_id integer
+   */
   event_id?: number;
   event_response?: GetCharactersCharacterIdCalendarEventResponse;
-/**
- * importance integer
- */
+  /**
+   * importance integer
+   */
   importance?: number;
-/**
- * title string
- */
+  /**
+   * title string
+   */
   title?: string;
   [k: string]: unknown | undefined;
 }

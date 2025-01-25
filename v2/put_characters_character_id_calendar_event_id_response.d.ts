@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/calendar/{event_id}/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/calendar/{event_id}/
+ */
 /**
  * response string
  */

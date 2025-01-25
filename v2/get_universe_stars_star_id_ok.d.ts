@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /universe/stars/{star_id}/
-*/
+/*!
+ * ESI endpoint: /universe/stars/{star_id}/
+ */
 /**
  * spectral_class string
  */
@@ -99,34 +99,31 @@ type GetUniverseStarsStarIdSpectralClass =
  * 200 ok object
  */
 interface GetUniverseStarsStarIdOk {
-/**
- * Age of star in years
- */
+  /**
+   * Age of star in years
+   */
   age: number;
-/**
- * luminosity number
- */
+  /**
+   * luminosity number
+   */
   luminosity: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
-/**
- * radius integer
- */
+  /**
+   * radius integer
+   */
   radius: number;
-/**
- * solar_system_id integer
- */
+  /**
+   * solar_system_id integer
+   */
   solar_system_id: number;
   spectral_class: GetUniverseStarsStarIdSpectralClass;
-/**
- * temperature integer
- */
+  /**
+   * temperature integer
+   */
   temperature: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

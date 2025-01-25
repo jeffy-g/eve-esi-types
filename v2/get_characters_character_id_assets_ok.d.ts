@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/assets/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/assets/
+ */
 /**
  * location_flag string
  */
@@ -107,31 +107,28 @@ type GetCharactersCharacterIdAssetsOk = GetCharactersCharacterIdAssets_200Ok[];
  * 200 ok object
  */
 interface GetCharactersCharacterIdAssets_200Ok {
-/**
- * is_blueprint_copy boolean
- */
+  /**
+   * is_blueprint_copy boolean
+   */
   is_blueprint_copy?: boolean;
-/**
- * is_singleton boolean
- */
+  /**
+   * is_singleton boolean
+   */
   is_singleton: boolean;
-/**
- * item_id integer
- */
+  /**
+   * item_id integer
+   */
   item_id: number;
   location_flag: GetCharactersCharacterIdAssetsLocationFlag;
-/**
- * location_id integer
- */
+  /**
+   * location_id integer
+   */
   location_id: number;
   location_type: GetCharactersCharacterIdAssetsLocationType;
-/**
- * quantity integer
- */
+  /**
+   * quantity integer
+   */
   quantity: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

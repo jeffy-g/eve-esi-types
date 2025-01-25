@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /universe/ids/
-*/
+/*!
+ * ESI endpoint: /universe/ids/
+ */
 /**
  * agents array
  *
@@ -82,13 +82,13 @@ interface PostUniverseIdsOk {
  * agent object
  */
 interface PostUniverseIdsAgent {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -96,13 +96,13 @@ interface PostUniverseIdsAgent {
  * alliance object
  */
 interface PostUniverseIdsAlliance {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -110,13 +110,13 @@ interface PostUniverseIdsAlliance {
  * character object
  */
 interface PostUniverseIdsCharacter {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -124,13 +124,13 @@ interface PostUniverseIdsCharacter {
  * constellation object
  */
 interface PostUniverseIdsConstellation {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -138,13 +138,13 @@ interface PostUniverseIdsConstellation {
  * corporation object
  */
 interface PostUniverseIdsCorporation {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -152,13 +152,13 @@ interface PostUniverseIdsCorporation {
  * faction object
  */
 interface PostUniverseIdsFaction {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -166,13 +166,13 @@ interface PostUniverseIdsFaction {
  * inventory_type object
  */
 interface PostUniverseIdsInventoryType {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -180,13 +180,13 @@ interface PostUniverseIdsInventoryType {
  * region object
  */
 interface PostUniverseIdsRegion {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -194,13 +194,13 @@ interface PostUniverseIdsRegion {
  * station object
  */
 interface PostUniverseIdsStation {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }
@@ -208,13 +208,13 @@ interface PostUniverseIdsStation {
  * system object
  */
 interface PostUniverseIdsSystem {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id?: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name?: string;
   [k: string]: unknown | undefined;
 }

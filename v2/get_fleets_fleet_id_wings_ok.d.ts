@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /fleets/{fleet_id}/wings/
-*/
+/*!
+ * ESI endpoint: /fleets/{fleet_id}/wings/
+ */
 /**
  * squads array
  *
@@ -18,13 +18,13 @@ type GetFleetsFleetIdWingsOk = GetFleetsFleetIdWings_200Ok[];
  * 200 ok object
  */
 interface GetFleetsFleetIdWings_200Ok {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
   squads: GetFleetsFleetIdWingsSquads;
   [k: string]: unknown | undefined;
@@ -33,13 +33,13 @@ interface GetFleetsFleetIdWings_200Ok {
  * squad object
  */
 interface GetFleetsFleetIdWingsSquad {
-/**
- * id integer
- */
+  /**
+   * id integer
+   */
   id: number;
-/**
- * name string
- */
+  /**
+   * name string
+   */
   name: string;
   [k: string]: unknown | undefined;
 }

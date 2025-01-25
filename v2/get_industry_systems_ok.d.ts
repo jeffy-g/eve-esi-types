@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /industry/systems/
-*/
+/*!
+ * ESI endpoint: /industry/systems/
+ */
 /**
  * cost_indices array
  *
@@ -100,9 +100,9 @@ type GetIndustrySystemsOk = GetIndustrySystems_200Ok[];
  */
 interface GetIndustrySystems_200Ok {
   cost_indices: GetIndustrySystemsCostIndices;
-/**
- * solar_system_id integer
- */
+  /**
+   * solar_system_id integer
+   */
   solar_system_id: number;
   [k: string]: unknown | undefined;
 }
@@ -111,9 +111,9 @@ interface GetIndustrySystems_200Ok {
  */
 interface GetIndustrySystemsCostIndice {
   activity: GetIndustrySystemsActivity;
-/**
- * cost_index number
- */
+  /**
+   * cost_index number
+   */
   cost_index: number;
   [k: string]: unknown | undefined;
 }

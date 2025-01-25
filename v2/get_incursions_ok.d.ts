@@ -1,10 +1,5 @@
-/**
-* ESI endpoint: /incursions/
-*/
-/**
- * A list of infested solar system ids that are a part of this incursion
- *
- * @maxItems 100
+/*!
+ * ESI endpoint: /incursions/
  */
 /**
  * The state of this incursion
@@ -21,34 +16,33 @@ type GetIncursionsOk = GetIncursions_200Ok[];
  * 200 ok object
  */
 interface GetIncursions_200Ok {
-/**
- * The constellation id in which this incursion takes place
- */
+  /**
+   * The constellation id in which this incursion takes place
+   */
   constellation_id: number;
-/**
- * The attacking faction's id
- */
+  /**
+   * The attacking faction's id
+   */
   faction_id: number;
-/**
- * Whether the final encounter has boss or not
- */
+  /**
+   * Whether the final encounter has boss or not
+   */
   has_boss: boolean;
-/**
- * infested_solar_system integer
- */
+  /**
+   * A list of infested solar system ids that are a part of this incursion
+   *
+   * @maxItems 100
+   */
   infested_solar_systems: number[];
-/**
- * Influence of this incursion as a float from 0 to 1
- */
+  /**
+   * Influence of this incursion as a float from 0 to 1
+   */
   influence: number;
-/**
- * Staging solar system for this incursion
- */
+  /**
+   * Staging solar system for this incursion
+   */
   staging_solar_system_id: number;
   state: GetIncursionsState;
-/**
- * The type of this incursion
- */
   type: string;
   [k: string]: unknown | undefined;
 }

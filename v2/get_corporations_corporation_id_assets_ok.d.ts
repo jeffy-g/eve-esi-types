@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/assets/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/assets/
+ */
 /**
  * location_flag string
  */
@@ -143,31 +143,28 @@ type GetCorporationsCorporationIdAssetsOk = GetCorporationsCorporationIdAssets_2
  * 200 ok object
  */
 interface GetCorporationsCorporationIdAssets_200Ok {
-/**
- * is_blueprint_copy boolean
- */
+  /**
+   * is_blueprint_copy boolean
+   */
   is_blueprint_copy?: boolean;
-/**
- * is_singleton boolean
- */
+  /**
+   * is_singleton boolean
+   */
   is_singleton: boolean;
-/**
- * item_id integer
- */
+  /**
+   * item_id integer
+   */
   item_id: number;
   location_flag: GetCorporationsCorporationIdAssetsLocationFlag;
-/**
- * location_id integer
- */
+  /**
+   * location_id integer
+   */
   location_id: number;
   location_type: GetCorporationsCorporationIdAssetsLocationType;
-/**
- * quantity integer
- */
+  /**
+   * quantity integer
+   */
   quantity: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

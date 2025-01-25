@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /characters/{character_id}/medals/
-*/
+/*!
+ * ESI endpoint: /characters/{character_id}/medals/
+ */
 /**
  * graphics array
  *
@@ -79,35 +79,35 @@ type GetCharactersCharacterIdMedalsOk = GetCharactersCharacterIdMedals_200Ok[];
  * 200 ok object
  */
 interface GetCharactersCharacterIdMedals_200Ok {
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id: number;
-/**
- * date string
- */
+  /**
+   * date string
+   */
   date: string;
-/**
- * description string
- */
+  /**
+   * description string
+   */
   description: string;
   graphics: GetCharactersCharacterIdMedalsGraphics;
-/**
- * issuer_id integer
- */
+  /**
+   * issuer_id integer
+   */
   issuer_id: number;
-/**
- * medal_id integer
- */
+  /**
+   * medal_id integer
+   */
   medal_id: number;
-/**
- * reason string
- */
+  /**
+   * reason string
+   */
   reason: string;
   status: GetCharactersCharacterIdMedalsStatus;
-/**
- * title string
- */
+  /**
+   * title string
+   */
   title: string;
   [k: string]: unknown | undefined;
 }
@@ -115,21 +115,21 @@ interface GetCharactersCharacterIdMedals_200Ok {
  * graphic object
  */
 interface GetCharactersCharacterIdMedalsGraphic {
-/**
- * color integer
- */
+  /**
+   * color integer
+   */
   color?: number;
-/**
- * graphic string
- */
+  /**
+   * graphic string
+   */
   graphic: string;
-/**
- * layer integer
- */
+  /**
+   * layer integer
+   */
   layer: number;
-/**
- * part integer
- */
+  /**
+   * part integer
+   */
   part: number;
   [k: string]: unknown | undefined;
 }

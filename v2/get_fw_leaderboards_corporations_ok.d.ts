@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /fw/leaderboards/corporations/
-*/
+/*!
+ * ESI endpoint: /fw/leaderboards/corporations/
+ */
 /**
  * Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered "active" if they have participated in faction warfare in the past 14 days
  *
@@ -485,13 +485,13 @@ interface GetFwLeaderboardsCorporationsKills {
  * active_total object
  */
 interface GetFwLeaderboardsCorporationsActiveTotalActiveTotal {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -499,13 +499,13 @@ interface GetFwLeaderboardsCorporationsActiveTotalActiveTotal {
  * last_week object
  */
 interface GetFwLeaderboardsCorporationsLastWeekLastWeek {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -513,13 +513,13 @@ interface GetFwLeaderboardsCorporationsLastWeekLastWeek {
  * yesterday object
  */
 interface GetFwLeaderboardsCorporationsYesterdayYesterday {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -536,13 +536,13 @@ interface GetFwLeaderboardsCorporationsVictoryPoints {
  * active_total object
  */
 interface GetFwLeaderboardsCorporationsActiveTotalActiveTotal_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -550,13 +550,13 @@ interface GetFwLeaderboardsCorporationsActiveTotalActiveTotal_1 {
  * last_week object
  */
 interface GetFwLeaderboardsCorporationsLastWeekLastWeek_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -564,13 +564,13 @@ interface GetFwLeaderboardsCorporationsLastWeekLastWeek_1 {
  * yesterday object
  */
 interface GetFwLeaderboardsCorporationsYesterdayYesterday_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * corporation_id integer
- */
+  /**
+   * corporation_id integer
+   */
   corporation_id?: number;
   [k: string]: unknown | undefined;
 }

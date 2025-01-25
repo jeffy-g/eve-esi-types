@@ -1,109 +1,71 @@
-/**
-* ESI endpoint: /characters/{character_id}/search/
-*/
-/**
- * agent array
- *
- * @maxItems 500
- */
-/**
- * alliance array
- *
- * @maxItems 500
- */
-/**
- * character array
- *
- * @maxItems 500
- */
-/**
- * constellation array
- *
- * @maxItems 500
- */
-/**
- * corporation array
- *
- * @maxItems 500
- */
-/**
- * faction array
- *
- * @maxItems 500
- */
-/**
- * inventory_type array
- *
- * @maxItems 500
- */
-/**
- * region array
- *
- * @maxItems 500
- */
-/**
- * solar_system array
- *
- * @maxItems 500
- */
-/**
- * station array
- *
- * @maxItems 500
- */
-/**
- * structure array
- *
- * @maxItems 500
+/*!
+ * ESI endpoint: /characters/{character_id}/search/
  */
 
 /**
  * 200 ok object
  */
 interface GetCharactersCharacterIdSearchOk {
-/**
- * agent integer
- */
+  /**
+   * agent array
+   *
+   * @maxItems 500
+   */
   agent?: number[];
-/**
- * alliance integer
- */
+  /**
+   * alliance array
+   *
+   * @maxItems 500
+   */
   alliance?: number[];
-/**
- * character integer
- */
+  /**
+   * character array
+   *
+   * @maxItems 500
+   */
   character?: number[];
-/**
- * constellation integer
- */
+  /**
+   * constellation array
+   *
+   * @maxItems 500
+   */
   constellation?: number[];
-/**
- * corporation integer
- */
+  /**
+   * corporation array
+   *
+   * @maxItems 500
+   */
   corporation?: number[];
-/**
- * faction integer
- */
+  /**
+   * faction array
+   *
+   * @maxItems 500
+   */
   faction?: number[];
-/**
- * inventory_type integer
- */
   inventory_type?: number[];
-/**
- * region integer
- */
+  /**
+   * region array
+   *
+   * @maxItems 500
+   */
   region?: number[];
-/**
- * solar_system integer
- */
+  /**
+   * solar_system array
+   *
+   * @maxItems 500
+   */
   solar_system?: number[];
-/**
- * station integer
- */
+  /**
+   * station array
+   *
+   * @maxItems 500
+   */
   station?: number[];
-/**
- * structure integer
- */
+  /**
+   * structure array
+   *
+   * @maxItems 500
+   */
   structure?: number[];
   [k: string]: unknown | undefined;
 }

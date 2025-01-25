@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /insurance/prices/
-*/
+/*!
+ * ESI endpoint: /insurance/prices/
+ */
 /**
  * A list of a available insurance levels for this ship type
  *
@@ -39,9 +39,6 @@ type GetInsurancePricesOk = GetInsurancePrices_200Ok[];
  */
 interface GetInsurancePrices_200Ok {
   levels: GetInsurancePricesLevels;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }
@@ -49,17 +46,17 @@ interface GetInsurancePrices_200Ok {
  * level object
  */
 interface GetInsurancePricesLevel {
-/**
- * cost number
- */
+  /**
+   * cost number
+   */
   cost: number;
-/**
- * Localized insurance level
- */
+  /**
+   * Localized insurance level
+   */
   name: string;
-/**
- * payout number
- */
+  /**
+   * payout number
+   */
   payout: number;
   [k: string]: unknown | undefined;
 }

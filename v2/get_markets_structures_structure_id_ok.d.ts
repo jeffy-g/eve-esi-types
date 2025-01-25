@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /markets/structures/{structure_id}/
-*/
+/*!
+ * ESI endpoint: /markets/structures/{structure_id}/
+ */
 /**
  * range string
  */
@@ -28,46 +28,43 @@ type GetMarketsStructuresStructureIdOk = GetMarketsStructuresStructureId_200Ok[]
  * 200 ok object
  */
 interface GetMarketsStructuresStructureId_200Ok {
-/**
- * duration integer
- */
+  /**
+   * duration integer
+   */
   duration: number;
-/**
- * is_buy_order boolean
- */
+  /**
+   * is_buy_order boolean
+   */
   is_buy_order: boolean;
-/**
- * issued string
- */
+  /**
+   * issued string
+   */
   issued: string;
-/**
- * location_id integer
- */
+  /**
+   * location_id integer
+   */
   location_id: number;
-/**
- * min_volume integer
- */
+  /**
+   * min_volume integer
+   */
   min_volume: number;
-/**
- * order_id integer
- */
+  /**
+   * order_id integer
+   */
   order_id: number;
-/**
- * price number
- */
+  /**
+   * price number
+   */
   price: number;
   range: GetMarketsStructuresStructureIdRange;
-/**
- * type_id integer
- */
   type_id: number;
-/**
- * volume_remain integer
- */
+  /**
+   * volume_remain integer
+   */
   volume_remain: number;
-/**
- * volume_total integer
- */
+  /**
+   * volume_total integer
+   */
   volume_total: number;
   [k: string]: unknown | undefined;
 }

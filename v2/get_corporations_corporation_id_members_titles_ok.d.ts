@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/members/titles/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/members/titles/
+ */
 /**
  * A list of title_id
  *
@@ -8,572 +8,170 @@
  */
 type GetCorporationsCorporationIdMembersTitlesTitles =
   | []
-/**
- * title integer
- */
+  /**
+   * title integer
+   */
   | [number]
-/**
- * title integer
- */
-  | [GetCorporationsCorporationIdMembersTitlesTitle, number]
+  | [number, number]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ]
   | [
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number,
-/**
- * title integer
- */
       number
     ];
 /**
@@ -587,9 +185,9 @@ type GetCorporationsCorporationIdMembersTitlesOk = GetCorporationsCorporationIdM
  * 200 ok object
  */
 interface GetCorporationsCorporationIdMembersTitles_200Ok {
-/**
- * character_id integer
- */
+  /**
+   * character_id integer
+   */
   character_id: number;
   titles: GetCorporationsCorporationIdMembersTitlesTitles;
   [k: string]: unknown | undefined;

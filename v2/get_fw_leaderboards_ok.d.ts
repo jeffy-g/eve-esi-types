@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /fw/leaderboards/
-*/
+/*!
+ * ESI endpoint: /fw/leaderboards/
+ */
 /**
  * Top 4 ranking of factions active in faction warfare by total kills. A faction is considered "active" if they have participated in faction warfare in the past 14 days
  *
@@ -131,13 +131,13 @@ interface GetFwLeaderboardsKills {
  * active_total object
  */
 interface GetFwLeaderboardsActiveTotalActiveTotal {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -145,13 +145,13 @@ interface GetFwLeaderboardsActiveTotalActiveTotal {
  * last_week object
  */
 interface GetFwLeaderboardsLastWeekLastWeek {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -159,13 +159,13 @@ interface GetFwLeaderboardsLastWeekLastWeek {
  * yesterday object
  */
 interface GetFwLeaderboardsYesterdayYesterday {
-/**
- * Amount of kills
- */
+  /**
+   * Amount of kills
+   */
   amount?: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -182,13 +182,13 @@ interface GetFwLeaderboardsVictoryPoints {
  * active_total object
  */
 interface GetFwLeaderboardsActiveTotalActiveTotal_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -196,13 +196,13 @@ interface GetFwLeaderboardsActiveTotalActiveTotal_1 {
  * last_week object
  */
 interface GetFwLeaderboardsLastWeekLastWeek_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
   [k: string]: unknown | undefined;
 }
@@ -210,13 +210,13 @@ interface GetFwLeaderboardsLastWeekLastWeek_1 {
  * yesterday object
  */
 interface GetFwLeaderboardsYesterdayYesterday_1 {
-/**
- * Amount of victory points
- */
+  /**
+   * Amount of victory points
+   */
   amount?: number;
-/**
- * faction_id integer
- */
+  /**
+   * faction_id integer
+   */
   faction_id?: number;
   [k: string]: unknown | undefined;
 }

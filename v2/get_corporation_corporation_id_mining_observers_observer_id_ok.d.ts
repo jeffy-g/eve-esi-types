@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporation/{corporation_id}/mining/observers/{observer_id}/
-*/
+/*!
+ * ESI endpoint: /corporation/{corporation_id}/mining/observers/{observer_id}/
+ */
 /**
  * 200 ok array
  *
@@ -13,27 +13,24 @@ type GetCorporationCorporationIdMiningObserversObserverIdOk =
  * 200 ok object
  */
 interface GetCorporationCorporationIdMiningObserversObserverId_200Ok {
-/**
- * The character that did the mining
- *
- */
+  /**
+   * The character that did the mining
+   *
+   */
   character_id: number;
-/**
- * last_updated string
- */
+  /**
+   * last_updated string
+   */
   last_updated: string;
-/**
- * quantity integer
- */
+  /**
+   * quantity integer
+   */
   quantity: number;
-/**
- * The corporation id of the character at the time data was recorded.
- *
- */
+  /**
+   * The corporation id of the character at the time data was recorded.
+   *
+   */
   recorded_corporation_id: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

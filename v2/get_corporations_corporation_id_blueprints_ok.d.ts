@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/blueprints/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/blueprints/
+ */
 /**
  * Type of the location_id
  */
@@ -133,34 +133,31 @@ type GetCorporationsCorporationIdBlueprintsOk = GetCorporationsCorporationIdBlue
  * 200 ok object
  */
 interface GetCorporationsCorporationIdBlueprints_200Ok {
-/**
- * Unique ID for this item.
- */
+  /**
+   * Unique ID for this item.
+   */
   item_id: number;
   location_flag: GetCorporationsCorporationIdBlueprintsLocationFlag;
-/**
- * References a station, a ship or an item_id if this blueprint is located within a container.
- */
+  /**
+   * References a station, a ship or an item_id if this blueprint is located within a container.
+   */
   location_id: number;
-/**
- * Material Efficiency Level of the blueprint.
- */
+  /**
+   * Material Efficiency Level of the blueprint.
+   */
   material_efficiency: number;
-/**
- * A range of numbers with a minimum of -2 and no maximum value where -1 is an original and -2 is a copy. It can be a positive integer if it is a stack of blueprint originals fresh from the market (e.g. no activities performed on them yet).
- */
+  /**
+   * A range of numbers with a minimum of -2 and no maximum value where -1 is an original and -2 is a copy. It can be a positive integer if it is a stack of blueprint originals fresh from the market (e.g. no activities performed on them yet).
+   */
   quantity: number;
-/**
- * Number of runs remaining if the blueprint is a copy, -1 if it is an original.
- */
+  /**
+   * Number of runs remaining if the blueprint is a copy, -1 if it is an original.
+   */
   runs: number;
-/**
- * Time Efficiency Level of the blueprint.
- */
+  /**
+   * Time Efficiency Level of the blueprint.
+   */
   time_efficiency: number;
-/**
- * type_id integer
- */
   type_id: number;
   [k: string]: unknown | undefined;
 }

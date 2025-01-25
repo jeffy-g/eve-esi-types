@@ -1,6 +1,6 @@
-/**
-* ESI endpoint: /corporations/{corporation_id}/assets/locations/
-*/
+/*!
+ * ESI endpoint: /corporations/{corporation_id}/assets/locations/
+ */
 /**
  * 200 ok array
  *
@@ -12,9 +12,9 @@ type PostCorporationsCorporationIdAssetsLocationsOk = PostCorporationsCorporatio
  * 200 ok object
  */
 interface PostCorporationsCorporationIdAssetsLocations_200Ok {
-/**
- * item_id integer
- */
+  /**
+   * item_id integer
+   */
   item_id: number;
   position: PostCorporationsCorporationIdAssetsLocationsPosition;
   [k: string]: unknown | undefined;
@@ -23,17 +23,17 @@ interface PostCorporationsCorporationIdAssetsLocations_200Ok {
  * position object
  */
 interface PostCorporationsCorporationIdAssetsLocationsPosition {
-/**
- * x number
- */
+  /**
+   * x number
+   */
   x: number;
-/**
- * y number
- */
+  /**
+   * y number
+   */
   y: number;
-/**
- * z number
- */
+  /**
+   * z number
+   */
   z: number;
   [k: string]: unknown | undefined;
 }
