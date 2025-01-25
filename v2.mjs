@@ -143,7 +143,7 @@ async function getEVEStatus() {
  * @throws
  * @async
  */
-export async function fire(mthd, endp, pathParams, opt) {
+export async function fire(mthd, endp, pathParams, opt = {}) {
     if (typeof pathParams === "number") {
         pathParams = /** @type {number[]} */ ([pathParams]);
     }
@@ -151,20 +151,20 @@ export async function fire(mthd, endp, pathParams, opt) {
         // @ts-ignore actualy endp is string
         endp = replaceCbt(endp, pathParams);
     }
-    if (!opt) {
-        // When only options are provided
-        opt = /** @type {Opt} */ (pathParams) || opt || {};
-    }
+    // When only options are provided
+    // @ts- ignore 
+    opt = /** @type {Opt} */ (pathParams) || opt || /** @type {Opt} */ ({});
     /** @type {RequestInit} */
     const rqopt = {
         method: mthd,
         mode: "cors",
         cache: "no-cache",
+        // @ts-ignore 
         signal: opt.cancelable?.signal,
         headers: {}
     };
     const qss = {
-    // language: "en",
+        language: "en",
     };
     if (opt.queries) {
         // Object.assign(queries, options.queries); Object.assign is too slow
