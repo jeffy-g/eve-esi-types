@@ -13,6 +13,16 @@
     "type": "git",
     "url": "git+ssh://git@github.com/jeffy-g/eve-esi-types.git"
   },
+  "files": [
+    "v2",
+    "src",
+    "v2.mjs",
+    "LICENSE",
+    "README.md",
+    "package.json",
+    "tsconfig.json",
+    "esi-request.mjs"
+  ],
   "keywords": [
     "eve",
     "esi",
