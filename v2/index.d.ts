@@ -194,6 +194,7 @@ import "./get_universe_types_type_id_ok.d.ts";
 import "./get_wars_ok.d.ts";
 import "./get_wars_war_id_ok.d.ts";
 import "./get_wars_war_id_killmails_ok.d.ts";
+import "./extra-entries.d.ts";
 
 
 /**
@@ -342,8 +343,10 @@ export type TESIResponseOKMap = {
     },
     "/characters/{character_id}/calendar/": {
       result: GetCharactersCharacterIdCalendarOk;
+      query: {
+        from_event: number | undefined;
+      },
       auth: true;
-      query: true;
     },
     "/characters/{character_id}/calendar/{event_id}/": {
       result: GetCharactersCharacterIdCalendarEventIdOk;
@@ -402,8 +405,10 @@ export type TESIResponseOKMap = {
     },
     "/characters/{character_id}/industry/jobs/": {
       result: GetCharactersCharacterIdIndustryJobsOk;
+      query: {
+        include_completed: boolean | undefined;
+      },
       auth: true;
-      query: true;
     },
     "/characters/{character_id}/killmails/recent/": {
       result: GetCharactersCharacterIdKillmailsRecentOk;
@@ -419,8 +424,11 @@ export type TESIResponseOKMap = {
     },
     "/characters/{character_id}/mail/": {
       result: GetCharactersCharacterIdMailOk;
+      query: {
+        labels: GetCharactersCharacterIdMailLabels | undefined;
+        last_mail_id: number | undefined;
+      },
       auth: true;
-      query: true;
     },
     "/characters/{character_id}/mail/labels/": {
       result: GetCharactersCharacterIdMailLabelsOk;
@@ -483,8 +491,12 @@ export type TESIResponseOKMap = {
     },
     "/characters/{character_id}/search/": {
       result: GetCharactersCharacterIdSearchOk;
+      query: {
+        categories: GetCharactersCharacterIdSearchCategories;
+        search: GetCharactersCharacterIdSearchSearch;
+        strict: boolean | undefined;
+      },
       auth: true;
-      query: true;
     },
     "/characters/{character_id}/ship/": {
       result: GetCharactersCharacterIdShipOk;
@@ -516,8 +528,10 @@ export type TESIResponseOKMap = {
     },
     "/characters/{character_id}/wallet/transactions/": {
       result: GetCharactersCharacterIdWalletTransactionsOk;
+      query: {
+        from_id: number | undefined;
+      },
       auth: true;
-      query: true;
     },
     "/contracts/public/bids/{contract_id}/": {
       result: GetContractsPublicBidsContractIdOk;
@@ -610,8 +624,10 @@ export type TESIResponseOKMap = {
     },
     "/corporations/{corporation_id}/industry/jobs/": {
       result: GetCorporationsCorporationIdIndustryJobsOk;
+      query: {
+        include_completed: boolean | undefined;
+      },
       auth: true;
-      query: true;
     },
     "/corporations/{corporation_id}/killmails/recent/": {
       result: GetCorporationsCorporationIdKillmailsRecentOk;
@@ -671,8 +687,10 @@ export type TESIResponseOKMap = {
     },
     "/corporations/{corporation_id}/starbases/{starbase_id}/": {
       result: GetCorporationsCorporationIdStarbasesStarbaseIdOk;
+      query: {
+        system_id: number;
+      },
       auth: true;
-      query: true;
     },
     "/corporations/{corporation_id}/structures/": {
       result: GetCorporationsCorporationIdStructuresOk;
@@ -692,8 +710,10 @@ export type TESIResponseOKMap = {
     },
     "/corporations/{corporation_id}/wallets/{division}/transactions/": {
       result: GetCorporationsCorporationIdWalletsDivisionTransactionsOk;
+      query: {
+        from_id: number | undefined;
+      },
       auth: true;
-      query: true;
     },
     "/dogma/attributes/": {
       result: GetDogmaAttributesOk;
@@ -773,11 +793,16 @@ export type TESIResponseOKMap = {
     },
     "/markets/{region_id}/history/": {
       result: GetMarketsRegionIdHistoryOk;
-      query: true;
+      query: {
+        type_id: number;
+      }
     },
     "/markets/{region_id}/orders/": {
       result: GetMarketsRegionIdOrdersOk;
-      query: true;
+      query: {
+        order_type: GetMarketsRegionIdOrdersOrderType;
+        type_id: number | undefined;
+      }
     },
     "/markets/{region_id}/types/": {
       result: GetMarketsRegionIdTypesOk;
@@ -796,7 +821,11 @@ export type TESIResponseOKMap = {
     },
     "/route/{origin}/{destination}/": {
       result: GetRouteOriginDestinationOk;
-      query: true;
+      query: {
+        avoid: GetRouteOriginDestinationAvoid | undefined;
+        connections: GetRouteOriginDestinationConnections | undefined;
+        flag: GetRouteOriginDestinationFlag | undefined;
+      }
     },
     "/sovereignty/campaigns/": {
       result: GetSovereigntyCampaignsOk;
@@ -875,7 +904,9 @@ export type TESIResponseOKMap = {
     },
     "/universe/structures/": {
       result: GetUniverseStructuresOk;
-      query: true;
+      query: {
+        filter: GetUniverseStructuresFilter | undefined;
+      }
     },
     "/universe/structures/{structure_id}/": {
       result: GetUniverseStructuresStructureIdOk;
@@ -901,7 +932,9 @@ export type TESIResponseOKMap = {
     },
     "/wars/": {
       result: GetWarsOk;
-      query: true;
+      query: {
+        max_war_id: number | undefined;
+      }
     },
     "/wars/{war_id}/": {
       result: GetWarsWarIdOk;
@@ -914,77 +947,91 @@ export type TESIResponseOKMap = {
     "/ui/autopilot/waypoint/": {
       result: NoContentResponse;
       auth: true;
-      query: true;
+      query: {
+        add_to_beginning: boolean;
+        clear_other_waypoints: boolean;
+        destination_id: number;
+      }
     },
     "/ui/openwindow/contract/": {
       result: NoContentResponse;
       auth: true;
-      query: true;
+      query: {
+        contract_id: number;
+      }
     },
     "/ui/openwindow/information/": {
       result: NoContentResponse;
       auth: true;
-      query: true;
+      query: {
+        target_id: number;
+      }
     },
     "/ui/openwindow/marketdetails/": {
       result: NoContentResponse;
       auth: true;
-      query: true;
+      query: {
+        type_id: number;
+      }
     },
     "/characters/affiliation/": {
       result: PostCharactersAffiliationOk;
-      body: true;
+      body: PostCharactersAffiliationCharacters;
     },
     "/characters/{character_id}/assets/locations/": {
       result: PostCharactersCharacterIdAssetsLocationsOk;
+      body: PostCharactersCharacterIdAssetsLocationsItemIds;
       auth: true;
-      body: true;
     },
     "/characters/{character_id}/assets/names/": {
       result: PostCharactersCharacterIdAssetsNamesOk;
+      body: PostCharactersCharacterIdAssetsNamesItemIds;
       auth: true;
-      body: true;
     },
     "/characters/{character_id}/contacts/": {
       result: PostCharactersCharacterIdContactsCreated;
+      body: PostCharactersCharacterIdContactsContactIds;
+      query: {
+        label_ids: PostCharactersCharacterIdContactsLabelIds | undefined;
+        standing: number;
+        watched: boolean | undefined;
+      },
       auth: true;
-      body: true;
-      query: true;
     },
     "/characters/{character_id}/cspa/": {
       result: PostCharactersCharacterIdCspaCreated;
+      body: PostCharactersCharacterIdCspaCharacters;
       auth: true;
-      body: true;
     },
     "/characters/{character_id}/fittings/": {
       result: PostCharactersCharacterIdFittingsCreated;
+      body: PostCharactersCharacterIdFittingsFitting;
       auth: true;
-      body: true;
     },
     "/characters/{character_id}/mail/": {
       result: PostCharactersCharacterIdMailCreated;
+      body: PostCharactersCharacterIdMailMail;
       auth: true;
-      body: true;
     },
     "/characters/{character_id}/mail/labels/": {
       result: PostCharactersCharacterIdMailLabelsCreated;
+      body: PostCharactersCharacterIdMailLabelsLabel;
       auth: true;
-      body: true;
     },
     "/corporations/{corporation_id}/assets/locations/": {
       result: PostCorporationsCorporationIdAssetsLocationsOk;
+      body: PostCorporationsCorporationIdAssetsLocationsItemIds;
       auth: true;
-      body: true;
     },
     "/corporations/{corporation_id}/assets/names/": {
       result: PostCorporationsCorporationIdAssetsNamesOk;
+      body: PostCorporationsCorporationIdAssetsNamesItemIds;
       auth: true;
-      body: true;
     },
     "/fleets/{fleet_id}/members/": {
       result: PostFleetsFleetIdMembersInvitation;
+      body: PostFleetsFleetIdMembersInvitation;
       auth: true;
-      body: true;
     },
     "/fleets/{fleet_id}/wings/": {
       result: PostFleetsFleetIdWingsCreated;
@@ -996,61 +1043,67 @@ export type TESIResponseOKMap = {
     },
     "/ui/openwindow/newmail/": {
       result: PostUiOpenwindowNewmailNewMail;
+      body: PostUiOpenwindowNewmailNewMail;
       auth: true;
-      body: true;
     },
     "/universe/ids/": {
       result: PostUniverseIdsOk;
-      body: true;
+      body: PostUniverseIdsNames;
     },
     "/universe/names/": {
       result: PostUniverseNamesOk;
-      body: true;
+      body: PostUniverseNamesIds;
     }
   },
   put: {
     "/characters/{character_id}/calendar/{event_id}/": {
       result: PutCharactersCharacterIdCalendarEventIdResponse;
+      body: PutCharactersCharacterIdCalendarEventIdResponse;
       auth: true;
-      body: true;
     },
     "/characters/{character_id}/contacts/": {
       result: PutCharactersCharacterIdContactsContactIds;
+      body: PutCharactersCharacterIdContactsContactIds;
+      query: {
+        label_ids: PutCharactersCharacterIdContactsLabelIds | undefined;
+        standing: number;
+        watched: boolean | undefined;
+      },
       auth: true;
-      body: true;
-      query: true;
     },
     "/characters/{character_id}/mail/{mail_id}/": {
       result: PutCharactersCharacterIdMailMailIdContents;
+      body: PutCharactersCharacterIdMailMailIdContents;
       auth: true;
-      body: true;
     },
     "/fleets/{fleet_id}/": {
       result: PutFleetsFleetIdNewSettings;
+      body: PutFleetsFleetIdNewSettings;
       auth: true;
-      body: true;
     },
     "/fleets/{fleet_id}/members/{member_id}/": {
       result: PutFleetsFleetIdMembersMemberIdMovement;
+      body: PutFleetsFleetIdMembersMemberIdMovement;
       auth: true;
-      body: true;
     },
     "/fleets/{fleet_id}/squads/{squad_id}/": {
       result: PutFleetsFleetIdSquadsSquadIdNaming;
+      body: PutFleetsFleetIdSquadsSquadIdNaming;
       auth: true;
-      body: true;
     },
     "/fleets/{fleet_id}/wings/{wing_id}/": {
       result: PutFleetsFleetIdWingsWingIdNaming;
+      body: PutFleetsFleetIdWingsWingIdNaming;
       auth: true;
-      body: true;
     }
   },
   delete: {
     "/characters/{character_id}/contacts/": {
       result: NoContentResponse;
       auth: true;
-      query: true;
+      query: {
+        contact_ids: DeleteCharactersCharacterIdContactsContactIds;
+      }
     },
     "/characters/{character_id}/fittings/{fitting_id}/": {
       result: NoContentResponse;
