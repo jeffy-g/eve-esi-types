@@ -18,12 +18,12 @@ const BASE = "https://esi.evetech.net";
  */
 /**
  * @typedef ESIRequestOptions
- * @prop {Record<string, any>} [queries] query params for ESI request.
+ * @prop {Record<string, any>} [query] query params for ESI request.
  * @prop {any} [body] will need it for `POST` request etc.
+ * @prop {true=} [auth] Can be an empty object if no authentication is required.description
+ * @prop {string} [token] Can be an empty object if no authentication is required.description
  * @prop {boolean} [ignoreError]  if want response data with ignore error then can be set to `true`.
  * @prop {AbortController} [cancelable] cancel request immediately
- * @prop {string} [token] Can be an empty object if no authentication is required.description
- * @prop {true=} [auth] Can be an empty object if no authentication is required.description
  */
 // - - - - - - - - - - - - - - - - - - - -
 //        module vars, functions
@@ -120,7 +120,27 @@ const curl = (endp) => {
 // It should complete correctly.
 async function getEVEStatus() {
     try {
-        const ok = await fire("get", "/characters/{character_id}/ship/", 994562, { auth: true, token: "<accessToken of 994562>" });
+        const ok = await fire("get", "/characters/{character_id}/ship/", 994562, { auth: true });
+        // query patameter `filter` is optional
+        await fire("get", "/universe/structures/", {
+            query: {
+            // filter: "market"
+            }
+        });
+        // in this case, "categories" and "search" is required
+        await fire("get", "/characters/{character_id}/search/", 994562, {
+            query: {
+                categories: ["agent"],
+                search: "ok"
+            },
+            auth: true
+        });
+        // in this case, "order_type" is required
+        await fire("get", "/markets/{region_id}/orders/", 994562, {
+            query: {
+                order_type: "all"
+            },
+        });
         console.log(ok);
     }
     catch (error) {
@@ -132,43 +152,46 @@ async function getEVEStatus() {
  * fire ESI request
  * @template {TESIEntryMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP
+ * @template {IsParameterizedPath<EP, number | number[], Opt>} P2
  * @template {IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>} Opt
  * @template {InferESIResponseResult<M, EP>} R
  *
  * @param {M} mthd
  * @param {EP} endp - The endpoint to request.
- * @param {number | number[] | Opt} [pathParams] - Optional path parameters.
+ * @param {P2} [pathParams] - Optional path parameters.
  * @param {Opt} [opt] - default is empty object {}. `body` is json string
  * @returns {Promise<R>} - The response from the endpoint.
  * @throws
  * @async
  */
-export async function fire(mthd, endp, pathParams, opt = {}) {
+export async function fire(mthd, endp, pathParams, opt) {
     if (typeof pathParams === "number") {
-        pathParams = /** @type {number[]} */ ([pathParams]);
+        // @ts-ignore 
+        pathParams = [pathParams];
     }
     if (isArray(pathParams)) {
         // @ts-ignore actualy endp is string
         endp = replaceCbt(endp, pathParams);
     }
     // When only options are provided
-    // @ts- ignore 
-    opt = /** @type {Opt} */ (pathParams) || opt || /** @type {Opt} */ ({});
+    /** @type {Opt} */
+    // @ts-ignore
+    const actualOpt = pathParams || opt || {};
     /** @type {RequestInit} */
     const rqopt = {
         method: mthd,
         mode: "cors",
         cache: "no-cache",
         // @ts-ignore 
-        signal: opt.cancelable?.signal,
+        signal: actualOpt.cancelable?.signal,
         headers: {}
     };
     const qss = {
         language: "en",
     };
-    if (opt.queries) {
+    if (actualOpt.query) {
         // Object.assign(queries, options.queries); Object.assign is too slow
-        const oqs = opt.queries;
+        const oqs = actualOpt.query;
         for (const k of Object.keys(oqs)) {
             qss[k] = oqs[k];
         }
@@ -176,17 +199,17 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
     // DEVNOTE: when datasource is not empty string. (e.g - "singularity"
     // in this case must specify datasource.
     // disabled since `REMOVING DATASOURCE SINGULARITY`
-    // if (opt.datasource === "singularity") {
-    //     opt.datasource = "tranquility";
+    // if (actualOpt.datasource === "singularity") {
+    //     actualOpt.datasource = "tranquility";
     // }
-    if (opt.auth) {
+    if (actualOpt.auth) {
         // @ts-ignore The header is indeed an object
-        rqopt.headers.authorization = `Bearer ${opt.token}`;
+        rqopt.headers.authorization = `Bearer ${actualOpt.token}`;
     }
-    if (opt.body) { // means "POST" method etc
+    if (actualOpt.body) { // means "POST" method etc
         // @ts-ignore The header is indeed an object
         rqopt.headers["content-type"] = "application/json";
-        rqopt.body = JSON.stringify(opt.body);
+        rqopt.body = JSON.stringify(actualOpt.body);
     }
     // @ts-ignore actualy endp is string
     const endpointUrl = curl(endp);
@@ -197,9 +220,9 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
             ax--;
         });
         const stat = res.status;
-        if (!res.ok && !opt.ignoreError) {
+        if (!res.ok && !actualOpt.ignoreError) {
             if (stat === 420) {
-                opt.cancelable && opt.cancelable.abort();
+                actualOpt.cancelable && actualOpt.cancelable.abort();
                 throw new ESIErrorLimitReachedError();
             }
             else {
@@ -215,7 +238,7 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
             }
             /** @type {R} */
             const data = await res.json();
-            if (opt.ignoreError) {
+            if (actualOpt.ignoreError) {
                 // meaning `forceJson`?
                 return data;
             }

@@ -194,7 +194,7 @@ import "./get_universe_types_type_id_ok.d.ts";
 import "./get_wars_ok.d.ts";
 import "./get_wars_war_id_ok.d.ts";
 import "./get_wars_war_id_killmails_ok.d.ts";
-import "./extra-entries.d.ts";
+import "./extra-types.d.ts";
 
 
 /**
@@ -209,6 +209,19 @@ type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
 declare global {
 
   /**
+   * is parameterized path
+   */
+  type IsParameterizedPath<EP, A, B> = EP extends `${string}/{${string}}/${string | ""}` ? A: B;
+  /**
+   * Identifies the required parameters for a given entry type.
+   *
+   * @template Entry - The entry type to identify parameters for.
+   * @template Opt - The type of the parameters.
+   * @type {Opt & Pick<Entry, Exclude<keyof Entry, "result">>}
+   */
+  type IdentifyParameters<Entry, Opt> = Opt & Pick<Entry, Exclude<keyof Entry, "result">>;
+
+  /**
    * Infer the result type of an ESI response based on the method and endpoint.
    * 
    * @template M - The HTTP method (e.g., "get", "post").
@@ -218,21 +231,6 @@ declare global {
     M extends TESIEntryMethod,
     EP extends keyof TESIResponseOKMap[M]
   > = TESIResponseOKMap[M][EP] extends { result: infer U } ? U : never;
-
-  /**
-   * Identifies the required parameters for a given entry type.
-   *
-   * @template Entry - The entry type to identify parameters for.
-   * @template T - The type of the parameters.
-   * @template Auth - Determines if the "auth" parameter is required. Defaults to `never` if "auth" is not a key in Entry or if "auth" is undefined.
-   * @template Body - Determines if the "body" parameter is required. Defaults to `never` if "body" is not a key in Entry or if "body" is undefined.
-   * @type RequireThese<T, Extract<Auth | Body, keyof T>>
-   */
-  type IdentifyParameters<
-    Entry, T,
-    Auth = "auth" extends keyof Entry ? (undefined extends Entry["auth"] ? never : "auth") : never,
-    Body = "body" extends keyof Entry ? (undefined extends Entry["body"] ? never : "body") : never,
-  > = RequireThese<T, Extract<Auth | Body, keyof T>>;
 
   /**
    * Represents a response with no content (HTTP status 204).
@@ -344,7 +342,7 @@ export type TESIResponseOKMap = {
     "/characters/{character_id}/calendar/": {
       result: GetCharactersCharacterIdCalendarOk;
       query: {
-        from_event: number | undefined;
+        from_event?: number;
       },
       auth: true;
     },
@@ -406,7 +404,7 @@ export type TESIResponseOKMap = {
     "/characters/{character_id}/industry/jobs/": {
       result: GetCharactersCharacterIdIndustryJobsOk;
       query: {
-        include_completed: boolean | undefined;
+        include_completed?: boolean;
       },
       auth: true;
     },
@@ -425,8 +423,8 @@ export type TESIResponseOKMap = {
     "/characters/{character_id}/mail/": {
       result: GetCharactersCharacterIdMailOk;
       query: {
-        labels: GetCharactersCharacterIdMailLabels | undefined;
-        last_mail_id: number | undefined;
+        labels?: GetCharactersCharacterIdMailLabels;
+        last_mail_id?: number;
       },
       auth: true;
     },
@@ -494,7 +492,7 @@ export type TESIResponseOKMap = {
       query: {
         categories: GetCharactersCharacterIdSearchCategories;
         search: GetCharactersCharacterIdSearchSearch;
-        strict: boolean | undefined;
+        strict?: boolean;
       },
       auth: true;
     },
@@ -529,7 +527,7 @@ export type TESIResponseOKMap = {
     "/characters/{character_id}/wallet/transactions/": {
       result: GetCharactersCharacterIdWalletTransactionsOk;
       query: {
-        from_id: number | undefined;
+        from_id?: number;
       },
       auth: true;
     },
@@ -625,7 +623,7 @@ export type TESIResponseOKMap = {
     "/corporations/{corporation_id}/industry/jobs/": {
       result: GetCorporationsCorporationIdIndustryJobsOk;
       query: {
-        include_completed: boolean | undefined;
+        include_completed?: boolean;
       },
       auth: true;
     },
@@ -711,7 +709,7 @@ export type TESIResponseOKMap = {
     "/corporations/{corporation_id}/wallets/{division}/transactions/": {
       result: GetCorporationsCorporationIdWalletsDivisionTransactionsOk;
       query: {
-        from_id: number | undefined;
+        from_id?: number;
       },
       auth: true;
     },
@@ -801,7 +799,7 @@ export type TESIResponseOKMap = {
       result: GetMarketsRegionIdOrdersOk;
       query: {
         order_type: GetMarketsRegionIdOrdersOrderType;
-        type_id: number | undefined;
+        type_id?: number;
       }
     },
     "/markets/{region_id}/types/": {
@@ -822,9 +820,9 @@ export type TESIResponseOKMap = {
     "/route/{origin}/{destination}/": {
       result: GetRouteOriginDestinationOk;
       query: {
-        avoid: GetRouteOriginDestinationAvoid | undefined;
-        connections: GetRouteOriginDestinationConnections | undefined;
-        flag: GetRouteOriginDestinationFlag | undefined;
+        avoid?: GetRouteOriginDestinationAvoid;
+        connections?: GetRouteOriginDestinationConnections;
+        flag?: GetRouteOriginDestinationFlag;
       }
     },
     "/sovereignty/campaigns/": {
@@ -905,7 +903,7 @@ export type TESIResponseOKMap = {
     "/universe/structures/": {
       result: GetUniverseStructuresOk;
       query: {
-        filter: GetUniverseStructuresFilter | undefined;
+        filter?: GetUniverseStructuresFilter;
       }
     },
     "/universe/structures/{structure_id}/": {
@@ -933,7 +931,7 @@ export type TESIResponseOKMap = {
     "/wars/": {
       result: GetWarsOk;
       query: {
-        max_war_id: number | undefined;
+        max_war_id?: number;
       }
     },
     "/wars/{war_id}/": {
@@ -992,9 +990,9 @@ export type TESIResponseOKMap = {
       result: PostCharactersCharacterIdContactsCreated;
       body: PostCharactersCharacterIdContactsContactIds;
       query: {
-        label_ids: PostCharactersCharacterIdContactsLabelIds | undefined;
+        label_ids?: PostCharactersCharacterIdContactsLabelIds;
         standing: number;
-        watched: boolean | undefined;
+        watched?: boolean;
       },
       auth: true;
     },
@@ -1065,9 +1063,9 @@ export type TESIResponseOKMap = {
       result: PutCharactersCharacterIdContactsContactIds;
       body: PutCharactersCharacterIdContactsContactIds;
       query: {
-        label_ids: PutCharactersCharacterIdContactsLabelIds | undefined;
+        label_ids?: PutCharactersCharacterIdContactsLabelIds;
         standing: number;
-        watched: boolean | undefined;
+        watched?: boolean;
       },
       auth: true;
     },
