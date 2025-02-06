@@ -13,6 +13,7 @@
   "files": [
     "v2",
     "v2.mjs",
+    "v2.d.mts",
     "LICENSE",
     "*.md",
     "package.json",
