@@ -14,17 +14,16 @@ let LOG = false;
  */
 const BASE = "https://esi.evetech.net";
 /**
- * @typedef {import("./v2").TESIResponseOKMap} TESIResponseOKMap
+ * @typedef {import("./src").TESIResponseOKMap} TESIResponseOKMap
+ * @typedef {`${string}.${string}.${string}`} TAcccessToken __{Header}.{Payload}.{Signature}__
  */
 /**
- * @typedef {`${string}.${string}.${string}`} TAcccessToken __{Header}.{Payload}.{Signature}__
  * @typedef ESIRequestOptions
  * @prop {Record<string, any>} [query] query params for ESI request.
  * @prop {any} [body] will need it for `POST` request etc.
- * @prop {true=} [auth] Can be an empty object if no authentication is required.description
- * @prop {string} [token] Can be an empty object if no authentication is required.description
  * @prop {boolean} [ignoreError]  if want response data with ignore error then can be set to `true`.
  * @prop {AbortController} [cancelable] cancel request immediately
+ * @prop {TAcccessToken} [token] Can be an empty object if no authentication is required.description
  */
 // - - - - - - - - - - - - - - - - - - - -
 //        module vars, functions
@@ -118,83 +117,48 @@ const curl = (endp) => {
 // - - - - - - - - - - - - - - - - - - - -
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
-// It should complete correctly.
-async function getEVEStatus() {
-    try {
-        const ok = await fire("get", "/characters/{character_id}/ship/", 994562, { auth: true });
-        // query patameter `filter` is optional
-        await fire("get", "/universe/structures/", {
-            query: {
-            // filter: "market"
-            }
-        });
-        // in this case, "categories" and "search" is required
-        await fire("get", "/characters/{character_id}/search/", 994562, {
-            query: {
-                categories: ["agent"],
-                search: "ok"
-            },
-            auth: true
-        });
-        // in this case, "order_type" is required
-        await fire("get", "/markets/{region_id}/orders/", 994562, {
-            query: {
-                order_type: "all"
-            },
-        });
-        // TODO: want TypeScript semantics to throw an error because there is a required query parameter, but it's not possible
-        await fire("get", "/characters/{character_id}/search/");
-        console.log(ok);
-    }
-    catch (error) {
-        console.error("Failed to get character ship -", error);
-    }
-    return fire("get", "/status/");
-}
 /**
  * fire ESI request
- * @template {TESIEntryMethod} M
+ * @template {"get" | "post" | "put" | "delete"} M
  * @template {keyof TESIResponseOKMap[M]} EP
- * @template {IsParameterizedPath<EP, number | number[], Opt>} P2
- * @template {IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>} Opt
- * @template {InferESIResponseResult<M, EP>} R
+ * @template {number | number[] | ESIRequestOptions} Opt
+ * @template {TESIResponseOKMap[M][EP]} R
  *
  * @param {M} mthd
  * @param {EP} endp - The endpoint to request.
- * @param {Opt} [opt] - default is empty object {}. `body` is json string
- * @param {P2} [pathParams] - Optional path parameters.
+ * @param {Opt} [pathParams] - Optional path parameters.
+ * @param {ESIRequestOptions} [opt] - default is empty object {}. `body` is json string
  * @returns {Promise<R>} - The response from the endpoint.
  * @throws
  * @async
  */
-export async function fire(mthd, endp, pathParams, opt) {
+export async function fire(mthd, endp, pathParams, opt = {}) {
     if (typeof pathParams === "number") {
-        // @ts-ignore 
-        pathParams = [pathParams]; // as unknown as P2;
+        // @ts-expect-error 
+        pathParams = [pathParams];
     }
     if (isArray(pathParams)) {
         // @ts-ignore actualy endp is string
         endp = replaceCbt(endp, pathParams);
     }
-    // When only options are provided
-    /** @type {Opt} */
-    // @ts-ignore
-    const actualOpt = pathParams || opt || {};
+    else {
+        // When only options are provided
+        opt = /** @type {ESIRequestOptions} */ (pathParams) || opt;
+    }
     /** @type {RequestInit} */
     const rqopt = {
         method: mthd,
         mode: "cors",
         cache: "no-cache",
-        // @ts-ignore 
-        signal: actualOpt.cancelable?.signal,
+        signal: opt.cancelable?.signal,
         headers: {}
     };
     const qss = {
-        language: "en",
+    // language: "en",
     };
-    if (actualOpt.query) {
+    if (opt.query) {
         // Object.assign(queries, options.queries); Object.assign is too slow
-        const oqs = actualOpt.query;
+        const oqs = opt.query;
         for (const k of Object.keys(oqs)) {
             qss[k] = oqs[k];
         }
@@ -202,33 +166,35 @@ export async function fire(mthd, endp, pathParams, opt) {
     // DEVNOTE: when datasource is not empty string. (e.g - "singularity"
     // in this case must specify datasource.
     // disabled since `REMOVING DATASOURCE SINGULARITY`
-    // if (actualOpt.datasource === "singularity") {
-    //     actualOpt.datasource = "tranquility";
+    // if (opt.datasource === "singularity") {
+    //     opt.datasource = "tranquility";
     // }
-    if (actualOpt.auth) {
+    if (opt.token) {
         // @ts-ignore The header is indeed an object
-        rqopt.headers.authorization = `Bearer ${actualOpt.token}`;
+        rqopt.headers.authorization = `Bearer ${opt.token}`;
     }
-    if (actualOpt.body) { // means "POST" method etc
+    if (opt.body) { // means "POST" method etc
         // @ts-ignore The header is indeed an object
         rqopt.headers["content-type"] = "application/json";
-        rqopt.body = JSON.stringify(actualOpt.body);
+        rqopt.body = JSON.stringify(opt.body);
     }
     // @ts-ignore actualy endp is string
     const endpointUrl = curl(endp);
     ax++;
     try {
         // @ts-ignore A silly type error will appear, but ignore it.
-        const res = await fetch(`${endpointUrl}?${new URLSearchParams(qss) + ""}`, rqopt).finally(() => ax--);
+        const res = await fetch(`${endpointUrl}?${new URLSearchParams(qss) + ""}`, rqopt).finally(() => {
+            ax--;
+        });
         const stat = res.status;
-        if (!res.ok && !actualOpt.ignoreError) {
+        if (!res.ok && !opt.ignoreError) {
             if (stat === 420) {
-                actualOpt.cancelable && actualOpt.cancelable.abort();
+                opt.cancelable && opt.cancelable.abort();
                 throw new ESIErrorLimitReachedError();
             }
             else {
-                // console.log(res);
-                throw new ESIRequesError(`${res.statusText} (status=${stat})`);
+                // @ts-ignore actualy endp is string
+                throw new ESIRequesError(`maybe network disconneted or otherwise request data are invalid. (endpoint=${endp}, http status=${stat})`);
             }
         }
         else {
@@ -239,7 +205,7 @@ export async function fire(mthd, endp, pathParams, opt) {
             }
             /** @type {R} */
             const data = await res.json();
-            if (actualOpt.ignoreError) {
+            if (opt.ignoreError) {
                 // meaning `forceJson`?
                 return data;
             }
@@ -266,12 +232,50 @@ export async function fire(mthd, endp, pathParams, opt) {
     }
     catch (e) {
         // @ts-ignore actualy endp is string
-        throw new ESIRequesError(`message: ${e.message}, endpoint=${endp}`);
+        throw new ESIRequesError(`unknown error occurred, message: ${e.message}, endpoint=${endp}`);
     }
 }
+// It should complete correctly.
+async function getEVEStatus() {
+    try {
+        const ok = await fire("get", "/characters/{character_id}/ship/", 994562, {
+            // This token is completely random, but a simple check can be done with type TAcccessToken
+            token: "eyJhbGciOiJIjoiSldUIn0.YDbHqu0xPwtK5eTER7aPl8I0oYC.YDbHqu0xPwtK5eTER7aPl8I0oYC"
+        });
+        // query patameter `filter` is optional
+        // Version 1 makes it somewhat easier to handle types,
+        // but as a trade-off, it does not support query parameter completion.
+        await fire("get", "/universe/structures/", {
+            query: {
+                filter: "market"
+            }
+        });
+        // in this case, "categories" and "search" is required
+        await fire("get", "/characters/{character_id}/search/", 994562, {
+            query: {
+                categories: ["agent"],
+                search: "ok"
+            },
+            token: "eyJhbGciOiJIjoiSldUIn0.YDbHqu0xPwtK5eTER7aPl8I0oYC.YDbHqu0xPwtK5eTER7aPl8I0oYC"
+        });
+        // in this case, "order_type" is required
+        await fire("get", "/markets/{region_id}/orders/", 994562, {
+            query: {
+                order_type: "all"
+            },
+        });
+        // TODO: want TypeScript semantics to throw an error because there is a required query parameter, but it's not possible
+        await fire("get", "/characters/{character_id}/search/");
+        console.log(ok);
+    }
+    catch (error) {
+        console.error("Failed to get character ship -", error);
+    }
+    return fire("get", "/status/");
+}
 // type following and run
-// node v2.mjs
-// or yarn test:v2
+// node esi-request.mjs
+// or yarn test
 getEVEStatus().then(eveStatus => console.log(eveStatus));
 // {
 //     "players": 16503,
