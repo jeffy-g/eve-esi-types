@@ -7,13 +7,7 @@
  * @minItems 1
  * @maxItems 1000
  */
-type PostCharactersAffiliationCharacters = [
-  /**
-   * character integer
-   */
-  number,
-  ...number[]
-];
+type PostCharactersAffiliationCharacters = number[];
 
 /* post_characters_character_id_assets_locations body type, name: item_ids */
 
@@ -23,13 +17,7 @@ type PostCharactersAffiliationCharacters = [
  * @minItems 1
  * @maxItems 1000
  */
-type PostCharactersCharacterIdAssetsLocationsItemIds = [
-  /**
-   * item_id integer
-   */
-  number,
-  ...number[]
-];
+type PostCharactersCharacterIdAssetsLocationsItemIds = number[];
 
 /* post_characters_character_id_assets_names body type, name: item_ids */
 
@@ -39,13 +27,7 @@ type PostCharactersCharacterIdAssetsLocationsItemIds = [
  * @minItems 1
  * @maxItems 1000
  */
-type PostCharactersCharacterIdAssetsNamesItemIds = [
-  /**
-   * item_id integer
-   */
-  number,
-  ...number[]
-];
+type PostCharactersCharacterIdAssetsNamesItemIds = number[];
 
 /* put_characters_character_id_calendar_event_id body type, name: response */
 
@@ -70,13 +52,7 @@ interface PutCharactersCharacterIdCalendarEventIdResponse {
  * @minItems 1
  * @maxItems 100
  */
-type PostCharactersCharacterIdContactsContactIds = [
-  /**
-   * ID of the contact to edit
-   */
-  number,
-  ...number[]
-];
+type PostCharactersCharacterIdContactsContactIds = number[];
 
 /* put_characters_character_id_contacts body type, name: contact_ids */
 
@@ -86,13 +62,7 @@ type PostCharactersCharacterIdContactsContactIds = [
  * @minItems 1
  * @maxItems 100
  */
-type PutCharactersCharacterIdContactsContactIds = [
-  /**
-   * ID of the contact to edit
-   */
-  number,
-  ...number[]
-];
+type PutCharactersCharacterIdContactsContactIds = number[];
 
 /* post_characters_character_id_cspa body type, name: characters */
 
@@ -102,13 +72,7 @@ type PutCharactersCharacterIdContactsContactIds = [
  * @minItems 1
  * @maxItems 100
  */
-type PostCharactersCharacterIdCspaCharacters = [
-  /**
-   * character integer
-   */
-  number,
-  ...number[]
-];
+type PostCharactersCharacterIdCspaCharacters = number[];
 
 /* post_characters_character_id_fittings body type, name: fitting */
 
@@ -118,10 +82,7 @@ type PostCharactersCharacterIdCspaCharacters = [
  * @minItems 1
  * @maxItems 512
  */
-type PostCharactersCharacterIdFittingsItems = [
-  PostCharactersCharacterIdFittingsItem,
-  ...PostCharactersCharacterIdFittingsItem[]
-];
+type PostCharactersCharacterIdFittingsItems = PostCharactersCharacterIdFittingsItem[];
 /**
  * Fitting location for the item. Entries placed in 'Invalid' will be discarded. If this leaves the fitting with nothing, it will cause an error.
  */
@@ -207,10 +168,7 @@ interface PostCharactersCharacterIdFittingsItem {
  * @minItems 1
  * @maxItems 50
  */
-type PostCharactersCharacterIdMailRecipients = [
-  PostCharactersCharacterIdMailRecipient,
-  ...PostCharactersCharacterIdMailRecipient[]
-];
+type PostCharactersCharacterIdMailRecipients = PostCharactersCharacterIdMailRecipient[];
 /**
  * recipient_type string
  */
@@ -312,13 +270,7 @@ interface PutCharactersCharacterIdMailMailIdContents {
  * @minItems 1
  * @maxItems 1000
  */
-type PostCorporationsCorporationIdAssetsLocationsItemIds = [
-  /**
-   * item_id integer
-   */
-  number,
-  ...number[]
-];
+type PostCorporationsCorporationIdAssetsLocationsItemIds = number[];
 
 /* post_corporations_corporation_id_assets_names body type, name: item_ids */
 
@@ -328,13 +280,7 @@ type PostCorporationsCorporationIdAssetsLocationsItemIds = [
  * @minItems 1
  * @maxItems 1000
  */
-type PostCorporationsCorporationIdAssetsNamesItemIds = [
-  /**
-   * item_id integer
-   */
-  number,
-  ...number[]
-];
+type PostCorporationsCorporationIdAssetsNamesItemIds = number[];
 
 /* put_fleets_fleet_id body type, name: new_settings */
 
@@ -444,13 +390,7 @@ interface PutFleetsFleetIdWingsWingIdNaming {
  * @minItems 1
  * @maxItems 50
  */
-type PostUiOpenwindowNewmailRecipients = [
-  /**
-   * recipient integer
-   */
-  number,
-  ...number[]
-];
+type PostUiOpenwindowNewmailRecipients = number[];
 
 /**
  * new_mail object
@@ -484,10 +424,7 @@ interface PostUiOpenwindowNewmailNewMail {
  * @minItems 1
  * @maxItems 500
  */
-type PostUniverseIdsNames = [string  /**
-   * name string
-   */
-, ...string[]];
+type PostUniverseIdsNames = string[];
 
 /* post_universe_names body type, name: ids */
 
@@ -497,10 +434,7 @@ type PostUniverseIdsNames = [string  /**
  * @minItems 1
  * @maxItems 1000
  */
-type PostUniverseNamesIds = [number  /**
-   * id integer
-   */
-, ...number[]];
+type PostUniverseNamesIds = number[];
 
 
 /*! query types */
@@ -519,138 +453,7 @@ type GetCharactersCharacterIdCalendarFromEvent = number;
  * @minItems 1
  * @maxItems 20
  */
-type DeleteCharactersCharacterIdContactsContactIds =
-  | [number]
-  | [number, number]
-  | [number, number, number]
-  | [number, number, number, number]
-  | [number, number, number, number, number]
-  | [number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number, number, number, number, number, number, number]
-  | [number, number, number, number, number, number, number, number, number, number, number, number, number, number]
-  | [
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number
-    ]
-  | [
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number
-    ]
-  | [
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number
-    ]
-  | [
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number
-    ]
-  | [
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number
-    ]
-  | [
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number,
-      number
-    ];
+type DeleteCharactersCharacterIdContactsContactIds = number[];
 
 /* post_characters_character_id_contacts, label_ids query type */
 
@@ -723,6 +526,19 @@ type GetCharactersCharacterIdMailLabels = [number, ...number[]];
 type GetCharactersCharacterIdMailLastMailId = number;
 
 /* get_characters_character_id_search, categories query type */
+type GetCharactersCharacterIdSearchCategory =
+  | "agent"
+  | "alliance"
+  | "character"
+  | "constellation"
+  | "corporation"
+  | "faction"
+  | "inventory_type"
+  | "region"
+  | "solar_system"
+  | "station"
+  | "structure";
+
 
 /**
  * Type of entities to search for
@@ -730,885 +546,7 @@ type GetCharactersCharacterIdMailLastMailId = number;
  * @minItems 1
  * @maxItems 11
  */
-type GetCharactersCharacterIdSearchCategories =
-  | [
-      | "agent"
-      | "alliance"
-      | "character"
-      | "constellation"
-      | "corporation"
-      | "faction"
-      | "inventory_type"
-      | "region"
-      | "solar_system"
-      | "station"
-      | "structure"
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ]
-  | [
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      ),
-      (
-        | "agent"
-        | "alliance"
-        | "character"
-        | "constellation"
-        | "corporation"
-        | "faction"
-        | "inventory_type"
-        | "region"
-        | "solar_system"
-        | "station"
-        | "structure"
-      )
-    ];
+type GetCharactersCharacterIdSearchCategories = GetCharactersCharacterIdSearchCategory[];
 
 /* get_characters_character_id_search, search query type */
 
@@ -1753,4 +691,3 @@ type GetUniverseStructuresFilter = "market" | "manufacturing_basic";
  * Only return wars with ID smaller than this
  */
 type GetWarsMaxWarId = number;
-

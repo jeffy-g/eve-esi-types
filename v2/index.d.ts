@@ -1,5 +1,15 @@
+/*!
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+//  Released under the MIT license
+//  https://opensource.org/licenses/mit-license.php
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 /**
- * this tsd is auto generated, DO NOT EDIT
+ * THIS TSD IS AUTO GENERATED, DO NOT EDIT
+ * 
+ * @file eve-esi-types/v2/index.d.ts
+ * @summary This file is auto-generated and defines version 2.1.1 of the EVE Online ESI response types.
  */
 import "./get_alliances_ok.d.ts";
 import "./get_alliances_alliance_id_ok.d.ts";
@@ -196,15 +206,6 @@ import "./get_wars_war_id_ok.d.ts";
 import "./get_wars_war_id_killmails_ok.d.ts";
 import "./extra-types.d.ts";
 
-
-/**
- * mark a specific property as `required`
- */
-type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
-
-// type EndPointEntryMap = TESIResponseOKMap[TESIEntryMethod];
-// type AllEndPoints = keyof TESIResponseOKMap[TESIEntryMethod];
-// type BasicEntries = EndPointEntryMap[AllEndPoints];
 
 declare global {
 
