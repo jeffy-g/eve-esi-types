@@ -17,6 +17,7 @@ const BASE = "https://esi.evetech.net";
  * @typedef {import("./v2").TESIResponseOKMap} TESIResponseOKMap
  */
 /**
+ * @typedef {`${string}.${string}.${string}`} TAcccessToken __{Header}.{Payload}.{Signature}__
  * @typedef ESIRequestOptions
  * @prop {Record<string, any>} [query] query params for ESI request.
  * @prop {any} [body] will need it for `POST` request etc.
@@ -141,6 +142,8 @@ async function getEVEStatus() {
                 order_type: "all"
             },
         });
+        // TODO: want TypeScript semantics to throw an error because there is a required query parameter, but it's not possible
+        await fire("get", "/characters/{character_id}/search/");
         console.log(ok);
     }
     catch (error) {
@@ -158,8 +161,8 @@ async function getEVEStatus() {
  *
  * @param {M} mthd
  * @param {EP} endp - The endpoint to request.
- * @param {P2} [pathParams] - Optional path parameters.
  * @param {Opt} [opt] - default is empty object {}. `body` is json string
+ * @param {P2} [pathParams] - Optional path parameters.
  * @returns {Promise<R>} - The response from the endpoint.
  * @throws
  * @async
@@ -167,7 +170,7 @@ async function getEVEStatus() {
 export async function fire(mthd, endp, pathParams, opt) {
     if (typeof pathParams === "number") {
         // @ts-ignore 
-        pathParams = [pathParams];
+        pathParams = [pathParams]; // as unknown as P2;
     }
     if (isArray(pathParams)) {
         // @ts-ignore actualy endp is string
@@ -216,9 +219,7 @@ export async function fire(mthd, endp, pathParams, opt) {
     ax++;
     try {
         // @ts-ignore A silly type error will appear, but ignore it.
-        const res = await fetch(`${endpointUrl}?${new URLSearchParams(qss) + ""}`, rqopt).finally(() => {
-            ax--;
-        });
+        const res = await fetch(`${endpointUrl}?${new URLSearchParams(qss) + ""}`, rqopt).finally(() => ax--);
         const stat = res.status;
         if (!res.ok && !actualOpt.ignoreError) {
             if (stat === 420) {

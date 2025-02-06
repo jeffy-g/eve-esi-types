@@ -3,6 +3,7 @@
   "compilerOptions": {
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    "declaration": true,
     "outDir": ".", 
     "target": "esnext",
     "module": "esnext",
