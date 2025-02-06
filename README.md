@@ -6,7 +6,7 @@ Extracted the main type of ESI. Used for ESI request response types.
 > This package is configured to use version 2 only.
 
   + If you need to use version 1, please refer to the following link:  
-    [eve-esi-types v1](https://github.com/jeffy-g/eve-esi-types/tree/v1.1.0)
+    [eve-esi-types v1](https://github.com/jeffy-g/eve-esi-types/tree/version-1.x)
 
 
 > Sample code is provided -> [`v2.mjs`](./v2.mjs)
