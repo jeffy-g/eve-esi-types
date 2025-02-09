@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/shareholders/
+ * ESI endpoint: get:/corporations/{corporation_id}/shareholders/
  */
 /**
  * shareholder_type string

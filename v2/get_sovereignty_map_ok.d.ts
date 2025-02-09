@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /sovereignty/map/
+ * ESI endpoint: get:/sovereignty/map/
  */
 /**
  * 200 ok array

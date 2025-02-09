@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/roles/
+ * ESI endpoint: get:/corporations/{corporation_id}/roles/
  */
 /**
  * grantable_role string

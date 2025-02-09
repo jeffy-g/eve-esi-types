@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/fatigue/
+ * ESI endpoint: get:/characters/{character_id}/fatigue/
  */
 
 /**

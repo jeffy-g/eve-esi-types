@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /opportunities/groups/
+ * ESI endpoint: get:/opportunities/groups/
  */
 /**
  * 200 ok array

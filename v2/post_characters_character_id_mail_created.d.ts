@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/mail/
+ * ESI endpoint: post:/characters/{character_id}/mail/
  */
 /**
  * Mail ID

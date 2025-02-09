@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /dogma/effects/
+ * ESI endpoint: get:/dogma/effects/
  */
 /**
  * 200 ok array

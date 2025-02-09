@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /opportunities/groups/{group_id}/
+ * ESI endpoint: get:/opportunities/groups/{group_id}/
  */
 
 /**

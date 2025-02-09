@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/systems/
+ * ESI endpoint: get:/universe/systems/
  */
 /**
  * 200 ok array

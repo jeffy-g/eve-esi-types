@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/constellations/
+ * ESI endpoint: get:/universe/constellations/
  */
 /**
  * 200 ok array

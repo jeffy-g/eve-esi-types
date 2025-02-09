@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /dogma/attributes/{attribute_id}/
+ * ESI endpoint: get:/dogma/attributes/{attribute_id}/
  */
 
 /**

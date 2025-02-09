@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/system_jumps/
+ * ESI endpoint: get:/universe/system_jumps/
  */
 /**
  * 200 ok array

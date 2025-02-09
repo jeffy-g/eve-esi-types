@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/names/
+ * ESI endpoint: post:/universe/names/
  */
 /**
  * category string

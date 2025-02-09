@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/skills/
+ * ESI endpoint: get:/characters/{character_id}/skills/
  */
 /**
  * skills array

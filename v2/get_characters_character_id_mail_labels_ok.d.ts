@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/mail/labels/
+ * ESI endpoint: get:/characters/{character_id}/mail/labels/
  */
 /**
  * color string

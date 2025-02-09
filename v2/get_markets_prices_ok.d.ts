@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /markets/prices/
+ * ESI endpoint: get:/markets/prices/
  */
 /**
  * 200 ok array

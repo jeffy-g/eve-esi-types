@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /industry/systems/
+ * ESI endpoint: get:/industry/systems/
  */
 /**
  * cost_indices array

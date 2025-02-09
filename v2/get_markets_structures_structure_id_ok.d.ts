@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /markets/structures/{structure_id}/
+ * ESI endpoint: get:/markets/structures/{structure_id}/
  */
 /**
  * range string

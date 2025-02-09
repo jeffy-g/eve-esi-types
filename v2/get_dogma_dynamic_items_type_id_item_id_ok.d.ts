@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /dogma/dynamic/items/{type_id}/{item_id}/
+ * ESI endpoint: get:/dogma/dynamic/items/{type_id}/{item_id}/
  */
 /**
  * dogma_attributes array

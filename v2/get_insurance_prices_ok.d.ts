@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /insurance/prices/
+ * ESI endpoint: get:/insurance/prices/
  */
 /**
  * A list of a available insurance levels for this ship type

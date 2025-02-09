@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/factions/
+ * ESI endpoint: get:/universe/factions/
  */
 /**
  * 200 ok array

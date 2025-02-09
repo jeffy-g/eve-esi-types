@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/wallet/
+ * ESI endpoint: get:/characters/{character_id}/wallet/
  */
 /**
  * Wallet balance

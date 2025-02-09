@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /alliances/{alliance_id}/contacts/labels/
+ * ESI endpoint: get:/alliances/{alliance_id}/contacts/labels/
  */
 /**
  * 200 ok array

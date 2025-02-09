@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/membertracking/
+ * ESI endpoint: get:/corporations/{corporation_id}/membertracking/
  */
 /**
  * 200 ok array

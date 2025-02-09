@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /fleets/{fleet_id}/
+ * ESI endpoint: get:/fleets/{fleet_id}/
  */
 
 /**

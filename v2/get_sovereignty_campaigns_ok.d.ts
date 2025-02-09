@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /sovereignty/campaigns/
+ * ESI endpoint: get:/sovereignty/campaigns/
  */
 /**
  * Type of event this campaign is for. tcu_defense, ihub_defense and station_defense are referred to as "Defense Events", station_freeport as "Freeport Events".

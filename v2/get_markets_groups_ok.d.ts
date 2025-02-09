@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /markets/groups/
+ * ESI endpoint: get:/markets/groups/
  */
 /**
  * 200 ok array

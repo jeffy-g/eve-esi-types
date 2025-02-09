@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporation/{corporation_id}/mining/observers/
+ * ESI endpoint: get:/corporation/{corporation_id}/mining/observers/
  */
 /**
  * The category of the observing entity

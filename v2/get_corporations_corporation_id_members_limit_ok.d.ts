@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/members/limit/
+ * ESI endpoint: get:/corporations/{corporation_id}/members/limit/
  */
 /**
  * 200 ok integer

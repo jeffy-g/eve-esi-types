@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /fleets/{fleet_id}/wings/
+ * ESI endpoint: post:/fleets/{fleet_id}/wings/
  */
 
 /**

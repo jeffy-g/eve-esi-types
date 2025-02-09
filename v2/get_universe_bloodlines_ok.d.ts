@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/bloodlines/
+ * ESI endpoint: get:/universe/bloodlines/
  */
 /**
  * 200 ok array

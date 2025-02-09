@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /fw/stats/
+ * ESI endpoint: get:/fw/stats/
  */
 /**
  * 200 ok array

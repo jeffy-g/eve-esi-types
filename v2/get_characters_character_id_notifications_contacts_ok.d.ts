@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/notifications/contacts/
+ * ESI endpoint: get:/characters/{character_id}/notifications/contacts/
  */
 /**
  * 200 ok array

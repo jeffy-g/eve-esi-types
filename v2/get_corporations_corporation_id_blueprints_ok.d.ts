@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/blueprints/
+ * ESI endpoint: get:/corporations/{corporation_id}/blueprints/
  */
 /**
  * Type of the location_id

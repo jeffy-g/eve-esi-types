@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /loyalty/stores/{corporation_id}/offers/
+ * ESI endpoint: get:/loyalty/stores/{corporation_id}/offers/
  */
 /**
  * required_items array

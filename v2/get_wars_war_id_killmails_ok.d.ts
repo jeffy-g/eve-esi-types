@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /wars/{war_id}/killmails/
+ * ESI endpoint: get:/wars/{war_id}/killmails/
  */
 /**
  * 200 ok array

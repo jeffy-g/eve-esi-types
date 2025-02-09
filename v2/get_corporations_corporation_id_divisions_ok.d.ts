@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/divisions/
+ * ESI endpoint: get:/corporations/{corporation_id}/divisions/
  */
 /**
  * hangar array

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/contracts/{contract_id}/bids/
+ * ESI endpoint: get:/corporations/{corporation_id}/contracts/{contract_id}/bids/
  */
 /**
  * 200 ok array

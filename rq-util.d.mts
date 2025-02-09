@@ -1,0 +1,84 @@
+/*!
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+//  Released under the MIT license
+//  https://opensource.org/licenses/mit-license.php
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+/**
+ * @file rq-util.d.mts
+ */
+/**
+ * this always `https://esi.evetech.net`
+ */
+export declare const BASE = "https://esi.evetech.net";
+export type Truthy = string | number | boolean;
+/**
+ * __{Header}.{Payload}.{Signature}__
+ */
+export type TAcccessToken = `${string}.${string}.${string}`;
+export type ESIRequestOptions = {
+    /**
+     * query params for ESI request.
+     */
+    query?: Record<string, any>;
+    /**
+     * will need it for `POST` request etc.
+     */
+    body?: any;
+    /**
+     * if want response data with ignore error then can be set to `true`.
+     */
+    ignoreError?: boolean;
+    /**
+     * cancel request immediately
+     */
+    cancelable?: AbortController;
+    /**
+     * Can be an empty object if no authentication is required.description
+     */
+    token?: TAcccessToken;
+    auth?: true;
+};
+/**
+ * simple named error class.
+ */
+export declare class ESIRequesError extends Error {
+}
+/**
+ * throws when x-esi-error-limit-remain header value is "0". (http status: 420)
+ */
+export declare class ESIErrorLimitReachedError extends ESIRequesError {
+    constructor();
+    valueOf(): number;
+}
+/**
+ * fetch the extra pages
+ *
+ *   + if the `x-pages` header property ware more than 1
+ *
+ * @param {string} endpointUrl
+ * @param {RequestInit} rqopt request options
+ * @param {Record<string, any>} qs queries
+ * @param {number} pc pageCount
+ * @param {(minus?: number) => void=} increment
+ */
+export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: RequestInit, qs: Record<string, any>, pc: number, increment?: (minus?: Truthy) => void) => Promise<T | null>;
+/** ### replace (C)urly (B)races (T)oken
+ *
+ * @example
+ * "/characters/{character_id}/skills"
+ * // ->
+ * "/characters/<char.character_id>/skills"
+ *
+ * @param {string} endpoint e.g - "/characters/{character_id}/"
+ * @param {number[]} ids
+ * @returns fragment of qualified endpoint uri or null.
+ */
+export declare const replaceCbt: (endpoint: string, ids: number[]) => string;
+/**
+ *
+ * @param {string} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
+ *   + The version parameter can be omitted by using `<version>/<endpoint>`
+ */
+export declare const curl: (endp: string) => string;

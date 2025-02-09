@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/mining/
+ * ESI endpoint: get:/characters/{character_id}/mining/
  */
 /**
  * 200 ok array

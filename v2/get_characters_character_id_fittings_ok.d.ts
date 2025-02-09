@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/fittings/
+ * ESI endpoint: get:/characters/{character_id}/fittings/
  */
 /**
  * flag string

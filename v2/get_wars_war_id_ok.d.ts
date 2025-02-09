@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /wars/{war_id}/
+ * ESI endpoint: get:/wars/{war_id}/
  */
 /**
  * allied corporations or alliances, each object contains either corporation_id or alliance_id

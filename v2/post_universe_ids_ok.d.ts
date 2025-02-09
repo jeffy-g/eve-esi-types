@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/ids/
+ * ESI endpoint: post:/universe/ids/
  */
 
 /**

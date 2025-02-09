@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/industry/jobs/
+ * ESI endpoint: get:/characters/{character_id}/industry/jobs/
  */
 /**
  * status string

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/structures/
+ * ESI endpoint: get:/universe/structures/
  */
 /**
  * 200 ok array

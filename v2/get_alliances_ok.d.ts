@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /alliances/
+ * ESI endpoint: get:/alliances/
  */
 /**
  * 200 ok array

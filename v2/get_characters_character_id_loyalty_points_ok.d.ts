@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/loyalty/points/
+ * ESI endpoint: get:/characters/{character_id}/loyalty/points/
  */
 /**
  * 200 ok array

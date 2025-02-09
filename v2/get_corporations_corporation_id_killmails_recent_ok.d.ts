@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/killmails/recent/
+ * ESI endpoint: get:/corporations/{corporation_id}/killmails/recent/
  */
 /**
  * 200 ok array

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/stargates/{stargate_id}/
+ * ESI endpoint: get:/universe/stargates/{stargate_id}/
  */
 
 /**

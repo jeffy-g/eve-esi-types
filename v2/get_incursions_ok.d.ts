@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /incursions/
+ * ESI endpoint: get:/incursions/
  */
 /**
  * The state of this incursion

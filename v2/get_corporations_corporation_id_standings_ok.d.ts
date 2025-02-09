@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/standings/
+ * ESI endpoint: get:/corporations/{corporation_id}/standings/
  */
 /**
  * from_type string

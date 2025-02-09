@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/members/titles/
+ * ESI endpoint: get:/corporations/{corporation_id}/members/titles/
  */
 /**
  * A list of title_id

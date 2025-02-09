@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/wallets/{division}/transactions/
+ * ESI endpoint: get:/corporations/{corporation_id}/wallets/{division}/transactions/
  */
 /**
  * Wallet transactions

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/contacts/
+ * ESI endpoint: get:/corporations/{corporation_id}/contacts/
  */
 /**
  * contact_type string

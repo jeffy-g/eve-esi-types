@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/assets/locations/
+ * ESI endpoint: post:/characters/{character_id}/assets/locations/
  */
 /**
  * 200 ok array

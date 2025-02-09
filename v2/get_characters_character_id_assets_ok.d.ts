@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/assets/
+ * ESI endpoint: get:/characters/{character_id}/assets/
  */
 /**
  * location_flag string

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/calendar/{event_id}/attendees/
+ * ESI endpoint: get:/characters/{character_id}/calendar/{event_id}/attendees/
  */
 /**
  * event_response string

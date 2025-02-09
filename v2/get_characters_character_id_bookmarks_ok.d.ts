@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/bookmarks/
+ * ESI endpoint: get:/characters/{character_id}/bookmarks/
  */
 /**
  * 200 ok array

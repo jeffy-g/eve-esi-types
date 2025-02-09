@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/skillqueue/
+ * ESI endpoint: get:/characters/{character_id}/skillqueue/
  */
 /**
  * 200 ok array

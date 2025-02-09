@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/structures/{structure_id}/
+ * ESI endpoint: get:/universe/structures/{structure_id}/
  */
 
 /**

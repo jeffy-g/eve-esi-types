@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/categories/{category_id}/
+ * ESI endpoint: get:/universe/categories/{category_id}/
  */
 
 /**

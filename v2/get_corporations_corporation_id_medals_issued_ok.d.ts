@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/medals/issued/
+ * ESI endpoint: get:/corporations/{corporation_id}/medals/issued/
  */
 /**
  * status string

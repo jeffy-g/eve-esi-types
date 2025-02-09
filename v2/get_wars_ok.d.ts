@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /wars/
+ * ESI endpoint: get:/wars/
  */
 /**
  * 200 ok array

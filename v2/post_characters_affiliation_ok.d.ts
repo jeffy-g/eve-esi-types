@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/affiliation/
+ * ESI endpoint: post:/characters/affiliation/
  */
 /**
  * 200 ok array

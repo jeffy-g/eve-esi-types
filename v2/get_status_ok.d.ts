@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /status/
+ * ESI endpoint: get:/status/
  */
 
 /**

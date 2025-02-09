@@ -6,33 +6,7 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 import type { TESIResponseOKMap } from "./v2";
-/**
- * __{Header}.{Payload}.{Signature}__
- */
-type TAcccessToken = `${string}.${string}.${string}`;
-type ESIRequestOptions = {
-    /**
-     * query params for ESI request.
-     */
-    query?: Record<string, any>;
-    /**
-     * will need it for `POST` request etc.
-     */
-    body?: any;
-    /**
-     * if want response data with ignore error then can be set to `true`.
-     */
-    ignoreError?: boolean;
-    /**
-     * cancel request immediately
-     */
-    cancelable?: AbortController;
-    /**
-     * Can be an empty object if no authentication is required.description
-     */
-    token?: TAcccessToken;
-    auth?: true;
-};
+import { type ESIRequestOptions } from "./rq-util.mjs";
 /**
  * fire ESI request
  * @template {TESIEntryMethod} M

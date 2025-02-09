@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/starbases/
+ * ESI endpoint: get:/corporations/{corporation_id}/starbases/
  */
 /**
  * state string
