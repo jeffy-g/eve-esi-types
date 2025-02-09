@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/customs_offices/
+ * ESI endpoint: get:/corporations/{corporation_id}/customs_offices/
  */
 /**
  * Access is allowed only for entities with this level of standing or better

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/structures/
+ * ESI endpoint: get:/corporations/{corporation_id}/structures/
  */
 /**
  * Contains a list of service upgrades, and their state

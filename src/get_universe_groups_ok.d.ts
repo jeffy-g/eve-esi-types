@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/groups/
+ * ESI endpoint: get:/universe/groups/
  */
 /**
  * 200 ok array

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/contracts/
+ * ESI endpoint: get:/corporations/{corporation_id}/contracts/
  */
 /**
  * To whom the contract is available

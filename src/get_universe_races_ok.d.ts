@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/races/
+ * ESI endpoint: get:/universe/races/
  */
 /**
  * 200 ok array

@@ -9,7 +9,7 @@
  * THIS TSD IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v1/index.d.ts
- * @summary This file is auto-generated and defines version 1.1.0 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 1.2.0 of the EVE Online ESI response types.
  */
 import "./get_alliances_ok.d.ts";
 import "./get_alliances_alliance_id_ok.d.ts";
@@ -29,12 +29,10 @@ import "./get_characters_character_id_bookmarks_ok.d.ts";
 import "./get_characters_character_id_bookmarks_folders_ok.d.ts";
 import "./get_characters_character_id_calendar_ok.d.ts";
 import "./get_characters_character_id_calendar_event_id_ok.d.ts";
-import "./put_characters_character_id_calendar_event_id_response.d.ts";
 import "./get_characters_character_id_calendar_event_id_attendees_ok.d.ts";
 import "./get_characters_character_id_clones_ok.d.ts";
 import "./get_characters_character_id_contacts_ok.d.ts";
 import "./post_characters_character_id_contacts_created.d.ts";
-import "./put_characters_character_id_contacts_contact_ids.d.ts";
 import "./get_characters_character_id_contacts_labels_ok.d.ts";
 import "./get_characters_character_id_contracts_ok.d.ts";
 import "./get_characters_character_id_contracts_contract_id_bids_ok.d.ts";
@@ -57,7 +55,6 @@ import "./get_characters_character_id_mail_labels_ok.d.ts";
 import "./post_characters_character_id_mail_labels_created.d.ts";
 import "./get_characters_character_id_mail_lists_ok.d.ts";
 import "./get_characters_character_id_mail_mail_id_ok.d.ts";
-import "./put_characters_character_id_mail_mail_id_contents.d.ts";
 import "./get_characters_character_id_medals_ok.d.ts";
 import "./get_characters_character_id_mining_ok.d.ts";
 import "./get_characters_character_id_notifications_ok.d.ts";
@@ -132,14 +129,9 @@ import "./get_dogma_dynamic_items_type_id_item_id_ok.d.ts";
 import "./get_dogma_effects_ok.d.ts";
 import "./get_dogma_effects_effect_id_ok.d.ts";
 import "./get_fleets_fleet_id_ok.d.ts";
-import "./put_fleets_fleet_id_new_settings.d.ts";
 import "./get_fleets_fleet_id_members_ok.d.ts";
-import "./post_fleets_fleet_id_members_invitation.d.ts";
-import "./put_fleets_fleet_id_members_member_id_movement.d.ts";
-import "./put_fleets_fleet_id_squads_squad_id_naming.d.ts";
 import "./get_fleets_fleet_id_wings_ok.d.ts";
 import "./post_fleets_fleet_id_wings_created.d.ts";
-import "./put_fleets_fleet_id_wings_wing_id_naming.d.ts";
 import "./post_fleets_fleet_id_wings_wing_id_squads_created.d.ts";
 import "./get_fw_leaderboards_ok.d.ts";
 import "./get_fw_leaderboards_characters_ok.d.ts";
@@ -169,7 +161,6 @@ import "./get_sovereignty_campaigns_ok.d.ts";
 import "./get_sovereignty_map_ok.d.ts";
 import "./get_sovereignty_structures_ok.d.ts";
 import "./get_status_ok.d.ts";
-import "./post_ui_openwindow_newmail_new_mail.d.ts";
 import "./get_universe_ancestries_ok.d.ts";
 import "./get_universe_asteroid_belts_asteroid_belt_id_ok.d.ts";
 import "./get_universe_bloodlines_ok.d.ts";
@@ -386,10 +377,12 @@ export type TESIResponseOKMap = {
     "/wars/{war_id}/killmails/": GetWarsWarIdKillmailsOk;
   },
   post: {
+    "/fleets/{fleet_id}/members/": NoContentResponse;
     "/ui/autopilot/waypoint/": NoContentResponse;
     "/ui/openwindow/contract/": NoContentResponse;
     "/ui/openwindow/information/": NoContentResponse;
     "/ui/openwindow/marketdetails/": NoContentResponse;
+    "/ui/openwindow/newmail/": NoContentResponse;
     "/characters/affiliation/": PostCharactersAffiliationOk;
     "/characters/{character_id}/assets/locations/": PostCharactersCharacterIdAssetsLocationsOk;
     "/characters/{character_id}/assets/names/": PostCharactersCharacterIdAssetsNamesOk;
@@ -400,21 +393,19 @@ export type TESIResponseOKMap = {
     "/characters/{character_id}/mail/labels/": PostCharactersCharacterIdMailLabelsCreated;
     "/corporations/{corporation_id}/assets/locations/": PostCorporationsCorporationIdAssetsLocationsOk;
     "/corporations/{corporation_id}/assets/names/": PostCorporationsCorporationIdAssetsNamesOk;
-    "/fleets/{fleet_id}/members/": PostFleetsFleetIdMembersInvitation;
     "/fleets/{fleet_id}/wings/": PostFleetsFleetIdWingsCreated;
     "/fleets/{fleet_id}/wings/{wing_id}/squads/": PostFleetsFleetIdWingsWingIdSquadsCreated;
-    "/ui/openwindow/newmail/": PostUiOpenwindowNewmailNewMail;
     "/universe/ids/": PostUniverseIdsOk;
     "/universe/names/": PostUniverseNamesOk;
   },
   put: {
-    "/characters/{character_id}/calendar/{event_id}/": PutCharactersCharacterIdCalendarEventIdResponse;
-    "/characters/{character_id}/contacts/": PutCharactersCharacterIdContactsContactIds;
-    "/characters/{character_id}/mail/{mail_id}/": PutCharactersCharacterIdMailMailIdContents;
-    "/fleets/{fleet_id}/": PutFleetsFleetIdNewSettings;
-    "/fleets/{fleet_id}/members/{member_id}/": PutFleetsFleetIdMembersMemberIdMovement;
-    "/fleets/{fleet_id}/squads/{squad_id}/": PutFleetsFleetIdSquadsSquadIdNaming;
-    "/fleets/{fleet_id}/wings/{wing_id}/": PutFleetsFleetIdWingsWingIdNaming;
+    "/characters/{character_id}/calendar/{event_id}/": NoContentResponse;
+    "/characters/{character_id}/contacts/": NoContentResponse;
+    "/characters/{character_id}/mail/{mail_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/members/{member_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/squads/{squad_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/wings/{wing_id}/": NoContentResponse;
   },
   delete: {
     "/characters/{character_id}/contacts/": NoContentResponse;

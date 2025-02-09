@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /alliances/{alliance_id}/
+ * ESI endpoint: get:/alliances/{alliance_id}/
  */
 
 /**

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/planets/{planet_id}/
+ * ESI endpoint: get:/characters/{character_id}/planets/{planet_id}/
  */
 /**
  * links array

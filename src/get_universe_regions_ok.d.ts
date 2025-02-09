@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/regions/
+ * ESI endpoint: get:/universe/regions/
  */
 /**
  * 200 ok array

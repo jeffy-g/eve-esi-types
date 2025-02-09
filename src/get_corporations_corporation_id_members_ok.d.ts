@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/members/
+ * ESI endpoint: get:/corporations/{corporation_id}/members/
  */
 /**
  * A list of character IDs

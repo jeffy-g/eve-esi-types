@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/mail/
+ * ESI endpoint: get:/characters/{character_id}/mail/
  */
 /**
  * recipient_type string

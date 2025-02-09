@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/
+ * ESI endpoint: get:/corporations/{corporation_id}/
  */
 
 /**

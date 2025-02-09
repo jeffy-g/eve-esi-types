@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/contracts/{contract_id}/items/
+ * ESI endpoint: get:/characters/{character_id}/contracts/{contract_id}/items/
  */
 /**
  * 200 ok array

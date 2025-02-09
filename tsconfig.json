@@ -17,7 +17,7 @@
     ]
   },
   "include": [
-    "./*.mts"
+    "./esi-request.mts"
   ],
   "exclude": []
 }

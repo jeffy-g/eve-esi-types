@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/graphics/{graphic_id}/
+ * ESI endpoint: get:/universe/graphics/{graphic_id}/
  */
 
 /**

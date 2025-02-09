@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/types/{type_id}/
+ * ESI endpoint: get:/universe/types/{type_id}/
  */
 /**
  * dogma_attributes array

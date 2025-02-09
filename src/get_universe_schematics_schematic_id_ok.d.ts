@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/schematics/{schematic_id}/
+ * ESI endpoint: get:/universe/schematics/{schematic_id}/
  */
 
 /**

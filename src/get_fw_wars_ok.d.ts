@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /fw/wars/
+ * ESI endpoint: get:/fw/wars/
  */
 /**
  * List of factions at war

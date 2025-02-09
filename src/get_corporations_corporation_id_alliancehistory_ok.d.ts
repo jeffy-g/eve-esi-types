@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/alliancehistory/
+ * ESI endpoint: get:/corporations/{corporation_id}/alliancehistory/
  */
 /**
  * 200 ok array

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/notifications/
+ * ESI endpoint: get:/characters/{character_id}/notifications/
  */
 /**
  * sender_type string

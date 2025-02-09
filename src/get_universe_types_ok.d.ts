@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/types/
+ * ESI endpoint: get:/universe/types/
  */
 /**
  * 200 ok array

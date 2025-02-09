@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/contacts/
+ * ESI endpoint: post:/characters/{character_id}/contacts/
  */
 /**
  * 201 created array

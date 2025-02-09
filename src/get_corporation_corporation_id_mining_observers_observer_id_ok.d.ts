@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporation/{corporation_id}/mining/observers/{observer_id}/
+ * ESI endpoint: get:/corporation/{corporation_id}/mining/observers/{observer_id}/
  */
 /**
  * 200 ok array

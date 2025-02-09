@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /alliances/{alliance_id}/contacts/
+ * ESI endpoint: get:/alliances/{alliance_id}/contacts/
  */
 /**
  * contact_type string

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /markets/groups/{market_group_id}/
+ * ESI endpoint: get:/markets/groups/{market_group_id}/
  */
 
 /**

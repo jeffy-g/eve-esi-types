@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/constellations/{constellation_id}/
+ * ESI endpoint: get:/universe/constellations/{constellation_id}/
  */
 
 /**

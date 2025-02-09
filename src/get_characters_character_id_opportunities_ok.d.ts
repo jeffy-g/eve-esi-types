@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/opportunities/
+ * ESI endpoint: get:/characters/{character_id}/opportunities/
  */
 /**
  * 200 ok array

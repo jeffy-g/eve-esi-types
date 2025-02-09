@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/npccorps/
+ * ESI endpoint: get:/corporations/npccorps/
  */
 /**
  * 200 ok array

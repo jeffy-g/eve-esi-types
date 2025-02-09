@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/moons/{moon_id}/
+ * ESI endpoint: get:/universe/moons/{moon_id}/
  */
 
 /**

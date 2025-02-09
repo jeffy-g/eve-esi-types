@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/medals/
+ * ESI endpoint: get:/characters/{character_id}/medals/
  */
 /**
  * graphics array

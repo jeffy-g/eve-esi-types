@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/wallets/
+ * ESI endpoint: get:/corporations/{corporation_id}/wallets/
  */
 /**
  * 200 ok array

@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/regions/{region_id}/
+ * ESI endpoint: get:/universe/regions/{region_id}/
  */
 
 /**

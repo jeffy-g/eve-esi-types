@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/graphics/
+ * ESI endpoint: get:/universe/graphics/
  */
 /**
  * 200 ok array

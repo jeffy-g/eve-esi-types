@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/stars/{star_id}/
+ * ESI endpoint: get:/universe/stars/{star_id}/
  */
 /**
  * spectral_class string

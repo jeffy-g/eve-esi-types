@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/mail/lists/
+ * ESI endpoint: get:/characters/{character_id}/mail/lists/
  */
 /**
  * 200 ok array

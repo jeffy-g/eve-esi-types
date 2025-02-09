@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /markets/{region_id}/types/
+ * ESI endpoint: get:/markets/{region_id}/types/
  */
 /**
  * 200 ok array

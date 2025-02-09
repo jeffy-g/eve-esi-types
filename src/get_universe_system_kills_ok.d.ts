@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/system_kills/
+ * ESI endpoint: get:/universe/system_kills/
  */
 /**
  * 200 ok array

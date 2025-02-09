@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/containers/logs/
+ * ESI endpoint: get:/corporations/{corporation_id}/containers/logs/
  */
 /**
  * action string

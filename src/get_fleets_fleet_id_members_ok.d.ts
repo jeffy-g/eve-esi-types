@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /fleets/{fleet_id}/members/
+ * ESI endpoint: get:/fleets/{fleet_id}/members/
  */
 /**
  * Member’s role in fleet

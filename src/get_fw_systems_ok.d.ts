@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /fw/systems/
+ * ESI endpoint: get:/fw/systems/
  */
 /**
  * contested string

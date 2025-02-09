@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/roles/history/
+ * ESI endpoint: get:/corporations/{corporation_id}/roles/history/
  */
 /**
  * new_role string

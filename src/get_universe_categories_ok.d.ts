@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/categories/
+ * ESI endpoint: get:/universe/categories/
  */
 /**
  * 200 ok array

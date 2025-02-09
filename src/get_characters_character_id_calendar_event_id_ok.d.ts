@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/calendar/{event_id}/
+ * ESI endpoint: get:/characters/{character_id}/calendar/{event_id}/
  */
 /**
  * owner_type string

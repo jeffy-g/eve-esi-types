@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /dogma/attributes/
+ * ESI endpoint: get:/dogma/attributes/
  */
 /**
  * 200 ok array

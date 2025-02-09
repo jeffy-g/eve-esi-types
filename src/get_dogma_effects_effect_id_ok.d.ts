@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /dogma/effects/{effect_id}/
+ * ESI endpoint: get:/dogma/effects/{effect_id}/
  */
 /**
  * modifiers array

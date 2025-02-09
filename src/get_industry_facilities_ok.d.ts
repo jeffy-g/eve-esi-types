@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /industry/facilities/
+ * ESI endpoint: get:/industry/facilities/
  */
 /**
  * 200 ok array

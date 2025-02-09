@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/fittings/
+ * ESI endpoint: post:/characters/{character_id}/fittings/
  */
 
 /**

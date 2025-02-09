@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/orders/
+ * ESI endpoint: get:/characters/{character_id}/orders/
  */
 /**
  * Valid order range, numbers are ranges in jumps

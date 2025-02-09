@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/clones/
+ * ESI endpoint: get:/characters/{character_id}/clones/
  */
 /**
  * location_type string

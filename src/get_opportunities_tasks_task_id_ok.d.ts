@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /opportunities/tasks/{task_id}/
+ * ESI endpoint: get:/opportunities/tasks/{task_id}/
  */
 
 /**

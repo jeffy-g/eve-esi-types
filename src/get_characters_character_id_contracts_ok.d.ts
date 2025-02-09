@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/contracts/
+ * ESI endpoint: get:/characters/{character_id}/contracts/
  */
 /**
  * To whom the contract is available

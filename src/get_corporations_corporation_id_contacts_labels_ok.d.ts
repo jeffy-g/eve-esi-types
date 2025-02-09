@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/contacts/labels/
+ * ESI endpoint: get:/corporations/{corporation_id}/contacts/labels/
  */
 /**
  * 200 ok array

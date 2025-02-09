@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/asteroid_belts/{asteroid_belt_id}/
+ * ESI endpoint: get:/universe/asteroid_belts/{asteroid_belt_id}/
  */
 
 /**

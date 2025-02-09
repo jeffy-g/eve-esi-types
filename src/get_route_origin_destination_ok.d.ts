@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /route/{origin}/{destination}/
+ * ESI endpoint: get:/route/{origin}/{destination}/
  */
 /**
  * Solar systems in route

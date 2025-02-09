@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/wallet/journal/
+ * ESI endpoint: get:/characters/{character_id}/wallet/journal/
  */
 /**
  * The type of the given context_id if present

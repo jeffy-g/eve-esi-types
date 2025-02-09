@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/systems/{system_id}/
+ * ESI endpoint: get:/universe/systems/{system_id}/
  */
 /**
  * planets array

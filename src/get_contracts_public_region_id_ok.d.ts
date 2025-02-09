@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /contracts/public/{region_id}/
+ * ESI endpoint: get:/contracts/public/{region_id}/
  */
 /**
  * Type of the contract

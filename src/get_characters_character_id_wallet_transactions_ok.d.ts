@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /characters/{character_id}/wallet/transactions/
+ * ESI endpoint: get:/characters/{character_id}/wallet/transactions/
  */
 /**
  * Wallet transactions

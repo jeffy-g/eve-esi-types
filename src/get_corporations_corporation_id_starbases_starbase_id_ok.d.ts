@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /corporations/{corporation_id}/starbases/{starbase_id}/
+ * ESI endpoint: get:/corporations/{corporation_id}/starbases/{starbase_id}/
  */
 /**
  * Who can anchor starbase (POS) and its structures

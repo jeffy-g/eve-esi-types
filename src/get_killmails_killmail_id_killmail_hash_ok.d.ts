@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /killmails/{killmail_id}/{killmail_hash}/
+ * ESI endpoint: get:/killmails/{killmail_id}/{killmail_hash}/
  */
 /**
  * attackers array

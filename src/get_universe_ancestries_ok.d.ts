@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /universe/ancestries/
+ * ESI endpoint: get:/universe/ancestries/
  */
 /**
  * 200 ok array

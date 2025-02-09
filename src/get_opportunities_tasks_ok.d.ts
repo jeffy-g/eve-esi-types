@@ -1,5 +1,5 @@
 /*!
- * ESI endpoint: /opportunities/tasks/
+ * ESI endpoint: get:/opportunities/tasks/
  */
 /**
  * 200 ok array
