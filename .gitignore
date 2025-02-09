@@ -2,3 +2,4 @@ src
 *.mts
 *.ts
 auth-token*
+node_modules

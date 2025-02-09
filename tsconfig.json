@@ -4,6 +4,7 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "declaration": true,
+    // "declarationDir": "./dts",
     "outDir": ".", 
     "target": "esnext",
     "module": "esnext",
@@ -13,11 +14,11 @@
     "strict": true,
     "moduleResolution": "node",
     "rootDirs": [
-      "./"
+      "./scripts"
     ]
   },
   "include": [
-    "./*.mts"
+    "./scripts/*.mts"
   ],
   "exclude": []
 }

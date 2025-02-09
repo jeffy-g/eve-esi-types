@@ -5,9 +5,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-/**
- * @file rq-util.d.mts
- */
+import "colors";
 /**
  * this always `https://esi.evetech.net`
  */
@@ -38,6 +36,13 @@ export type ESIRequestOptions = {
      * Can be an empty object if no authentication is required.description
      */
     token?: TAcccessToken;
+    /**
+     * whether an authorization header is required
+     *
+     *   + When using the `Web Fetch API`, avoid extra `OPTIONS` requests and reduce extra http requests
+     *
+     * @date 2020/1/23
+     */
     auth?: true;
 };
 /**
@@ -52,6 +57,19 @@ export declare class ESIErrorLimitReachedError extends ESIRequesError {
     constructor();
     valueOf(): number;
 }
+/**
+ * @typedef {import("./rq-util.mjs").ESIRequestOptions} ESIRequestOptions
+ */
+export declare const isDebug: () => boolean;
+/**
+ * @param method
+ * @param opt
+ * @returns
+ */
+export declare const initOptions: (method: string, opt: ESIRequestOptions) => {
+    rqopt: RequestInit;
+    qss: Record<string, string>;
+};
 /**
  * fetch the extra pages
  *
@@ -82,3 +100,15 @@ export declare const replaceCbt: (endpoint: string, ids: number[]) => string;
  *   + The version parameter can be omitted by using `<version>/<endpoint>`
  */
 export declare const curl: (endp: string) => string;
+/**
+ * @date 2020/03/31
+ * @version 2.0 fix version date string problem (v1.0
+ * @type {() => Promise<string>}
+ */
+export declare function getSDEVersion(): Promise<string>;
+/**
+ * #### Fire a request that does not require authentication.
+ *
+ * @param {TESIRequestFunctionSignature<ESIRequestOptions>} fn
+ */
+export declare function fireRequestsDoesNotRequireAuth(fn: TESIRequestFunctionSignature<ESIRequestOptions>): Promise<void>;

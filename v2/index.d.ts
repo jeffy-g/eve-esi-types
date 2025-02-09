@@ -9,7 +9,7 @@
  * THIS TSD IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 2.2.0 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 2.2.1 of the EVE Online ESI response types.
  */
 import "./get_alliances_ok.d.ts";
 import "./get_alliances_alliance_id_ok.d.ts";
@@ -204,6 +204,30 @@ import "./extra-types.d.ts";
 type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
 
 declare global {
+
+  /**
+   * ### ESI request function all in one signature
+   * 
+   * TESIRequestFunctionSignature is a type that defines the signature of an ESI request function.
+   * 
+   * This function sends a request to a specified endpoint and returns a response.
+   * 
+   * @template ActualOpt - The actual type of the option.  
+   *   Required parameters inferred by typescript are merged.
+   * @template M - The HTTP method to use for the request
+   * @template EP - The Path of the ESI endpoint to send the request to
+   * @template P2 - Parameters to include in the request
+   * @template Opt - Options to include in the request  
+   *   If there is a required parameter, its type will be merged with `ActualOpt`
+   * @template R - The response type
+   */
+  type TESIRequestFunctionSignature<ActualOpt> = <
+    M extends TESIEntryMethod,
+    EP extends keyof TESIResponseOKMap[M],
+    P2 extends IsParameterizedPath<EP, number | number[], Opt>,
+    Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt>,
+    R extends InferESIResponseResult<M, EP>
+  >(method: M, endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
 
   /**
    * is parameterized path

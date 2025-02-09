@@ -1,5 +1,5 @@
 // import type { TESIResponseOKMap } from "eve-esi-types";
-import { curl, replaceCbt, fetchP, ESIRequesError, ESIErrorLimitReachedError } from "./rq-util.mjs";
+import { curl, fetchP, replaceCbt, getSDEVersion, ESIRequesError, initOptions, isDebug, ESIErrorLimitReachedError, fireRequestsDoesNotRequireAuth } from "./rq-util.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -9,19 +9,10 @@ const isArray = Array.isArray;
 /**
  * enable/disable console.log
  */
-let LOG = false;
+let LOG = isDebug();
 /**
  * @typedef {import("./v2").TESIResponseOKMap} TESIResponseOKMap
- */
-/**
- * @typedef {`${string}.${string}.${string}`} TAcccessToken __{Header}.{Payload}.{Signature}__
- * @typedef ESIRequestOptions
- * @prop {Record<string, any>} [query] query params for ESI request.
- * @prop {any} [body] will need it for `POST` request etc.
- * @prop {true=} [auth] Can be an empty object if no authentication is required.description
- * @prop {TAcccessToken} [token] Can be an empty object if no authentication is required.description
- * @prop {boolean} [ignoreError]  if want response data with ignore error then can be set to `true`.
- * @prop {AbortController} [cancelable] cancel request immediately
+ * @typedef {import("./rq-util.mjs").ESIRequestOptions} ESIRequestOptions
  */
 // - - - - - - - - - - - - - - - - - - - -
 //        module vars, functions
@@ -34,39 +25,6 @@ const incrementAx = (minus) => minus ? ax-- : ax++;
 // - - - - - - - - - - - - - - - - - - - -
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
-// It should complete correctly.
-async function getEVEStatus() {
-    try {
-        const ok = await fire("get", "/characters/{character_id}/ship/", 994562, { auth: true });
-        // query patameter `filter` is optional
-        await fire("get", "/universe/structures/", {
-            query: {
-            // filter: "market"
-            }
-        });
-        // in this case, "categories" and "search" is required
-        await fire("get", "/characters/{character_id}/search/", 994562, {
-            query: {
-                categories: ["agent"],
-                search: "ok"
-            },
-            auth: true
-        });
-        // in this case, "order_type" is required
-        await fire("get", "/markets/{region_id}/orders/", 994562, {
-            query: {
-                order_type: "all"
-            },
-        });
-        // TODO: want TypeScript semantics to throw an error because there is a required query parameter, but it's not possible
-        await fire("get", "/characters/{character_id}/search/");
-        console.log(ok);
-    }
-    catch (error) {
-        console.error("Failed to get character ship -", error);
-    }
-    return fire("get", "/status/");
-}
 /**
  * fire ESI request
  * @template {TESIEntryMethod} M
@@ -95,63 +53,32 @@ export async function fire(mthd, endp, pathParams, opt) {
     // When only options are provided
     /** @type {Opt} */
     // @ts-ignore
-    const actualOpt = pathParams || opt || {};
-    /** @type {RequestInit} */
-    const rqopt = {
-        method: mthd,
-        mode: "cors",
-        cache: "no-cache",
-        // @ts-ignore 
-        signal: actualOpt.cancelable?.signal,
-        headers: {}
-    };
-    const qss = {
-        language: "en",
-    };
-    if (actualOpt.query) {
-        // Object.assign(queries, options.queries); Object.assign is too slow
-        const oqs = actualOpt.query;
-        for (const k of Object.keys(oqs)) {
-            qss[k] = oqs[k];
-        }
-    }
-    // DEVNOTE: when datasource is not empty string. (e.g - "singularity"
-    // in this case must specify datasource.
-    // disabled since `REMOVING DATASOURCE SINGULARITY`
-    // if (actualOpt.datasource === "singularity") {
-    //     actualOpt.datasource = "tranquility";
-    // }
-    if (actualOpt.auth) {
-        // @ts-ignore The header is indeed an object
-        rqopt.headers.authorization = `Bearer ${actualOpt.token}`;
-    }
-    if (actualOpt.body) { // means "POST" method etc
-        // @ts-ignore The header is indeed an object
-        rqopt.headers["content-type"] = "application/json";
-        rqopt.body = JSON.stringify(actualOpt.body);
-    }
+    const actualOpt = opt || pathParams || {};
+    const { rqopt, qss } = initOptions(mthd, actualOpt);
     // @ts-ignore actualy endp is string
     const endpointUrl = curl(endp);
+    const url = `${endpointUrl}?${new URLSearchParams(qss) + ""}`;
+    LOG && log(url);
     ax++;
     try {
         // @ts-ignore A silly type error will appear, but ignore it.
-        const res = await fetch(`${endpointUrl}?${new URLSearchParams(qss) + ""}`, rqopt).finally(() => ax--);
-        const stat = res.status;
+        const res = await fetch(url, rqopt).finally(() => ax--);
+        const { status } = res;
         if (!res.ok && !actualOpt.ignoreError) {
-            if (stat === 420) {
+            if (status === 420) {
                 actualOpt.cancelable && actualOpt.cancelable.abort();
                 throw new ESIErrorLimitReachedError();
             }
             else {
                 // console.log(res);
-                throw new ESIRequesError(`${res.statusText} (status=${stat})`);
+                throw new ESIRequesError(`${res.statusText} (status=${status})`);
             }
         }
         else {
             // DEVNOTE: - 204 No Content
-            if (stat === 204) {
+            if (status === 204) {
                 // this result is empty, decided to return status code.
-                return /** @type {R} */ ({ status: stat });
+                return /** @type {R} */ ({ status });
             }
             /** @type {R} */
             const data = await res.json();
@@ -185,10 +112,21 @@ export async function fire(mthd, endp, pathParams, opt) {
         throw new ESIRequesError(`message: ${e.message}, endpoint=${endp}`);
     }
 }
+// It should complete correctly.
+/**
+ * @param {TESIRequestFunctionSignature<ESIRequestOptions>} fn
+ */
+async function getEVEStatus(fn) {
+    const sdeVersion = await getSDEVersion();
+    log(`sdeVersion: ${sdeVersion}`.blue);
+    await fireRequestsDoesNotRequireAuth(fn);
+    return fn("get", "/status/");
+}
 // type following and run
+// bun scripts/v2.mts
 // node v2.mjs
-// or yarn test:v2
-getEVEStatus().then(eveStatus => console.log(eveStatus));
+// or yarn test
+getEVEStatus(fire).then(eveStatus => console.log(eveStatus));
 // {
 //     "players": 16503,
 //     "server_version": "2794925",
