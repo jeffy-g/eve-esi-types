@@ -1,9 +1,11 @@
 src
 *.sh
+v2/*.json
 *swagger*.json
 memo*
 auth*.mts
 esi-request*.mts
 *.ts
 auth-token*
+scripts/
 node_modules

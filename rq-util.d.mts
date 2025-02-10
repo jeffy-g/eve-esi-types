@@ -6,6 +6,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 import "colors.ts";
+import type { TESIRequestFunctionMethods } from "./v2";
 /**
  * this always `https://esi.evetech.net`
  */
@@ -62,8 +63,8 @@ export declare class ESIErrorLimitReachedError extends ESIRequesError {
  */
 export declare const isDebug: () => boolean;
 /**
- * @param method
- * @param opt
+ * @param {string} method
+ * @param {ESIRequestOptions} opt
  * @returns
  */
 export declare const initOptions: (method: string, opt: ESIRequestOptions) => {
@@ -106,9 +107,13 @@ export declare const curl: (endp: string) => string;
  * @type {() => Promise<string>}
  */
 export declare function getSDEVersion(): Promise<string>;
+export declare function getLogger(): {
+    clog: (...args: any[]) => void;
+    rlog: (...args: any[]) => void;
+};
 /**
  * #### Fire a request that does not require authentication.
  *
- * @param {TESIRequestFunctionSignature<ESIRequestOptions>} fn
+ * @param {TESIRequestFunctionSignature<ESIRequestOptions> | TESIRequestFunctionMethods} fn
  */
-export declare function fireRequestsDoesNotRequireAuth(fn: TESIRequestFunctionSignature<ESIRequestOptions>): Promise<void>;
+export declare function fireRequestsDoesNotRequireAuth(fn: TESIRequestFunctionSignature<ESIRequestOptions> | TESIRequestFunctionMethods<ESIRequestOptions>): Promise<void>;

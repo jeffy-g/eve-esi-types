@@ -4,7 +4,8 @@
   "description": "Extracted the main type of ESI. use for ESI request response types (version 2 only)",
   "main": "v2/index.d.ts",
   "scripts": {
-    "test": "node v2.mjs -debug"
+    "test": "node v2.mjs -debug",
+    "test:mini": "node minimal-rq.mjs -debug"
   },
   "repository": {
     "type": "git",
@@ -13,9 +14,7 @@
   "files": [
     "v2",
     "*.d.mts",
-    "v2.mjs",
-    "rq-util.mjs",
-    "minimal-rq.mjs",
+    "*.mjs",
     "LICENSE",
     "*.md",
     "package.json",

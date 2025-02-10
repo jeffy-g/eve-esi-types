@@ -50,8 +50,8 @@ export const isDebug = () => {
     return process.argv.includes("-debug");
 };
 /**
- * @param method
- * @param opt
+ * @param {string} method
+ * @param {ESIRequestOptions} opt
  * @returns
  */
 export const initOptions = (method, opt) => {
@@ -172,49 +172,82 @@ export async function getSDEVersion() {
         return "sde-202Xxxxx-TRANQUILITY";
     }
 }
+export function getLogger() {
+    const clog = console.log.bind(console, '- - -> Get the character data of "CCP Zoetrope"'.magenta);
+    const rlog = console.log.bind(console, '- - -> Run ESI request'.cyan);
+    return { clog, rlog };
+}
+/**
+ * Need typescript v5.5 later
+ * @import * as ESI from "./v2";
+ * @typedef {ESI.TESIResponseOKMap} TESIResponseOKMap
+ * @typedef {ESI.IESIRequestFunction<ESIRequestOptions>} IESIRequestFunction
+ * @typedef {ESI.TESIRequestFunctionMethods<ESIRequestOptions>} TESIRequestFunctionMethods
+ */
+/**
+ * #### Fire a request that does not require authentication.
+ *
+ * @template {TESIEntryMethod} M
+ * @template {keyof TESIResponseOKMap[M]} EP
+ * @template {IfParameterizedPath<EP, Opt>} P2
+ * @template {IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>} Opt
+ * @template {InferESIResponseResult<M, EP>} R
+ *
+ * @param {TESIRequestFunctionSignature<ESIRequestOptions> | TESIRequestFunctionMethods} fn
+ * @param {M} method
+ * @param {EP} endpoint
+ * @param {P2} [pathParams]
+ * @param {Opt} [opt]
+ * @returns {Promise<R>}
+ */
+function fireWithoutAuth(fn, method, endpoint, pathParams, opt) {
+    if (typeof fn === "function") {
+        return fn(method, endpoint, pathParams, opt);
+    }
+    return fn[method](endpoint, pathParams, opt);
+}
 // It should complete correctly.
 /**
  * #### Fire a request that does not require authentication.
  *
- * @param {TESIRequestFunctionSignature<ESIRequestOptions>} fn
+ * @param {TESIRequestFunctionSignature<ESIRequestOptions> | TESIRequestFunctionMethods} fn
  */
 export async function fireRequestsDoesNotRequireAuth(fn) {
-    const clog = console.log.bind(console, '- - -> Get the character data of "CCP Zoetrope"'.magenta);
-    const rlog = console.log.bind(console, '- - -> Run ESI request'.cyan);
+    const { clog, rlog } = getLogger();
     try {
         // - - - - - - - - - - - -
         //       Character
         // - - - - - - - - - - - -
         // Here, I borrow data from "CCP Zoetrope".
         clog();
-        await fn("get", "/characters/{character_id}/", 2112625428).then(log);
+        await fireWithoutAuth(fn, "get", "/characters/{character_id}/", 2112625428).then(log);
         clog('(portrait)');
-        await fn("get", "/characters/{character_id}/portrait/", 2112625428).then(log);
+        await fireWithoutAuth(fn, "get", "/characters/{character_id}/portrait/", 2112625428).then(log);
         clog('(affiliation)');
-        const affiliation = await fn("post", "/characters/affiliation/", { body: [2112625428] });
+        const affiliation = await fireWithoutAuth(fn, "post", "/characters/affiliation/", { body: [2112625428] });
         log(affiliation);
         clog('(corporation)');
-        await fn("get", "/corporations/{corporation_id}/", affiliation[0].corporation_id).then(log);
+        await fireWithoutAuth(fn, "get", "/corporations/{corporation_id}/", affiliation[0].corporation_id).then(log);
         rlog("get:/incursions/".green);
-        await fn("get", "/incursions/").then(log);
+        await fireWithoutAuth(fn, "get", "/incursions/").then(log);
         // - - - - - - - - - - - -
         //     Miscellaneous
         // - - - - - - - - - - - -
         rlog("post:/universe/ids/".green);
-        const ids = await fn("post", "/universe/ids/", { body: ["the forge", "plex"] });
-        log(ids);
+        const ids = await fireWithoutAuth(fn, "post", "/universe/ids/", { body: ["the forge", "plex"] });
+        log(ids.inventory_types, ids.regions);
         rlog(`get:/markets/${ids?.regions?.[0].id}/orders/?type_id=${ids?.inventory_types?.[0].id}, item PLEX`.green);
-        const orders = await fn("get", "/markets/{region_id}/orders/", ids?.regions?.[0].id, {
+        const orders = await fireWithoutAuth(fn, "get", "/markets/{region_id}/orders/", ids?.regions?.[0].id, {
             query: {
                 // page: 1,
                 order_type: "sell",
                 type_id: ids?.inventory_types?.[0].id
             }
         });
-        log(orders.sort((a, b) => a.price - b.price).slice(0, 5));
+        log(orders.sort((a, b) => a.price - b.price).slice(0, 2));
         rlog("get:/universe/structures/?filter=market".green);
         // query patameter `filter` is optional
-        const structures = await fn("get", "/universe/structures/", {
+        const structures = await fireWithoutAuth(fn, "get", "/universe/structures/", {
             query: {
                 filter: "market"
             }
@@ -224,13 +257,13 @@ export async function fireRequestsDoesNotRequireAuth(fn) {
         //  The following is code to observe the behavior of completion by generics.
         //  Authentication is required, so an error will occur.
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-        let ok = await fn("get", "/characters/{character_id}/ship/", 994562, {
+        let ok = await fireWithoutAuth(fn, "get", "/characters/{character_id}/ship/", 994562, {
             auth: true,
             ignoreError: true,
             token: "token.token.token"
         });
         // in this case, "categories" and "search" is required
-        await fn("get", "/characters/{character_id}/search/", 994562, {
+        await fireWithoutAuth(fn, "get", "/characters/{character_id}/search/", 994562, {
             query: {
                 categories: ["agent"],
                 search: "ok"
@@ -238,13 +271,13 @@ export async function fireRequestsDoesNotRequireAuth(fn) {
             auth: true
         });
         // in this case, "order_type" is required
-        await fn("get", "/markets/{region_id}/orders/", 994562, {
+        await fireWithoutAuth(fn, "get", "/markets/{region_id}/orders/", 994562, {
             query: {
                 order_type: "all"
             },
         });
         // TODO: want TypeScript semantics to throw an error because there is a required query parameter, but it's not possible
-        await fn("get", "/characters/{character_id}/search/");
+        await fireWithoutAuth(fn, "get", "/characters/{character_id}/search/");
         log(ok);
     }
     catch (e) {
