@@ -16,6 +16,7 @@ const BASE = "https://esi.evetech.net";
 /**
  * @typedef {import("./src").TESIResponseOKMap} TESIResponseOKMap
  * @typedef {`${string}.${string}.${string}`} TAcccessToken __{Header}.{Payload}.{Signature}__
+ * @typedef {"get" | "post" | "put" | "delete"} TRequestMethod
  */
 /**
  * @typedef ESIRequestOptions
@@ -40,7 +41,7 @@ class ESIRequesError extends Error {
 /**
  * throws when x-esi-error-limit-remain header value is "0". (http status: 420)
  */
-class ESIErrorLimitReachedError extends Error {
+class ESIErrorLimitReachedError extends ESIRequesError {
     constructor() {
         super("Cannot continue ESI request because 'x-esi-error-limit-remain' is zero!");
     }
@@ -119,7 +120,7 @@ const curl = (endp) => {
 // - - - - - - - - - - - - - - - - - - - -
 /**
  * fire ESI request
- * @template {"get" | "post" | "put" | "delete"} M
+ * @template {TRequestMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP
  * @template {number | number[] | ESIRequestOptions} Opt
  * @template {TESIResponseOKMap[M][EP]} R
@@ -154,7 +155,7 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
         headers: {}
     };
     const qss = {
-    // language: "en",
+        language: "en"
     };
     if (opt.query) {
         // Object.assign(queries, options.queries); Object.assign is too slow
@@ -183,9 +184,7 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
     ax++;
     try {
         // @ts-ignore A silly type error will appear, but ignore it.
-        const res = await fetch(`${endpointUrl}?${new URLSearchParams(qss) + ""}`, rqopt).finally(() => {
-            ax--;
-        });
+        const res = await fetch(`${endpointUrl}?${new URLSearchParams(qss) + ""}`, rqopt).finally(() => ax--);
         const stat = res.status;
         if (!res.ok && !opt.ignoreError) {
             if (stat === 420) {

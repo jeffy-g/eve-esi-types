@@ -35,7 +35,7 @@ type ESIRequestOptions = {
 };
 /**
  * fire ESI request
- * @template {"get" | "post" | "put" | "delete"} M
+ * @template {TRequestMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP
  * @template {number | number[] | ESIRequestOptions} Opt
  * @template {TESIResponseOKMap[M][EP]} R

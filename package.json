@@ -12,8 +12,7 @@
   },
   "files": [
     "src",
-    "esi-request.mjs",
-    "esi-request.d.mts",
+    "esi-request.*",
     "LICENSE",
     "*.md",
     "package.json",

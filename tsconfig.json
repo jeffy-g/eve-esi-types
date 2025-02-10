@@ -4,20 +4,19 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "declaration": true,
-    "outDir": ".", 
+    "outDir": ".",
     "target": "esnext",
     "module": "esnext",
-    // "declaration": true,
     "diagnostics": true,
     "newLine": "LF",
     "strict": true,
     "moduleResolution": "node",
     "rootDirs": [
-      "./"
+      "./scripts"
     ]
   },
   "include": [
-    "./esi-request.mts"
+    "./scripts/esi-request.mts"
   ],
   "exclude": []
 }
