@@ -9,7 +9,7 @@
  * THIS TSD IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 2.2.2 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 2.2.3 of the EVE Online ESI response types.
  */
 import "./get_alliances_ok.d.ts";
 import "./get_alliances_alliance_id_ok.d.ts";
@@ -224,7 +224,7 @@ type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
  * ```
  */
 export interface IESIRequestFunction<ActualOpt>
-  extends TESIRequestFunctionSignature<ActualOpt>, IESIRequestFunctionMethods<ActualOpt> {
+  extends TESIRequestFunctionSignature<ActualOpt>, TESIRequestFunctionMethods<ActualOpt> {
 }
 
 /**
@@ -242,19 +242,16 @@ export interface IESIRequestFunction<ActualOpt>
  * };
  * // You can easily implement "get" | "post" | "put" | "delete" requests
  * // with code like the following:
- * const esiMethods = {} as IESIRequestFunctionMethods<ESIRequestOptions>;
- * (["get", "post", "put", "delete"] as (keyof IESIRequestFunctionMethods)[]).forEach((method) => {
+ * const esiMethods = {} as TESIRequestFunctionMethods<ESIRequestOptions>;
+ * (["get", "post", "put", "delete"] as (keyof TESIRequestFunctionMethods)[]).forEach((method) => {
  *     esiMethods[method] = function (endpoint, params, opt) {
  *         return request(method, endpoint, params, opt);
  *     } as TESIRequestFunctionEachMethod<typeof method>;
  * });
  * ```
  */
-export interface IESIRequestFunctionMethods<ActualOpt = {}> {
-  get: TESIRequestFunctionEachMethod<"get", ActualOpt>;
-  post: TESIRequestFunctionEachMethod<"post", ActualOpt>;
-  put: TESIRequestFunctionEachMethod<"put", ActualOpt>;
-  delete: TESIRequestFunctionEachMethod<"delete", ActualOpt>;
+export type TESIRequestFunctionMethods<ActualOpt = {}> = {
+  [method in TESIEntryMethod]: TESIRequestFunctionEachMethod<method, ActualOpt>;
 }
 
 declare global {
@@ -283,7 +280,19 @@ declare global {
     R extends InferESIResponseResult<M, EP>
   >(method: M, endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
 
-
+  /**
+   * Represents a function that makes an ESI request using a specific HTTP method.
+   *
+   * @template M - The HTTP method to use for the request (e.g., "get", "post").
+   * @template ActualOpt - The actual type of the options to include in the request.
+   * 
+   * @param endpoint - The path of the ESI endpoint to send the request to.
+   * @param pathParams - An optional parameter that can be a number, an array of numbers, or other parameters
+   *                     depending on whether the path is parameterized.
+   * @param options - An optional object containing additional options for the request.
+   * 
+   * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
+   */
   type TESIRequestFunctionEachMethod<M extends TESIEntryMethod, ActualOpt = {}> = <
     EP extends keyof TESIResponseOKMap[M],
     P2 extends IfParameterizedPath<EP, Opt>,
