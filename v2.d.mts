@@ -11,7 +11,7 @@ import { type ESIRequestOptions } from "./rq-util.mjs";
  * fire ESI request
  * @template {TESIEntryMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP
- * @template {IsParameterizedPath<EP, number | number[], Opt>} P2
+ * @template {IfParameterizedPath<EP, Opt>} P2
  * @template {IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>} Opt
  * @template {InferESIResponseResult<M, EP>} R
  *
@@ -27,6 +27,6 @@ export declare function fire<
     M extends TESIEntryMethod,
     EP extends keyof TESIResponseOKMap[M],
     Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>,
-    P2 extends IsParameterizedPath<EP, number | number[], Opt>,
+    P2 extends IfParameterizedPath<EP, Opt>,
     R extends InferESIResponseResult<M, EP>
 >(mthd: M, endp: EP, pathParams?: P2, opt?: Opt): Promise<R>;

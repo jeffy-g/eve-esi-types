@@ -29,7 +29,7 @@ const incrementAx = (minus) => minus ? ax-- : ax++;
  * fire ESI request
  * @template {TESIEntryMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP
- * @template {IsParameterizedPath<EP, number | number[], Opt>} P2
+ * @template {IfParameterizedPath<EP, Opt>} P2
  * @template {IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>} Opt
  * @template {InferESIResponseResult<M, EP>} R
  *
@@ -43,11 +43,11 @@ const incrementAx = (minus) => minus ? ax-- : ax++;
  */
 export async function fire(mthd, endp, pathParams, opt) {
     if (typeof pathParams === "number") {
-        // @ts-ignore 
+        // @ts-expect-error
         pathParams = [pathParams]; // as unknown as P2;
     }
     if (isArray(pathParams)) {
-        // @ts-ignore actualy endp is string
+        // @ts-expect-error actualy endp is string
         endp = replaceCbt(endp, pathParams);
     }
     // When only options are provided
@@ -55,13 +55,13 @@ export async function fire(mthd, endp, pathParams, opt) {
     // @ts-ignore
     const actualOpt = opt || pathParams || {};
     const { rqopt, qss } = initOptions(mthd, actualOpt);
-    // @ts-ignore actualy endp is string
+    // @ts-expect-error actualy endp is string
     const endpointUrl = curl(endp);
-    const url = `${endpointUrl}?${new URLSearchParams(qss) + ""}`;
+    const up = new URLSearchParams(qss);
+    const url = `${endpointUrl}${up.size ? `?${up}` : ""}`;
     LOG && log(url);
     ax++;
     try {
-        // @ts-ignore A silly type error will appear, but ignore it.
         const res = await fetch(url, rqopt).finally(() => ax--);
         const { status } = res;
         if (!res.ok && !actualOpt.ignoreError) {
@@ -88,19 +88,19 @@ export async function fire(mthd, endp, pathParams, opt) {
             }
             // - - - - x-pages response.
             // +undefined is NaN
-            // @ts-ignore becouse +null is 0
+            // @ts-expect-error becouse +null is 0
             const pc = +res.headers.get("x-pages");
             // has remaining pages? NaN > 1 === false !isNaN(pageCount)
             if (pc > 1) {
                 LOG && log('found "x-pages" header, pages: %d', pc);
-                const remData = await fetchP(endpointUrl, rqopt, qss, pc, incrementAx);
+                const remData = await fetchP(endpointUrl, rqopt, up, pc, incrementAx);
                 // finally, decide product data.
                 if (isArray(data) && isArray(remData)) {
                     // DEVNOTE: 2019/7/23 15:01:48 - types
                     return /** @type {R} */ (data.concat(remData));
                 }
                 else {
-                    // @ts-ignore TODO: fix type
+                    // @ts-expect-error TODO: fix type
                     remData && Object.assign(data, remData);
                 }
             }
@@ -108,7 +108,7 @@ export async function fire(mthd, endp, pathParams, opt) {
         }
     }
     catch (e) {
-        // @ts-ignore actualy endp is string
+        // @ts-expect-error actualy endp is string
         throw new ESIRequesError(`message: ${e.message}, endpoint=${endp}`);
     }
 }
@@ -123,7 +123,6 @@ async function getEVEStatus(fn) {
     return fn("get", "/status/");
 }
 // type following and run
-// bun scripts/v2.mts
 // node v2.mjs
 // or yarn test
 getEVEStatus(fire).then(eveStatus => console.log(eveStatus));

@@ -4,7 +4,7 @@
   "description": "Extracted the main type of ESI. use for ESI request response types (version 2 only)",
   "main": "v2/index.d.ts",
   "scripts": {
-    "test": "node v2.mjs"
+    "test": "node v2.mjs -debug"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,6 @@
   },
   "homepage": "https://github.com/jeffy-g/eve-esi-types#readme",
   "devDependencies": {
-    "colors": "^1.4.0"
+    "colors.ts": "^1.0.20"
   }
 }

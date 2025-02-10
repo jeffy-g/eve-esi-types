@@ -23,7 +23,6 @@ const DEBUG = util.isDebug();
 // - - - - - - - - - - - - - - - - - - - -
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
-// node scripts/minimal-rq.mjs
 /** #### Sample of `TESIRequestFunctionSignature`
  *
  * + This is a minimal implementation using `TESIRequestFunctionSignature`.
@@ -39,20 +38,20 @@ const DEBUG = util.isDebug();
  */
 export const request = (method, endpoint, pathParams, opt) => {
     if (typeof pathParams === "number") {
-        // @ts-ignore 
+        // @ts-expect-error 
         pathParams = [pathParams];
     }
     if (Array.isArray(pathParams)) {
-        // @ts-ignore actualy endp is string
+        // @ts-expect-error actualy endp is string
         endpoint = util.replaceCbt(endpoint, pathParams);
     }
     // When only options are provided
-    // @ts-ignore
-    const actualOpt = /** @type {ESIRequestOptions} */ (opt || pathParams || {});
+    const actualOpt = /** @type {NonNullable<typeof opt>} */ (opt || pathParams || {});
     const { rqopt, qss } = util.initOptions(method, actualOpt);
-    // @ts-ignore actualy endp is string
+    // @ts-expect-error actualy endp is string
     const endpointUrl = util.curl(endpoint);
-    const url = `${endpointUrl}?${new URLSearchParams(qss) + ""}`;
+    const up = new URLSearchParams(qss);
+    const url = `${endpointUrl}${up.size ? `?${up}` : ""}`;
     DEBUG && log(url);
     return fetch(url, rqopt).then(res => res.json()).catch(reason => {
         throw new util.ESIRequesError(reason.message ? reason.message : reason);
@@ -69,7 +68,7 @@ async function getEVEStatus(fn) {
     return fn("get", "/status/");
 }
 // type following and run
-// node minimal-rq.mjs
+// node minimal-rq.mjs -debug
 getEVEStatus(request).then(eveStatus => log(eveStatus));
 // {
 //     "players": 16503,

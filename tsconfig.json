@@ -20,5 +20,7 @@
   "include": [
     "./scripts/*.mts"
   ],
-  "exclude": []
+  "exclude": [
+    "./scripts/auth-*"
+  ]
 }

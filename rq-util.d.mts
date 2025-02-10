@@ -5,7 +5,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import "colors";
+import "colors.ts";
 /**
  * this always `https://esi.evetech.net`
  */
@@ -77,11 +77,11 @@ export declare const initOptions: (method: string, opt: ESIRequestOptions) => {
  *
  * @param {string} endpointUrl
  * @param {RequestInit} rqopt request options
- * @param {Record<string, any>} qs queries
+ * @param {URLSearchParams} rqp queries
  * @param {number} pc pageCount
  * @param {(minus?: number) => void=} increment
  */
-export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: RequestInit, qs: Record<string, any>, pc: number, increment?: (minus?: Truthy) => void) => Promise<T | null>;
+export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: RequestInit, rqp: URLSearchParams, pc: number, increment?: (minus?: Truthy) => void) => Promise<T | null>;
 /** ### replace (C)urly (B)races (T)oken
  *
  * @example
@@ -97,12 +97,12 @@ export declare const replaceCbt: (endpoint: string, ids: number[]) => string;
 /**
  *
  * @param {string} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
- *   + The version parameter can be omitted by using `<version>/<endpoint>`
+ *   + The version parameter is forced to apply `latest`
  */
 export declare const curl: (endp: string) => string;
 /**
  * @date 2020/03/31
- * @version 2.0 fix version date string problem (v1.0
+ * @version 2.1
  * @type {() => Promise<string>}
  */
 export declare function getSDEVersion(): Promise<string>;

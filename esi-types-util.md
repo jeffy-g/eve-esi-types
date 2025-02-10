@@ -8,19 +8,34 @@
 
 ## ESI Types Utility Definitions
 
-### IsParameterizedPath
+### TESIRequestFunctionSignature
 
-`IsParameterizedPath<EP, A, B>` is a type to determine if a path is parameterized. If it is, it returns `A`, otherwise it returns `B`.
+`TESIRequestFunctionSignature<ActualOpt>` is a type that defines the signature of an ESI request function,  
+which sends a request to a specified endpoint and returns a response.
 
-```typescript
-type IsParameterizedPath<EP, A, B> = EP extends `${string}/{${string}}/${string | ""}` ? A : B;
+```ts
+type TESIRequestFunctionSignature<ActualOpt> = <
+  M extends TESIEntryMethod,
+  EP extends keyof TESIResponseOKMap[M],
+  P2 extends IfParameterizedPath<EP, Opt>,
+  Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt>,
+  R extends InferESIResponseResult<M, EP>
+>(method: M, endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
+```
+
+### IfParameterizedPath
+
+`IfParameterizedPath<EP, Opt>` if parameterized path then specify number type, otherwise will be `Opt` type.
+
+```ts
+type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}/${string | ""}` ? number | number[]: Opt;
 ```
 
 ### IdentifyParameters
 
 `IdentifyParameters<Entry, Opt>` is a type to identify the required parameters for a given entry type.
 
-```typescript
+```ts
 type IdentifyParameters<Entry, Opt> = Opt & Pick<Entry, Exclude<keyof Entry, "result">>;
 ```
 
@@ -28,7 +43,7 @@ type IdentifyParameters<Entry, Opt> = Opt & Pick<Entry, Exclude<keyof Entry, "re
 
 `InferESIResponseResult<M extends TESIEntryMethod, EP extends keyof TESIResponseOKMap[M]>` is a type to infer the result type of an ESI response based on the method and endpoint.
 
-```typescript
+```ts
 type InferESIResponseResult<
   M extends TESIEntryMethod,
   EP extends keyof TESIResponseOKMap[M]
@@ -39,7 +54,7 @@ type InferESIResponseResult<
 
 `TESIEntryMethod` represents the HTTP methods supported by ESI.
 
-```typescript
+```ts
 type TESIEntryMethod = keyof TESIResponseOKMap;
 ```
 
@@ -47,7 +62,7 @@ type TESIEntryMethod = keyof TESIResponseOKMap;
 
 `TEndPointGet` represents the endpoints for the "get" method.
 
-```typescript
+```ts
 type TEndPointGet = keyof TESIResponseOKMap["get"];
 ```
 
@@ -55,7 +70,7 @@ type TEndPointGet = keyof TESIResponseOKMap["get"];
 
 `TEndPointPost` represents the endpoints for the "post" method.
 
-```typescript
+```ts
 type TEndPointPost = keyof TESIResponseOKMap["post"];
 ```
 
@@ -63,7 +78,7 @@ type TEndPointPost = keyof TESIResponseOKMap["post"];
 
 `TEndPointPut` represents the endpoints for the "put" method.
 
-```typescript
+```ts
 type TEndPointPut = keyof TESIResponseOKMap["put"];
 ```
 
@@ -71,7 +86,7 @@ type TEndPointPut = keyof TESIResponseOKMap["put"];
 
 `TEndPointDelete` represents the endpoints for the "delete" method.
 
-```typescript
+```ts
 type TEndPointDelete = keyof TESIResponseOKMap["delete"];
 ```
 
@@ -79,7 +94,7 @@ type TEndPointDelete = keyof TESIResponseOKMap["delete"];
 
 `TESIResponseGetEntry<K extends TEndPointGet>` represents the entry details for the "get" method.
 
-```typescript
+```ts
 type TESIResponseGetEntry<K extends TEndPointGet> = TESIResponseOKMap["get"][K];
 ```
 
@@ -87,7 +102,7 @@ type TESIResponseGetEntry<K extends TEndPointGet> = TESIResponseOKMap["get"][K];
 
 `TESIResponsePutEntry<K extends TEndPointPut>` represents the entry details for the "put" method.
 
-```typescript
+```ts
 type TESIResponsePutEntry<K extends TEndPointPut> = TESIResponseOKMap["put"][K];
 ```
 
@@ -95,7 +110,7 @@ type TESIResponsePutEntry<K extends TEndPointPut> = TESIResponseOKMap["put"][K];
 
 `TESIResponsePostEntry<K extends TEndPointPost>` represents the entry details for the "post" method.
 
-```typescript
+```ts
 type TESIResponsePostEntry<K extends TEndPointPost> = TESIResponseOKMap["post"][K];
 ```
 
@@ -103,6 +118,6 @@ type TESIResponsePostEntry<K extends TEndPointPost> = TESIResponseOKMap["post"][
 
 `TESIResponseDeleteEntry<K extends TEndPointDelete>` represents the entry details for the "delete" method.
 
-```typescript
+```ts
 type TESIResponseDeleteEntry<K extends TEndPointDelete> = TESIResponseOKMap["delete"][K];
 ```

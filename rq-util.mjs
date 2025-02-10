@@ -5,10 +5,11 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+/// <reference types="./v2"/>
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
-import "colors";
+import "colors.ts";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -59,12 +60,11 @@ export const initOptions = (method, opt) => {
         method,
         mode: "cors",
         cache: "no-cache",
-        // @ts-ignore 
         signal: opt.cancelable?.signal,
         headers: {}
     };
     const qss = {
-        language: "en",
+    // language: "en",
     };
     if (opt.query) {
         // Object.assign(query, options.query); Object.assign is too slow
@@ -89,13 +89,12 @@ export const initOptions = (method, opt) => {
  *
  * @param {string} endpointUrl
  * @param {RequestInit} rqopt request options
- * @param {Record<string, any>} qs queries
+ * @param {URLSearchParams} rqp queries
  * @param {number} pc pageCount
  * @param {(minus?: number) => void=} increment
  */
-export const fetchP = async (endpointUrl, rqopt, qs, pc, increment = () => { }) => {
+export const fetchP = async (endpointUrl, rqopt, rqp, pc, increment = () => { }) => {
     const rqs = [];
-    const rqp = new URLSearchParams(qs);
     for (let i = 2; i <= pc;) {
         rqp.set("page", (i++) + "");
         increment();
@@ -143,7 +142,7 @@ export const replaceCbt = (endpoint, ids) => {
 /**
  *
  * @param {string} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
- *   + The version parameter can be omitted by using `<version>/<endpoint>`
+ *   + The version parameter is forced to apply `latest`
  */
 export const curl = (endp) => {
     endp = endp.replace(/^\/+|\/+$/g, "");
@@ -151,33 +150,25 @@ export const curl = (endp) => {
 };
 /**
  * @date 2020/03/31
- * @version 2.0 fix version date string problem (v1.0
+ * @version 2.1
  * @type {() => Promise<string>}
  */
 export async function getSDEVersion() {
     const sdeZipUrl = "https://eve-static-data-export.s3-eu-west-1.amazonaws.com/tranquility/sde.zip";
-    const date = await fetch(sdeZipUrl, { method: "head", mode: "cors" }).then((/** @type {Response} */ res) => res.headers.get("last-modified")).catch(reason => {
-        console.log(reason);
-        return new Date();
-    });
-    if (date) {
-        const YMD = new Date(date).toLocaleString(void 0, {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            // DEVNOTE: 191215 - "-" character appeared in node v13.3.0 (maybe
-        }).replace(/(-|\/|:| )/g, (match, $1) => {
-            switch ($1) {
-                case "-":
-                case "/":
-                case ":": return "";
-                case " ": return "@";
-            }
-            return match;
-        });
-        return `sde-${YMD}-TRANQUILITY`;
+    try {
+        const res = await fetch(sdeZipUrl, { method: "head", mode: "cors" });
+        const date = res.headers.get("last-modified");
+        if (date) {
+            const YMD = new Date(date).toLocaleDateString('en-CA').replace(/-/g, '');
+            return `sde-${YMD}-TRANQUILITY`;
+        }
+        else {
+            console.error("Failed to retrieve 'last-modified' header.");
+            return "sde-202Xxxxx-TRANQUILITY";
+        }
     }
-    else {
+    catch (e) {
+        console.error("Error fetching SDE version:", e);
         return "sde-202Xxxxx-TRANQUILITY";
     }
 }

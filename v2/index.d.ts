@@ -224,15 +224,20 @@ declare global {
   type TESIRequestFunctionSignature<ActualOpt> = <
     M extends TESIEntryMethod,
     EP extends keyof TESIResponseOKMap[M],
-    P2 extends IsParameterizedPath<EP, number | number[], Opt>,
+    P2 extends IfParameterizedPath<EP, Opt>,
     Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt>,
     R extends InferESIResponseResult<M, EP>
   >(method: M, endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
 
+  // /**
+  //  * is parameterized path
+  //  */
+  // type IsParameterizedPath<EP, A, B> = EP extends `${string}/{${string}}/${string | ""}` ? A: B;
   /**
-   * is parameterized path
+   * if parameterized path then specify number type, otherwise will be `Opt` type.
    */
-  type IsParameterizedPath<EP, A, B> = EP extends `${string}/{${string}}/${string | ""}` ? A: B;
+  type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}/${string | ""}` ? number | number[]: Opt;
+
   /**
    * Identifies the required parameters for a given entry type.
    *
