@@ -9,7 +9,7 @@
  * THIS TSD IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 2.2.3 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 2.2.4 of the EVE Online ESI response types.
  */
 import "./get_alliances_ok.d.ts";
 import "./get_alliances_alliance_id_ok.d.ts";
