@@ -144,31 +144,11 @@ interface GetFwLeaderboardsActiveTotalActiveTotal {
 /**
  * last_week object
  */
-interface GetFwLeaderboardsLastWeekLastWeek {
-  /**
-   * Amount of kills
-   */
-  amount?: number;
-  /**
-   * faction_id integer
-   */
-  faction_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsLastWeekLastWeek extends GetFwLeaderboardsActiveTotalActiveTotal {}
 /**
  * yesterday object
  */
-interface GetFwLeaderboardsYesterdayYesterday {
-  /**
-   * Amount of kills
-   */
-  amount?: number;
-  /**
-   * faction_id integer
-   */
-  faction_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsYesterdayYesterday extends GetFwLeaderboardsActiveTotalActiveTotal {}
 /**
  * Top 4 rankings of factions by victory points from yesterday, last week and in total
  */
@@ -195,28 +175,8 @@ interface GetFwLeaderboardsActiveTotalActiveTotal_1 {
 /**
  * last_week object
  */
-interface GetFwLeaderboardsLastWeekLastWeek_1 {
-  /**
-   * Amount of victory points
-   */
-  amount?: number;
-  /**
-   * faction_id integer
-   */
-  faction_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsLastWeekLastWeek_1 extends GetFwLeaderboardsActiveTotalActiveTotal_1 {}
 /**
  * yesterday object
  */
-interface GetFwLeaderboardsYesterdayYesterday_1 {
-  /**
-   * Amount of victory points
-   */
-  amount?: number;
-  /**
-   * faction_id integer
-   */
-  faction_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsYesterdayYesterday_1 extends GetFwLeaderboardsActiveTotalActiveTotal_1 {}
