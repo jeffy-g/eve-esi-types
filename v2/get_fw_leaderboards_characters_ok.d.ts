@@ -72,31 +72,11 @@ interface GetFwLeaderboardsCharactersActiveTotalActiveTotal {
 /**
  * last_week object
  */
-interface GetFwLeaderboardsCharactersLastWeekLastWeek {
-  /**
-   * Amount of kills
-   */
-  amount?: number;
-  /**
-   * character_id integer
-   */
-  character_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsCharactersLastWeekLastWeek extends GetFwLeaderboardsCharactersActiveTotalActiveTotal{}
 /**
  * yesterday object
  */
-interface GetFwLeaderboardsCharactersYesterdayYesterday {
-  /**
-   * Amount of kills
-   */
-  amount?: number;
-  /**
-   * character_id integer
-   */
-  character_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsCharactersYesterdayYesterday extends GetFwLeaderboardsCharactersActiveTotalActiveTotal{}
 /**
  * Top 100 rankings of pilots by victory points from yesterday, last week and in total
  */
@@ -123,28 +103,8 @@ interface GetFwLeaderboardsCharactersActiveTotalActiveTotal_1 {
 /**
  * last_week object
  */
-interface GetFwLeaderboardsCharactersLastWeekLastWeek_1 {
-  /**
-   * Amount of victory points
-   */
-  amount?: number;
-  /**
-   * character_id integer
-   */
-  character_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsCharactersLastWeekLastWeek_1 extends GetFwLeaderboardsCharactersActiveTotalActiveTotal_1{}
 /**
  * yesterday object
  */
-interface GetFwLeaderboardsCharactersYesterdayYesterday_1 {
-  /**
-   * Amount of victory points
-   */
-  amount?: number;
-  /**
-   * character_id integer
-   */
-  character_id?: number;
-  [k: string]: unknown | undefined;
-}
+interface GetFwLeaderboardsCharactersYesterdayYesterday_1 extends GetFwLeaderboardsCharactersActiveTotalActiveTotal_1{}
