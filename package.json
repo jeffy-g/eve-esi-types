@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/jeffy-g/eve-esi-types/issues"
   },
-  "homepage": "https://github.com/jeffy-g/eve-esi-types#readme"
+  "homepage": "https://github.com/jeffy-g/eve-esi-types#readme",
+  "peerDependencies": {
+    "typescript": "latest"
+  }
 }
