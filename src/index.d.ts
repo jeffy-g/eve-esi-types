@@ -9,7 +9,7 @@
  * THIS TSD IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v1/index.d.ts
- * @summary This file is auto-generated and defines version 1.2.1 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 1.2.2 of the EVE Online ESI response types.
  */
 import "./get_wars_ok.d.ts";
 import "./get_status_ok.d.ts";
