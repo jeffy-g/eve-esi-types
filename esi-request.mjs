@@ -1,4 +1,14 @@
-// import type { TESIResponseOKMap } from "eve-esi-types";
+/*!
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+  Released under the MIT license
+  https://opensource.org/licenses/mit-license.php
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+/// <reference types="./src"/>
+// - - - - - - - - - - - - - - - - - - - -
+//               imports
+// - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -108,39 +118,62 @@ const replaceCbt = (endpoint, ids) => {
 };
 /**
  *
- * @param {string} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
+ * @param {string} endpoint this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
  *   + The version parameter can be omitted by using `<version>/<endpoint>`
  */
-const curl = (endp) => {
-    endp = endp.replace(/^\/+|\/+$/g, "");
-    return `${BASE}/latest/${endp}/`;
+const curl = (endpoint) => {
+    endpoint = endpoint.replace(/^\/+|\/+$/g, "");
+    return `${BASE}/latest/${endpoint}/`;
 };
 // - - - - - - - - - - - - - - - - - - - -
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
+/* ctt
 /**
  * fire ESI request
  * @template {TRequestMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP
- * @template {number | number[] | ESIRequestOptions} Opt
+ * @template {IfParameterizedPath<EP, ESIRequestOptions>} P2
  * @template {TESIResponseOKMap[M][EP]} R
  *
- * @param {M} mthd
- * @param {EP} endp - The endpoint to request.
- * @param {Opt} [pathParams] - Optional path parameters.
+ * @param {M} method
+ * @param {EP} endpoint - The endpoint to request.
+ * @param {P2} [pathParams] - Optional path parameters.
  * @param {ESIRequestOptions} [opt] - default is empty object {}. `body` is json string
  * @returns {Promise<R>} - The response from the endpoint.
  * @throws
  * @async
+ * /
+export async function fire<
+    M extends TRequestMethod,
+    EP extends keyof TESIResponseOKMap[M],
+    P2 extends IfParameterizedPath<EP, ESIRequestOptions>,
+    R extends TESIResponseOKMap[M][EP]
+>(
+    method: M, endpoint: EP, pathParams?: P2, opt: ESIRequestOptions = {}
+): Promise<R> {
+/*/
+/**
+ * fire ESI request
+ * @type {TESIRequestFunctionSignatureV1<ESIRequestOptions>}
+ *
+ * @param method
+ * @param endpoint - The endpoint to request.
+ * @param [pathParams] - Optional path parameters.
+ * @param {ESIRequestOptions} [opt] - default is empty object {}. `body` is json string
+ * @returns - The response from the endpoint.
+ * @throws
+ * @async
  */
-export async function fire(mthd, endp, pathParams, opt = {}) {
+export const fire = async (method, endpoint, pathParams, opt = {}) => {
+    //*/
     if (typeof pathParams === "number") {
         // @ts-expect-error 
         pathParams = [pathParams];
     }
     if (isArray(pathParams)) {
-        // @ts-ignore actualy endp is string
-        endp = replaceCbt(endp, pathParams);
+        // @ts-expect-error actualy endpoint is string
+        endpoint = replaceCbt(endpoint, pathParams);
     }
     else {
         // When only options are provided
@@ -148,7 +181,7 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
     }
     /** @type {RequestInit} */
     const rqopt = {
-        method: mthd,
+        method,
         mode: "cors",
         cache: "no-cache",
         signal: opt.cancelable?.signal,
@@ -160,9 +193,7 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
     if (opt.query) {
         // Object.assign(queries, options.queries); Object.assign is too slow
         const oqs = opt.query;
-        for (const k of Object.keys(oqs)) {
-            qss[k] = oqs[k];
-        }
+        Object.keys(oqs).forEach(k => qss[k] = oqs[k]);
     }
     // DEVNOTE: when datasource is not empty string. (e.g - "singularity"
     // in this case must specify datasource.
@@ -179,8 +210,8 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
         rqopt.headers["content-type"] = "application/json";
         rqopt.body = JSON.stringify(opt.body);
     }
-    // @ts-ignore actualy endp is string
-    const endpointUrl = curl(endp);
+    // @ts-ignore actualy endpoint is string
+    const endpointUrl = curl(endpoint);
     ax++;
     try {
         // @ts-ignore A silly type error will appear, but ignore it.
@@ -192,17 +223,17 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
                 throw new ESIErrorLimitReachedError();
             }
             else {
-                // @ts-ignore actualy endp is string
-                throw new ESIRequesError(`maybe network disconneted or otherwise request data are invalid. (endpoint=${endp}, http status=${stat})`);
+                // @ts-ignore actualy endpoint is string
+                throw new ESIRequesError(`maybe network disconneted or otherwise request data are invalid. (endpoint=${endpoint}, http status=${stat})`);
             }
         }
         else {
             // DEVNOTE: - 204 No Content
             if (stat === 204) {
                 // this result is empty, decided to return status code.
-                return /** @type {R} */ ({ status: stat });
+                // @ts-ignore
+                return { status: stat };
             }
-            /** @type {R} */
             const data = await res.json();
             if (opt.ignoreError) {
                 // meaning `forceJson`?
@@ -219,7 +250,8 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
                 // finally, decide product data.
                 if (isArray(data) && isArray(remData)) {
                     // DEVNOTE: 2019/7/23 15:01:48 - types
-                    return /** @type {R} */ (data.concat(remData));
+                    // @ts-ignore 
+                    return data.concat(remData);
                 }
                 else {
                     // @ts-ignore TODO: fix type
@@ -230,10 +262,10 @@ export async function fire(mthd, endp, pathParams, opt = {}) {
         }
     }
     catch (e) {
-        // @ts-ignore actualy endp is string
-        throw new ESIRequesError(`unknown error occurred, message: ${e.message}, endpoint=${endp}`);
+        // @ts-ignore actualy endpoint is string
+        throw new ESIRequesError(`unknown error occurred, message: ${e.message}, endpoint=${endpoint}`);
     }
-}
+};
 // It should complete correctly.
 async function getEVEStatus() {
     try {

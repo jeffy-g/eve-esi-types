@@ -5,8 +5,6 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import type { TESIResponseOKMap } from "./src";
-type TRequestMethod = "get" | "post" | "put" | "delete";
 /**
  * __{Header}.{Payload}.{Signature}__
  */
@@ -35,24 +33,15 @@ type ESIRequestOptions = {
 };
 /**
  * fire ESI request
- * @template {TRequestMethod} M
- * @template {keyof TESIResponseOKMap[M]} EP
- * @template {number | number[] | ESIRequestOptions} Opt
- * @template {TESIResponseOKMap[M][EP]} R
+ * @type {TESIRequestFunctionSignatureV1<ESIRequestOptions>}
  *
- * @param {M} mthd
- * @param {EP} endp - The endpoint to request.
- * @param {Opt} [pathParams] - Optional path parameters.
+ * @param method
+ * @param endpoint - The endpoint to request.
+ * @param [pathParams] - Optional path parameters.
  * @param {ESIRequestOptions} [opt] - default is empty object {}. `body` is json string
- * @returns {Promise<R>} - The response from the endpoint.
+ * @returns - The response from the endpoint.
  * @throws
  * @async
  */
-export declare function fire<
-    M extends TRequestMethod,
-    EP extends keyof TESIResponseOKMap[M],
-    Opt extends number | number[] | ESIRequestOptions,
-    R extends TESIResponseOKMap[M][EP]
->(
-    mthd: M, endp: EP, pathParams?: Opt, opt?: ESIRequestOptions
-): Promise<R>;
+export declare const fire: TESIRequestFunctionSignatureV1<ESIRequestOptions>;
+export {};

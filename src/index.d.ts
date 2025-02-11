@@ -197,11 +197,47 @@ import "./get_corporations_corporation_id_contracts_contract_id_items_ok.d.ts";
 import "./get_corporations_corporation_id_wallets_division_transactions_ok.d.ts";
 
 
-/**
- * Represents a response with no content (HTTP status 204).
- * Although no data is returned, it indicates successful completion by returning a status of 204.
- */
-type NoContentResponse = { status: 204 };
+declare global {
+  /**
+   * Represents a response with no content (HTTP status 204).
+   * Although no data is returned, it indicates successful completion by returning a status of 204.
+   */
+  type NoContentResponse = { status: 204 };
+  /**
+   * Represents the HTTP methods supported by ESI.
+   * 
+   * ```ts
+   * "get" | "post" | "put" | "delete"
+   * ```
+   */
+  type TESIEntryMethod = keyof TESIResponseOKMap;
+  /**
+   * if parameterized path then specify number type, otherwise will be `Opt` type.
+   */
+  type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}/${string | ""}` ? number | number[]: Opt;
+  /**
+   * ### ESI request function all in one signature
+   * 
+   * TESIRequestFunctionSignature is a type that defines the signature of an ESI request function.
+   * 
+   * This function sends a request to a specified endpoint and returns a response.
+   * 
+   * @template ActualOpt - The actual type of the option.  
+   *   Required parameters inferred by typescript are merged.
+   * @template M - The HTTP method to use for the request
+   * @template EP - The Path of the ESI endpoint to send the request to
+   * @template P2 - Parameters to include in the request
+   * @template Opt - Options to include in the request  
+   *   If there is a required parameter, its type will be merged with `ActualOpt`
+   * @template R - The response type
+   */
+  type TESIRequestFunctionSignatureV1<ActualOpt> = <
+    M extends TESIEntryMethod,
+    EP extends keyof TESIResponseOKMap[M],
+    P2 extends IfParameterizedPath<EP, ActualOpt>,
+    R extends TESIResponseOKMap[M][EP]
+  >(method: M, endpoint: EP, pathParams?: P2, options?: ActualOpt) => Promise<R>;
+}
 
 export type TESIResponseOKMap = {
   get: {
