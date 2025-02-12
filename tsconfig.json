@@ -21,6 +21,7 @@
     "./scripts/*.mts"
   ],
   "exclude": [
-    "./scripts/auth-*"
+    "./scripts/auth-*",
+    "./scripts/esi-*",
   ]
 }
