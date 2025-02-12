@@ -26,8 +26,8 @@ $ node v2.mjs
 export declare function fire<
     M extends TESIEntryMethod,
     EP extends keyof TESIResponseOKMap[M],
+    P2 extends IfParameterizedPath<EP, Opt>,
     Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>,
-    P2 extends IsParameterizedPath<EP, number | number[], Opt>,
     R extends InferESIResponseResult<M, EP>
 >(mthd: M, endp: EP, pathParams?: P2, opt?: Opt): Promise<R>;
 ```

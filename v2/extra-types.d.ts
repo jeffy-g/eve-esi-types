@@ -438,13 +438,6 @@ type PostUniverseNamesIds = number[];
 
 
 /*! query types */
-/* get_characters_character_id_calendar, from_event query type */
-
-/**
- * The event ID to retrieve events from
- */
-type GetCharactersCharacterIdCalendarFromEvent = number;
-
 /* delete_characters_character_id_contacts, contact_ids query type */
 
 /**
@@ -464,20 +457,6 @@ type DeleteCharactersCharacterIdContactsContactIds = number[];
  */
 type PostCharactersCharacterIdContactsLabelIds = number[];
 
-/* post_characters_character_id_contacts, standing query type */
-
-/**
- * Standing for the contact
- */
-type PostCharactersCharacterIdContactsStanding = number;
-
-/* post_characters_character_id_contacts, watched query type */
-
-/**
- * Whether the contact should be watched, note this is only effective on characters
- */
-type PostCharactersCharacterIdContactsWatched = boolean;
-
 /* put_characters_character_id_contacts, label_ids query type */
 
 /**
@@ -486,27 +465,6 @@ type PostCharactersCharacterIdContactsWatched = boolean;
  * @maxItems 63
  */
 type PutCharactersCharacterIdContactsLabelIds = number[];
-
-/* put_characters_character_id_contacts, standing query type */
-
-/**
- * Standing for the contact
- */
-type PutCharactersCharacterIdContactsStanding = number;
-
-/* put_characters_character_id_contacts, watched query type */
-
-/**
- * Whether the contact should be watched, note this is only effective on characters
- */
-type PutCharactersCharacterIdContactsWatched = boolean;
-
-/* get_characters_character_id_industry_jobs, include_completed query type */
-
-/**
- * Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days
- */
-type GetCharactersCharacterIdIndustryJobsIncludeCompleted = boolean;
 
 /* get_characters_character_id_mail, labels query type */
 
@@ -517,13 +475,6 @@ type GetCharactersCharacterIdIndustryJobsIncludeCompleted = boolean;
  * @maxItems 25
  */
 type GetCharactersCharacterIdMailLabels = [number, ...number[]];
-
-/* get_characters_character_id_mail, last_mail_id query type */
-
-/**
- * List only mail with an ID lower than the given ID, if present
- */
-type GetCharactersCharacterIdMailLastMailId = number;
 
 /* get_characters_character_id_search, categories query type */
 type GetCharactersCharacterIdSearchCategory =
@@ -555,61 +506,12 @@ type GetCharactersCharacterIdSearchCategories = GetCharactersCharacterIdSearchCa
  */
 type GetCharactersCharacterIdSearchSearch = string;
 
-/* get_characters_character_id_search, strict query type */
-
-/**
- * Whether the search should be a strict match
- */
-type GetCharactersCharacterIdSearchStrict = boolean;
-
-/* get_characters_character_id_wallet_transactions, from_id query type */
-
-/**
- * Only show transactions happened before the one referenced by this id
- */
-type GetCharactersCharacterIdWalletTransactionsFromId = number;
-
-/* get_corporations_corporation_id_industry_jobs, include_completed query type */
-
-/**
- * Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days
- */
-type GetCorporationsCorporationIdIndustryJobsIncludeCompleted = boolean;
-
-/* get_corporations_corporation_id_starbases_starbase_id, system_id query type */
-
-/**
- * The solar system this starbase (POS) is located in,
- */
-type GetCorporationsCorporationIdStarbasesStarbaseIdSystemId = number;
-
-/* get_corporations_corporation_id_wallets_division_transactions, from_id query type */
-
-/**
- * Only show journal entries happened before the transaction referenced by this id
- */
-type GetCorporationsCorporationIdWalletsDivisionTransactionsFromId = number;
-
-/* get_markets_region_id_history, type_id query type */
-
-/**
- * Return statistics for this type
- */
-type GetMarketsRegionIdHistoryTypeId = number;
-
 /* get_markets_region_id_orders, order_type query type */
 
 /**
  * Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders
  */
 type GetMarketsRegionIdOrdersOrderType = "buy" | "sell" | "all";
-
-/* get_markets_region_id_orders, type_id query type */
-
-/**
- * Return orders only for this type
- */
-type GetMarketsRegionIdOrdersTypeId = number;
 
 /* get_route_origin_destination, avoid query type */
 
@@ -636,58 +538,9 @@ type GetRouteOriginDestinationConnections = [number, number][];
  */
 type GetRouteOriginDestinationFlag = "shortest" | "secure" | "insecure";
 
-/* post_ui_autopilot_waypoint, add_to_beginning query type */
-
-/**
- * Whether this solar system should be added to the beginning of all waypoints
- */
-type PostUiAutopilotWaypointAddToBeginning = boolean;
-
-/* post_ui_autopilot_waypoint, clear_other_waypoints query type */
-
-/**
- * Whether clean other waypoints beforing adding this one
- */
-type PostUiAutopilotWaypointClearOtherWaypoints = boolean;
-
-/* post_ui_autopilot_waypoint, destination_id query type */
-
-/**
- * The destination to travel to, can be solar system, station or structure's id
- */
-type PostUiAutopilotWaypointDestinationId = number;
-
-/* post_ui_openwindow_contract, contract_id query type */
-
-/**
- * The contract to open
- */
-type PostUiOpenwindowContractContractId = number;
-
-/* post_ui_openwindow_information, target_id query type */
-
-/**
- * The target to open
- */
-type PostUiOpenwindowInformationTargetId = number;
-
-/* post_ui_openwindow_marketdetails, type_id query type */
-
-/**
- * The item type to open in market window
- */
-type PostUiOpenwindowMarketdetailsTypeId = number;
-
 /* get_universe_structures, filter query type */
 
 /**
  * Only list public structures that have this service online
  */
 type GetUniverseStructuresFilter = "market" | "manufacturing_basic";
-
-/* get_wars, max_war_id query type */
-
-/**
- * Only return wars with ID smaller than this
- */
-type GetWarsMaxWarId = number;
