@@ -5,11 +5,12 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+export type TRequestMethod = "get" | "post" | "put" | "delete";
 /**
  * __{Header}.{Payload}.{Signature}__
  */
-type TAcccessToken = `${string}.${string}.${string}`;
-type ESIRequestOptions = {
+export type TAcccessToken = `${string}.${string}.${string}`;
+export type ESIRequestOptions = {
     /**
      * query params for ESI request.
      */
@@ -44,4 +45,3 @@ type ESIRequestOptions = {
  * @async
  */
 export declare const fire: TESIRequestFunctionSignatureV1<ESIRequestOptions>;
-export {};
