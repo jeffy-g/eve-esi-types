@@ -9,7 +9,7 @@
  * THIS TSD IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v1/response-map.d.ts
- * @summary This file is auto-generated and defines version 1.2.5 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 1.2.6 of the EVE Online ESI response types.
  */
 import "./types-index.d.ts";
 
