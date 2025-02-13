@@ -1,6 +1,6 @@
 {
   "name": "eve-esi-types",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Extracted the main type of ESI. use for ESI request response types (version 1 only)",
   "main": "src/index.d.ts",
   "scripts": {

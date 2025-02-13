@@ -1,0 +1,226 @@
+/*!
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+//  Released under the MIT license
+//  https://opensource.org/licenses/mit-license.php
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+/**
+ * THIS TSD IS AUTO GENERATED, DO NOT EDIT
+ * 
+ * @file eve-esi-types/v1/response-map.d.ts
+ * @summary This file is auto-generated and defines version 1.2.5 of the EVE Online ESI response types.
+ */
+import "./types-index.d.ts";
+
+
+export type TESIResponseOKMap = {
+  get: {
+    "/alliances/": GetAlliancesOk;
+    "/alliances/{alliance_id}/": GetAlliancesAllianceIdOk;
+    "/alliances/{alliance_id}/contacts/": GetAlliancesAllianceIdContactsOk;
+    "/alliances/{alliance_id}/contacts/labels/": GetAlliancesAllianceIdContactsLabelsOk;
+    "/alliances/{alliance_id}/corporations/": GetAlliancesAllianceIdCorporationsOk;
+    "/alliances/{alliance_id}/icons/": GetAlliancesAllianceIdIconsOk;
+    "/characters/{character_id}/": GetCharactersCharacterIdOk;
+    "/characters/{character_id}/agents_research/": GetCharactersCharacterIdAgentsResearchOk;
+    "/characters/{character_id}/assets/": GetCharactersCharacterIdAssetsOk;
+    "/characters/{character_id}/attributes/": GetCharactersCharacterIdAttributesOk;
+    "/characters/{character_id}/blueprints/": GetCharactersCharacterIdBlueprintsOk;
+    "/characters/{character_id}/calendar/": GetCharactersCharacterIdCalendarOk;
+    "/characters/{character_id}/calendar/{event_id}/": GetCharactersCharacterIdCalendarEventIdOk;
+    "/characters/{character_id}/calendar/{event_id}/attendees/": GetCharactersCharacterIdCalendarEventIdAttendeesOk;
+    "/characters/{character_id}/clones/": GetCharactersCharacterIdClonesOk;
+    "/characters/{character_id}/contacts/": GetCharactersCharacterIdContactsOk;
+    "/characters/{character_id}/contacts/labels/": GetCharactersCharacterIdContactsLabelsOk;
+    "/characters/{character_id}/contracts/": GetCharactersCharacterIdContractsOk;
+    "/characters/{character_id}/contracts/{contract_id}/bids/": GetCharactersCharacterIdContractsContractIdBidsOk;
+    "/characters/{character_id}/contracts/{contract_id}/items/": GetCharactersCharacterIdContractsContractIdItemsOk;
+    "/characters/{character_id}/corporationhistory/": GetCharactersCharacterIdCorporationhistoryOk;
+    "/characters/{character_id}/fatigue/": GetCharactersCharacterIdFatigueOk;
+    "/characters/{character_id}/fittings/": GetCharactersCharacterIdFittingsOk;
+    "/characters/{character_id}/fleet/": GetCharactersCharacterIdFleetOk;
+    "/characters/{character_id}/fw/stats/": GetCharactersCharacterIdFwStatsOk;
+    "/characters/{character_id}/implants/": GetCharactersCharacterIdImplantsOk;
+    "/characters/{character_id}/industry/jobs/": GetCharactersCharacterIdIndustryJobsOk;
+    "/characters/{character_id}/killmails/recent/": GetCharactersCharacterIdKillmailsRecentOk;
+    "/characters/{character_id}/location/": GetCharactersCharacterIdLocationOk;
+    "/characters/{character_id}/loyalty/points/": GetCharactersCharacterIdLoyaltyPointsOk;
+    "/characters/{character_id}/mail/": GetCharactersCharacterIdMailOk;
+    "/characters/{character_id}/mail/labels/": GetCharactersCharacterIdMailLabelsOk;
+    "/characters/{character_id}/mail/lists/": GetCharactersCharacterIdMailListsOk;
+    "/characters/{character_id}/mail/{mail_id}/": GetCharactersCharacterIdMailMailIdOk;
+    "/characters/{character_id}/medals/": GetCharactersCharacterIdMedalsOk;
+    "/characters/{character_id}/mining/": GetCharactersCharacterIdMiningOk;
+    "/characters/{character_id}/notifications/": GetCharactersCharacterIdNotificationsOk;
+    "/characters/{character_id}/notifications/contacts/": GetCharactersCharacterIdNotificationsContactsOk;
+    "/characters/{character_id}/online/": GetCharactersCharacterIdOnlineOk;
+    "/characters/{character_id}/opportunities/": GetCharactersCharacterIdOpportunitiesOk;
+    "/characters/{character_id}/orders/": GetCharactersCharacterIdOrdersOk;
+    "/characters/{character_id}/orders/history/": GetCharactersCharacterIdOrdersHistoryOk;
+    "/characters/{character_id}/planets/": GetCharactersCharacterIdPlanetsOk;
+    "/characters/{character_id}/planets/{planet_id}/": GetCharactersCharacterIdPlanetsPlanetIdOk;
+    "/characters/{character_id}/portrait/": GetCharactersCharacterIdPortraitOk;
+    "/characters/{character_id}/roles/": GetCharactersCharacterIdRolesOk;
+    "/characters/{character_id}/search/": GetCharactersCharacterIdSearchOk;
+    "/characters/{character_id}/ship/": GetCharactersCharacterIdShipOk;
+    "/characters/{character_id}/skillqueue/": GetCharactersCharacterIdSkillqueueOk;
+    "/characters/{character_id}/skills/": GetCharactersCharacterIdSkillsOk;
+    "/characters/{character_id}/standings/": GetCharactersCharacterIdStandingsOk;
+    "/characters/{character_id}/titles/": GetCharactersCharacterIdTitlesOk;
+    "/characters/{character_id}/wallet/": GetCharactersCharacterIdWalletOk;
+    "/characters/{character_id}/wallet/journal/": GetCharactersCharacterIdWalletJournalOk;
+    "/characters/{character_id}/wallet/transactions/": GetCharactersCharacterIdWalletTransactionsOk;
+    "/contracts/public/bids/{contract_id}/": GetContractsPublicBidsContractIdOk;
+    "/contracts/public/items/{contract_id}/": GetContractsPublicItemsContractIdOk;
+    "/contracts/public/{region_id}/": GetContractsPublicRegionIdOk;
+    "/corporation/{corporation_id}/mining/extractions/": GetCorporationCorporationIdMiningExtractionsOk;
+    "/corporation/{corporation_id}/mining/observers/": GetCorporationCorporationIdMiningObserversOk;
+    "/corporation/{corporation_id}/mining/observers/{observer_id}/": GetCorporationCorporationIdMiningObserversObserverIdOk;
+    "/corporations/npccorps/": GetCorporationsNpccorpsOk;
+    "/corporations/{corporation_id}/": GetCorporationsCorporationIdOk;
+    "/corporations/{corporation_id}/alliancehistory/": GetCorporationsCorporationIdAlliancehistoryOk;
+    "/corporations/{corporation_id}/assets/": GetCorporationsCorporationIdAssetsOk;
+    "/corporations/{corporation_id}/blueprints/": GetCorporationsCorporationIdBlueprintsOk;
+    "/corporations/{corporation_id}/contacts/": GetCorporationsCorporationIdContactsOk;
+    "/corporations/{corporation_id}/contacts/labels/": GetCorporationsCorporationIdContactsLabelsOk;
+    "/corporations/{corporation_id}/containers/logs/": GetCorporationsCorporationIdContainersLogsOk;
+    "/corporations/{corporation_id}/contracts/": GetCorporationsCorporationIdContractsOk;
+    "/corporations/{corporation_id}/contracts/{contract_id}/bids/": GetCorporationsCorporationIdContractsContractIdBidsOk;
+    "/corporations/{corporation_id}/contracts/{contract_id}/items/": GetCorporationsCorporationIdContractsContractIdItemsOk;
+    "/corporations/{corporation_id}/customs_offices/": GetCorporationsCorporationIdCustomsOfficesOk;
+    "/corporations/{corporation_id}/divisions/": GetCorporationsCorporationIdDivisionsOk;
+    "/corporations/{corporation_id}/facilities/": GetCorporationsCorporationIdFacilitiesOk;
+    "/corporations/{corporation_id}/fw/stats/": GetCorporationsCorporationIdFwStatsOk;
+    "/corporations/{corporation_id}/icons/": GetCorporationsCorporationIdIconsOk;
+    "/corporations/{corporation_id}/industry/jobs/": GetCorporationsCorporationIdIndustryJobsOk;
+    "/corporations/{corporation_id}/killmails/recent/": GetCorporationsCorporationIdKillmailsRecentOk;
+    "/corporations/{corporation_id}/medals/": GetCorporationsCorporationIdMedalsOk;
+    "/corporations/{corporation_id}/medals/issued/": GetCorporationsCorporationIdMedalsIssuedOk;
+    "/corporations/{corporation_id}/members/": GetCorporationsCorporationIdMembersOk;
+    "/corporations/{corporation_id}/members/limit/": GetCorporationsCorporationIdMembersLimitOk;
+    "/corporations/{corporation_id}/members/titles/": GetCorporationsCorporationIdMembersTitlesOk;
+    "/corporations/{corporation_id}/membertracking/": GetCorporationsCorporationIdMembertrackingOk;
+    "/corporations/{corporation_id}/orders/": GetCorporationsCorporationIdOrdersOk;
+    "/corporations/{corporation_id}/orders/history/": GetCorporationsCorporationIdOrdersHistoryOk;
+    "/corporations/{corporation_id}/roles/": GetCorporationsCorporationIdRolesOk;
+    "/corporations/{corporation_id}/roles/history/": GetCorporationsCorporationIdRolesHistoryOk;
+    "/corporations/{corporation_id}/shareholders/": GetCorporationsCorporationIdShareholdersOk;
+    "/corporations/{corporation_id}/standings/": GetCorporationsCorporationIdStandingsOk;
+    "/corporations/{corporation_id}/starbases/": GetCorporationsCorporationIdStarbasesOk;
+    "/corporations/{corporation_id}/starbases/{starbase_id}/": GetCorporationsCorporationIdStarbasesStarbaseIdOk;
+    "/corporations/{corporation_id}/structures/": GetCorporationsCorporationIdStructuresOk;
+    "/corporations/{corporation_id}/titles/": GetCorporationsCorporationIdTitlesOk;
+    "/corporations/{corporation_id}/wallets/": GetCorporationsCorporationIdWalletsOk;
+    "/corporations/{corporation_id}/wallets/{division}/journal/": GetCorporationsCorporationIdWalletsDivisionJournalOk;
+    "/corporations/{corporation_id}/wallets/{division}/transactions/": GetCorporationsCorporationIdWalletsDivisionTransactionsOk;
+    "/dogma/attributes/": GetDogmaAttributesOk;
+    "/dogma/attributes/{attribute_id}/": GetDogmaAttributesAttributeIdOk;
+    "/dogma/dynamic/items/{type_id}/{item_id}/": GetDogmaDynamicItemsTypeIdItemIdOk;
+    "/dogma/effects/": GetDogmaEffectsOk;
+    "/dogma/effects/{effect_id}/": GetDogmaEffectsEffectIdOk;
+    "/fleets/{fleet_id}/": GetFleetsFleetIdOk;
+    "/fleets/{fleet_id}/members/": GetFleetsFleetIdMembersOk;
+    "/fleets/{fleet_id}/wings/": GetFleetsFleetIdWingsOk;
+    "/fw/leaderboards/": GetFwLeaderboardsOk;
+    "/fw/leaderboards/characters/": GetFwLeaderboardsCharactersOk;
+    "/fw/leaderboards/corporations/": GetFwLeaderboardsCorporationsOk;
+    "/fw/stats/": GetFwStatsOk;
+    "/fw/systems/": GetFwSystemsOk;
+    "/fw/wars/": GetFwWarsOk;
+    "/incursions/": GetIncursionsOk;
+    "/industry/facilities/": GetIndustryFacilitiesOk;
+    "/industry/systems/": GetIndustrySystemsOk;
+    "/insurance/prices/": GetInsurancePricesOk;
+    "/killmails/{killmail_id}/{killmail_hash}/": GetKillmailsKillmailIdKillmailHashOk;
+    "/loyalty/stores/{corporation_id}/offers/": GetLoyaltyStoresCorporationIdOffersOk;
+    "/markets/groups/": GetMarketsGroupsOk;
+    "/markets/groups/{market_group_id}/": GetMarketsGroupsMarketGroupIdOk;
+    "/markets/prices/": GetMarketsPricesOk;
+    "/markets/structures/{structure_id}/": GetMarketsStructuresStructureIdOk;
+    "/markets/{region_id}/history/": GetMarketsRegionIdHistoryOk;
+    "/markets/{region_id}/orders/": GetMarketsRegionIdOrdersOk;
+    "/markets/{region_id}/types/": GetMarketsRegionIdTypesOk;
+    "/opportunities/groups/": GetOpportunitiesGroupsOk;
+    "/opportunities/groups/{group_id}/": GetOpportunitiesGroupsGroupIdOk;
+    "/opportunities/tasks/": GetOpportunitiesTasksOk;
+    "/opportunities/tasks/{task_id}/": GetOpportunitiesTasksTaskIdOk;
+    "/route/{origin}/{destination}/": GetRouteOriginDestinationOk;
+    "/sovereignty/campaigns/": GetSovereigntyCampaignsOk;
+    "/sovereignty/map/": GetSovereigntyMapOk;
+    "/sovereignty/structures/": GetSovereigntyStructuresOk;
+    "/status/": GetStatusOk;
+    "/universe/ancestries/": GetUniverseAncestriesOk;
+    "/universe/asteroid_belts/{asteroid_belt_id}/": GetUniverseAsteroidBeltsAsteroidBeltIdOk;
+    "/universe/bloodlines/": GetUniverseBloodlinesOk;
+    "/universe/categories/": GetUniverseCategoriesOk;
+    "/universe/categories/{category_id}/": GetUniverseCategoriesCategoryIdOk;
+    "/universe/constellations/": GetUniverseConstellationsOk;
+    "/universe/constellations/{constellation_id}/": GetUniverseConstellationsConstellationIdOk;
+    "/universe/factions/": GetUniverseFactionsOk;
+    "/universe/graphics/": GetUniverseGraphicsOk;
+    "/universe/graphics/{graphic_id}/": GetUniverseGraphicsGraphicIdOk;
+    "/universe/groups/": GetUniverseGroupsOk;
+    "/universe/groups/{group_id}/": GetUniverseGroupsGroupIdOk;
+    "/universe/moons/{moon_id}/": GetUniverseMoonsMoonIdOk;
+    "/universe/planets/{planet_id}/": GetUniversePlanetsPlanetIdOk;
+    "/universe/races/": GetUniverseRacesOk;
+    "/universe/regions/": GetUniverseRegionsOk;
+    "/universe/regions/{region_id}/": GetUniverseRegionsRegionIdOk;
+    "/universe/schematics/{schematic_id}/": GetUniverseSchematicsSchematicIdOk;
+    "/universe/stargates/{stargate_id}/": GetUniverseStargatesStargateIdOk;
+    "/universe/stars/{star_id}/": GetUniverseStarsStarIdOk;
+    "/universe/stations/{station_id}/": GetUniverseStationsStationIdOk;
+    "/universe/structures/": GetUniverseStructuresOk;
+    "/universe/structures/{structure_id}/": GetUniverseStructuresStructureIdOk;
+    "/universe/system_jumps/": GetUniverseSystemJumpsOk;
+    "/universe/system_kills/": GetUniverseSystemKillsOk;
+    "/universe/systems/": GetUniverseSystemsOk;
+    "/universe/systems/{system_id}/": GetUniverseSystemsSystemIdOk;
+    "/universe/types/": GetUniverseTypesOk;
+    "/universe/types/{type_id}/": GetUniverseTypesTypeIdOk;
+    "/wars/": GetWarsOk;
+    "/wars/{war_id}/": GetWarsWarIdOk;
+    "/wars/{war_id}/killmails/": GetWarsWarIdKillmailsOk;
+  },
+  post: {
+    "/fleets/{fleet_id}/members/": NoContentResponse;
+    "/ui/autopilot/waypoint/": NoContentResponse;
+    "/ui/openwindow/contract/": NoContentResponse;
+    "/ui/openwindow/information/": NoContentResponse;
+    "/ui/openwindow/marketdetails/": NoContentResponse;
+    "/ui/openwindow/newmail/": NoContentResponse;
+    "/characters/affiliation/": PostCharactersAffiliationOk;
+    "/characters/{character_id}/assets/locations/": PostCharactersCharacterIdAssetsLocationsOk;
+    "/characters/{character_id}/assets/names/": PostCharactersCharacterIdAssetsNamesOk;
+    "/characters/{character_id}/contacts/": PostCharactersCharacterIdContactsCreated;
+    "/characters/{character_id}/cspa/": PostCharactersCharacterIdCspaCreated;
+    "/characters/{character_id}/fittings/": PostCharactersCharacterIdFittingsCreated;
+    "/characters/{character_id}/mail/": PostCharactersCharacterIdMailCreated;
+    "/characters/{character_id}/mail/labels/": PostCharactersCharacterIdMailLabelsCreated;
+    "/corporations/{corporation_id}/assets/locations/": PostCorporationsCorporationIdAssetsLocationsOk;
+    "/corporations/{corporation_id}/assets/names/": PostCorporationsCorporationIdAssetsNamesOk;
+    "/fleets/{fleet_id}/wings/": PostFleetsFleetIdWingsCreated;
+    "/fleets/{fleet_id}/wings/{wing_id}/squads/": PostFleetsFleetIdWingsWingIdSquadsCreated;
+    "/universe/ids/": PostUniverseIdsOk;
+    "/universe/names/": PostUniverseNamesOk;
+  },
+  put: {
+    "/characters/{character_id}/calendar/{event_id}/": NoContentResponse;
+    "/characters/{character_id}/contacts/": NoContentResponse;
+    "/characters/{character_id}/mail/{mail_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/members/{member_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/squads/{squad_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/wings/{wing_id}/": NoContentResponse;
+  },
+  delete: {
+    "/characters/{character_id}/contacts/": NoContentResponse;
+    "/characters/{character_id}/fittings/{fitting_id}/": NoContentResponse;
+    "/characters/{character_id}/mail/labels/{label_id}/": NoContentResponse;
+    "/characters/{character_id}/mail/{mail_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/members/{member_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/squads/{squad_id}/": NoContentResponse;
+    "/fleets/{fleet_id}/wings/{wing_id}/": NoContentResponse;
+  }
+};
