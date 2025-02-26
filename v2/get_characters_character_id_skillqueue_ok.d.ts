@@ -4,7 +4,7 @@
 /**
  * 200 ok array
  *
- * @maxItems 150
+ * @maxItems 200
  */
 type GetCharactersCharacterIdSkillqueueOk = GetCharactersCharacterIdSkillqueue_200Ok[];
 
