@@ -1,5 +1,5 @@
 // import type { TESIResponseOKMap } from "eve-esi-types";
-import { curl, fetchP, replaceCbt, getSDEVersion, ESIRequesError, initOptions, isDebug, ESIErrorLimitReachedError, fireRequestsDoesNotRequireAuth } from "./rq-util.mjs";
+import { is, curl, fetchP, replaceCbt, getSDEVersion, ESIRequesError, initOptions, isDebug, ESIErrorLimitReachedError, fireRequestsDoesNotRequireAuth } from "./lib/rq-util.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -12,7 +12,7 @@ const isArray = Array.isArray;
 let LOG = isDebug();
 /**
  * @typedef {import("./v2").TESIResponseOKMap} TESIResponseOKMap
- * @typedef {import("./rq-util.mjs").ESIRequestOptions} ESIRequestOptions
+ * @typedef {import("./lib/rq-util.mjs").ESIRequestOptions} ESIRequestOptions
  */
 // - - - - - - - - - - - - - - - - - - - -
 //        module vars, functions
@@ -125,7 +125,9 @@ async function getEVEStatus(fn) {
 // type following and run
 // node v2.mjs
 // or yarn test
-getEVEStatus(fire).then(eveStatus => console.log(eveStatus));
+if (!is("x")) {
+    getEVEStatus(fire).then(eveStatus => log(eveStatus));
+}
 // {
 //     "players": 16503,
 //     "server_version": "2794925",

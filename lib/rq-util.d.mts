@@ -6,7 +6,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 import "colors.ts";
-import type { TESIRequestFunctionMethods } from "./v2";
+import type { TESIRequestFunctionMethods } from "../v2";
 /**
  * this always `https://esi.evetech.net`
  */
@@ -62,6 +62,7 @@ export declare class ESIErrorLimitReachedError extends ESIRequesError {
  * @typedef {import("./rq-util.mjs").ESIRequestOptions} ESIRequestOptions
  */
 export declare const isDebug: () => boolean;
+export declare const is: (opt: string) => boolean;
 /**
  * @param {string} method
  * @param {ESIRequestOptions} opt

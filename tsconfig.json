@@ -3,6 +3,7 @@
   "compilerOptions": {
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    // "noCheck": true,
     "declaration": true,
     // "declarationDir": "./dts",
     "outDir": ".", 
@@ -18,7 +19,8 @@
     ]
   },
   "include": [
-    "./scripts/*.mts"
+    "./scripts/**/*.mts",
+    "./v2/*.d.ts"
   ],
   "exclude": [
     "./scripts/auth-*",

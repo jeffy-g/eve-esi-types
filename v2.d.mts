@@ -6,7 +6,7 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 import type { TESIResponseOKMap } from "./v2";
-import { type ESIRequestOptions } from "./rq-util.mjs";
+import { type ESIRequestOptions } from "./lib/rq-util.mjs";
 /**
  * fire ESI request
  * @template {TESIEntryMethod} M

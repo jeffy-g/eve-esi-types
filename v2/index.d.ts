@@ -6,7 +6,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /**
- * THIS TSD IS AUTO GENERATED, DO NOT EDIT
+ * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
  * @summary This file is auto-generated and defines version 2.2.6 of the EVE Online ESI response types.
@@ -136,7 +136,7 @@ declare global {
   //* ctt
   type IdentifyParameters<
     Entry, Opt,
-    Keys = Exclude<keyof Entry, "result">
+    Keys = Exclude<keyof Entry, "result" | "tag">
   > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
   /*/
   type IdentifyParameters<

@@ -9,65 +9,20 @@
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
-import * as util from "./rq-util.mjs";
+import * as util from "./lib/rq-util.mjs";
+import { request } from "./lib/request-api.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
 // shorthands
 const log = console.log;
-const DEBUG = util.isDebug();
 /**
- * @typedef {import("./v2").TESIResponseOKMap} TESIResponseOKMap
- * @typedef {import("./rq-util.mjs").ESIRequestOptions} ESIRequestOptions
  * @typedef {import("./v2").IESIRequestFunction<util.ESIRequestOptions>} IESIRequestFunction
  * @typedef {import("./v2").TESIRequestFunctionMethods<util.ESIRequestOptions>} TESIRequestFunctionMethods
  */
 // - - - - - - - - - - - - - - - - - - - -
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
-/** #### Sample of `TESIRequestFunctionSignature`
- *
- * + This is a minimal implementation using `TESIRequestFunctionSignature`.
- *   If the response contains "page", only the first page can be retrieved.
- *
- * @type {IESIRequestFunction}
- * @param method - The HTTP method to use for the request
- * @param endpoint - The Path of the ESI endpoint to send the request to
- * @param pathParams - An object of parameters to include in the request
- * @param options - An object of options to include in the request
- * @returns A Promise object containing the response data
- * @throws {ESIRequesError}
- */
-// @ts-expect-error
-export const request = (method, endpoint, pathParams, opt) => {
-    if (typeof pathParams === "number") {
-        // @ts-expect-error
-        pathParams = [pathParams];
-    }
-    if (Array.isArray(pathParams)) {
-        // @ts-expect-error actualy endp is string
-        endpoint = util.replaceCbt(endpoint, pathParams);
-    }
-    // When only options are provided
-    const actualOpt = /** @type {NonNullable<typeof opt>} */ (opt || pathParams || {});
-    const { rqopt, qss } = util.initOptions(method, actualOpt);
-    // @ts-expect-error actualy endp is string
-    const endpointUrl = util.curl(endpoint);
-    const up = new URLSearchParams(qss);
-    const url = `${endpointUrl}${up.size ? `?${up}` : ""}`;
-    DEBUG && log(url);
-    return fetch(url, rqopt).then(res => res.json()).catch(reason => {
-        throw new util.ESIRequesError(reason.message ? reason.message : reason);
-    });
-};
-//
-// implements rest methods of `request` (IESIRequestFunction)
-//
-/** @type {TESIEntryMethod[]} */ (["get", "post", "put", "delete"]).forEach((method) => {
-    request[method] = /** @type {TESIRequestFunctionEachMethod<typeof method>} */ (function (endpoint, params, opt) {
-        return this(method, endpoint, params, opt);
-    });
-});
 //
 // Delegates implementation to `request` (TESIRequestFunctionMethods)
 //
@@ -126,7 +81,9 @@ async function getEVEStatus(fn) {
 }
 // type following and run
 // node minimal-rq.mjs -debug
-getEVEStatus(request).then(eveStatus => log(eveStatus));
+if (!util.is("x")) {
+    getEVEStatus(request).then(eveStatus => log(eveStatus));
+}
 // {
 //     "players": 16503,
 //     "server_version": "2794925",
