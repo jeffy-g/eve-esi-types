@@ -32,6 +32,31 @@ export declare function fire<
 >(mthd: M, endp: EP, pathParams?: P2, opt?: Opt): Promise<R>;
 ```
 
+## New Features in v2.3.0
+
+### ESI Tagged Types
+
+> Introduced intuitive ESI requests handling using "tags" from the EVE Swagger JSON.
+
+### injectESIRequestBody
+
+> Utilized `injectESIRequestBody` to generate ESI request API objects with narrowed endpoints by accessing camel-cased "tags".
+
+```ts
+import * as taggedApi from "eve-esi-types/lib/tagged-request-api.mjs";
+
+const esiRequest = taggedApi.injectESIRequestBody(...);
+const ret = await esiRequest.universe.get("/universe/structures/", { query: { filter: "market" }});
+```
+
++ or
+
+```ts
+// Minimal default ESI request body implementation
+import { esi } from "eve-esi-types/lib/tagged-request-api.mjs";
+
+const ret = await esi.universe.get("/universe/structures/", { query: { filter: "market" }});
+```
 
 ## References
 
