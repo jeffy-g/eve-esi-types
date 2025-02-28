@@ -1,3 +1,11 @@
+/*!
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+//  Released under the MIT license
+//  https://opensource.org/licenses/mit-license.php
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+/// <reference types="../v2/esi-tagged-types"/>
 /**
  * `esi-tagged-types` and `injectESIRequestBody` allow for more intuitive use of ESI requests based on the "tags" defined in the EVE Swagger JSON.
  *
