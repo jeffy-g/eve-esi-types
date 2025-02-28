@@ -3,13 +3,11 @@
   "compilerOptions": {
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    // "noCheck": true,
     "declaration": true,
     // "declarationDir": "./dts",
     "outDir": ".", 
     "target": "esnext",
     "module": "esnext",
-    // "declaration": true,
     "diagnostics": true,
     "newLine": "LF",
     "strict": true,

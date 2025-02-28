@@ -13,6 +13,7 @@
   },
   "files": [
     "v2",
+    "lib",
     "*.d.mts",
     "*.mjs",
     "LICENSE",
@@ -36,6 +37,7 @@
   },
   "homepage": "https://github.com/jeffy-g/eve-esi-types#readme",
   "devDependencies": {
-    "colors.ts": "^1.0.20"
+    "colors.ts": "^1.0.20",
+    "typescript": "latest"
   }
 }
