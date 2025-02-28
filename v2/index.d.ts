@@ -9,16 +9,11 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 2.2.6 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 2.3.0 of the EVE Online ESI response types.
  */
 
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
-
-/**
- * mark a specific property as `required`
- */
-type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
 
 /**
  * Represents a function that can make ESI requests with various HTTP methods.
@@ -72,6 +67,11 @@ export type TESIRequestFunctionMethods<ActualOpt = {}> = {
 }
 
 declare global {
+
+  /**
+   * mark a specific property as `required`
+   */
+  type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
 
   /**
    * ### ESI request function all in one signature

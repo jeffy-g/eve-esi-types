@@ -6,7 +6,10 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /**
- * @file scripts/lib/esi-tagged-types.d.ts
+ * THIS DTS IS AUTO GENERATED, DO NOT EDIT
+ * 
+ * @file eve-esi-types/v2/esi-tagged-types.d.ts
+ * @summary This file is auto-generated and defines version 2.3.0 of the EVE Online ESI response types.
  */
 import { TESIResponseOKMap } from "./index.d.ts";
 export * from "./index.d.ts";
@@ -27,7 +30,7 @@ export declare type LCamelCase<S extends string> = S extends `${infer P1} ${infe
   ? `${Lowercase<P1>}${Capitalize<P2>}` : Lowercase<S>;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
-//               Utility Type `XESITags`
+//               Utility Type `ESITags`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Maps HTTP methods to their corresponding tags.
@@ -40,7 +43,7 @@ export declare type ESITags = {
 }[TESIEntryMethod];
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
-//            Utility Type `XInferMethod`
+//            Utility Type `InferMethod`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Infers the HTTP method based on the provided tag.
@@ -54,12 +57,12 @@ export declare type InferMethod<Tag> = {
       ? M : never
     : never;
 }[TESIEntryMethod];
-// type XAssets = XInferMethod<"Assets">;
-// type XContacts = XInferMethod<"Contacts">;
-// type XPlanetary = XInferMethod<"Planetary Interaction">;
+// type XAssets = InferMethod<"Assets">;
+// type XContacts = InferMethod<"Contacts">;
+// type XPlanetary = InferMethod<"Planetary Interaction">;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
-//    Utility Type `XTaggedEndpointRequestFunction`
+//    Utility Type `TaggedEndpointRequestFunction`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Creates a function type for making requests to tagged endpoints.
@@ -86,7 +89,7 @@ export declare type TaggedEndpointRequestFunction<M extends TESIEntryMethod, Tag
 >(endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
-//    Utility Type `XTaggedEndpointRequestFunction`
+//    Utility Type `ESITaggedEndpointRequest`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Maps tags to their corresponding endpoint request functions.
@@ -101,7 +104,7 @@ export declare type ESITaggedEndpointRequest<Tag extends ESITags> = {
 }[Tag];
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
-//        Utility Type `XSelectEndpointByTag`
+//        Utility Type `SelectEndpointByTag`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Selects an endpoint by tag and method.
@@ -119,8 +122,8 @@ export declare type SelectEndpointByTag<
       ? EP : never
     : never;
 }[keyof TESIResponseOKMap[M]];
-// type XAssetsEndpointGet = XSelectEndpointByTag<"Assets", "get">;
-// type XAssetsEndpointPost = XSelectEndpointByTag<"Assets", "post">;
+// type XAssetsEndpointGet = SelectEndpointByTag<"Assets", "get">;
+// type XAssetsEndpointPost = SelectEndpointByTag<"Assets", "post">;
 
 /**
  * Maps lower camel case tags to their corresponding endpoint request functions.
