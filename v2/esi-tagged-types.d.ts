@@ -29,6 +29,19 @@ export * from "./index.d.ts";
 export declare type LCamelCase<S extends string> = S extends `${infer P1} ${infer P2}`
   ? `${Lowercase<P1>}${Capitalize<P2>}` : Lowercase<S>;
 
+
+declare const enum EInferSomethingBy {
+  METHOD,
+  TAGs
+}
+declare type InferSomethingBy<Tag, AsType extends EInferSomethingBy = EInferSomethingBy.METHOD> = {
+  [M in TESIEntryMethod]: TESIResponseOKMap[M] extends Record<`/${string}/`, { tag: infer ActualTag }>
+    ? AsType extends EInferSomethingBy.TAGs
+      ? ActualTag : ActualTag extends Tag
+        ? M
+      : never
+    : never;
+}[TESIEntryMethod];
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 //               Utility Type `ESITags`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -37,10 +50,7 @@ export declare type LCamelCase<S extends string> = S extends `${infer P1} ${infe
  * @template M - The HTTP method.
  * @date 2025/2/28
  */
-export declare type ESITags = {
-  [M in TESIEntryMethod]: TESIResponseOKMap[M] extends Record<`/${string}/`, { tag: infer Tag }>
-    ? Tag : never
-}[TESIEntryMethod];
+export declare type ESITags = InferSomethingBy<never, EInferSomethingBy.TAGs>
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 //            Utility Type `InferMethod`
@@ -51,12 +61,7 @@ export declare type ESITags = {
  * @template Tag - The tag to infer the method for.
  * @date 2025/2/28
  */
-export declare type InferMethod<Tag> = {
-  [M in TESIEntryMethod]: TESIResponseOKMap[M] extends Record<`/${string}/`, { tag: infer ActualTag }>
-    ? ActualTag extends Tag
-      ? M : never
-    : never;
-}[TESIEntryMethod];
+export declare type InferMethod<Tag> = InferSomethingBy<Tag>
 // type XAssets = InferMethod<"Assets">;
 // type XContacts = InferMethod<"Contacts">;
 // type XPlanetary = InferMethod<"Planetary Interaction">;
