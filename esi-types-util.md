@@ -28,7 +28,11 @@ type TESIRequestFunctionSignature<ActualOpt> = <
 `IfParameterizedPath<EP, Opt>` if parameterized path then specify number type, otherwise will be `Opt` type.
 
 ```ts
-type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}/${string | ""}` ? number | number[]: Opt;
+type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}${string}`
+  ? PickPathParameters<EP> extends never
+    ? Opt : InferKeysLen<PickPathParameters<EP>> extends 1
+        ? number : [number, number]
+    : Opt;
 ```
 
 ### IdentifyParameters

@@ -15,6 +15,8 @@
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
 
+import type { PickPathParameters, InferKeysLen } from "./util.d.ts";
+
 /**
  * Represents a function that can make ESI requests with various HTTP methods.
  *
@@ -74,6 +76,20 @@ declare global {
   type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
 
   /**
+   * If `EP` (endpoint) is a parameterized path, determines the required number of replacements.
+   * 
+   * @template EP The string representing the endpoint path.
+   * @template Opt The type to return if `EP` is not parameterized.
+   * @returns {number | [number, number] | Opt} 
+   * Returns `number` if there is one parameter, `[number, number]` if there are two parameters, otherwise `Opt`.
+   */
+  type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}${string}`
+    ? PickPathParameters<EP> extends never
+      ? Opt : InferKeysLen<PickPathParameters<EP>> extends 1
+          ? number : [number, number]
+      : Opt;
+
+  /**
    * ### ESI request function all in one signature
    * 
    * TESIRequestFunctionSignature is a type that defines the signature of an ESI request function.
@@ -116,15 +132,6 @@ declare global {
     Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt>,
     R extends InferESIResponseResult<M, EP>
   >(endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
-
-  // /**
-  //  * is parameterized path
-  //  */
-  // type IsParameterizedPath<EP, A, B> = EP extends `${string}/{${string}}/${string | ""}` ? A: B;
-  /**
-   * if parameterized path then specify number type, otherwise will be `Opt` type.
-   */
-  type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}/${string | ""}` ? number | number[]: Opt;
 
   /**
    * Identifies the required parameters for a given entry type.

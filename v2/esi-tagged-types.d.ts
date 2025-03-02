@@ -102,9 +102,9 @@ export declare type TaggedEndpointRequestFunction<M extends TESIEntryMethod, Tag
  * @template Tag - The tag to map.
  * @date 2025/2/28
  */
-export declare type ESITaggedEndpointRequest<Tag extends ESITags> = {
+export declare type ESITaggedEndpointRequest<Tag extends ESITags, ActualOpt = {}> = {
   [tag in Tag]: {
-    [method in InferMethod<Tag>]: TaggedEndpointRequestFunction<method, tag>;
+    [method in InferMethod<Tag>]: TaggedEndpointRequestFunction<method, tag, ActualOpt>;
   };
 }[Tag];
 
@@ -134,8 +134,8 @@ export declare type SelectEndpointByTag<
  * Maps lower camel case tags to their corresponding endpoint request functions.
  * @date 2025/2/28
  */
-export declare type TaggedESIRequestMap = {
-  [tag in ESITags as LCamelCase<tag>]: ESITaggedEndpointRequest<tag>;
+export declare type TaggedESIRequestMap<ActualOpt = {}> = {
+  [tag in ESITags as LCamelCase<tag>]: ESITaggedEndpointRequest<tag, ActualOpt>;
 };
 
 /**
