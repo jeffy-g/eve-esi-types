@@ -27,11 +27,10 @@ const log = console.log;
 // Delegates implementation to `request` (TESIRequestFunctionMethods)
 //
 const esiMethods = /** @type {TESIRequestFunctionMethods} */ ({});
-["get", "post", "put", "delete"].forEach((method) => {
-    esiMethods[method] = function (endpoint, params, opt) {
-        // @ts-ignore
+/** @type {TESIEntryMethod[]} */ (["get", "post", "put", "delete"]).forEach((method) => {
+    esiMethods[method] = /** @type {TESIRequestFunctionEachMethod<typeof method>} */ (function (endpoint, params, opt) {
         return request(method, endpoint, params, opt);
-    };
+    });
 });
 // It should complete correctly.
 /**

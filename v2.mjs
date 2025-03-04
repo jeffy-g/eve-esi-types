@@ -1,5 +1,5 @@
 // import type { TESIResponseOKMap } from "eve-esi-types";
-import { is, curl, fetchP, replaceCbt, getSDEVersion, ESIRequesError, initOptions, isDebug, ESIErrorLimitReachedError, fireRequestsDoesNotRequireAuth } from "./lib/rq-util.mjs";
+import { is, curl, replaceCbt, getSDEVersion, initOptions, isDebug, fireRequestsDoesNotRequireAuth, isSuccess, handleESIError, handleSuccessResponse } from "./lib/rq-util.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -22,6 +22,10 @@ let LOG = isDebug();
  */
 let ax = 0;
 const incrementAx = (minus) => minus ? ax-- : ax++;
+/**
+ * @returns Get The Current ESI request pending count.
+ */
+export const getRequestPending = () => ax;
 // - - - - - - - - - - - - - - - - - - - -
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
@@ -64,52 +68,16 @@ export async function fire(mthd, endp, pathParams, opt) {
     try {
         const res = await fetch(url, rqopt).finally(() => ax--);
         const { status } = res;
-        if (!res.ok && !actualOpt.ignoreError) {
-            if (status === 420) {
-                actualOpt.cancelable && actualOpt.cancelable.abort();
-                throw new ESIErrorLimitReachedError();
-            }
-            else {
-                // console.log(res);
-                throw new ESIRequesError(`${res.statusText} (status=${status})`);
-            }
+        // The parameters are different for successful and error responses.
+        if (isSuccess(status)) {
+            return handleSuccessResponse(res, endpointUrl, rqopt, up, incrementAx);
         }
-        else {
-            // DEVNOTE: - 204 No Content
-            if (status === 204) {
-                // this result is empty, decided to return status code.
-                return /** @type {R} */ ({ status });
-            }
-            /** @type {R} */
-            const data = await res.json();
-            if (actualOpt.ignoreError) {
-                // meaning `forceJson`?
-                return data;
-            }
-            // - - - - x-pages response.
-            // +undefined is NaN
-            // @ts-expect-error becouse +null is 0
-            const pc = +res.headers.get("x-pages");
-            // has remaining pages? NaN > 1 === false !isNaN(pageCount)
-            if (pc > 1) {
-                LOG && log('found "x-pages" header, pages: %d', pc);
-                const remData = await fetchP(endpointUrl, rqopt, up, pc, incrementAx);
-                // finally, decide product data.
-                if (isArray(data) && isArray(remData)) {
-                    // DEVNOTE: 2019/7/23 15:01:48 - types
-                    return /** @type {R} */ (data.concat(remData));
-                }
-                else {
-                    // @ts-expect-error TODO: fix type
-                    remData && Object.assign(data, remData);
-                }
-            }
-            return data;
-        }
+        // else if (isError(status)) {}
+        // Actually, throw Error
+        throw await handleESIError(res, endpointUrl, actualOpt.cancelable);
     }
     catch (e) {
-        // @ts-expect-error actualy endp is string
-        throw new ESIRequesError(`message: ${e.message}, endpoint=${endp}`);
+        throw e;
     }
 }
 // It should complete correctly.

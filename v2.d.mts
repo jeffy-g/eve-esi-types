@@ -8,6 +8,10 @@
 import type { TESIResponseOKMap } from "./v2";
 import { type ESIRequestOptions } from "./lib/rq-util.mjs";
 /**
+ * @returns Get The Current ESI request pending count.
+ */
+export declare const getRequestPending: () => number;
+/**
  * fire ESI request
  * @template {TESIEntryMethod} M
  * @template {keyof TESIResponseOKMap[M]} EP

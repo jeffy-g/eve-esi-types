@@ -6,7 +6,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /**
- * @file eve-esi-types/util.d.ts
+ * @file eve-esi-types/v2/util.d.ts
  * @since 2.3.1
  */
 

@@ -17,6 +17,7 @@ esiRq.universe.get("/universe/structures/", { query: { filter: "market" } }).the
 esiRq.universe.post("/universe/ids/", {
     body: ["the forge", "plex"]
 }).then(console.log);
+esiRq.fittings.delete("/characters/{character_id}/fittings/{fitting_id}/", [1234, 56789]);
 esiRq.assets.get("/characters/{character_id}/assets/", 1234, {
     auth: true
 }).then(console.log).catch(console.log);

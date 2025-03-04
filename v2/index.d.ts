@@ -165,9 +165,8 @@ declare global {
 
   /**
    * Represents a response with no content (HTTP status 204).
-   * Although no data is returned, it indicates successful completion by returning a status of 204.
    */
-  type NoContentResponse = { status: 204 };
+  type NoContentResponse = { /* status: 204 */ };
 
   /**
    * Represents the HTTP methods supported by ESI.

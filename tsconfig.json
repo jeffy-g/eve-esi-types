@@ -18,6 +18,7 @@
   },
   "include": [
     "./scripts/**/*.mts",
+    "./scripts/**/*.d.ts",
     "./v2/*.d.ts"
   ],
   "exclude": [
