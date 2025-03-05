@@ -51,7 +51,6 @@ export async function fire(mthd, endp, pathParams, opt) {
         pathParams = [pathParams]; // as unknown as P2;
     }
     if (isArray(pathParams)) {
-        // @ts-expect-error actualy endp is string
         endp = replaceCbt(endp, pathParams);
     }
     // When only options are provided
@@ -59,7 +58,6 @@ export async function fire(mthd, endp, pathParams, opt) {
     // @ts-ignore
     const actualOpt = opt || pathParams || {};
     const { rqopt, qss } = initOptions(mthd, actualOpt);
-    // @ts-expect-error actualy endp is string
     const endpointUrl = curl(endp);
     const up = new URLSearchParams(qss);
     const url = `${endpointUrl}${up.size ? `?${up}` : ""}`;
@@ -67,9 +65,8 @@ export async function fire(mthd, endp, pathParams, opt) {
     ax++;
     try {
         const res = await fetch(url, rqopt).finally(() => ax--);
-        const { status } = res;
         // The parameters are different for successful and error responses.
-        if (isSuccess(status)) {
+        if (isSuccess(res.status)) {
             return handleSuccessResponse(res, endpointUrl, rqopt, up, incrementAx);
         }
         // else if (isError(status)) {}

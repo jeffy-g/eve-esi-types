@@ -5,9 +5,22 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import "colors.ts";
+/// <reference types="../v2"/>
+// - - - - - - - - - - - - - - - - - - - -
+//               imports
+// - - - - - - - - - - - - - - - - - - - -
 import type { TESIRequestFunctionMethods } from "../v2";
 import type { TESIErrorStats } from "./esi-error-types";
+/**
+ * Dummy import
+ * @import * as cc from "colors.ts";
+ */
+/**
+ * will almost certainly be able to detect if you are in a nodejs environment
+ *
+ * @date 2020/5/9
+ */
+export declare const isNode: boolean;
 /**
  * this always `https://esi.evetech.net`
  */
@@ -138,18 +151,20 @@ export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: Req
  * // ->
  * "/characters/<char.character_id>/skills"
  *
- * @param {string} endpoint e.g - "/characters/{character_id}/"
+ * @template {unknown} T
+ * @param {T} endpoint e.g - "/characters/{character_id}/"
  * @param {number[]} ids
- * @returns {string | null} fragment of qualified endpoint uri or null.
+ * @returns {T} fragment of qualified endpoint uri or null.
  */
-export declare const replaceCbt: (endpoint: string, ids: number[]) => string;
+export declare const replaceCbt: <T extends unknown>(endpoint: T, ids: number[]) => T;
 /**
  *
- * @param {string} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
+ * @template {unknown} T
+ * @param {T} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
  *   + The version parameter is forced to apply `latest`
  * @returns {string}
  */
-export declare const curl: (endp: string) => string;
+export declare const curl: <T extends unknown>(endp: T) => string;
 /**
  * @date 2020/03/31
  * @version 2.1
