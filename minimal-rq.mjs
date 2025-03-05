@@ -83,6 +83,12 @@ async function getEVEStatus(fn) {
 if (!util.is("x")) {
     getEVEStatus(request).then(eveStatus => log(eveStatus));
 }
+else {
+    // @ts-ignore
+    globalThis.runTest = () => {
+        getEVEStatus(request).then(eveStatus => log(eveStatus));
+    };
+}
 // {
 //     "players": 16503,
 //     "server_version": "2794925",
