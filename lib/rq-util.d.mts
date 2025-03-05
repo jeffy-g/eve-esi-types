@@ -125,11 +125,11 @@ export declare const is: (opt: string) => boolean;
 /**
  * @param {string} method
  * @param {ESIRequestOptions} opt
- * @returns {{ rqopt: RequestInit, qss: Record<string, string> }}
+ * @returns {{ rqopt: RequestInit, qss: Record<string, any> }}
  */
 export declare const initOptions: (method: string, opt: ESIRequestOptions) => {
     rqopt: RequestInit;
-    qss: Record<string, string>;
+    qss: Record<string, any>;
 };
 /**
  * fetch the extra pages
