@@ -171,6 +171,7 @@ export declare const curl: <T extends unknown>(endp: T) => string;
  * @type {() => Promise<string>}
  */
 export declare function getSDEVersion(): Promise<string>;
+export declare const getUniversalLogger: (banner: string) => (...args: any[]) => void;
 export declare function getLogger(): {
     clog: (...args: any[]) => void;
     rlog: (...args: any[]) => void;

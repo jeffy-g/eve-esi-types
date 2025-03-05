@@ -90,6 +90,12 @@ if (!util.is("x")) {
 else {
     // @ts-ignore
     globalThis.runTest = runTest;
+    if (!util.isNode) {
+        const button = document.getElementById("run-test");
+        if (button) {
+            button.addEventListener("click", () => runTest());
+        }
+    }
 }
 // {
 //     "players": 16503,
