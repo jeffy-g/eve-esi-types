@@ -44,17 +44,18 @@ async function getEVEStatus(fn) {
     }
     const { clog, rlog } = util.getLogger();
     CaseIESIRequestFunction: {
+        const ID_CCP_Zoetrope = 2112625428;
         // - - - - - - - - - - - -
         //       Character
         // - - - - - - - - - - - -
         // Here, I borrow data from "CCP Zoetrope".
         rlog("- - - - - - - > run as IESIRequestFunction<ESIRequestOptions>".red);
         clog();
-        await fn.get("/characters/{character_id}/", 2112625428).then(log);
+        await fn.get("/characters/{character_id}/", ID_CCP_Zoetrope).then(log);
         clog('(portrait)');
-        await fn.get("/characters/{character_id}/portrait/", 2112625428).then(log);
+        await fn.get("/characters/{character_id}/portrait/", ID_CCP_Zoetrope).then(log);
         clog('(affiliation)');
-        const affiliation = await fn.post("/characters/affiliation/", { body: [2112625428] });
+        const affiliation = await fn.post("/characters/affiliation/", { body: [ID_CCP_Zoetrope] });
         log(affiliation);
         clog('(corporation)');
         await fn.get("/corporations/{corporation_id}/", affiliation[0].corporation_id).then(log);
@@ -78,16 +79,17 @@ async function getEVEStatus(fn) {
     }
     return fn.get("/status/");
 }
+const runTest = () => {
+    getEVEStatus(request).then(eveStatus => log(eveStatus));
+};
 // type following and run
 // node minimal-rq.mjs -debug
 if (!util.is("x")) {
-    getEVEStatus(request).then(eveStatus => log(eveStatus));
+    runTest();
 }
 else {
     // @ts-ignore
-    globalThis.runTest = () => {
-        getEVEStatus(request).then(eveStatus => log(eveStatus));
-    };
+    globalThis.runTest = runTest;
 }
 // {
 //     "players": 16503,
