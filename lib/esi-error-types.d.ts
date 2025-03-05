@@ -1,3 +1,14 @@
+/*!
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+//  Released under the MIT license
+//  https://opensource.org/licenses/mit-license.php
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+/**
+ * @file eve-esi-types/lib/esi-error-types.d.ts
+ * @since 2.3.2
+ */
 
 type TEVEErrorBase = {
   /**
@@ -34,8 +45,9 @@ export type TESIErrorStatMap = {
  * const res = await fetch("<URL with ESI endpoint>");
  * const status = res.status;
  * if (status >= 400) {
+ *   const esiError = await res.json() as TESIErrorStatMap[typeof status];
  *   const errorType: TESIErrorWithStat<typeof status> = {
- *     status, ...res.json() 
+ *     status, ...esiError
  *   };
  *   console.log(errorType);
  *   throw new Error(`message="${res.statusText}", status=${status}`);
@@ -43,7 +55,6 @@ export type TESIErrorStatMap = {
  * ```
  * 
  * @date 2025/3/3
- * @since 2.4.0
  */
 export type TESIErrorWithStat<Stat extends TClientErrorStats | TServerErrorStats> = {
   status: Stat;
