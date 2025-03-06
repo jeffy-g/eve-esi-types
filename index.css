@@ -1,6 +1,11 @@
-:root {
-    --card-bg: rgba(100, 154, 226, 0.73);
-}
+@charset "utf8";
+/*!
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+  Released under the MIT license
+  https://opensource.org/licenses/mit-license.php
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 
 .command {
     font-family: consolas;
@@ -11,51 +16,10 @@
     border-radius: 4px;
 }
 
-.header {
-    margin: 12px 4px;
-}
-.download-link {
-    display: none;
-    position: absolute;
-    font-size: 14px;
-    padding: 0px 4px;
-    border-radius: 4px;
-    background: #cee7ef;
-}
-
-.padding-block {
-    margin: 4px 0;
-    height: 4px;
-    width: 100%;
-    border-radius: 3px;
-    background-color: var(--card-bg);
-}
-
-.control-pane {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-} 
-
-a.self-link {
-    font-size: 13px;
-    text-decoration: none;
-}
-
-code {
-    font-family: consolas;
-    background-color: rgba(234, 234, 234, 0.79);
-    padding: 0px 4px;
-    border-radius: 4px;
-}
-
-button {
+/* button {
     width: 100px;
     transition: filter 300ms ease;
-}
+} */
 button:disabled {
     filter: opacity(0.3) blur(0.4px);
 }
@@ -71,20 +35,6 @@ button.copy {
     cursor: pointer;
     padding: 2px;
     box-sizing: content-box;
-}
-#clear-logs {
-    width: 110px;
-}
-
-input[type="number"] {
-    width: 50px;
-}
-
-input.burdening {
-    vertical-align: middle;
-}
-label {
-    font-family: consolas;
 }
 
 .footer {

@@ -15,22 +15,22 @@
   </div>
   <div class="info">
     <div>example command: <input type="text" class="command" value="browser-sync start -s --port 8080 --no-open --ss &lt;this site directory>" size="72" readonly>
-      <button class="copy" onclick="copy()"></button>
+      <button class="copy" onclick="copy('.command', '.')"></button>
     </div>
     then access to <a href="http://localhost:8080/?x=1&debug=1">eve-esi-types ESI request test</a>
   </div>
   <div class="log-frame" contenteditable></div>
   <footer class="footer"></footer>
   <script>
-    globalThis.copy = function copy(regex = /<[^>]+>/) {
-      const text = document.querySelector(".command");
-      const origin = text.value;
-      const copied = origin.replace(regex, ".");
-      navigator.clipboard.writeText(copied).then(() => alert("Copied the text: " + copied));
-    };
+    /** @type {(s: string, rep: string, regex?: RegExp) => void} */
+    function copy(selector, replacement, regex = /<[^>]+>/) {
+      /** @type {HTMLInputElement} */
+      const text = document.querySelector(selector);
+      const shellscript = text.value.replace(regex, replacement);
+      navigator.clipboard.writeText(shellscript).then(() => alert("Copied the text: " + shellscript));
+    }
     /** @type {HTMLDivElement} */
     const logElement = document.querySelector(".log-frame");
-    // console.log(logElement);
     if (logElement) {
       let inputBuffer = "";
       logElement.addEventListener("keydown", function (e) {
@@ -44,7 +44,7 @@
           if (key === "Enter") {
             const cmd = inputBuffer;
             inputBuffer = "";
-            eval(cmd);
+            eval(`(${cmd})`);
           } else if (key.length === 1) {
             inputBuffer += key;
           }
