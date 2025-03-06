@@ -4,11 +4,10 @@
 
 .command {
     font-family: consolas;
-    font-size: 13px;
-    color: rgb(0, 161, 255);
+    color: rgb(37 143 231);
     background-color: rgba(192, 192, 192, 0.23);
-    padding: 2px 4px;
-    border: none;
+    padding: 4px 6px;
+    border: solid 1px silver;
     border-radius: 4px;
 }
 
@@ -69,6 +68,9 @@ button.copy {
     display: inline-block;
     vertical-align: middle;
     margin-left: 3px;
+    cursor: pointer;
+    padding: 2px;
+    box-sizing: content-box;
 }
 #clear-logs {
     width: 110px;
@@ -110,31 +112,26 @@ label {
 }
 
 .log-frame {
-    position: fixed;
+    position: relative;
 
-    top: 97px;
-    left: 10px;
-    width: calc(100vw - 20px);
     height: calc(100vh - 100px - 30px);
 
     border: none;
     padding: 3px 4px;
     border-radius: 4px;
 
-    /* font-size: 11px; */
     font-family: consolas;
     white-space: pre;
     overflow: auto;
 
-    /* background-color: rgb(249, 249, 249); */
     background-color: rgb(22 22 22);
     color: #ececec;
-}
-.log-frame:empty {
-    padding: 0;
-    width: 0; height: 0;
-    border: none;
-    border-radius: unset;
+    /* &:empty {
+        padding: 0;
+        width: 0; height: 0;
+        border: none;
+        border-radius: unset;
+    } */
 }
 
 span.key {

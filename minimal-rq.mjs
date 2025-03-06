@@ -15,7 +15,7 @@ import { request } from "./lib/request-api.mjs";
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
 // shorthands
-const log = console.log;
+const log = util.getUniversalLogger("[request-mini]: ");
 /**
  * @typedef {import("./v2").IESIRequestFunction<util.ESIRequestOptions>} IESIRequestFunction
  * @typedef {import("./v2").TESIRequestFunctionMethods<util.ESIRequestOptions>} TESIRequestFunctionMethods

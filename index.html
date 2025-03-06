@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eve-esi-types ESI request test</title>
-    <script type="module" src="./minimal-rq.mjs"></script>
-    <link rel="stylesheet" href="./index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eve-esi-types ESI request test</title>
+  <script type="module" src="./minimal-rq.mjs"></script>
+  <link rel="stylesheet" href="./index.css">
 </head>
+
 <body>
-    <div class="container">
-      <button id="run-test">Run test</button>
+  <div class="container">
+    <button id="run-test">Run test</button>
+  </div>
+  <div class="info">
+    <div>example command: <input type="text" class="command" value="browser-sync start -s --port 8080 --no-open --ss &lt;this site directory>" size="72" readonly>
+      <button class="copy" onclick="copy()"></button>
     </div>
-    <div class="info">
-      browser-sync start -s --port 8080 --no-open --ss ./<br>
-      then access to <a href="http://localhost:8080/?x=1&debug=1">eve-esi-types ESI request test</a>
-    </div>
-    <div class="log-frame"></div>
-    <footer class="footer"></footer>
+    then access to <a href="http://localhost:8080/?x=1&debug=1">eve-esi-types ESI request test</a>
+  </div>
+  <div class="log-frame" contenteditable></div>
+  <footer class="footer"></footer>
+  <script>
+    globalThis.copy = function copy(regex = /<[^>]+>/) {
+      const text = document.querySelector(".command");
+      const origin = text.value;
+      const copied = origin.replace(regex, ".");
+      navigator.clipboard.writeText(copied).then(() => alert("Copied the text: " + copied));
+    };
+    /** @type {HTMLDivElement} */
+    const logElement = document.querySelector(".log-frame");
+    // console.log(logElement);
+    if (logElement) {
+      let inputBuffer = "";
+      logElement.addEventListener("keydown", function (e) {
+        if (e.ctrlKey) {
+          if (e.code === "KeyL") {
+            e.preventDefault();
+            logElement.innerHTML = "";
+          }
+        } else {
+          const key = e.key;
+          if (key === "Enter") {
+            const cmd = inputBuffer;
+            inputBuffer = "";
+            eval(cmd);
+          } else if (key.length === 1) {
+            inputBuffer += key;
+          }
+        }
+      });
+    }
+  </script>
 </body>
+
 </html>
