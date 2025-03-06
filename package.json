@@ -14,8 +14,8 @@
   "files": [
     "v2",
     "lib",
+    "web",
     "*.d.mts",
-    "index.html",
     "*.mjs",
     "LICENSE",
     "*.md",
