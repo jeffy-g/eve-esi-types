@@ -9,18 +9,16 @@
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
+/*!
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
+//  Released under the MIT license
+//  https://opensource.org/licenses/mit-license.php
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 import type { TESIRequestFunctionMethods } from "../v2";
 import type { TESIErrorStats } from "./esi-error-types";
-/**
- * Dummy import
- * @import * as cc from "colors.ts";
- */
-/**
- * will almost certainly be able to detect if you are in a nodejs environment
- *
- * @date 2020/5/9
- */
-export declare const isNode: boolean;
+export { isNode } from "./constants.mjs";
 /**
  * this always `https://esi.evetech.net`
  */
@@ -99,7 +97,7 @@ export declare const handleSuccessResponse: (response: Response, endpointUrl: st
  *
  * @param {Response} res
  * @param {string} endpointUrl
- * @param {AbortController} abortable
+ * @param {AbortController=} abortable
  * @returns {Promise<void>}
  */
 export declare const handleESIError: (res: Response, endpointUrl: string, abortable?: AbortController) => Promise<void>;
@@ -171,7 +169,7 @@ export declare const curl: <T extends unknown>(endp: T) => string;
  * @type {() => Promise<string>}
  */
 export declare function getSDEVersion(): Promise<string>;
-export declare const getUniversalLogger: (banner: string) => (...args: any[]) => void;
+export declare const getUniversalLogger: (banner: string, logSelector?: string) => (...args: any[]) => void;
 export declare function getLogger(): {
     clog: (...args: any[]) => void;
     rlog: (...args: any[]) => void;
