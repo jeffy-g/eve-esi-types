@@ -136,12 +136,12 @@ export declare const initOptions: (method: string, opt: ESIRequestOptions) => {
  * @template {any} T
  * @param {string} endpointUrl
  * @param {RequestInit} rqopt request options
- * @param {URLSearchParams} rqp queries
+ * @param {URLSearchParams} usp queries
  * @param {number} pc pageCount
  * @param {(minus?: number) => void=} increment
  * @returns {Promise<T | null>}
  */
-export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: RequestInit, rqp: URLSearchParams, pc: number, increment?: (minus?: Truthy) => void) => Promise<T | null>;
+export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: RequestInit, usp: URLSearchParams, pc: number, increment?: (minus?: Truthy) => void) => Promise<T | null>;
 /** ### replace (C)urly (B)races (T)oken
  *
  * @example
@@ -156,7 +156,6 @@ export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: Req
  */
 export declare const replaceCbt: <T extends unknown>(endpoint: T, ids: number[]) => T;
 /**
- *
  * @template {unknown} T
  * @param {T} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
  *   + The version parameter is forced to apply `latest`
