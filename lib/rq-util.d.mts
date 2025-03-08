@@ -121,6 +121,8 @@ export declare const isDebug: () => boolean;
  */
 export declare const is: (opt: string) => boolean;
 /**
+ * NOTE: In `initOptions`, if `auth=true`, then `token` can be set to a valid `accessToken` to successfully complete an authenticated request.
+ *
  * @param {string} method
  * @param {ESIRequestOptions} opt
  * @returns {{ rqopt: RequestInit, qss: Record<string, any> }}
