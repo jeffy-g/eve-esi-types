@@ -18,9 +18,9 @@ import type { ESIRequestOptions } from "./rq-util.mjs";
  *    const esiRequest = taggedApi.injectESIRequestBody(...);
  *    const ret = await esiRequest.universe.get("/universe/structures/", { query: { filter: "market" }});
  *
- * @template {Record<string, unknown>} Opt
- * @param {TESIRequestFunctionSignature<{}>} requestBody
- * @returns {XESI.TaggedESIRequestMap}
+ * @template {Record<string, unknown>} Opt - The options type for the request.
+ * @param {TESIRequestFunctionSignature<Opt>} requestBody - The function signature for the ESI request.
+ * @returns {XESI.TaggedESIRequestMap} - The tagged ESI request map.
  * @since 2.3
  */
 export declare function injectESIRequestBody<Opt extends Record<string, unknown>>(requestBody: TESIRequestFunctionSignature<Opt>): XESI.TaggedESIRequestMap<Opt>;
@@ -29,6 +29,7 @@ export declare function injectESIRequestBody<Opt extends Record<string, unknown>
  */
 /**
  * Injects the minimal implementation of ESI requests into `XESI.TaggedESIRequestMap`.
+ *
  * @since 2.3
  * @type {XESI.TaggedESIRequestMap<ESIRequestOptions>}
  */
