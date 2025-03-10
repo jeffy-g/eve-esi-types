@@ -22,6 +22,6 @@ import type { IESIRequestFunction } from "../v2";
  * @param pathParams - An object of parameters to include in the request
  * @param options - An object of options to include in the request
  * @returns A Promise object containing the response data
- * @throws {ESIRequesError}
+ * @throws {util.ESIRequestError}
  */
 export declare const request: IESIRequestFunction<util.ESIRequestOptions>;

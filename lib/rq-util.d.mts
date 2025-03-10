@@ -60,12 +60,12 @@ export type ESIRequestOptions = {
 /**
  * simple named error class.
  */
-export declare class ESIRequesError extends Error {
+export declare class ESIRequestError extends Error {
 }
 /**
  * throws when x-esi-error-limit-remain header value is "0". (http status: 420)
  */
-export declare class ESIErrorLimitReachedError extends ESIRequesError {
+export declare class ESIErrorLimitReachedError extends ESIRequestError {
     constructor();
     valueOf(): number;
 }
