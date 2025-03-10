@@ -68,6 +68,34 @@ export type TESIRequestFunctionMethods<ActualOpt = {}> = {
   [method in TESIEntryMethod]: TESIRequestFunctionEachMethod<method, ActualOpt>;
 }
 
+/**
+ * List of "x-cached-seconds"
+ * 
+ * ```ts
+ * // const cacheSecGet: 3600 | 300 | 604800 | 120 | 5 | 600 | 86400 | 60 | 30 | 1200 | 1800 | 30758400
+ * const cacheSecGet: TESICachedSeconds<"get">;
+ * // const cache5sec: 5
+ * const cache5s: TESICachedSeconds<"put">;
+ * // const cache3600s: 3600
+ * const cache3600s: TESICachedSeconds<"post">;
+ * // "/characters/affiliation/"
+ * const cache3600sEndpoint: TESICachedSeconds<"post", 1>;
+ * ```
+ */
+export declare type TESICachedSeconds<
+  Method extends TESIEntryMethod, AsEndpoint = void
+> = {
+  [M in TESIEntryMethod]: {
+    [EP in keyof TESIResponseOKMap[M]]: TESIResponseOKMap[M][EP]["cachedSeconds"] extends number
+      ? AsEndpoint extends void
+        ? TESIResponseOKMap[M][EP]["cachedSeconds"]: EP
+      : never
+  }[keyof TESIResponseOKMap[M]];
+}[Method];
+// const cacheSecGet: TESICachedSeconds<"get">;
+// const cache5sec: TESICachedSeconds<"put">;
+// const cache3600sEndpoint: TESICachedSeconds<"post", 1>;
+
 declare global {
 
   /**
@@ -143,7 +171,7 @@ declare global {
   //* ctt
   type IdentifyParameters<
     Entry, Opt,
-    Keys = Exclude<keyof Entry, "result" | "tag">
+    Keys = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">
   > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
   /*/
   type IdentifyParameters<
