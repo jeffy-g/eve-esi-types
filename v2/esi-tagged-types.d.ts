@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/esi-tagged-types.d.ts
- * @summary This file is auto-generated and defines version 2.3.2 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 2.3.5 of the EVE Online ESI response types.
  */
 import { TESIResponseOKMap } from "./index.d.ts";
 export * from "./index.d.ts";
