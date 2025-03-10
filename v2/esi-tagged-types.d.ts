@@ -30,13 +30,13 @@ export declare type LCamelCase<S extends string> = S extends `${infer P1} ${infe
   ? `${Lowercase<P1>}${Capitalize<P2>}` : Lowercase<S>;
 
 
-declare const enum EInferSomethingBy {
-  METHOD,
-  TAGs
-}
-declare type InferSomethingBy<Tag, AsType extends EInferSomethingBy = EInferSomethingBy.METHOD> = {
+declare type EInferSomethingBy = {
+  readonly METHOD: 0;
+  readonly TAGs: 1;
+};
+declare type InferSomethingBy<Tag, AsType extends EInferSomethingBy = EInferSomethingBy["METHOD"]> = {
   [M in TESIEntryMethod]: TESIResponseOKMap[M] extends Record<`/${string}/`, { tag: infer ActualTag }>
-    ? AsType extends EInferSomethingBy.TAGs
+    ? AsType extends EInferSomethingBy["TAGs"]
       ? ActualTag : ActualTag extends Tag
         ? M
       : never
@@ -50,7 +50,7 @@ declare type InferSomethingBy<Tag, AsType extends EInferSomethingBy = EInferSome
  * @template M - The HTTP method.
  * @date 2025/2/28
  */
-export declare type ESITags = InferSomethingBy<never, EInferSomethingBy.TAGs>
+export declare type ESITags = InferSomethingBy<never, EInferSomethingBy["TAGs"]>
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 //            Utility Type `InferMethod`
