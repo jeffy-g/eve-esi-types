@@ -86,6 +86,18 @@ type TESIRequestFunctionSignature2<ActualOpt> = <
   + `TESIRequestFunctionEachMethod` -> `TESIRequestFunctionEachMethod2`
   + etc. Also, `v2/esi-tagged-types.d.ts` too
 
+### decoreateESIRequestBody
+
+> Utilized `decoreateESIRequestBody` to generate ESI request API objects with narrowed endpoints by accessing camel-cased "tags".
+
+```ts
+import * as taggedApi from "eve-esi-types/lib/tagged-request-api.mjs";
+
+const esiRequest = taggedApi.decoreateESIRequestBody(...);
+const ret = await esiRequest.universe.get("/universe/structures/", { query: { filter: "market" }});
+```
+
+
 ## References
 
 - [`ESI Types Utility Definitions`](./esi-types-util3.md)
