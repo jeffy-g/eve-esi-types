@@ -16,7 +16,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import type { TESIRequestFunctionMethods } from "../v2";
+import type { TESIResponseOKMap, TESIRequestFunctionMethods2, TPathParamsNever } from "../v2";
 import type { TESIErrorStats } from "./esi-error-types";
 export { isNode } from "./constants.mjs";
 /**
@@ -53,6 +53,11 @@ export type ESIRequestOptions = {
      * @date 2020/1/23
      */
     auth?: true;
+    /**
+     * @date 2025/3/13
+     * @since v3.0.0
+     */
+    pathParams?: number | number[];
 };
 /**
  * @typedef {string | number | boolean} Truthy
@@ -98,9 +103,10 @@ export declare const handleSuccessResponse: (response: Response, endpointUrl: st
  * @param {Response} res
  * @param {string} endpointUrl
  * @param {AbortController=} abortable
- * @returns {Promise<void>}
+ * @throws {ESIRequestError}
+ * @returns {Promise<never>}
  */
-export declare const handleESIError: (res: Response, endpointUrl: string, abortable?: AbortController) => Promise<void>;
+export declare const handleESIError: (res: Response, endpointUrl: string, abortable?: AbortController) => Promise<never>;
 /**
  * @param {number} stat
  * @returns {stat is 200 | 201 | 204}
@@ -176,9 +182,23 @@ export declare function getLogger(): {
     rlog: (...args: any[]) => void;
 };
 /**
+ * Need typescript v5.5 later
+ * @import * as ESI from "../v2";
+ * @typedef {ESI.TESIResponseOKMap} TESIResponseOKMap
+ * @typedef {ESI.TPathParamsNever} TPathParamsNever
+ * @typedef {ESI.IESIRequestFunction2<ESIRequestOptions>} IESIRequestFunction2
+ * @typedef {ESI.TESIRequestFunctionMethods2<ESIRequestOptions>} TESIRequestFunctionMethods2
+ */
+/**
  * #### Fire a request that does not require authentication.
  *
- * @param {TESIRequestFunctionSignature<ESIRequestOptions> | TESIRequestFunctionMethods} fn
+ * @type {import("./rq-util.d.mts").fireWithoutAuth}
+ */
+export declare function fireWithoutAuth<M extends TESIEntryMethod, RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M], EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP : InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>, PathParams extends RealEP extends EP ? IfNeedPathParams<EP> : TPathParamsNever, Opt extends IdentifyParameters<TESIResponseOKMap[M][Extract<EP, keyof TESIResponseOKMap[M]>], ESIRequestOptions & PathParams>, R extends InferESIResponseResult<M, Extract<EP, keyof TESIResponseOKMap[M]>>>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: M, endpoint: RealEP, opt?: Opt): Promise<R>;
+/**
+ * #### Fire a request that does not require authentication.
+ *
+ * @param {TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2} fn
  * @returns {Promise<void>}
  */
-export declare function fireRequestsDoesNotRequireAuth(fn: TESIRequestFunctionSignature<ESIRequestOptions> | TESIRequestFunctionMethods<ESIRequestOptions>): Promise<void>;
+export declare function fireRequestsDoesNotRequireAuth(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>): Promise<void>;

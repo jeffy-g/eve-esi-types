@@ -25,47 +25,47 @@ import type { PickPathParameters, InferKeysLen } from "./util.d.ts";
  * @example
  * ```ts
  * // @ ts-expect-error
- * export const request: IESIRequestFunction<ESIRequestOptions> = (method, endpoint, pathParams, opt) => {
+ * export const request: IESIRequestFunction2<ESIRequestOptions> = (method, endpoint, opt) => {
  * // Implementation for "get" | "post" | "put" | "delete" request
  * };
  * // You can easily implement "get" | "post" | "put" | "delete" requests
  * // with code like the following:
  * (["get", "post", "put", "delete"] as (keyof typeof request)[]).forEach((method) => {
- *     request[method] = function (this: typeof request, endpoint, params, opt) {
- *         return this(method, endpoint, params, opt);
- *     } as TESIRequestFunctionEachMethod<typeof method>;
+ *     request[method] = function (this: typeof request, endpoint, opt) {
+ *         return this(method, endpoint, opt);
+ *     } as TESIRequestFunctionEachMethod2<typeof method>;
  * });
  * ```
  */
-export interface IESIRequestFunction<ActualOpt>
-  extends TESIRequestFunctionSignature<ActualOpt>, TESIRequestFunctionMethods<ActualOpt> {
+export interface IESIRequestFunction2<ActualOpt>
+  extends TESIRequestFunctionSignature2<ActualOpt>, TESIRequestFunctionMethods2<ActualOpt> {
 }
 
 /**
  * Represents the methods available for making ESI requests.
  * 
  *  + This interface is used when you already have implementation code such as  
- *    TESIRequestFunctionSignature and you want to implement additional shorthand methods.
+ *    TESIRequestFunctionSignature2 and you want to implement additional shorthand methods.
  *
  * @template ActualOpt - The actual type of the options.
  *
  * @example
  * ```ts
- * export const request: TESIRequestFunctionSignature<ESIRequestOptions> = (method, endpoint, pathParams, opt) => {
+ * export const request: TESIRequestFunctionSignature2<ESIRequestOptions> = (method, endpoint, opt) => {
  * // Implementation for "get" | "post" | "put" | "delete" request
  * };
  * // You can easily implement "get" | "post" | "put" | "delete" requests
  * // with code like the following:
- * const esiMethods = {} as TESIRequestFunctionMethods<ESIRequestOptions>;
- * (["get", "post", "put", "delete"] as (keyof TESIRequestFunctionMethods)[]).forEach((method) => {
- *     esiMethods[method] = function (endpoint, params, opt) {
- *         return request(method, endpoint, params, opt);
- *     } as TESIRequestFunctionEachMethod<typeof method>;
+ * const esiMethods = {} as TESIRequestFunctionMethods2<ESIRequestOptions>;
+ * (["get", "post", "put", "delete"] as (keyof TESIRequestFunctionMethods2)[]).forEach((method) => {
+ *     esiMethods[method] = function (endpoint, opt) {
+ *         return request(method, endpoint, opt);
+ *     } as TESIRequestFunctionEachMethod2<typeof method>;
  * });
  * ```
  */
-export type TESIRequestFunctionMethods<ActualOpt = {}> = {
-  [method in TESIEntryMethod]: TESIRequestFunctionEachMethod<method, ActualOpt>;
+export type TESIRequestFunctionMethods2<ActualOpt = {}> = {
+  [method in TESIEntryMethod]: TESIRequestFunctionEachMethod2<method, ActualOpt>;
 }
 
 /**
@@ -95,6 +95,7 @@ export declare type TESICachedSeconds<
 // const cacheSecGet: TESICachedSeconds<"get">;
 // const cache5sec: TESICachedSeconds<"put">;
 // const cache3600sEndpoint: TESICachedSeconds<"post", 1>;
+export declare type TPathParamsNever = { pathParams?: never };
 
 declare global {
 
@@ -103,6 +104,127 @@ declare global {
    */
   type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
 
+  //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //                                Version 3 types
+  //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  /**
+   * ### ESI request function with real endpoint signature
+   * 
+   * TESIRequestFunctionSignature2 is a type that defines the signature of an ESI request function
+   * where the endpoint can be a real endpoint or a parameterized endpoint.
+   * 
+   * This function sends a request to a specified endpoint and returns a response.
+   * 
+   * @template ActualOpt - The actual type of the option.
+   * @template M - The HTTP method to use for the request
+   * @template RealEP - The real path of the ESI endpoint to send the request to
+   * @template EP - The parameterized path of the ESI endpoint to send the request to
+   * @template PathParams - Parameters to include in the request if the endpoint is parameterized
+   * @template Opt - Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`
+   * @template R - The response type
+   * 
+   * @param method - The HTTP method to use for the request (e.g., "get", "post").
+   * @param endpoint - The real path of the ESI endpoint to send the request to.
+   * @param options - An optional object containing additional options for the request.
+   * 
+   * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
+   */
+  type TESIRequestFunctionSignature2<ActualOpt> = <
+    M extends TESIEntryMethod,
+    // "/characters/123/fittings/456/"
+    RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
+    // "/characters/{character_id}/fittings/{fitting_id}/"
+    EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP: InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>,
+    // If RealEP points to an endpoint origin (not a replaced endpoint), the path parameter is required
+    PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
+    Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
+    R extends InferESIResponseResult<M, EP>
+  >(method: M, endpoint: RealEP, options?: Opt) => Promise<R>;
+
+  /**
+   * Represents a function that can make ESI requests for a specific HTTP method.
+   *
+   * This type is used to define functions that send requests to specific ESI endpoints using a given HTTP method.
+   *
+   * @template M - The HTTP method to use for the request.
+   * @template ActualOpt - The actual type of the options.
+   *
+   * @template RealEP - The real path of the ESI endpoint to send the request to.
+   * @template EP - The parameterized path of the ESI endpoint to send the request to.
+   * @template PathParams - Parameters to include in the request if the endpoint is parameterized.
+   * @template Opt - Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`.
+   * @template R - The response type.
+   *
+   * @param endpoint - The real path of the ESI endpoint to send the request to.
+   * @param options - An optional object containing additional options for the request.
+   *
+   * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
+   */
+  type TESIRequestFunctionEachMethod2<M extends TESIEntryMethod, ActualOpt = {}> = <
+    RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
+    EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP: InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>,
+    PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
+    Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
+    R extends InferESIResponseResult<M, EP>
+  >(endpoint: RealEP, options?: Opt) => Promise<R>;
+
+  /**
+   * Replaces path parameters in a string with numbers.
+   * 
+   * @template T - The string representing the endpoint path.
+   * @example
+   * ```ts
+   * type Example = ReplacePathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
+   * // Result: `/characters/${number}/fittings/${number}/`
+   * ```
+   */
+  type ReplacePathParams<T extends string> = T extends `${infer Start}{${infer Param}}${infer End}`
+    ? `${Start}${number}${ReplacePathParams<End>}` : T;
+
+  // // type Example = ReplacePathParamsX<"/characters/1234/fittings/{fitting_id}/">;
+  // // Result: `characters/${number}/fittings/${number}/`
+  // type ReplacePathParamsX<T extends string> =
+  //   T extends `/${infer Start}/${infer Param}/${infer End}` ? `${Start}/${number}/${ReplacePathParams<End>}`
+  //   : T;
+  /**
+   * Determines if the endpoint requires path parameters.
+   * 
+   * @template EP - The string representing the endpoint path.
+   * @returns {TPathParamsNever | { pathParams: IfParameterizedPath<EP> }}
+   * Returns an object with `pathParams` if the endpoint requires parameters, otherwise returns `TPathParamsNever`.
+   * @example
+   * ```ts
+   * type Example = IfNeedPathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
+   * // Result: { pathParams: [number, number] }
+   * ```
+   */
+  type IfNeedPathParams<EP> = IfParameterizedPath<EP> extends never ? TPathParamsNever :
+    EP extends ReplacePathParams<EP> ? TPathParamsNever : { pathParams: IfParameterizedPath<EP> };
+  /**
+   * Infers the original endpoint path from a real endpoint path.
+   * 
+   * @template RealEP - The real endpoint path.
+   * @returns {string} The original endpoint path with parameters.
+   * @example
+   * ```ts
+   * type EPOrigin = InferEndpointOrigin<"/characters/123/fittings/456/", TEndPointDelete>;
+   * // Result: "/characters/{character_id}/fittings/{fitting_id}/"
+   * ```
+   */
+  type InferEndpointOrigin<RealEP extends unknown, Endpoints> = {
+    [EP in Endpoints]: RealEP extends ReplacePathParams<EP>
+      ? EP : never;
+  }[Endpoints];
+  // type InferEndpointOrigin<RealEP extends string> = {
+  //   [Method in TESIEntryMethod]: {
+  //     [EP in keyof TESIResponseOKMap[Method]]: RealEP extends ReplacePathParams<EP>
+  //       ? EP : never;
+  //   }[keyof TESIResponseOKMap[Method]]
+  // }[TESIEntryMethod];
+
+  //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //                                Version 2 types
+  //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   /**
    * If `EP` (endpoint) is a parameterized path, determines the required number of replacements.
    * 
@@ -111,55 +233,11 @@ declare global {
    * @returns {number | [number, number] | Opt} 
    * Returns `number` if there is one parameter, `[number, number]` if there are two parameters, otherwise `Opt`.
    */
-  type IfParameterizedPath<EP, Opt> = EP extends `${string}/{${string}}${string}`
+  type IfParameterizedPath<EP, Opt = never> = EP extends `${string}/{${string}}${string}`
     ? PickPathParameters<EP> extends never
       ? Opt : InferKeysLen<PickPathParameters<EP>> extends 1
-          ? number : [number, number]
+        ? number : [number, number]
       : Opt;
-
-  /**
-   * ### ESI request function all in one signature
-   * 
-   * TESIRequestFunctionSignature is a type that defines the signature of an ESI request function.
-   * 
-   * This function sends a request to a specified endpoint and returns a response.
-   * 
-   * @template ActualOpt - The actual type of the option.  
-   *   Required parameters inferred by typescript are merged.
-   * @template M - The HTTP method to use for the request
-   * @template EP - The Path of the ESI endpoint to send the request to
-   * @template P2 - Parameters to include in the request
-   * @template Opt - Options to include in the request  
-   *   If there is a required parameter, its type will be merged with `ActualOpt`
-   * @template R - The response type
-   */
-  type TESIRequestFunctionSignature<ActualOpt> = <
-    M extends TESIEntryMethod,
-    EP extends keyof TESIResponseOKMap[M],
-    P2 extends IfParameterizedPath<EP, Opt>,
-    Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt>,
-    R extends InferESIResponseResult<M, EP>
-  >(method: M, endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
-
-  /**
-   * Represents a function that makes an ESI request using a specific HTTP method.
-   *
-   * @template M - The HTTP method to use for the request (e.g., "get", "post").
-   * @template ActualOpt - The actual type of the options to include in the request.
-   * 
-   * @param endpoint - The path of the ESI endpoint to send the request to.
-   * @param pathParams - An optional parameter that can be a number, an array of numbers, or other parameters
-   *                     depending on whether the path is parameterized.
-   * @param options - An optional object containing additional options for the request.
-   * 
-   * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
-   */
-  type TESIRequestFunctionEachMethod<M extends TESIEntryMethod, ActualOpt = {}> = <
-    EP extends keyof TESIResponseOKMap[M],
-    P2 extends IfParameterizedPath<EP, Opt>,
-    Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt>,
-    R extends InferESIResponseResult<M, EP>
-  >(endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
 
   /**
    * Identifies the required parameters for a given entry type.

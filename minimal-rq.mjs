@@ -10,55 +10,56 @@
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
 import * as util from "./lib/rq-util.mjs";
-import { request } from "./lib/request-api.mjs";
+import { request2 } from "./lib/request-api.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
 // shorthands
 const log = util.getUniversalLogger("[request-mini]: ");
 /**
- * @typedef {import("./v2").IESIRequestFunction<util.ESIRequestOptions>} IESIRequestFunction
- * @typedef {import("./v2").TESIRequestFunctionMethods<util.ESIRequestOptions>} TESIRequestFunctionMethods
+ * @typedef {import("./v2").IESIRequestFunction2<util.ESIRequestOptions>} IESIRequestFunction2
+ * @typedef {import("./v2").TESIRequestFunctionMethods2<util.ESIRequestOptions>} TESIRequestFunctionMethods2
  */
 // - - - - - - - - - - - - - - - - - - - -
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
 //
-// Delegates implementation to `request` (TESIRequestFunctionMethods)
+// Delegates implementation to `request` (TESIRequestFunctionMethods2)
 //
-const esiMethods = /** @type {TESIRequestFunctionMethods} */ ({});
+const esiMethods = /** @type {TESIRequestFunctionMethods2} */ ({});
 /** @type {TESIEntryMethod[]} */ (["get", "post", "put", "delete"]).forEach((method) => {
-    esiMethods[method] = /** @type {TESIRequestFunctionEachMethod<typeof method>} */ (function (endpoint, params, opt) {
-        return request(method, endpoint, params, opt);
+    esiMethods[method] = /** @type {TESIRequestFunctionEachMethod2<typeof method>} */ (function (endpoint, opt) {
+        // @ts-expect-error
+        return request2(method, endpoint, opt);
     });
 });
 // It should complete correctly.
 /**
- * @param {IESIRequestFunction} fn
+ * @param {IESIRequestFunction2} fn
  */
-async function getEVEStatus(fn) {
+async function getEVEStatus2(fn) {
     await util.getSDEVersion().then(sdeVersion => log(`sdeVersion: ${sdeVersion}`.blue));
     await util.fireRequestsDoesNotRequireAuth(fn);
     CaseIESIRequestFunctionMethods: {
         await util.fireRequestsDoesNotRequireAuth(esiMethods);
     }
     const { clog, rlog } = util.getLogger();
-    CaseIESIRequestFunction: {
+    CaseIESIRequestFunction2: {
         const ID_CCP_Zoetrope = 2112625428;
         // - - - - - - - - - - - -
         //       Character
         // - - - - - - - - - - - -
         // Here, I borrow data from "CCP Zoetrope".
-        rlog("- - - - - - - > run as IESIRequestFunction<ESIRequestOptions>".red);
+        rlog("- - - - - - - > run as IESIRequestFunction2<ESIRequestOptions>".red);
         clog();
-        await fn.get("/characters/{character_id}/", ID_CCP_Zoetrope).then(log);
+        await fn.get("/characters/{character_id}/", { pathParams: ID_CCP_Zoetrope }).then(log);
         clog('(portrait)');
-        await fn.get("/characters/{character_id}/portrait/", ID_CCP_Zoetrope).then(log);
+        await fn.get(`/characters/${ID_CCP_Zoetrope}/portrait/`).then(log);
         clog('(affiliation)');
         const affiliation = await fn.post("/characters/affiliation/", { body: [ID_CCP_Zoetrope] });
         log(affiliation);
         clog('(corporation)');
-        await fn.get("/corporations/{corporation_id}/", affiliation[0].corporation_id).then(log);
+        await fn.get(`/corporations/${affiliation[0].corporation_id}/`).then(log);
         rlog("get:/incursions/".green);
         await fn.get("/incursions/").then(log);
         // - - - - - - - - - - - -
@@ -68,7 +69,8 @@ async function getEVEStatus(fn) {
         const ids = await fn.post("/universe/ids/", { body: ["the forge", "plex"] });
         log(ids.inventory_types, ids.regions);
         rlog(`get:/markets/${ids?.regions?.[0].id}/orders/?type_id=${ids?.inventory_types?.[0].id}, item PLEX`.green);
-        const orders = await fn.get("/markets/{region_id}/orders/", ids?.regions?.[0].id, {
+        const orders = await fn.get("/markets/{region_id}/orders/", {
+            pathParams: ids?.regions?.[0].id || 0,
             query: {
                 // page: 1,
                 order_type: "sell",
@@ -80,7 +82,7 @@ async function getEVEStatus(fn) {
     return fn.get("/status/");
 }
 const runTest = () => {
-    getEVEStatus(request).then(eveStatus => log(eveStatus));
+    getEVEStatus2(request2).then(eveStatus => log(eveStatus));
 };
 // type following and run
 // node minimal-rq.mjs -debug

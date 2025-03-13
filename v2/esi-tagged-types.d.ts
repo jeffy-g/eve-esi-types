@@ -11,7 +11,7 @@
  * @file eve-esi-types/v2/esi-tagged-types.d.ts
  * @summary This file is auto-generated and defines version 2.3.5 of the EVE Online ESI response types.
  */
-import { TESIResponseOKMap } from "./index.d.ts";
+import { TESIResponseOKMap, TPathParamsNever } from "./index.d.ts";
 export * from "./index.d.ts";
 
 /**
@@ -67,7 +67,7 @@ export declare type InferMethod<Tag> = InferSomethingBy<Tag>
 // type XPlanetary = InferMethod<"Planetary Interaction">;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
-//    Utility Type `TaggedEndpointRequestFunction`
+//    Utility Type `TaggedEndpointRequestFunction2`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Creates a function type for making requests to tagged endpoints.
@@ -86,15 +86,19 @@ export declare type InferMethod<Tag> = InferSomethingBy<Tag>
  * @returns A promise that resolves to the response.
  * @date 2025/2/28
  */
-export declare type TaggedEndpointRequestFunction<M extends TESIEntryMethod, Tag extends ESITags, ActualOpt = {}> = <
-  EP extends SelectEndpointByTag<Tag, M>,
-  P2 extends IfParameterizedPath<EP, Opt>,
-  Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt>,
-  R extends InferESIResponseResult<M, EP>
->(endpoint: EP, pathParams?: P2, options?: Opt) => Promise<R>;
+export declare type TaggedEndpointRequestFunction2<M extends TESIEntryMethod, Tag extends ESITags, ActualOpt = {}> = <
+  RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
+  EP extends InferEndpointOrigin<RealEP, SelectEndpointByTag<Tag, M>> extends never ? RealEP: InferEndpointOrigin<RealEP, SelectEndpointByTag<Tag, M>>,
+  PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
+  Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
+  R extends InferESIResponseResult<M, EP>,
+  // RealEPX = ReplacePathParamsX<RealEPX>,
+  // EPX = ReplacePathParams<EP>,
+>(endpoint: RealEP, options?: Opt) => Promise<R>;
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
-//    Utility Type `ESITaggedEndpointRequest`
+//    Utility Type `ESITaggedEndpointRequest2`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Maps tags to their corresponding endpoint request functions.
@@ -102,9 +106,9 @@ export declare type TaggedEndpointRequestFunction<M extends TESIEntryMethod, Tag
  * @template Tag - The tag to map.
  * @date 2025/2/28
  */
-export declare type ESITaggedEndpointRequest<Tag extends ESITags, ActualOpt = {}> = {
+export declare type ESITaggedEndpointRequest2<Tag extends ESITags, ActualOpt = {}> = {
   [tag in Tag]: {
-    [method in InferMethod<Tag>]: TaggedEndpointRequestFunction<method, tag, ActualOpt>;
+    [method in InferMethod<Tag>]: TaggedEndpointRequestFunction2<method, tag, ActualOpt>;
   };
 }[Tag];
 
@@ -132,22 +136,22 @@ export declare type SelectEndpointByTag<
 
 /**
  * Maps lower camel case tags to their corresponding endpoint request functions.
- * @date 2025/2/28
+ * @date 2025/3/12
  */
-export declare type TaggedESIRequestMap<ActualOpt = {}> = {
-  [tag in ESITags as LCamelCase<tag>]: ESITaggedEndpointRequest<tag, ActualOpt>;
+export declare type TaggedESIRequestMap2<ActualOpt = {}> = {
+  [tag in ESITags as LCamelCase<tag>]: ESITaggedEndpointRequest2<tag, ActualOpt>;
 };
 
 /**
  * Creates a partial map of lower camel case tags to their corresponding endpoint request functions.
  * ```ts
  * // implements "factionWarfare", "wallet"
- * const esiRq: XTaggedESIRequestMapPartial<"factionWarfare" | "wallet">;
+ * const esiRq: TaggedESIRequestMapPartial2<"factionWarfare" | "wallet">;
  * ```
  * 
  * @template Props - The properties to require in the partial map.
  * @date 2025/2/28
  */
-export declare type TaggedESIRequestMapPartial<Props extends LCamelCase<ESITags>> = RequireThese<Partial<TaggedESIRequestMap>, Props>;
+export declare type TaggedESIRequestMapPartial2<Props extends LCamelCase<ESITags>> = RequireThese<Partial<TaggedESIRequestMap2>, Props>;
 
 export as namespace XESI;
