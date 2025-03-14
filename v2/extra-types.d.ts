@@ -7,7 +7,7 @@
  * @minItems 1
  * @maxItems 1000
  */
-type PostCharactersAffiliationCharacters = number[];
+type PostCharactersAffiliationCharacters = [number, ...number[]];
 
 /* post_characters_character_id_assets_locations body type, name: item_ids */
 
@@ -17,7 +17,7 @@ type PostCharactersAffiliationCharacters = number[];
  * @minItems 1
  * @maxItems 1000
  */
-type PostCharactersCharacterIdAssetsLocationsItemIds = number[];
+type PostCharactersCharacterIdAssetsLocationsItemIds = [number, ...number[]];
 
 /* post_characters_character_id_assets_names body type, name: item_ids */
 
@@ -27,7 +27,7 @@ type PostCharactersCharacterIdAssetsLocationsItemIds = number[];
  * @minItems 1
  * @maxItems 1000
  */
-type PostCharactersCharacterIdAssetsNamesItemIds = number[];
+type PostCharactersCharacterIdAssetsNamesItemIds = [number, ...number[]];
 
 /* put_characters_character_id_calendar_event_id body type, name: response */
 
@@ -52,7 +52,7 @@ interface PutCharactersCharacterIdCalendarEventIdResponse {
  * @minItems 1
  * @maxItems 100
  */
-type PostCharactersCharacterIdContactsContactIds = number[];
+type PostCharactersCharacterIdContactsContactIds = [number, ...number[]];
 
 /* put_characters_character_id_contacts body type, name: contact_ids */
 
@@ -62,7 +62,7 @@ type PostCharactersCharacterIdContactsContactIds = number[];
  * @minItems 1
  * @maxItems 100
  */
-type PutCharactersCharacterIdContactsContactIds = number[];
+type PutCharactersCharacterIdContactsContactIds = [number, ...number[]];
 
 /* post_characters_character_id_cspa body type, name: characters */
 
@@ -72,7 +72,7 @@ type PutCharactersCharacterIdContactsContactIds = number[];
  * @minItems 1
  * @maxItems 100
  */
-type PostCharactersCharacterIdCspaCharacters = number[];
+type PostCharactersCharacterIdCspaCharacters = [number, ...number[]];
 
 /* post_characters_character_id_fittings body type, name: fitting */
 
@@ -82,7 +82,7 @@ type PostCharactersCharacterIdCspaCharacters = number[];
  * @minItems 1
  * @maxItems 512
  */
-type PostCharactersCharacterIdFittingsItems = PostCharactersCharacterIdFittingsItem[];
+type PostCharactersCharacterIdFittingsItems = [PostCharactersCharacterIdFittingsItem, ...PostCharactersCharacterIdFittingsItem[]];
 /**
  * Fitting location for the item. Entries placed in 'Invalid' will be discarded. If this leaves the fitting with nothing, it will cause an error.
  */
@@ -168,7 +168,7 @@ interface PostCharactersCharacterIdFittingsItem {
  * @minItems 1
  * @maxItems 50
  */
-type PostCharactersCharacterIdMailRecipients = PostCharactersCharacterIdMailRecipient[];
+type PostCharactersCharacterIdMailRecipients = [PostCharactersCharacterIdMailRecipient, ...PostCharactersCharacterIdMailRecipient[]];
 /**
  * recipient_type string
  */
@@ -270,7 +270,7 @@ interface PutCharactersCharacterIdMailMailIdContents {
  * @minItems 1
  * @maxItems 1000
  */
-type PostCorporationsCorporationIdAssetsLocationsItemIds = number[];
+type PostCorporationsCorporationIdAssetsLocationsItemIds = [number, ...number[]];
 
 /* post_corporations_corporation_id_assets_names body type, name: item_ids */
 
@@ -280,7 +280,7 @@ type PostCorporationsCorporationIdAssetsLocationsItemIds = number[];
  * @minItems 1
  * @maxItems 1000
  */
-type PostCorporationsCorporationIdAssetsNamesItemIds = number[];
+type PostCorporationsCorporationIdAssetsNamesItemIds = [number, ...number[]];
 
 /* put_fleets_fleet_id body type, name: new_settings */
 
@@ -390,7 +390,7 @@ interface PutFleetsFleetIdWingsWingIdNaming {
  * @minItems 1
  * @maxItems 50
  */
-type PostUiOpenwindowNewmailRecipients = number[];
+type PostUiOpenwindowNewmailRecipients = [number, ...number[]];
 
 /**
  * new_mail object
@@ -424,7 +424,7 @@ interface PostUiOpenwindowNewmailNewMail {
  * @minItems 1
  * @maxItems 500
  */
-type PostUniverseIdsNames = string[];
+type PostUniverseIdsNames = [string, ...string[]];
 
 /* post_universe_names body type, name: ids */
 
@@ -434,7 +434,7 @@ type PostUniverseIdsNames = string[];
  * @minItems 1
  * @maxItems 1000
  */
-type PostUniverseNamesIds = number[];
+type PostUniverseNamesIds = [number, ...number[]];
 
 
 /*! query types */
@@ -446,7 +446,7 @@ type PostUniverseNamesIds = number[];
  * @minItems 1
  * @maxItems 20
  */
-type DeleteCharactersCharacterIdContactsContactIds = number[];
+type DeleteCharactersCharacterIdContactsContactIds = [number, ...number[]];
 
 /* post_characters_character_id_contacts, label_ids query type */
 
@@ -497,7 +497,7 @@ type GetCharactersCharacterIdSearchCategory =
  * @minItems 1
  * @maxItems 11
  */
-type GetCharactersCharacterIdSearchCategories = GetCharactersCharacterIdSearchCategory[];
+type GetCharactersCharacterIdSearchCategories = [GetCharactersCharacterIdSearchCategory, ...GetCharactersCharacterIdSearchCategory[]];
 
 /* get_characters_character_id_search, search query type */
 
