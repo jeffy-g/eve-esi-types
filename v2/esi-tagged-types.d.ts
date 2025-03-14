@@ -92,9 +92,10 @@ export declare type TaggedEndpointRequestFunction2<M extends TESIEntryMethod, Ta
   PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
   Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
   R extends InferESIResponseResult<M, EP>,
+  HasOpt = HasRequireParams<TESIResponseOKMap[M][EP]> extends never ? 0 : 1
   // RealEPX = ReplacePathParamsX<RealEPX>,
   // EPX = ReplacePathParams<EP>,
->(endpoint: RealEP, options?: Opt) => Promise<R>;
+>(endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -13,7 +13,6 @@ export declare const getRequestPending: () => number;
 /**
  * fire ESI request ESIRequestOptions
  *
- * @type {TESIRequestFunctionSignature2<ESIRequestOptions>}
  * @throws {ESIRequestError}
  * @async
  */

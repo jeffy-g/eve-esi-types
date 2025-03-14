@@ -138,8 +138,9 @@ declare global {
     // If RealEP points to an endpoint origin (not a replaced endpoint), the path parameter is required
     PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
     Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
-    R extends InferESIResponseResult<M, EP>
-  >(method: M, endpoint: RealEP, options?: Opt) => Promise<R>;
+    R extends InferESIResponseResult<M, EP>,
+    HasOpt = HasRequireParams<TESIResponseOKMap[M][EP]> extends never ? 0 : 1
+  >(method: M, endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
 
   /**
    * Represents a function that can make ESI requests for a specific HTTP method.
@@ -165,8 +166,9 @@ declare global {
     EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP: InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>,
     PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
     Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
-    R extends InferESIResponseResult<M, EP>
-  >(endpoint: RealEP, options?: Opt) => Promise<R>;
+    R extends InferESIResponseResult<M, EP>,
+    HasOpt = HasRequireParams<TESIResponseOKMap[M][EP]> extends never ? 0 : 1
+  >(endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
 
   /**
    * Replaces path parameters in a string with numbers.
@@ -221,6 +223,22 @@ declare global {
   //       ? EP : never;
   //   }[keyof TESIResponseOKMap[Method]]
   // }[TESIEntryMethod];
+
+  /**
+   * Determines if the given entry has required parameters.
+   * 
+   * This type checks if an entry has any required parameters by excluding the keys "result", "tag", and "cachedSeconds".
+   * If any keys remain after this exclusion, it means the entry has required parameters.
+   * 
+   * @template Entry - The entry type to check for required parameters.
+   * 
+   * @example
+   * ```ts
+   * type ExampleEntry = { result: string, tag: string, cachedSeconds: number, auth: string };
+   * type HasRequired = HasRequireParams<ExampleEntry>; // "auth"
+   * ```
+   */
+  type HasRequireParams<Entry> = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">;
 
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //                                Version 2 types

@@ -181,6 +181,9 @@ export declare function getLogger(): {
     clog: (...args: any[]) => void;
     rlog: (...args: any[]) => void;
 };
+export type TFireWithoutAuth = {
+    fireWithoutAuth<M extends TESIEntryMethod, RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M], EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP : InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>, PathParams extends RealEP extends EP ? IfNeedPathParams<EP> : TPathParamsNever, Opt extends IdentifyParameters<TESIResponseOKMap[M][Extract<EP, keyof TESIResponseOKMap[M]>], ESIRequestOptions & PathParams>, R extends InferESIResponseResult<M, Extract<EP, keyof TESIResponseOKMap[M]>>, HasOpt = HasRequireParams<TESIResponseOKMap[M][Extract<EP, keyof TESIResponseOKMap[M]>]> extends never ? 0 : 1>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: M, endpoint: RealEP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]): Promise<R>;
+}["fireWithoutAuth"];
 /**
  * Need typescript v5.5 later
  * @import * as ESI from "../v2";
@@ -189,12 +192,6 @@ export declare function getLogger(): {
  * @typedef {ESI.IESIRequestFunction2<ESIRequestOptions>} IESIRequestFunction2
  * @typedef {ESI.TESIRequestFunctionMethods2<ESIRequestOptions>} TESIRequestFunctionMethods2
  */
-/**
- * #### Fire a request that does not require authentication.
- *
- * @type {import("./rq-util.d.mts").fireWithoutAuth}
- */
-export declare function fireWithoutAuth<M extends TESIEntryMethod, RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M], EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP : InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>, PathParams extends RealEP extends EP ? IfNeedPathParams<EP> : TPathParamsNever, Opt extends IdentifyParameters<TESIResponseOKMap[M][Extract<EP, keyof TESIResponseOKMap[M]>], ESIRequestOptions & PathParams>, R extends InferESIResponseResult<M, Extract<EP, keyof TESIResponseOKMap[M]>>>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: M, endpoint: RealEP, opt?: Opt): Promise<R>;
 /**
  * #### Fire a request that does not require authentication.
  *

@@ -35,7 +35,7 @@ let LOG = isDebug();
  * Get the number of currently executing ESI requests
  */
 let ax = 0;
-/** @type {(m?: Truthy) => number} */
+/** @type {function(Truthy=): number} */
 const incrementAx = (minus) => minus ? ax-- : ax++;
 /**
  * @returns Get The Current ESI request pending count.
@@ -47,11 +47,10 @@ export const getRequestPending = () => ax;
 /**
  * fire ESI request ESIRequestOptions
  *
- * @type {TESIRequestFunctionSignature2<ESIRequestOptions>}
  * @throws {ESIRequestError}
  * @async
  */
-export const fire = async (mthd, endp, opt) => {
+export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>} */ (async (mthd, endp, opt) => {
     /** @type {number[]=} */
     let pathParams;
     if (opt && typeof opt.pathParams !== "undefined") {
@@ -81,7 +80,7 @@ export const fire = async (mthd, endp, opt) => {
     catch (e) {
         throw e;
     }
-};
+});
 // It should complete correctly.
 /**
  * @param {TESIRequestFunctionSignature2<ESIRequestOptions>} fn

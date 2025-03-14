@@ -27,7 +27,7 @@ esi.universe.post("/universe/names/", {
     body: [44992, 434243723, 109299958, 10000002]
 }).then(console.log);
 esi.universe.get("/universe/structures/", { query: { filter: "market" } }).then(console.log);
-// node tagged-rq.mjs -x -withError
+// node tagged-rq.mjs -x -debug -withError
 if (util.is("withError")) {
     esi.assets.get("/characters/2112625428/assets/", {
         auth: true
@@ -47,5 +47,7 @@ if (util.is("withError")) {
         pathParams: [1234, 56789],
         auth: true
     });
-    esi.character.post("/characters/affiliation/").catch(console.log);
+    esi.character.post("/characters/affiliation/", {
+        body: [12345]
+    }).catch(console.log);
 }
