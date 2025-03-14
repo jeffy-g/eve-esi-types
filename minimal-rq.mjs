@@ -27,9 +27,9 @@ const log = util.getUniversalLogger("[request-mini]: ");
 // Delegates implementation to `request` (TESIRequestFunctionMethods2)
 //
 const esiMethods = /** @type {TESIRequestFunctionMethods2} */ ({});
-/** @type {TESIEntryMethod[]} */ (["get", "post", "put", "delete"]).forEach((method) => {
-    esiMethods[method] = /** @type {TESIRequestFunctionEachMethod2<typeof method>} */ (function (endpoint, opt) {
-        // @ts-expect-error
+/** @satisfies {TESIEntryMethod[]} */ (["get", "post", "put", "delete"]).forEach((method) => {
+    esiMethods[method] = /** @type {TESIRequestFunctionEachMethod2<typeof method, util.ESIRequestOptions>} */ ((endpoint, opt) => {
+        // @ts-expect-error ts(2345)
         return request2(method, endpoint, opt);
     });
 });
@@ -39,18 +39,20 @@ const esiMethods = /** @type {TESIRequestFunctionMethods2} */ ({});
  */
 async function getEVEStatus2(fn) {
     await util.getSDEVersion().then(sdeVersion => log(`sdeVersion: ${sdeVersion}`.blue));
+    const { clog, rlog } = util.getLogger();
+    rlog("- - - - - - - > run as IESIRequestFunction2<ESIRequestOptions>".red, fn);
     await util.fireRequestsDoesNotRequireAuth(fn);
     CaseIESIRequestFunctionMethods: {
+        rlog("- - - - - - - > run as TESIRequestFunctionMethods2<ESIRequestOptions>".red, esiMethods);
         await util.fireRequestsDoesNotRequireAuth(esiMethods);
     }
-    const { clog, rlog } = util.getLogger();
     CaseIESIRequestFunction2: {
         const ID_CCP_Zoetrope = 2112625428;
         // - - - - - - - - - - - -
         //       Character
         // - - - - - - - - - - - -
         // Here, I borrow data from "CCP Zoetrope".
-        rlog("- - - - - - - > run as IESIRequestFunction2<ESIRequestOptions>".red);
+        rlog("- - - - - - - > run as IESIRequestFunction2::TESIRequestFunctionMethods2<ESIRequestOptions>".red, fn);
         clog();
         await fn.get("/characters/{character_id}/", { pathParams: ID_CCP_Zoetrope }).then(log);
         clog('(portrait)');

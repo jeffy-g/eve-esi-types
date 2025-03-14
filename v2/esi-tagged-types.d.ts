@@ -82,9 +82,12 @@ export declare type InferMethod<Tag> = InferSomethingBy<Tag>
  * 
  * @param endpoint - The endpoint path.
  * @param pathParams - The path parameters.
- * @param options - The request options.
+ * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
  * @returns A promise that resolves to the response.
- * @date 2025/2/28
+ * 
+ * @remarks
+ * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
+ * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
  */
 export declare type TaggedEndpointRequestFunction2<M extends TESIEntryMethod, Tag extends ESITags, ActualOpt = {}> = <
   RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],

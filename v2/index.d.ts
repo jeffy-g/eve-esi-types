@@ -125,9 +125,13 @@ declare global {
    * 
    * @param method - The HTTP method to use for the request (e.g., "get", "post").
    * @param endpoint - The real path of the ESI endpoint to send the request to.
-   * @param options - An optional object containing additional options for the request.
+   * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
    * 
    * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
+   * 
+   * @remarks
+   * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
+   * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
   type TESIRequestFunctionSignature2<ActualOpt> = <
     M extends TESIEntryMethod,
@@ -157,9 +161,13 @@ declare global {
    * @template R - The response type.
    *
    * @param endpoint - The real path of the ESI endpoint to send the request to.
-   * @param options - An optional object containing additional options for the request.
+   * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
    *
    * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
+   * 
+   * @remarks
+   * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
+   * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
   type TESIRequestFunctionEachMethod2<M extends TESIEntryMethod, ActualOpt = {}> = <
     RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
