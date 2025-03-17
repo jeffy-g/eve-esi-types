@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/esi-tagged-types.d.ts
- * @summary This file is auto-generated and defines version 3.1.0 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.1 of the EVE Online ESI response types.
  */
 import { TESIResponseOKMap } from "./index.d.ts";
 export * from "./index.d.ts";
@@ -61,26 +61,51 @@ export declare type ESITags = InferSomethingBy<never, InferSomethingByTags>
  * @date 2025/2/28
  */
 export declare type InferMethod<Tag> = InferSomethingBy<Tag>
-// type XAssets = InferMethod<"Assets">;
-// type XContacts = InferMethod<"Contacts">;
-// type XPlanetary = InferMethod<"Planetary Interaction">;
+/* ctt
+type XAssets = InferMethod<"Assets">;
+type XContacts = InferMethod<"Contacts">;
+type XPlanetary = InferMethod<"Planetary Interaction">;
+/*/
+//*/
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 //    Utility Type `TaggedEndpointRequestFunction2`
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
+/**
+ * Infers the endpoint origin based on the provided endpoints.
+ * 
+ *  + Customed InferEndpointOrigin
+ * 
+ * @template RealEP - The real endpoint type.
+ * @template Endpoints - The possible endpoints.
+ * 
+ * @typeParam RealEP - The type of the real endpoint.
+ * @typeParam Endpoints - The type of the possible endpoints.
+ * 
+ * @returns The inferred endpoint origin.
+ */
+type _InferEndpointOrigin<
+  RealEP extends unknown, Endpoints extends string | number | symbol
+> = {
+  [EP in Endpoints]: RealEP extends ReplacePathParams<EP>
+    ? EP : never;
+}[Endpoints];
+
 /**
  * Creates a function type for making requests to tagged endpoints.
  * 
  * @template M - The HTTP method.
  * @template Tag - The tag associated with the endpoint.
  * @template ActualOpt - The actual options for the request.
- * @template EP - The endpoint path.
- * @template P2 - The path parameters.
+ * @template EndPoints - The possible endpoints.
+ * @template REP - The real endpoint path.
+ * @template EPX - The inferred endpoint origin.
+ * @template PPM - The path parameters.
  * @template Opt - The request options.
- * @template R - The response type.
+ * @template Ret - The response type.
+ * @template HasOpt - Indicates if the endpoint has required parameters.
  * 
  * @param endpoint - The endpoint path.
- * @param pathParams - The path parameters.
  * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
  * @returns A promise that resolves to the response.
  * 
@@ -88,17 +113,18 @@ export declare type InferMethod<Tag> = InferSomethingBy<Tag>
  * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
  * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
  */
-// TODO: 2025/3/16 1:20:50 Generics bug maybe OK?
-export declare type TaggedEndpointRequestFunction2<M extends TESIEntryMethod, Tag extends ESITags, ActualOpt = {}> = <
-    RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>,
-    EPx extends ResolvedEndpoint<RealEP, M>,
-    PathParams extends InferPathParams<RealEP, EPx>,
-    Opt extends IdentifyParameters<M, EPx, ActualOpt & PathParams>,
-    R extends InferESIResponseResult<M, EPx>,
-    HasOpt = HasRequireParams<M, EPx, PathParams>,
-  // RealEPX = ReplacePathParamsX<RealEPX>,
-  // EPX = ReplacePathParams<EP>,
->(endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
+export declare type TaggedEndpointRequestFunction2<
+  M extends TESIEntryMethod, Tag extends ESITags,
+  ActualOpt extends Record<string, unknown> = {},
+  EndPoints extends SelectEndpointByTag<Tag, M> = SelectEndpointByTag<Tag, M>,
+> = <
+    REP extends ReplacePathParams<EndPoints> | EndPoints,
+    EPX extends _InferEndpointOrigin<REP, EndPoints> extends never ? REP: _InferEndpointOrigin<REP, EndPoints>,
+    PPM extends InferPathParams<REP, EPX>,
+    Opt extends IdentifyParameters<M, EPX, ActualOpt & PPM>,
+    Ret extends InferESIResponseResult<M, EPX>,
+    HasOpt = HasRequireParams<M, EPX, PPM>,
+>(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -108,9 +134,10 @@ export declare type TaggedEndpointRequestFunction2<M extends TESIEntryMethod, Ta
  * Maps tags to their corresponding endpoint request functions.
  * 
  * @template Tag - The tag to map.
+ * @template ActualOpt - The actual options for the request.
  * @date 2025/2/28
  */
-export declare type ESITaggedEndpointRequest2<Tag extends ESITags, ActualOpt = {}> = {
+export declare type ESITaggedEndpointRequest2<Tag extends ESITags, ActualOpt extends Record<string, unknown> = {}> = {
   [tag in Tag]: {
     [method in InferMethod<Tag>]: TaggedEndpointRequestFunction2<method, tag, ActualOpt>;
   };
@@ -135,14 +162,19 @@ export declare type SelectEndpointByTag<
       ? EP : never
     : never;
 }[keyof TESIResponseOKMap[M]];
-// type XAssetsEndpointGet = SelectEndpointByTag<"Assets", "get">;
-// type XAssetsEndpointPost = SelectEndpointByTag<"Assets", "post">;
+/* ctt
+type XAssetsEndpointGet = SelectEndpointByTag<"Assets", "get">;
+type XAssetsEndpointPost = SelectEndpointByTag<"Assets", "post">;
+/*/
+//*/
 
 /**
  * Maps lower camel case tags to their corresponding endpoint request functions.
+ * 
+ * @template ActualOpt - The actual options for the request.
  * @date 2025/3/12
  */
-export declare type TaggedESIRequestMap2<ActualOpt = {}> = {
+export declare type TaggedESIRequestMap2<ActualOpt extends Record<string, unknown> = {}> = {
   [tag in ESITags as LCamelCase<tag>]: ESITaggedEndpointRequest2<tag, ActualOpt>;
 };
 

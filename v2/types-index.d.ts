@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/types-index.d.ts
- * @summary This file is auto-generated and defines version 3.1.0 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.1 of the EVE Online ESI response types.
  */
 import "./get_wars_ok.d.ts";
 import "./get_status_ok.d.ts";

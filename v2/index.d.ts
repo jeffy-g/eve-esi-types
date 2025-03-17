@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.1.0 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.1 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
@@ -195,12 +195,12 @@ declare global {
    * This function sends a request to a specified endpoint and returns a response.
    * 
    * @template ActualOpt - The actual type of the option.
-   * @template M - The HTTP method to use for the request
-   * @template RealEP - The real path of the ESI endpoint to send the request to
-   * @template EP - The parameterized path of the ESI endpoint to send the request to
-   * @template PathParams - Parameters to include in the request if the endpoint is parameterized
+   * @template Mtd - The HTTP method to use for the request
+   * @template REP - The real path of the ESI endpoint to send the request to
+   * @template EPX - The parameterized path of the ESI endpoint to send the request to
+   * @template PPM - Parameters to include in the request if the endpoint is parameterized
    * @template Opt - Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`
-   * @template R - The response type
+   * @template Ret - The response type
    * 
    * @param method - The HTTP method to use for the request (e.g., "get", "post").
    * @param endpoint - The real path of the ESI endpoint to send the request to.
@@ -213,28 +213,28 @@ declare global {
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
   type TESIRequestFunctionSignature2<ActualOpt> = <
-    M extends TESIEntryMethod,
-    RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>,
-    EPx extends ResolvedEndpoint<RealEP, M>,
-    PathParams extends InferPathParams<RealEP, EPx>,
-    Opt extends IdentifyParameters<M, EPx, ActualOpt & PathParams>,
-    R extends InferESIResponseResult<M, EPx>,
-    HasOpt = HasRequireParams<M, EPx, PathParams>,
-  >(method: M, endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
+    Mtd extends TESIEntryMethod,
+    REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+    EPX extends ResolvedEndpoint<REP, Mtd>,
+    PPM extends InferPathParams<REP, EPX>,
+    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt & PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPX>,
+    HasOpt = HasRequireParams<Mtd, EPX, PPM>,
+  >(method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
   /**
    * Represents a function that can make ESI requests for a specific HTTP method.
    *
    * This type is used to define functions that send requests to specific ESI endpoints using a given HTTP method.
    *
-   * @template M - The HTTP method to use for the request.
+   * @template Mtd - The HTTP method to use for the request.
    * @template ActualOpt - The actual type of the options.
    *
-   * @template RealEP - The real path of the ESI endpoint to send the request to.
-   * @template EP - The parameterized path of the ESI endpoint to send the request to.
-   * @template PathParams - Parameters to include in the request if the endpoint is parameterized.
+   * @template REP - The real path of the ESI endpoint to send the request to.
+   * @template EPX - The parameterized path of the ESI endpoint to send the request to.
+   * @template PPM - Parameters to include in the request if the endpoint is parameterized.
    * @template Opt - Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`.
-   * @template R - The response type.
+   * @template Ret - The response type.
    *
    * @param endpoint - The real path of the ESI endpoint to send the request to.
    * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
@@ -245,14 +245,14 @@ declare global {
    * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
-  type TESIRequestFunctionEachMethod2<M extends TESIEntryMethod, ActualOpt = {}> = <
-    RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>,
-    EPx extends ResolvedEndpoint<RealEP, M>,
-    PathParams extends InferPathParams<RealEP, EPx>,
-    Opt extends IdentifyParameters<M, EPx, ActualOpt & PathParams>,
-    R extends InferESIResponseResult<M, EPx>,
-    HasOpt = HasRequireParams<M, EPx, PathParams>,
-  >(endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
+  type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt = {}> = <
+    REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+    EPX extends ResolvedEndpoint<REP, Mtd>,
+    PPM extends InferPathParams<REP, EPX>,
+    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt & PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPX>,
+    HasOpt = HasRequireParams<Mtd, EPX, PPM>,
+  >(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
   /**
    * Replaces path parameters in a string with numbers.
