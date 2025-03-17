@@ -92,7 +92,7 @@ async function getEVEStatus(fn) {
     return fn("get", "/status/");
 }
 // type following and run
-// node v2.mjs
+// node request-v3.mjs
 // or yarn test
 if (!is("x")) {
     getEVEStatus(fire).then(eveStatus => log(eveStatus));

@@ -11,7 +11,7 @@
  * @file eve-esi-types/v2/esi-tagged-types.d.ts
  * @summary This file is auto-generated and defines version 3.0.4 of the EVE Online ESI response types.
  */
-import { TESIResponseOKMap, TPathParamsNever } from "./index.d.ts";
+import { TESIResponseOKMap } from "./index.d.ts";
 export * from "./index.d.ts";
 
 /**
@@ -30,13 +30,12 @@ export declare type LCamelCase<S extends string> = S extends `${infer P1} ${infe
   ? `${Lowercase<P1>}${Capitalize<P2>}` : Lowercase<S>;
 
 
-declare type EInferSomethingBy = {
-  readonly METHOD: 0;
-  readonly TAGs: 1;
-};
-declare type InferSomethingBy<Tag, AsType extends EInferSomethingBy = EInferSomethingBy["METHOD"]> = {
+declare type InferSomethingByBrand<N = number> = N & { __enum: "InferSomethingBy" };
+declare type InferSomethingByMethod  = InferSomethingByBrand<0>;
+declare type InferSomethingByTags    = InferSomethingByBrand<1>;
+declare type InferSomethingBy<Tag, AsType extends InferSomethingByBrand = InferSomethingByMethod> = {
   [M in TESIEntryMethod]: TESIResponseOKMap[M] extends Record<`/${string}/`, { tag: infer ActualTag }>
-    ? AsType extends EInferSomethingBy["TAGs"]
+    ? AsType extends InferSomethingByTags
       ? ActualTag : ActualTag extends Tag
         ? M
       : never
@@ -50,7 +49,7 @@ declare type InferSomethingBy<Tag, AsType extends EInferSomethingBy = EInferSome
  * @template M - The HTTP method.
  * @date 2025/2/28
  */
-export declare type ESITags = InferSomethingBy<never, EInferSomethingBy["TAGs"]>
+export declare type ESITags = InferSomethingBy<never, InferSomethingByTags>
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 //            Utility Type `InferMethod`
@@ -89,13 +88,14 @@ export declare type InferMethod<Tag> = InferSomethingBy<Tag>
  * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
  * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
  */
+// TODO: 2025/3/16 1:20:50 Generics bug maybe OK?
 export declare type TaggedEndpointRequestFunction2<M extends TESIEntryMethod, Tag extends ESITags, ActualOpt = {}> = <
-  RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
-  EP extends InferEndpointOrigin<RealEP, SelectEndpointByTag<Tag, M>> extends never ? RealEP: InferEndpointOrigin<RealEP, SelectEndpointByTag<Tag, M>>,
-  PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
-  Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
-  R extends InferESIResponseResult<M, EP>,
-  HasOpt = HasRequireParams<TESIResponseOKMap[M][EP]> extends never ? 0 : 1
+    RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>,
+    EPx extends ResolvedEndpoint<RealEP, M>,
+    PathParams extends InferPathParams<RealEP, EPx>,
+    Opt extends IdentifyParameters<M, EPx, ActualOpt & PathParams>,
+    R extends InferESIResponseResult<M, EPx>,
+    HasOpt = HasRequireParams<M, EPx, PathParams>,
   // RealEPX = ReplacePathParamsX<RealEPX>,
   // EPX = ReplacePathParams<EP>,
 >(endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;

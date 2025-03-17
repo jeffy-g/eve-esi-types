@@ -11,7 +11,6 @@
  * @file eve-esi-types/v2/index.d.ts
  * @summary This file is auto-generated and defines version 3.0.4 of the EVE Online ESI response types.
  */
-
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
 
@@ -86,23 +85,103 @@ export declare type TESICachedSeconds<
   Method extends TESIEntryMethod, AsEndpoint = void
 > = {
   [M in TESIEntryMethod]: {
-    [EP in keyof TESIResponseOKMap[M]]: TESIResponseOKMap[M][EP]["cachedSeconds"] extends number
+    [EP in ESIEndpointOf<M>]: TESIResponseOKMap[M][EP] extends { cachedSeconds: number }
       ? AsEndpoint extends void
         ? TESIResponseOKMap[M][EP]["cachedSeconds"]: EP
       : never
-  }[keyof TESIResponseOKMap[M]];
+  }[ESIEndpointOf<M>];
 }[Method];
-// const cacheSecGet: TESICachedSeconds<"get">;
-// const cache5sec: TESICachedSeconds<"put">;
-// const cache3600sEndpoint: TESICachedSeconds<"post", 1>;
-export declare type TPathParamsNever = { pathParams?: never };
+// declare const cacheSecGet: TESICachedSeconds<"get">;
+// declare const cache5sec: TESICachedSeconds<"put">;
+// declare const cache3600sEndpoint: TESICachedSeconds<"post", 1>;
+// TODO: 2025/3/17 3:43:33 How do I get rid of `pathParams` completely?
+export declare type TPathParamsNever = { /* pathParams?: never */ };
+
+// local types
+/**
+ * Infers the response type of an ESI request based on the HTTP method and endpoint.
+ * 
+ * This type extracts the response type from the `TESIResponseOKMap` based on the provided
+ * HTTP method and endpoint.
+ * 
+ * @template M - The HTTP method to use for the request.
+ * @template EPx - The endpoint path.
+ * 
+ * @example
+ * ```ts
+ * type ResponseType = _ESIResponseType<"get", "/characters/{character_id}/">;
+ * // Result: The inferred response type for the given method and endpoint.
+ * ```
+ * @internal
+ * @see {@link ESIEndpointOf}
+ */
+export type _ESIResponseType<
+  M extends TESIEntryMethod,
+  EPx extends ESIEndpointOf<M> | string,
+> = TESIResponseOKMap[M][Extract<EPx, ESIEndpointOf<M>>];
+// type XOK = _ESIResponseType<"get", "/status/"> extends global._ESIResponseType<"get", "/status/"> ? 1 : 0;
+/**
+ * Determines if the endpoint requires path parameters.
+ * 
+ * @template EP - The string representing the endpoint path.
+ * @returns {TPathParamsNever | { pathParams: IfParameterizedPath<EP> }}
+ * Returns an object with `pathParams` if the endpoint requires parameters, otherwise returns `TPathParamsNever`.
+ * @example
+ * ```ts
+ * type Example = IfNeedPathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
+ * // Result: { pathParams: [number, number] }
+ * ```
+ * @internal
+ * @see {@link IfParameterizedPath}
+ * @see {@link ReplacePathParams}
+ */
+export type _IfNeedPathParams<EP extends unknown> = IfParameterizedPath<EP> extends never ? TPathParamsNever :
+  EP extends ReplacePathParams<EP> ? TPathParamsNever : { pathParams: IfParameterizedPath<EP> };
+
+/**
+ * Infer the result type of an ESI response based on the method and endpoint.
+ * 
+ * @template M - The HTTP method (e.g., "get", "post").
+ * @template EP - The endpoint path.
+ * @deprecated 2025/3/17 12:12:33
+ */
+export type __InferESIResponseResult<
+  M extends TESIEntryMethod,
+  EP extends ESIEndpointOf<M>
+> = TESIResponseOKMap[M][EP] extends { result: infer U } ? U : never;
+/**
+ * Identifies the required parameters for a given entry type.
+ *
+ * @template Entry - The entry type to identify parameters for.
+ * @template Opt - The type of the parameters.
+ * @type {Opt & Pick<Entry, Exclude<keyof Entry, "result">>}
+ * @deprecated 2025/3/17 12:12:33
+ */
+export type __IdentifyParameters<
+  Entry, Opt,
+  Keys = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">
+  // @ts-expect-error 
+> = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
+
 
 declare global {
 
   /**
-   * mark a specific property as `required`
+   * Marks specific properties of a type as required.
+   * 
+   * @template T - The original type.
+   * @template K - The keys of the properties to mark as required.
+   * 
+   * @example
+   * ```ts
+   * type Original = { a?: number; b?: string; c: boolean };
+   * type RequiredA = RequireThese<Original, 'a'>;
+   * // Result: { a: number; b?: string; c: boolean }
+   * ```
    */
-  type RequireThese<T, K extends keyof T> = T & Required<Pick<T, K>>;
+  type RequireThese<T, K extends keyof T> = {
+    [P in keyof T]: P extends K ? Required<Pick<T, P>>[P] : T[P];
+  };
 
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //                                Version 3 types
@@ -133,17 +212,15 @@ declare global {
    * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
+  // TODO: 2025/3/16 1:00:01 Generics bug maybe OK
   type TESIRequestFunctionSignature2<ActualOpt> = <
     M extends TESIEntryMethod,
-    // "/characters/123/fittings/456/"
-    RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
-    // "/characters/{character_id}/fittings/{fitting_id}/"
-    EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP: InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>,
-    // If RealEP points to an endpoint origin (not a replaced endpoint), the path parameter is required
-    PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
-    Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
-    R extends InferESIResponseResult<M, EP>,
-    HasOpt = HasRequireParams<TESIResponseOKMap[M][EP]> extends never ? 0 : 1
+    RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>,
+    EPx extends ResolvedEndpoint<RealEP, M>,
+    PathParams extends InferPathParams<RealEP, EPx>,
+    Opt extends IdentifyParameters<M, EPx, ActualOpt & PathParams>,
+    R extends InferESIResponseResult<M, EPx>,
+    HasOpt = HasRequireParams<M, EPx, PathParams>,
   >(method: M, endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
 
   /**
@@ -170,83 +247,140 @@ declare global {
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
   type TESIRequestFunctionEachMethod2<M extends TESIEntryMethod, ActualOpt = {}> = <
-    RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
-    EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP: InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>,
-    PathParams extends RealEP extends EP ? IfNeedPathParams<EP>: TPathParamsNever,
-    Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
-    R extends InferESIResponseResult<M, EP>,
-    HasOpt = HasRequireParams<TESIResponseOKMap[M][EP]> extends never ? 0 : 1
+    RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>,
+    EPx extends ResolvedEndpoint<RealEP, M>,
+    PathParams extends InferPathParams<RealEP, EPx>,
+    Opt extends IdentifyParameters<M, EPx, ActualOpt & PathParams>,
+    R extends InferESIResponseResult<M, EPx>,
+    HasOpt = HasRequireParams<M, EPx, PathParams>,
   >(endpoint: RealEP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
 
   /**
    * Replaces path parameters in a string with numbers.
    * 
    * @template T - The string representing the endpoint path.
+   * @type {string}
    * @example
    * ```ts
    * type Example = ReplacePathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
    * // Result: `/characters/${number}/fittings/${number}/`
    * ```
    */
-  type ReplacePathParams<T extends string> = T extends `${infer Start}{${infer Param}}${infer End}`
+  type ReplacePathParams<T extends unknown> = T extends `${infer Start}{${infer Param}}${infer End}`
     ? `${Start}${number}${ReplacePathParams<End>}` : T;
-
-  // // type Example = ReplacePathParamsX<"/characters/1234/fittings/{fitting_id}/">;
+  // type XEPP = ESIEndpointOf<"delete">
+  // // incomplete
+  // type Example2 = ReplacePathParams<"/characters/1234/fittings/{fitting_id}/">;
   // // Result: `characters/${number}/fittings/${number}/`
-  // type ReplacePathParamsX<T extends string> =
-  //   T extends `/${infer Start}/${infer Param}/${infer End}` ? `${Start}/${number}/${ReplacePathParams<End>}`
-  //   : T;
+  // type Example3 = ReplacePathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
+
   /**
-   * Determines if the endpoint requires path parameters.
-   * 
-   * @template EP - The string representing the endpoint path.
-   * @returns {TPathParamsNever | { pathParams: IfParameterizedPath<EP> }}
-   * Returns an object with `pathParams` if the endpoint requires parameters, otherwise returns `TPathParamsNever`.
-   * @example
-   * ```ts
-   * type Example = IfNeedPathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
-   * // Result: { pathParams: [number, number] }
-   * ```
-   */
-  type IfNeedPathParams<EP> = IfParameterizedPath<EP> extends never ? TPathParamsNever :
-    EP extends ReplacePathParams<EP> ? TPathParamsNever : { pathParams: IfParameterizedPath<EP> };
-  /**
-   * Infers the original endpoint path from a real endpoint path.
+   * Infers the path parameters based on the real endpoint and the resolved endpoint.
    * 
    * @template RealEP - The real endpoint path.
-   * @returns {string} The original endpoint path with parameters.
+   * @template EPx - The resolved endpoint path.
+   * @returns {TPathParamsNever | _IfNeedPathParams<EPx>}
+   * @see {@link _IfNeedPathParams}
+   * @see {@link TPathParamsNever}
+   * @date 2025/3/17 4:32:47
+   */
+  type InferPathParams<
+    RealEP extends unknown, EPx extends unknown
+  > = RealEP extends EPx ? _IfNeedPathParams<EPx> : TPathParamsNever;
+
+  /**
+   * Infers the original endpoint based on the real endpoint and the HTTP method.
+   * 
+   * This type maps the real endpoint to its corresponding parameterized endpoint
+   * by checking if the real endpoint matches the pattern of any parameterized endpoint.
+   * 
+   * @template RealEP - The real endpoint path.
+   * @template M - The HTTP method to use for the request.
+   * @template Endpoints - The possible endpoints for the given method.
+   * 
    * @example
    * ```ts
-   * type EPOrigin = InferEndpointOrigin<"/characters/123/fittings/456/", TEndPointDelete>;
+   * type Original = InferEndpointOrigin<"/characters/123/fittings/456/", "delete">;
    * // Result: "/characters/{character_id}/fittings/{fitting_id}/"
    * ```
+   * @see {@link ESIEndpointOf}
+   * @see {@link ReplacePathParams}
    */
-  type InferEndpointOrigin<RealEP extends unknown, Endpoints> = {
+  type InferEndpointOrigin<
+    RealEP extends unknown, M extends TESIEntryMethod,
+    Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>
+  > = {
     [EP in Endpoints]: RealEP extends ReplacePathParams<EP>
       ? EP : never;
   }[Endpoints];
-  // type InferEndpointOrigin<RealEP extends string> = {
-  //   [Method in TESIEntryMethod]: {
-  //     [EP in keyof TESIResponseOKMap[Method]]: RealEP extends ReplacePathParams<EP>
-  //       ? EP : never;
-  //   }[keyof TESIResponseOKMap[Method]]
-  // }[TESIEntryMethod];
+  /**
+   * Determines the resolved endpoint based on the real endpoint and the method.
+   * 
+   * @template RealEP - The real endpoint path.
+   * @template M - The HTTP method to use for the request.
+   * 
+   * @example
+   * ```ts
+   * type Resolved = ResolvedEndpoint<"/characters/123/fittings/456/", "delete">;
+   * // Result: "/characters/{character_id}/fittings/{fitting_id}/"
+   * ```
+   * DONE: 2025/3/17 4:12:09 Ok, works
+   * 
+   * @see {@link InferEndpointOrigin}
+   */
+  type ResolvedEndpoint<
+    RealEP extends unknown, M extends TESIEntryMethod,
+  > = InferEndpointOrigin<RealEP, M> extends never ? RealEP: InferEndpointOrigin<RealEP, M>;
 
   /**
-   * Determines if the given entry has required parameters.
+   * Picks the required parameters from an entry type, including additional parameters.
    * 
-   * This type checks if an entry has any required parameters by excluding the keys "result", "tag", and "cachedSeconds".
-   * If any keys remain after this exclusion, it means the entry has required parameters.
+   * This type excludes the keys "result", "tag", and "cachedSeconds" from the entry type and the additional parameters,
+   * and returns the remaining keys as the required parameters.
    * 
-   * @template Entry - The entry type to check for required parameters.
+   * @template M - The HTTP method to use for the request.
+   * @template EPx - The endpoint path.
+   * @template AdditionalParams - Additional parameters to include in the check.
+   * @template Entry - The entry type to pick parameters from.
    * 
    * @example
    * ```ts
    * type ExampleEntry = { result: string, tag: string, cachedSeconds: number, auth: string };
-   * type HasRequired = HasRequireParams<ExampleEntry>; // "auth"
+   * type RequiredParams = PickRequireParams<"get", "/example/endpoint", { auth: string }, ExampleEntry>;
+   * // Result: "auth"
    * ```
+   * @see {@link ESIEndpointOf}
+   * @see {@link _ESIResponseType}
    */
-  type HasRequireParams<Entry> = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">;
+  type PickRequireParams<
+    M extends TESIEntryMethod,
+    EPx extends ESIEndpointOf<M> | string,
+    AdditionalParams,
+    Entry = _ESIResponseType<M, EPx>
+  > = Exclude<keyof (Entry & AdditionalParams), "result" | "tag" | "cachedSeconds">;
+  /**
+   * Determines if the given entry has required parameters, including additional options.
+   * 
+   * This type checks if an entry has any required parameters by excluding the keys "result", "tag", and "cachedSeconds".
+   * If any keys remain after this exclusion, it means the entry has required parameters.
+   * 
+   * @template M - The HTTP method to use for the request.
+   * @template EPx - The endpoint path.
+   * @template AdditionalParams - Additional parameters to include in the check.
+   * 
+   * @example
+   * ```ts
+   * type ExampleEntry = { result: string, tag: string, cachedSeconds: number, auth: string };
+   * type HasRequired = HasRequireParams<"get", "/example/endpoint", { auth: string }>; // 1
+   * ```
+   * @see {@link ESIEndpointOf}
+   * @see {@link PickRequireParams}
+   */
+  type HasRequireParams<
+    M extends TESIEntryMethod,
+    EPx extends ESIEndpointOf<M> | string,
+    AdditionalParams,
+  > = PickRequireParams<M, EPx, AdditionalParams> extends never ? 0 : 1;
 
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //                                Version 2 types
@@ -259,41 +393,76 @@ declare global {
    * @returns {number | [number, number] | Opt} 
    * Returns `number` if there is one parameter, `[number, number]` if there are two parameters, otherwise `Opt`.
    */
-  type IfParameterizedPath<EP, Opt = never> = EP extends `${string}/{${string}}${string}`
+  type IfParameterizedPath<EP extends unknown, Opt = never> = EP extends `${string}/{${string}}${string}`
     ? PickPathParameters<EP> extends never
       ? Opt : InferKeysLen<PickPathParameters<EP>> extends 1
         ? number : [number, number]
       : Opt;
 
   /**
-   * Identifies the required parameters for a given entry type.
+   * Identifies the required parameters for a given entry type, including additional options.
    *
+   * This type combines the required parameters from the entry type and the additional options,
+   * ensuring that all required parameters are marked as required.
+   *
+   * @template M - The HTTP method to use for the request.
+   * @template EPx - The endpoint path.
+   * @template Opt - The type of the additional options.
    * @template Entry - The entry type to identify parameters for.
-   * @template Opt - The type of the parameters.
-   * @type {Opt & Pick<Entry, Exclude<keyof Entry, "result">>}
+   * @template Keys - The keys of the entry type that are required parameters.
+   * 
+   * @example
+   * ```ts
+   * type ExampleEntry = { result: string, tag: string, cachedSeconds: number, auth: string };
+   * type ExampleOpt = { auth: string };
+   * type IdentifiedParams = IdentifyParameters<"get", "/example/endpoint", ExampleOpt, ExampleEntry>;
+   * // Result: { auth: string } & { auth: string }
+   * ```
+   * @see {@link RequireThese}
+   * @see {@link ESIEndpointOf}
+   * @see {@link _ESIResponseType}
    */
   //* ctt
   type IdentifyParameters<
-    Entry, Opt,
+    M extends TESIEntryMethod,
+    EPx extends ESIEndpointOf<M> | string,
+    Opt extends Record<string, unknown>,
+    Entry = _ESIResponseType<M, EPx>,
     Keys = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">
+    // @ts-expect-error 
   > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
   /*/
   type IdentifyParameters<
     Entry, Opt,
-    Keys = Exclude<keyof Entry, "result">
-  > = Opt & (Keys extends keyof Entry ? Pick<Entry, Keys> : {});
+    Keys = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">
+    // @ts-expect-error 
+  > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
+  // type IdentifyParameters<
+  //   Entry, Opt,
+  //   Keys = Exclude<keyof Entry, "result">
+  // > = Opt & (Keys extends keyof Entry ? Pick<Entry, Keys> : {});
   //*/
 
   /**
-   * Infer the result type of an ESI response based on the method and endpoint.
+   * Infers the result type of an ESI response based on the method and endpoint.
    * 
-   * @template M - The HTTP method (e.g., "get", "post").
-   * @template EP - The endpoint path.
+   * @template M - The HTTP method to use for the request.
+   * @template EPx - The endpoint path.
+   * 
+   * @example
+   * ```ts
+   * type Result = InferESIResponseResult<"get", "/characters/{character_id}/">;
+   * // Result: The inferred type of the response for the given method and endpoint.
+   * ```
+   * @see {@link ESIEndpointOf}
+   * @see {@link _ESIResponseType}
    */
   type InferESIResponseResult<
     M extends TESIEntryMethod,
-    EP extends keyof TESIResponseOKMap[M]
-  > = TESIResponseOKMap[M][EP] extends { result: infer U } ? U : never;
+    EPx extends ESIEndpointOf<M> | string
+  > = _ESIResponseType<M, EPx> extends { result: infer U } ? U : never;
+  /*
+  */
 
   /**
    * Represents a response with no content (HTTP status 204).
@@ -310,21 +479,25 @@ declare global {
   type TESIEntryMethod = keyof TESIResponseOKMap;
 
   /**
+   * @date 2025/3/16 21:45:50
+   */
+  type ESIEndpointOf<M extends TESIEntryMethod> = keyof TESIResponseOKMap[M];
+  /**
    * Represents the endpoints for the "get" method.
    */
-  type TEndPointGet = keyof TESIResponseOKMap["get"];
+  type TEndPointGet = ESIEndpointOf<"get">;
   /**
    * Represents the endpoints for the "post" method.
    */
-  type TEndPointPost = keyof TESIResponseOKMap["post"];
+  type TEndPointPost = ESIEndpointOf<"post">;
   /**
    * Represents the endpoints for the "put" method.
    */
-  type TEndPointPut = keyof TESIResponseOKMap["put"];
+  type TEndPointPut = ESIEndpointOf<"put">;
   /**
    * Represents the endpoints for the "delete" method.
    */
-  type TEndPointDelete = keyof TESIResponseOKMap["delete"];
+  type TEndPointDelete = ESIEndpointOf<"delete">;
 
   /**
    * Represents the entry details for the "get" method.

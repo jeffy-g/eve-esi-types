@@ -16,7 +16,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import type { TESIResponseOKMap, TESIRequestFunctionMethods2, TPathParamsNever } from "../v2";
+import type { TESIRequestFunctionMethods2 } from "../v2";
 import type { TESIErrorStats } from "./esi-error-types";
 export { isNode } from "./constants.mjs";
 /**
@@ -181,9 +181,10 @@ export declare function getLogger(): {
     clog: (...args: any[]) => void;
     rlog: (...args: any[]) => void;
 };
-export type TFireWithoutAuth = {
-    fireWithoutAuth<M extends TESIEntryMethod, RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M], EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP : InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>, PathParams extends RealEP extends EP ? IfNeedPathParams<EP> : TPathParamsNever, Opt extends IdentifyParameters<TESIResponseOKMap[M][Extract<EP, keyof TESIResponseOKMap[M]>], ESIRequestOptions & PathParams>, R extends InferESIResponseResult<M, Extract<EP, keyof TESIResponseOKMap[M]>>, HasOpt = HasRequireParams<TESIResponseOKMap[M][Extract<EP, keyof TESIResponseOKMap[M]>]> extends never ? 0 : 1>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: M, endpoint: RealEP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]): Promise<R>;
-}["fireWithoutAuth"];
+export type TFireWithoutAuth = <M extends TESIEntryMethod, RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>, EPx extends ResolvedEndpoint<RealEP, M>, PathParams extends InferPathParams<RealEP, EPx>, Opt extends IdentifyParameters<M, EPx, ESIRequestOptions & PathParams>, R extends InferESIResponseResult<M, EPx>, HasOpt = HasRequireParams<M, EPx, PathParams>, XX = PickRequireParams<M, EPx, PathParams>>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: M, endpoint: RealEP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<R>;
+export interface IFireWithoutAuth {
+    <M extends TESIEntryMethod, RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>, EPx extends ResolvedEndpoint<RealEP, M>, PathParams extends InferPathParams<RealEP, EPx>, Opt extends IdentifyParameters<M, EPx, ESIRequestOptions & PathParams>, R extends InferESIResponseResult<M, EPx>, HasOpt = HasRequireParams<M, EPx, PathParams>, XX = PickRequireParams<M, EPx, PathParams>>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: M, endpoint: RealEP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]): Promise<R>;
+}
 /**
  * Need typescript v5.5 later
  * @import * as ESI from "../v2";
