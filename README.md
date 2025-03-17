@@ -8,10 +8,10 @@ Extracted main types of ESI. Used for ESI request response types.
   + If you need to use version 1, please refer to the following link:  
     [eve-esi-types v1](https://github.com/jeffy-g/eve-esi-types/tree/version-1.x)
 
-> Sample code is provided -> [`v2.mjs`](./v2.mjs)
+> Sample code is provided -> [`request-v3.mjs`](./request-v3.mjs)
 
 ```shell
-$ node v2.mjs
+$ node request-v3.mjs
 ```
 
 ## API
