@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.0.4 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.0 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
@@ -94,7 +94,7 @@ export declare type TESICachedSeconds<
 // declare const cacheSecGet: TESICachedSeconds<"get">;
 // declare const cache5sec: TESICachedSeconds<"put">;
 // declare const cache3600sEndpoint: TESICachedSeconds<"post", 1>;
-// TODO: 2025/3/17 3:43:33 How do I get rid of `pathParams` completely?
+// TODO: 2025/3/17 How do I get rid of `pathParams` completely?
 export declare type TPathParamsNever = { /* pathParams?: never */ };
 
 // local types
@@ -212,7 +212,6 @@ declare global {
    * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
-  // TODO: 2025/3/16 1:00:01 Generics bug maybe OK
   type TESIRequestFunctionSignature2<ActualOpt> = <
     M extends TESIEntryMethod,
     RealEP extends ReplacePathParams<ESIEndpointOf<M>> | ESIEndpointOf<M>,
