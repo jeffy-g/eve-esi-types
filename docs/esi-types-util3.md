@@ -8,7 +8,7 @@
 
 # ESI Types Utility 3.1 Summary
 
-This document provides detailed explanations of each type defined in the `index.d.ts` file.
+This document provides detailed explanations of each type defined in the `eve-esi-types/v2/index.d.ts` file.
 
 > ## TESIRequestFunctionSignature2
 
