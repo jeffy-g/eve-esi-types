@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/esi-tagged-types.d.ts
- * @summary This file is auto-generated and defines version 3.1.1 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.3 of the EVE Online ESI response types.
  */
 import { TESIResponseOKMap } from "./index.d.ts";
 export * from "./index.d.ts";
@@ -121,7 +121,7 @@ export declare type TaggedEndpointRequestFunction2<
     REP extends ReplacePathParams<EndPoints> | EndPoints,
     EPX extends _InferEndpointOrigin<REP, EndPoints> extends never ? REP: _InferEndpointOrigin<REP, EndPoints>,
     PPM extends InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<M, EPX, ActualOpt & PPM>,
+    Opt extends IdentifyParameters<M, EPX, ActualOpt, PPM>,
     Ret extends InferESIResponseResult<M, EPX>,
     HasOpt = HasRequireParams<M, EPX, PPM>,
 >(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;

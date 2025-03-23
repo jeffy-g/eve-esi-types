@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.1.1 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.3 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
@@ -163,6 +163,56 @@ export type __IdentifyParameters<
   // @ts-expect-error 
 > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
 
+//  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//                         Internal types
+//  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+/**
+ * Defines the keys used in ESI entries.
+ */
+type ESIEntryKeys = "auth" | "query" | "body" | "pathParams";
+/**
+ * Restricts the keys of a type to the specified ones while excluding extra keys.
+ *
+ * This utility type is designed to enforce stricter semantics by marking unwanted keys as `never`.
+ *
+ * @template T - The original type to be constrained.
+ * @template T2 - The type to merge with the constrained type.
+ * @template K - The keys to retain in the resulting type.
+ * @template Extras - Automatically derived keys to exclude from the resulting type.
+ *
+ * @example
+ * ```ts
+ * type Original = { auth?: string; query?: string; body?: string; pathParams?: string; extra?: string };
+ * type Required = { auth: true; query: { test: "pen" | "pencil" } };
+ * type Restricted = RestrictKeys<Original, Required, "auth" | "query">;
+ * // Result: { auth: true; query: { test: "pen" | "pencil" }; body?: undefined; pathParams?: undefined; extra?: string | undefined }
+ * ```
+ */
+//* ctt
+type RestrictKeys<
+T, K extends keyof T,
+Extras = Exclude<ESIEntryKeys, K>
+> = {
+  [P in keyof T]: P extends K ? Pick<T, P>[P] :
+    P extends Extras ? never : T[P];
+};
+// type RequireEntry = {
+//   auth?: true;
+//   query?: { test: "pen" | "pencil" };
+//   body?: string;
+//   pathParams?: string;
+//   extra?: string
+// };
+// type Restricted = RestrictKeys<RequireEntry, "auth" | "query">;
+/*/
+type RestrictKeys<
+  T, T2,
+  K extends keyof T,
+  Extras = Exclude<ESIEntryKeys, K>
+> = T2 & {
+  [P in keyof T as P extends K ? never : P]: P extends Extras ? never : T[P];
+};
+//*/
 
 declare global {
 
@@ -217,7 +267,7 @@ declare global {
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
     EPX extends ResolvedEndpoint<REP, Mtd>,
     PPM extends InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt & PPM>,
+    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>,
     Ret extends InferESIResponseResult<Mtd, EPX>,
     HasOpt = HasRequireParams<Mtd, EPX, PPM>,
   >(method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
@@ -249,9 +299,9 @@ declare global {
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
     EPX extends ResolvedEndpoint<REP, Mtd>,
     PPM extends InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt & PPM>,
+    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>,
     Ret extends InferESIResponseResult<Mtd, EPX>,
-    HasOpt = HasRequireParams<Mtd, EPX, PPM>,
+    HasOpt extends HasRequireParams<Mtd, EPX, PPM> = HasRequireParams<Mtd, EPX, PPM>,
   >(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
   /**
@@ -426,20 +476,23 @@ declare global {
     M extends TESIEntryMethod,
     EPx extends ESIEndpointOf<M> | string,
     Opt extends Record<string, unknown>,
+    AdditionalParams,
     Entry = _ESIResponseType<M, EPx>,
-    Keys = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">
-    // @ts-expect-error 
-  > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
+    Keys = Exclude<keyof (Entry & AdditionalParams), "result" | "tag" | "cachedSeconds">
+    // @ts-expect- error 
+  > = RestrictKeys<Opt, Keys> & Pick<Entry, Keys> & AdditionalParams;
   /*/
+  // DEVNOTE: 2025/3/24
+  // The definition is simple and highly maintainable, but it is not possible to reference the `pathParams` property when implementing `TESIRequestFunctionSignature2` etc.
   type IdentifyParameters<
-    Entry, Opt,
-    Keys = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">
-    // @ts-expect-error 
-  > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;
-  // type IdentifyParameters<
-  //   Entry, Opt,
-  //   Keys = Exclude<keyof Entry, "result">
-  // > = Opt & (Keys extends keyof Entry ? Pick<Entry, Keys> : {});
+    M extends TESIEntryMethod,
+    EPx extends ESIEndpointOf<M> | string,
+    Opt extends Record<string, unknown>,
+    AdditionalParams,
+    Entry = _ESIResponseType<M, EPx>,
+    Keys = Exclude<keyof (Entry & AdditionalParams), "result" | "tag" | "cachedSeconds">
+    // @ts-expect- error 
+  > = RestrictKeys<Opt, Pick<Entry, Keys> & AdditionalParams, Keys>;
   //*/
 
   /**

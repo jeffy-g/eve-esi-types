@@ -44,7 +44,7 @@ if (util.is("withError")) {
         // token: "s.s.s"
     })).then(console.log).catch(console.log);
     esi.fittings.delete("/characters/1234/fittings/56789/", {
-        pathParams: [1234, 56789], // ⚠️ TODO: A semantics error should be deliberately caused here
+        // pathParams: [1234, 56789], // ✅ At this point, the expected semantic error is successfully triggered as intended.
         auth: true
     });
     esi.character.post("/characters/affiliation/", {

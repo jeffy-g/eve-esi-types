@@ -38,14 +38,6 @@ export type ESIRequestOptions = {
      */
     body?: any;
     /**
-     * cancel request immediately
-     */
-    cancelable?: AbortController;
-    /**
-     * Can be an empty object if no authentication is required.description
-     */
-    token?: TAcccessToken;
-    /**
      * whether an authorization header is required
      *
      *   + When using the `Web Fetch API`, avoid extra `OPTIONS` requests and reduce extra http requests
@@ -57,7 +49,15 @@ export type ESIRequestOptions = {
      * @date 2025/3/13
      * @since v3.0.0
      */
-    pathParams?: number | number[];
+    pathParams?: number | [number, number];
+    /**
+     * Can be an empty object if no authentication is required.description
+     */
+    token?: TAcccessToken;
+    /**
+     * cancel request immediately
+     */
+    cancelable?: AbortController;
 };
 /**
  * @typedef {string | number | boolean} Truthy
@@ -141,7 +141,7 @@ export declare const initOptions: (method: string, opt: ESIRequestOptions) => {
  * fetch the extra pages
  *
  *   + if the `x-pages` header property ware more than 1
- * @template {any} T
+ * @template {unknown} T
  * @param {string} endpointUrl
  * @param {RequestInit} rqopt request options
  * @param {URLSearchParams} usp queries
@@ -181,9 +181,9 @@ export declare function getLogger(): {
     clog: (...args: any[]) => void;
     rlog: (...args: any[]) => void;
 };
-export type TFireWithoutAuth<ActualOpt = ESIRequestOptions> = <Mtd extends TESIEntryMethod, REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>, EPX extends ResolvedEndpoint<REP, Mtd>, PPM extends InferPathParams<REP, EPX>, Opt extends IdentifyParameters<Mtd, EPX, ActualOpt & PPM>, Ret extends InferESIResponseResult<Mtd, EPX>, HasOpt = HasRequireParams<Mtd, EPX, PPM>, XX = PickRequireParams<Mtd, EPX, PPM>>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: Mtd, endpoint: REP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
-export interface IFireWithoutAuth<ActualOpt = ESIRequestOptions> {
-    <Mtd extends TESIEntryMethod, REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>, EPX extends ResolvedEndpoint<REP, Mtd>, PPM extends InferPathParams<REP, EPX>, Opt extends IdentifyParameters<Mtd, EPX, ActualOpt & PPM>, Ret extends InferESIResponseResult<Mtd, EPX>, HasOpt = HasRequireParams<Mtd, EPX, PPM>, XX = PickRequireParams<Mtd, EPX, PPM>>(fn: TESIRequestFunctionSignature2<ActualOpt> | TESIRequestFunctionMethods2<ActualOpt>, method: Mtd, endpoint: REP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]): Promise<Ret>;
+export type TFireWithoutAuth<ActualOpt extends Record<string, unknown> = ESIRequestOptions> = <Mtd extends TESIEntryMethod, REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>, EPX extends ResolvedEndpoint<REP, Mtd>, PPM extends InferPathParams<REP, EPX>, Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>, Ret extends InferESIResponseResult<Mtd, EPX>, HasOpt = HasRequireParams<Mtd, EPX, PPM>, XX = PickRequireParams<Mtd, EPX, PPM>>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: Mtd, endpoint: REP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
+export interface IFireWithoutAuth<ActualOpt extends Record<string, unknown> = ESIRequestOptions> {
+    <Mtd extends TESIEntryMethod, REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>, EPX extends ResolvedEndpoint<REP, Mtd>, PPM extends InferPathParams<REP, EPX>, Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>, Ret extends InferESIResponseResult<Mtd, EPX>, HasOpt = HasRequireParams<Mtd, EPX, PPM>, XX = PickRequireParams<Mtd, EPX, PPM>>(fn: TESIRequestFunctionSignature2<ActualOpt> | TESIRequestFunctionMethods2<ActualOpt>, method: Mtd, endpoint: REP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]): Promise<Ret>;
 }
 /**
  * Need typescript v5.5 later
