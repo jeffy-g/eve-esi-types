@@ -190,8 +190,8 @@ type ESIEntryKeys = "auth" | "query" | "body" | "pathParams";
  */
 //* ctt
 type RestrictKeys<
-T, K extends keyof T,
-Extras = Exclude<ESIEntryKeys, K>
+  T, K extends keyof T,
+  Extras = Exclude<ESIEntryKeys, K>
 > = {
   [P in keyof T]: P extends K ? Pick<T, P>[P] :
     P extends Extras ? never : T[P];
