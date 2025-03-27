@@ -36,7 +36,7 @@ import type { PickPathParameters, InferKeysLen } from "./util.d.ts";
  * });
  * ```
  */
-export interface IESIRequestFunction2<ActualOpt>
+export interface IESIRequestFunction2<ActualOpt extends Record<string, unknown>>
   extends TESIRequestFunctionSignature2<ActualOpt>, TESIRequestFunctionMethods2<ActualOpt> {
 }
 
@@ -63,7 +63,7 @@ export interface IESIRequestFunction2<ActualOpt>
  * });
  * ```
  */
-export type TESIRequestFunctionMethods2<ActualOpt = {}> = {
+export type TESIRequestFunctionMethods2<ActualOpt extends Record<string, unknown> = {}> = {
   [method in TESIEntryMethod]: TESIRequestFunctionEachMethod2<method, ActualOpt>;
 }
 
@@ -263,7 +263,7 @@ declare global {
    * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
-  type TESIRequestFunctionSignature2<ActualOpt> = <
+  type TESIRequestFunctionSignature2<ActualOpt extends Record<string, unknown>> = <
     Mtd extends TESIEntryMethod,
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
     EPX extends ResolvedEndpoint<REP, Mtd>,
@@ -296,7 +296,7 @@ declare global {
    * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
-  type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt = {}> = <
+  type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt extends Record<string, unknown> = {}> = <
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
     EPX extends ResolvedEndpoint<REP, Mtd>,
     PPM extends InferPathParams<REP, EPX>,
@@ -480,7 +480,7 @@ declare global {
     AdditionalParams,
     Entry = _ESIResponseType<M, EPx>,
     RequireKeys = Exclude<keyof (Entry & AdditionalParams), "result" | "tag" | "cachedSeconds">
-    // @ts-expect- error 
+    // @ts-expect-error 
   > = RestrictKeys<Opt, RequireKeys> & Pick<Entry, RequireKeys> & AdditionalParams;
   /*/
   // DEVNOTE: 2025/3/24
