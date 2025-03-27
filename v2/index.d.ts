@@ -478,7 +478,7 @@ declare global {
     EPx extends ESIEndpointOf<M> | string,
     Opt extends Record<string, unknown>,
     AdditionalParams,
-    Entry = _ESIResponseType<M, EPx>,
+    Entry = _ESIResponseType<M, EPx> & AdditionalParams,
     RequireKeys = Exclude<keyof (Entry & AdditionalParams), "result" | "tag" | "cachedSeconds">
     // @ts-expect-error 
   > = RestrictKeys<Opt, RequireKeys> & Pick<Entry, RequireKeys> & AdditionalParams;
