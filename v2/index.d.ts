@@ -177,7 +177,7 @@ type ESIEntryKeys = "auth" | "query" | "body" | "pathParams";
  *
  * @template T - The original type to be constrained.
  * @template T2 - The type to merge with the constrained type.
- * @template K - The keys to retain in the resulting type.
+ * @template RequireKeys - The keys to retain in the resulting type.
  * @template Extras - Automatically derived keys to exclude from the resulting type.
  *
  * @example
@@ -190,11 +190,10 @@ type ESIEntryKeys = "auth" | "query" | "body" | "pathParams";
  */
 //* ctt
 type RestrictKeys<
-  T, K extends keyof T,
-  Extras = Exclude<ESIEntryKeys, K>
+  T, RequireKeys extends keyof T,
+  Extras = Exclude<ESIEntryKeys, RequireKeys>
 > = {
-  [P in keyof T]: P extends K ? Pick<T, P>[P] :
-    P extends Extras ? never : T[P];
+  [P in keyof T]: P extends Extras ? never : T[P];
 };
 // type RequireEntry = {
 //   auth?: true;
@@ -230,7 +229,9 @@ declare global {
    * ```
    */
   type RequireThese<T, K extends keyof T> = {
-    [P in keyof T]: P extends K ? Required<Pick<T, P>>[P] : T[P];
+    [P in keyof T as P extends K ? P : never]-?: T[P];
+  } & {
+    [P in keyof T as P extends K ? never : P]: T[P];
   };
 
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -458,7 +459,7 @@ declare global {
    * @template EPx - The endpoint path.
    * @template Opt - The type of the additional options.
    * @template Entry - The entry type to identify parameters for.
-   * @template Keys - The keys of the entry type that are required parameters.
+   * @template RequireKeys - The keys of the entry type that are required parameters.
    * 
    * @example
    * ```ts
@@ -478,9 +479,9 @@ declare global {
     Opt extends Record<string, unknown>,
     AdditionalParams,
     Entry = _ESIResponseType<M, EPx>,
-    Keys = Exclude<keyof (Entry & AdditionalParams), "result" | "tag" | "cachedSeconds">
+    RequireKeys = Exclude<keyof (Entry & AdditionalParams), "result" | "tag" | "cachedSeconds">
     // @ts-expect- error 
-  > = RestrictKeys<Opt, Keys> & Pick<Entry, Keys> & AdditionalParams;
+  > = RestrictKeys<Opt, RequireKeys> & Pick<Entry, RequireKeys> & AdditionalParams;
   /*/
   // DEVNOTE: 2025/3/24
   // The definition is simple and highly maintainable, but it is not possible to reference the `pathParams` property when implementing `TESIRequestFunctionSignature2` etc.
