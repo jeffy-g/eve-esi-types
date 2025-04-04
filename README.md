@@ -100,6 +100,6 @@ const ret = await esiRequest.universe.get("/universe/structures/", { query: { fi
 
 ## References
 
-- [`ESI Types Utility Definitions`](./docs/esi-types-util3.md)
+- [`ESI Types Utility Definitions`](./docs/v3/esi-types-util3.md)
 
 - [`ESI Tagged Types Utility Definitions`](./docs/esi-tagged-types.md)
