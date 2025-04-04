@@ -63,7 +63,7 @@ export interface IESIRequestFunction2<ActualOpt extends Record<string, unknown>>
  * });
  * ```
  */
-export type TESIRequestFunctionMethods2<ActualOpt extends Record<string, unknown> = {}> = {
+export type TESIRequestFunctionMethods2<ActualOpt extends Record<string, unknown>> = {
   [method in TESIEntryMethod]: TESIRequestFunctionEachMethod2<method, ActualOpt>;
 }
 
@@ -274,6 +274,52 @@ declare global {
   >(method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
   /**
+   * A function signature type for making enhanced ESI requests.
+   *
+   * This type extends the base ESI request function signature by injecting a prepended parameter to allow for extra
+   * context or pre-processing before performing the request. It provides a highly generic interface that adapts to the
+   * chosen endpoint method, endpoint configuration, and additional options, making it ideal for advanced API interactions.
+   *
+   * Generic Parameters:
+   * @template PrependParam - The type of the additional parameter that is injected at the beginning of the function call.
+   * @template ActualOpt - An object representing the default options (typically extending ESIRequestOptions) used for the request.
+   *
+   * Function Generic Parameters:
+   * @template Mtd - The ESI request method type (e.g., GET, POST) as defined in TESIEntryMethod.
+   * @template REP - The endpoint type, which can be either a version with replaced path parameters (via ReplacePathParams)
+   *                 or the raw ESIEndpointOf<Mtd> type.
+   * @template EPX - The resolved endpoint type derived from REP and Mtd.
+   * @template PPM - The type representing the inferred path parameters extracted from REP and EPX.
+   * @template Opt - The type for additional request options, identified based on the method (Mtd), endpoint (EPX), the
+   *                 default options (ActualOpt), and inferred path parameters (PPM).
+   * @template Ret - The type of the response result from the ESI request, inferred from the method and endpoint.
+   * @template HasOpt - An internal flag used to determine whether request options (Opt) are required (1) or optional.
+   *
+   * Parameters:
+   * @param {PrependParam} prependParam - A prepended parameter providing additional context or configuration for the request.
+   * @param {Mtd} method - The ESI request method.
+   * @param {REP} endpoint - The API endpoint, which might include path parameter replacements.
+   * @param {...(HasOpt extends 1 ? [Opt] : [Opt?])} options - Additional options for the request; required if HasOpt is 1,
+   *   otherwise optional.
+   *
+   * @returns {Promise<Ret>} A promise that resolves with the result type `Ret`, representing the response data from the ESI endpoint.
+   */
+  type TESIEnhancedRequestFunctionSignature<
+    PrependParam extends unknown, ActualOpt extends Record<string, unknown>
+  > = <
+    Mtd extends TESIEntryMethod,
+    REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+    EPX extends ResolvedEndpoint<REP, Mtd>,
+    PPM extends InferPathParams<REP, EPX>,
+    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPX>,
+    HasOpt = HasRequireParams<Mtd, EPX, PPM>
+  >(
+    prependParam: PrependParam,
+    method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]
+  ) => Promise<Ret>;
+
+  /**
    * Represents a function that can make ESI requests for a specific HTTP method.
    *
    * This type is used to define functions that send requests to specific ESI endpoints using a given HTTP method.
@@ -296,7 +342,7 @@ declare global {
    * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
-  type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt extends Record<string, unknown> = {}> = <
+  type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt extends Record<string, unknown>> = <
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
     EPX extends ResolvedEndpoint<REP, Mtd>,
     PPM extends InferPathParams<REP, EPX>,
