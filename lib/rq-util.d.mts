@@ -181,22 +181,11 @@ export declare function getLogger(): {
     clog: (...args: any[]) => void;
     rlog: (...args: any[]) => void;
 };
-export type TFireWithoutAuth<ActualOpt extends Record<string, unknown> = ESIRequestOptions> = <Mtd extends TESIEntryMethod, REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>, EPX extends ResolvedEndpoint<REP, Mtd>, PPM extends InferPathParams<REP, EPX>, Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>, Ret extends InferESIResponseResult<Mtd, EPX>, HasOpt = HasRequireParams<Mtd, EPX, PPM>, XX = PickRequireParams<Mtd, EPX, PPM>>(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>, method: Mtd, endpoint: REP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
-export interface IFireWithoutAuth<ActualOpt extends Record<string, unknown> = ESIRequestOptions> {
-    <Mtd extends TESIEntryMethod, REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>, EPX extends ResolvedEndpoint<REP, Mtd>, PPM extends InferPathParams<REP, EPX>, Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>, Ret extends InferESIResponseResult<Mtd, EPX>, HasOpt = HasRequireParams<Mtd, EPX, PPM>, XX = PickRequireParams<Mtd, EPX, PPM>>(fn: TESIRequestFunctionSignature2<ActualOpt> | TESIRequestFunctionMethods2<ActualOpt>, method: Mtd, endpoint: REP, ...opt: HasOpt extends 1 ? [Opt] : [Opt?]): Promise<Ret>;
-}
-/**
- * Need typescript v5.5 later
- * @import * as ESI from "../v2";
- * @typedef {ESI.TESIResponseOKMap} TESIResponseOKMap
- * @typedef {ESI.TPathParamsNever} TPathParamsNever
- * @typedef {ESI.IESIRequestFunction2<ESIRequestOptions>} IESIRequestFunction2
- * @typedef {ESI.TESIRequestFunctionMethods2<ESIRequestOptions>} TESIRequestFunctionMethods2
- */
+type TPrependParams = TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>;
 /**
  * #### Fire a request that does not require authentication.
  *
- * @param {TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2} fn
+ * @param {TPrependParams} fn
  * @returns {Promise<void>}
  */
-export declare function fireRequestsDoesNotRequireAuth(fn: TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>): Promise<void>;
+export declare function fireRequestsDoesNotRequireAuth(fn: TPrependParams): Promise<void>;
