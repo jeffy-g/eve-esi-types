@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/response-map.d.ts
- * @summary This file is auto-generated and defines version 3.1.6 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.7 of the EVE Online ESI response types.
  */
 import "./types-index.d.ts";
 
@@ -1025,16 +1025,16 @@ export type TESIResponseOKMap = {
   post: {
     "/fleets/{fleet_id}/members/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
       body: PostFleetsFleetIdMembersInvitation;
     },
     "/ui/autopilot/waypoint/": {
       result: NoContentResponse;
+      tag: "User Interface";
       /** `esi-ui.write_waypoint.v1` */
       auth: true;
-      tag: "User Interface";
       query: {
         add_to_beginning: boolean;
         clear_other_waypoints: boolean;
@@ -1043,36 +1043,36 @@ export type TESIResponseOKMap = {
     },
     "/ui/openwindow/contract/": {
       result: NoContentResponse;
+      tag: "User Interface";
       /** `esi-ui.open_window.v1` */
       auth: true;
-      tag: "User Interface";
       query: {
         contract_id: number;
       }
     },
     "/ui/openwindow/information/": {
       result: NoContentResponse;
+      tag: "User Interface";
       /** `esi-ui.open_window.v1` */
       auth: true;
-      tag: "User Interface";
       query: {
         target_id: number;
       }
     },
     "/ui/openwindow/marketdetails/": {
       result: NoContentResponse;
+      tag: "User Interface";
       /** `esi-ui.open_window.v1` */
       auth: true;
-      tag: "User Interface";
       query: {
         type_id: number;
       }
     },
     "/ui/openwindow/newmail/": {
       result: NoContentResponse;
+      tag: "User Interface";
       /** `esi-ui.open_window.v1` */
       auth: true;
-      tag: "User Interface";
       body: PostUiOpenwindowNewmailNewMail;
     },
     "/characters/affiliation/": {
@@ -1175,17 +1175,17 @@ export type TESIResponseOKMap = {
   put: {
     "/characters/{character_id}/calendar/{event_id}/": {
       result: NoContentResponse;
-      /** `esi-calendar.respond_calendar_events.v1` */
-      auth: true;
       tag: "Calendar";
       cachedSeconds: 5;
+      /** `esi-calendar.respond_calendar_events.v1` */
+      auth: true;
       body: PutCharactersCharacterIdCalendarEventIdResponse;
     },
     "/characters/{character_id}/contacts/": {
       result: NoContentResponse;
+      tag: "Contacts";
       /** `esi-characters.write_contacts.v1` */
       auth: true;
-      tag: "Contacts";
       body: PutCharactersCharacterIdContactsContactIds;
       query: {
         label_ids?: PutCharactersCharacterIdContactsLabelIds;
@@ -1195,85 +1195,85 @@ export type TESIResponseOKMap = {
     },
     "/characters/{character_id}/mail/{mail_id}/": {
       result: NoContentResponse;
+      tag: "Mail";
       /** `esi-mail.organize_mail.v1` */
       auth: true;
-      tag: "Mail";
       body: PutCharactersCharacterIdMailMailIdContents;
     },
     "/fleets/{fleet_id}/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
       body: PutFleetsFleetIdNewSettings;
     },
     "/fleets/{fleet_id}/members/{member_id}/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
       body: PutFleetsFleetIdMembersMemberIdMovement;
     },
     "/fleets/{fleet_id}/squads/{squad_id}/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
       body: PutFleetsFleetIdSquadsSquadIdNaming;
     },
     "/fleets/{fleet_id}/wings/{wing_id}/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
       body: PutFleetsFleetIdWingsWingIdNaming;
     }
   },
   delete: {
     "/characters/{character_id}/contacts/": {
       result: NoContentResponse;
+      tag: "Contacts";
       /** `esi-characters.write_contacts.v1` */
       auth: true;
-      tag: "Contacts";
       query: {
         contact_ids: DeleteCharactersCharacterIdContactsContactIds;
       }
     },
     "/characters/{character_id}/fittings/{fitting_id}/": {
       result: NoContentResponse;
+      tag: "Fittings";
       /** `esi-fittings.write_fittings.v1` */
       auth: true;
-      tag: "Fittings";
     },
     "/characters/{character_id}/mail/labels/{label_id}/": {
       result: NoContentResponse;
+      tag: "Mail";
       /** `esi-mail.organize_mail.v1` */
       auth: true;
-      tag: "Mail";
     },
     "/characters/{character_id}/mail/{mail_id}/": {
       result: NoContentResponse;
+      tag: "Mail";
       /** `esi-mail.organize_mail.v1` */
       auth: true;
-      tag: "Mail";
     },
     "/fleets/{fleet_id}/members/{member_id}/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
     },
     "/fleets/{fleet_id}/squads/{squad_id}/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
     },
     "/fleets/{fleet_id}/wings/{wing_id}/": {
       result: NoContentResponse;
+      tag: "Fleets";
       /** `esi-fleets.write_fleet.v1` */
       auth: true;
-      tag: "Fleets";
     }
   }
 };

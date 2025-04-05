@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.1.6 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.7 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
@@ -230,7 +230,7 @@ declare global {
    * type RequiredA = RequireThese<Original, 'a'>;
    * // Result: { a: number; b?: string; c: boolean }
    * ```
-   * @see Documentation of [`RequireThese`](../docs/v2/require-these.md)
+   * @see Documentation of [`RequireThese`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v2/require-these.md)
    */
   type RequireThese<T, K extends keyof T> = {
     [P in keyof T as P extends K ? P : never]-?: T[P];
@@ -307,7 +307,7 @@ declare global {
    *   otherwise optional.
    *
    * @returns {Promise<Ret>} A promise that resolves with the result type `Ret`, representing the response data from the ESI endpoint.
-   * @see Documentation of [`TESIEnhancedRequestFunctionSignature`](../docs/v3/esi-enhanced-function-signature.md)
+   * @see Documentation of [`TESIEnhancedRequestFunctionSignature`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/esi-enhanced-function-signature.md)
    */
   type TESIEnhancedRequestFunctionSignature<
     PrependParam extends unknown, ActualOpt extends Record<string, unknown>
@@ -366,7 +366,7 @@ declare global {
    * type Example = ReplacePathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
    * // Result: `/characters/${number}/fittings/${number}/`
    * ```
-   * @see Documentation of [`ReplacePathParams`](../docs/v3/replace-path-params.md)
+   * @see Documentation of [`ReplacePathParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/replace-path-params.md)
    */
   type ReplacePathParams<T extends unknown> = T extends `${infer Start}{${infer Param}}${infer End}`
     ? `${Start}${number}${ReplacePathParams<End>}` : T;
@@ -384,7 +384,7 @@ declare global {
    * @returns {TPathParamsNever | _IfNeedPathParams<EPx>}
    * @see {@link _IfNeedPathParams}
    * @see {@link TPathParamsNever}
-   * @see Documentation of [`InferPathParams`](../docs/v3/infer-path-params.md)
+   * @see Documentation of [`InferPathParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/infer-path-params.md)
    * @date 2025/3/17
    */
   type InferPathParams<
@@ -408,7 +408,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link ReplacePathParams}
-   * @see Documentation of [`InferEndpointOrigin`](../docs/v3/infer-endpoint-origin.md)
+   * @see Documentation of [`InferEndpointOrigin`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/infer-endpoint-origin.md)
    */
   type InferEndpointOrigin<
     RealEP extends unknown, M extends TESIEntryMethod,
@@ -429,7 +429,7 @@ declare global {
    * // Result: "/characters/{character_id}/fittings/{fitting_id}/"
    * ```
    * @see {@link InferEndpointOrigin}
-   * @see Documentation of [`ResolvedEndpoint`](../docs/v3/resolved-endpoint.md)
+   * @see Documentation of [`ResolvedEndpoint`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/resolved-endpoint.md)
    */
   type ResolvedEndpoint<
     RealEP extends unknown, M extends TESIEntryMethod,
@@ -454,7 +454,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link _ESIResponseType}
-   * @see Documentation of [`PickRequireParams`](../docs/v3/pick-require-params.md)
+   * @see Documentation of [`PickRequireParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/pick-require-params.md)
    */
   type PickRequireParams<
     M extends TESIEntryMethod,
@@ -479,7 +479,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link PickRequireParams}
-   * @see Documentation of [`HasRequireParams`](../docs/v3/has-require-params.md)
+   * @see Documentation of [`HasRequireParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/has-require-params.md)
    */
   type HasRequireParams<
     M extends TESIEntryMethod,
@@ -497,7 +497,7 @@ declare global {
    * @template Opt The type to return if `EP` is not parameterized.
    * @returns {number | [number, number] | Opt} 
    * Returns `number` if there is one parameter, `[number, number]` if there are two parameters, otherwise `Opt`.
-   * @see Documentation of [`IfParameterizedPath`](../docs/v2/if-parameterized-path.md)
+   * @see Documentation of [`IfParameterizedPath`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v2/if-parameterized-path.md)
    */
   type IfParameterizedPath<EP extends unknown, Opt = never> = EP extends `${string}/{${string}}${string}`
     ? PickPathParameters<EP> extends never
@@ -527,7 +527,7 @@ declare global {
    * @see {@link RequireThese}
    * @see {@link ESIEndpointOf}
    * @see {@link _ESIResponseType}
-   * @see Documentation of [`IdentifyParameters`](../docs/v2/identify-parameters.md)
+   * @see Documentation of [`IdentifyParameters`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v2/identify-parameters.md)
    */
   //* ctt
   type IdentifyParameters<
@@ -566,7 +566,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link _ESIResponseType}
-   * @see Documentation of [`InferESIResponseResult`](../docs/v2/infer-esi-response-result.md)
+   * @see Documentation of [`InferESIResponseResult`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v2/infer-esi-response-result.md)
    */
   type InferESIResponseResult<
     M extends TESIEntryMethod,
