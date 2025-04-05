@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.1.4 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.1.6 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 export type { TESIResponseOKMap } from "./response-map.d.ts";
@@ -91,10 +91,13 @@ export declare type TESICachedSeconds<
       : never
   }[ESIEndpointOf<M>];
 }[Method];
-// declare const cacheSecGet: TESICachedSeconds<"get">;
-// declare const cache5sec: TESICachedSeconds<"put">;
-// declare const cache3600sEndpoint: TESICachedSeconds<"post", 1>;
-// TODO: 2025/3/17 How do I get rid of `pathParams` completely?
+
+/**
+ * Indicates that no path parameters are allowed.
+ *
+ * This type serves as a compile-time signal for endpoints that do not support dynamic URL segments.  
+ * By using this type, it is clear that no path parameters should be provided.
+ */
 export declare type TPathParamsNever = { /* pathParams?: never */ };
 
 // local types
@@ -143,7 +146,7 @@ export type _IfNeedPathParams<EP extends unknown> = IfParameterizedPath<EP> exte
  * 
  * @template M - The HTTP method (e.g., "get", "post").
  * @template EP - The endpoint path.
- * @deprecated 2025/3/17 12:12:33
+ * @deprecated 2025/3/17
  */
 export type __InferESIResponseResult<
   M extends TESIEntryMethod,
@@ -155,7 +158,7 @@ export type __InferESIResponseResult<
  * @template Entry - The entry type to identify parameters for.
  * @template Opt - The type of the parameters.
  * @type {Opt & Pick<Entry, Exclude<keyof Entry, "result">>}
- * @deprecated 2025/3/17 12:12:33
+ * @deprecated 2025/3/17
  */
 export type __IdentifyParameters<
   Entry, Opt,
@@ -227,6 +230,7 @@ declare global {
    * type RequiredA = RequireThese<Original, 'a'>;
    * // Result: { a: number; b?: string; c: boolean }
    * ```
+   * @see Documentation of [`RequireThese`](../docs/v2/require-these.md)
    */
   type RequireThese<T, K extends keyof T> = {
     [P in keyof T as P extends K ? P : never]-?: T[P];
@@ -303,6 +307,7 @@ declare global {
    *   otherwise optional.
    *
    * @returns {Promise<Ret>} A promise that resolves with the result type `Ret`, representing the response data from the ESI endpoint.
+   * @see Documentation of [`TESIEnhancedRequestFunctionSignature`](../docs/v3/esi-enhanced-function-signature.md)
    */
   type TESIEnhancedRequestFunctionSignature<
     PrependParam extends unknown, ActualOpt extends Record<string, unknown>
@@ -361,6 +366,7 @@ declare global {
    * type Example = ReplacePathParams<"/characters/{character_id}/fittings/{fitting_id}/">;
    * // Result: `/characters/${number}/fittings/${number}/`
    * ```
+   * @see Documentation of [`ReplacePathParams`](../docs/v3/replace-path-params.md)
    */
   type ReplacePathParams<T extends unknown> = T extends `${infer Start}{${infer Param}}${infer End}`
     ? `${Start}${number}${ReplacePathParams<End>}` : T;
@@ -378,7 +384,8 @@ declare global {
    * @returns {TPathParamsNever | _IfNeedPathParams<EPx>}
    * @see {@link _IfNeedPathParams}
    * @see {@link TPathParamsNever}
-   * @date 2025/3/17 4:32:47
+   * @see Documentation of [`InferPathParams`](../docs/v3/infer-path-params.md)
+   * @date 2025/3/17
    */
   type InferPathParams<
     RealEP extends unknown, EPx extends unknown
@@ -401,6 +408,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link ReplacePathParams}
+   * @see Documentation of [`InferEndpointOrigin`](../docs/v3/infer-endpoint-origin.md)
    */
   type InferEndpointOrigin<
     RealEP extends unknown, M extends TESIEntryMethod,
@@ -420,9 +428,8 @@ declare global {
    * type Resolved = ResolvedEndpoint<"/characters/123/fittings/456/", "delete">;
    * // Result: "/characters/{character_id}/fittings/{fitting_id}/"
    * ```
-   * DONE: 2025/3/17 4:12:09 Ok, works
-   * 
    * @see {@link InferEndpointOrigin}
+   * @see Documentation of [`ResolvedEndpoint`](../docs/v3/resolved-endpoint.md)
    */
   type ResolvedEndpoint<
     RealEP extends unknown, M extends TESIEntryMethod,
@@ -447,6 +454,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link _ESIResponseType}
+   * @see Documentation of [`PickRequireParams`](../docs/v3/pick-require-params.md)
    */
   type PickRequireParams<
     M extends TESIEntryMethod,
@@ -471,6 +479,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link PickRequireParams}
+   * @see Documentation of [`HasRequireParams`](../docs/v3/has-require-params.md)
    */
   type HasRequireParams<
     M extends TESIEntryMethod,
@@ -488,6 +497,7 @@ declare global {
    * @template Opt The type to return if `EP` is not parameterized.
    * @returns {number | [number, number] | Opt} 
    * Returns `number` if there is one parameter, `[number, number]` if there are two parameters, otherwise `Opt`.
+   * @see Documentation of [`IfParameterizedPath`](../docs/v2/if-parameterized-path.md)
    */
   type IfParameterizedPath<EP extends unknown, Opt = never> = EP extends `${string}/{${string}}${string}`
     ? PickPathParameters<EP> extends never
@@ -517,6 +527,7 @@ declare global {
    * @see {@link RequireThese}
    * @see {@link ESIEndpointOf}
    * @see {@link _ESIResponseType}
+   * @see Documentation of [`IdentifyParameters`](../docs/v2/identify-parameters.md)
    */
   //* ctt
   type IdentifyParameters<
@@ -555,6 +566,7 @@ declare global {
    * ```
    * @see {@link ESIEndpointOf}
    * @see {@link _ESIResponseType}
+   * @see Documentation of [`InferESIResponseResult`](../docs/v2/infer-esi-response-result.md)
    */
   type InferESIResponseResult<
     M extends TESIEntryMethod,
@@ -578,7 +590,8 @@ declare global {
   type TESIEntryMethod = keyof TESIResponseOKMap;
 
   /**
-   * @date 2025/3/16 21:45:50
+   * Represents endpoints using `TESIEntryMethod`.
+   * @date 2025/3/16
    */
   type ESIEndpointOf<M extends TESIEntryMethod> = keyof TESIResponseOKMap[M];
   /**
