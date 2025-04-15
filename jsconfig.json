@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "target": "esnext",
+    "module": "esnext",
+    "diagnostics": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "rootDirs": [
+      "./"
+    ]
+  },
+  "include": [
+    "./*.mjs",
+    "./lib/*.mjs",
+    // "./lib/*.d.mts",
+    "./v2/**/*.d.ts"
+  ],
+  "exclude": [
+  ]
+}

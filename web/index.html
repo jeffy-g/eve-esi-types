@@ -44,7 +44,7 @@
           if (key === "Enter") {
             const cmd = inputBuffer;
             inputBuffer = "";
-            eval(`(${cmd})`);
+            eval(`${cmd}`);
           } else if (key.length === 1) {
             inputBuffer += key;
           }

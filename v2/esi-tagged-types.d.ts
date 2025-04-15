@@ -11,8 +11,8 @@
  * @file eve-esi-types/v2/esi-tagged-types.d.ts
  * @summary This file is auto-generated and defines version 3.1.7 of the EVE Online ESI response types.
  */
-import { TESIResponseOKMap } from "./index.d.ts";
-export * from "./index.d.ts";
+import type { TESIResponseOKMap } from "./index.d.ts";
+export type * from "./index.d.ts";
 
 /**
  * Converts a string to lower camel case.
@@ -49,7 +49,11 @@ declare type InferSomethingBy<Tag, AsType extends InferSomethingByBrand = InferS
  * @template M - The HTTP method.
  * @date 2025/2/28
  */
-export declare type ESITags = InferSomethingBy<never, InferSomethingByTags>
+export declare type ESITags = InferSomethingBy<never, InferSomethingByTags>;
+/**
+ * @date 2025/4/12
+ */
+export declare type LESITags = LCamelCase<ESITags>;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 //            Utility Type `InferMethod`
@@ -60,7 +64,7 @@ export declare type ESITags = InferSomethingBy<never, InferSomethingByTags>
  * @template Tag - The tag to infer the method for.
  * @date 2025/2/28
  */
-export declare type InferMethod<Tag> = InferSomethingBy<Tag>
+export declare type InferMethod<Tag> = InferSomethingBy<Tag>;
 /* ctt
 type XAssets = InferMethod<"Assets">;
 type XContacts = InferMethod<"Contacts">;

@@ -27,7 +27,7 @@ export type PickPathParameters<Path extends string> =
  * @template U The union type to convert.
  * @returns {I} The intersection type.
  */
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
+export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 
 /**
  * Convert a union type to a tuple.
@@ -35,12 +35,14 @@ type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
  * @template T The union type to convert.
  * @returns {Array} The tuple representation of the union type.
  */
-type UnionToTuple<T> = UnionToIntersection<
+export type UnionToTuple<T> = UnionToIntersection<
   T extends any ? () => T : never
 > extends () => infer R ? [...UnionToTuple<Exclude<T, R>>, R] : [];
 
 /**
  * #### Build an array of elements from a flattened tuple of type "1" | "2" | "3" ...
+ * 
+ * NOTE: This utility cannot calculate lengths greater than 48 (?).
  * 
  *  + Returns the final length of the array.
  * 

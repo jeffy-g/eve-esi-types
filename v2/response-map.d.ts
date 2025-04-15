@@ -285,13 +285,6 @@ export type TESIResponseOKMap = {
       tag: "Location";
       cachedSeconds: 60;
     },
-    "/characters/{character_id}/opportunities/": {
-      result: GetCharactersCharacterIdOpportunitiesOk;
-      /** `esi-characters.read_opportunities.v1` */
-      auth: true;
-      tag: "Opportunities";
-      cachedSeconds: 3600;
-    },
     "/characters/{character_id}/orders/": {
       result: GetCharactersCharacterIdOrdersOk;
       /** `esi-markets.read_character_orders.v1` */
@@ -830,22 +823,6 @@ export type TESIResponseOKMap = {
       result: GetMarketsRegionIdTypesOk;
       tag: "Market";
       cachedSeconds: 600;
-    },
-    "/opportunities/groups/": {
-      result: GetOpportunitiesGroupsOk;
-      tag: "Opportunities";
-    },
-    "/opportunities/groups/{group_id}/": {
-      result: GetOpportunitiesGroupsGroupIdOk;
-      tag: "Opportunities";
-    },
-    "/opportunities/tasks/": {
-      result: GetOpportunitiesTasksOk;
-      tag: "Opportunities";
-    },
-    "/opportunities/tasks/{task_id}/": {
-      result: GetOpportunitiesTasksTaskIdOk;
-      tag: "Opportunities";
     },
     "/route/{origin}/{destination}/": {
       result: GetRouteOriginDestinationOk;
