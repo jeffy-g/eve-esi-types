@@ -23,13 +23,20 @@
     "tsconfig.json"
   ],
   "keywords": [
-    "eve",
-    "esi",
-    "swagger",
-    "request",
     "api",
+    "esi",
+    "eve",
     "types",
-    "eve online"
+    "esi-api",
+    "eve-esi",
+    "swagger",
+    "api-types",
+    "eve online",
+    "eve-online",
+    "typescript",
+    "eve-swagger",
+    "swagger-types",
+    "typescript-definitions"
   ],
   "author": "jeffy-g",
   "license": "MIT",
