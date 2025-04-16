@@ -1,14 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "skipDefaultLibCheck": true,
+    // This flag is required
     "skipLibCheck": true,
-    "noEmit": true,
-    "target": "esnext",
-    "module": "esnext",
-    "diagnostics": true,
+    // This flag is required
+    "checkJs": true,
+    // This flag is required
     "strict": true,
-    "moduleResolution": "node",
+    "noEmit": true,
+    // "skipDefaultLibCheck": true,
+    // "target": "esnext",
+    // "module": "esnext",
+    // "diagnostics": true,
+    // "moduleResolution": "node",
     "rootDirs": [
       "./"
     ]
