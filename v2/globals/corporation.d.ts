@@ -737,10 +737,11 @@ interface GetCorporationsCorporationIdMembertracking_200Ok {
 /*!
  * ESI endpoint: get:/corporations/{corporation_id}/roles/
  */
+
 /**
  * grantable_role string
  */
-type GetCorporationsCorporationIdRolesGrantableRole =
+type __CorporationRole =
   | "Account_Take_1"
   | "Account_Take_2"
   | "Account_Take_3"
@@ -795,463 +796,103 @@ type GetCorporationsCorporationIdRolesGrantableRole =
   | "Starbase_Fuel_Technician"
   | "Station_Manager"
   | "Trader";
+
+/**
+ * grantable_role string
+ */
+type GetCorporationsCorporationIdRolesGrantableRole = __CorporationRole;
+
 /**
  * grantable_roles array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesGrantableRoles = GetCorporationsCorporationIdRolesGrantableRole[];
+type GetCorporationsCorporationIdRolesGrantableRoles = __CorporationRole[];
+
 /**
  * grantable_roles_at_base string
  */
-type GetCorporationsCorporationIdRolesGrantableRolesAtBaseGrantableRolesAtBase =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesGrantableRolesAtBaseGrantableRolesAtBase = __CorporationRole;
+
 /**
  * grantable_roles_at_base array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesGrantableRolesAtBase =
-  GetCorporationsCorporationIdRolesGrantableRolesAtBaseGrantableRolesAtBase[];
+type GetCorporationsCorporationIdRolesGrantableRolesAtBase = __CorporationRole[];
+
 /**
  * grantable_roles_at_hq string
  */
-type GetCorporationsCorporationIdRolesGrantableRolesAtHqGrantableRolesAtHq =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesGrantableRolesAtHqGrantableRolesAtHq = __CorporationRole;
+
 /**
  * grantable_roles_at_hq array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesGrantableRolesAtHq =
-  GetCorporationsCorporationIdRolesGrantableRolesAtHqGrantableRolesAtHq[];
+type GetCorporationsCorporationIdRolesGrantableRolesAtHq = __CorporationRole[];
+
 /**
  * grantable_roles_at_other string
  */
-type GetCorporationsCorporationIdRolesGrantableRolesAtOtherGrantableRolesAtOther =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesGrantableRolesAtOtherGrantableRolesAtOther = __CorporationRole;
+
 /**
  * grantable_roles_at_other array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesGrantableRolesAtOther =
-  GetCorporationsCorporationIdRolesGrantableRolesAtOtherGrantableRolesAtOther[];
+type GetCorporationsCorporationIdRolesGrantableRolesAtOther = __CorporationRole[];
+
 /**
  * role string
  */
-type GetCorporationsCorporationIdRolesRole =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesRole = __CorporationRole;
+
 /**
  * roles array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesRoles = GetCorporationsCorporationIdRolesRole[];
+type GetCorporationsCorporationIdRolesRoles = __CorporationRole[];
+
 /**
  * roles_at_base string
  */
-type GetCorporationsCorporationIdRolesRolesAtBaseRolesAtBase =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesRolesAtBaseRolesAtBase = __CorporationRole;
+
 /**
  * roles_at_base array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesRolesAtBase = GetCorporationsCorporationIdRolesRolesAtBaseRolesAtBase[];
+type GetCorporationsCorporationIdRolesRolesAtBase = __CorporationRole[];
+
 /**
  * roles_at_hq string
  */
-type GetCorporationsCorporationIdRolesRolesAtHqRolesAtHq =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesRolesAtHqRolesAtHq = __CorporationRole;
+
 /**
  * roles_at_hq array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesRolesAtHq = GetCorporationsCorporationIdRolesRolesAtHqRolesAtHq[];
+type GetCorporationsCorporationIdRolesRolesAtHq = __CorporationRole[];
+
 /**
  * roles_at_other string
  */
-type GetCorporationsCorporationIdRolesRolesAtOtherRolesAtOther =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesRolesAtOtherRolesAtOther = __CorporationRole;
+
 /**
  * roles_at_other array
  *
  * @maxItems 100
  */
-type GetCorporationsCorporationIdRolesRolesAtOther = GetCorporationsCorporationIdRolesRolesAtOtherRolesAtOther[];
+type GetCorporationsCorporationIdRolesRolesAtOther = __CorporationRole[];
+
 /**
  * 200 ok array
  *
@@ -1281,10 +922,11 @@ interface GetCorporationsCorporationIdRoles_200Ok {
 /*!
  * ESI endpoint: get:/corporations/{corporation_id}/roles/history/
  */
+
 /**
- * new_role string
+ * Corporation role string
  */
-type GetCorporationsCorporationIdRolesHistoryNewRole =
+type __CorporationRole =
   | "Account_Take_1"
   | "Account_Take_2"
   | "Account_Take_3"
@@ -1339,76 +981,31 @@ type GetCorporationsCorporationIdRolesHistoryNewRole =
   | "Starbase_Fuel_Technician"
   | "Station_Manager"
   | "Trader";
+
+/**
+ * new_role string
+ */
+type GetCorporationsCorporationIdRolesHistoryNewRole = __CorporationRole;
+
 /**
  * new_roles array
  *
  * @maxItems 50
  */
-type GetCorporationsCorporationIdRolesHistoryNewRoles = GetCorporationsCorporationIdRolesHistoryNewRole[];
+type GetCorporationsCorporationIdRolesHistoryNewRoles = __CorporationRole[];
+
 /**
  * old_role string
  */
-type GetCorporationsCorporationIdRolesHistoryOldRole =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
+type GetCorporationsCorporationIdRolesHistoryOldRole = __CorporationRole;
+
 /**
  * old_roles array
  *
  * @maxItems 50
  */
-type GetCorporationsCorporationIdRolesHistoryOldRoles = GetCorporationsCorporationIdRolesHistoryOldRole[];
+type GetCorporationsCorporationIdRolesHistoryOldRoles = __CorporationRole[];
+
 /**
  * role_type string
  */
@@ -1421,6 +1018,7 @@ type GetCorporationsCorporationIdRolesHistoryRoleType =
   | "roles_at_base"
   | "roles_at_hq"
   | "roles_at_other";
+
 /**
  * 200 ok array
  *
@@ -1565,60 +1163,43 @@ interface GetCorporationsCorporationIdStarbases_200Ok {
 /*!
  * ESI endpoint: get:/corporations/{corporation_id}/starbases/{starbase_id}/
  */
+
 /**
- * Who can anchor starbase (POS) and its structures
+ * Who can perform actions related to starbase (POS) or its structures.
+ *
+ * This type defines the potential access levels for various operations such as anchoring,
+ * taking fuel, viewing fuel bay, onlining, offlining, and unanchoring starbase (POS).
  */
-type GetCorporationsCorporationIdStarbasesStarbaseIdAnchor =
+type __StarbaseAccessLevel =
   | "alliance_member"
   | "config_starbase_equipment_role"
   | "corporation_member"
   | "starbase_fuel_technician_role";
-/**
- * Who can take fuel blocks out of the starbase (POS)'s fuel bay
- */
-type GetCorporationsCorporationIdStarbasesStarbaseIdFuelBayTake =
-  | "alliance_member"
-  | "config_starbase_equipment_role"
-  | "corporation_member"
-  | "starbase_fuel_technician_role";
-/**
- * Who can view the starbase (POS)'s fule bay. Characters either need to have required role or belong to the starbase (POS) owner's corporation or alliance, as described by the enum, all other access settings follows the same scheme
- */
-type GetCorporationsCorporationIdStarbasesStarbaseIdFuelBayView =
-  | "alliance_member"
-  | "config_starbase_equipment_role"
-  | "corporation_member"
-  | "starbase_fuel_technician_role";
+
 /**
  * Fuel blocks and other things that will be consumed when operating a starbase (POS)
  *
  * @maxItems 20
  */
-type GetCorporationsCorporationIdStarbasesStarbaseIdFuels = GetCorporationsCorporationIdStarbasesStarbaseIdFuel[];
+type StarbaseFuels = GetCorporationsCorporationIdStarbasesStarbaseIdFuel[];
+
 /**
- * Who can offline starbase (POS) and its structures
+ * fuel object
  */
-type GetCorporationsCorporationIdStarbasesStarbaseIdOffline =
-  | "alliance_member"
-  | "config_starbase_equipment_role"
-  | "corporation_member"
-  | "starbase_fuel_technician_role";
-/**
- * Who can online starbase (POS) and its structures
- */
-type GetCorporationsCorporationIdStarbasesStarbaseIdOnline =
-  | "alliance_member"
-  | "config_starbase_equipment_role"
-  | "corporation_member"
-  | "starbase_fuel_technician_role";
-/**
- * Who can unanchor starbase (POS) and its structures
- */
-type GetCorporationsCorporationIdStarbasesStarbaseIdUnanchor =
-  | "alliance_member"
-  | "config_starbase_equipment_role"
-  | "corporation_member"
-  | "starbase_fuel_technician_role";
+interface GetCorporationsCorporationIdStarbasesStarbaseIdFuel {
+  /**
+   * quantity integer
+   */
+  quantity: number;
+  /**
+   * type_id integer
+   */
+  type_id: number;
+  /**
+   * Additional unspecified fields
+   */
+  [k: string]: unknown | undefined;
+}
 
 /**
  * 200 ok object
@@ -1628,48 +1209,75 @@ interface GetCorporationsCorporationIdStarbasesStarbaseIdOk {
    * allow_alliance_members boolean
    */
   allow_alliance_members: boolean;
+
   /**
    * allow_corporation_members boolean
    */
   allow_corporation_members: boolean;
-  anchor: GetCorporationsCorporationIdStarbasesStarbaseIdAnchor;
+
+  /**
+   * Who can anchor starbase (POS) and its structures
+   */
+  anchor: __StarbaseAccessLevel;
+
   /**
    * attack_if_at_war boolean
    */
   attack_if_at_war: boolean;
+
   /**
    * attack_if_other_security_status_dropping boolean
    */
   attack_if_other_security_status_dropping: boolean;
+
   /**
    * Starbase (POS) will attack if target's security standing is lower than this value
    */
   attack_security_status_threshold?: number;
+
   /**
    * Starbase (POS) will attack if target's standing is lower than this value
    */
   attack_standing_threshold?: number;
-  fuel_bay_take: GetCorporationsCorporationIdStarbasesStarbaseIdFuelBayTake;
-  fuel_bay_view: GetCorporationsCorporationIdStarbasesStarbaseIdFuelBayView;
-  fuels?: GetCorporationsCorporationIdStarbasesStarbaseIdFuels;
-  offline: GetCorporationsCorporationIdStarbasesStarbaseIdOffline;
-  online: GetCorporationsCorporationIdStarbasesStarbaseIdOnline;
-  unanchor: GetCorporationsCorporationIdStarbasesStarbaseIdUnanchor;
+
+  /**
+   * Who can take fuel blocks out of the starbase (POS)'s fuel bay
+   */
+  fuel_bay_take: __StarbaseAccessLevel;
+
+  /**
+   * Who can view the starbase (POS)'s fuel bay. Characters either need to have required role or belong to the starbase (POS) owner's corporation or alliance, as described by the enum, all other access settings follow the same scheme
+   */
+  fuel_bay_view: __StarbaseAccessLevel;
+
+  /**
+   * Fuel blocks and other things that will be consumed when operating a starbase (POS)
+   */
+  fuels?: StarbaseFuels;
+
+  /**
+   * Who can offline starbase (POS) and its structures
+   */
+  offline: __StarbaseAccessLevel;
+
+  /**
+   * Who can online starbase (POS) and its structures
+   */
+  online: __StarbaseAccessLevel;
+
+  /**
+   * Who can unanchor starbase (POS) and its structures
+   */
+  unanchor: __StarbaseAccessLevel;
+
   /**
    * True if the starbase (POS) is using alliance standings, otherwise using corporation's
    */
   use_alliance_standings: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * fuel object
- */
-interface GetCorporationsCorporationIdStarbasesStarbaseIdFuel {
+
   /**
-   * quantity integer
+   * Additional unspecified fields
    */
-  quantity: number;
-  type_id: number;
   [k: string]: unknown | undefined;
 }
 
@@ -1782,528 +1390,168 @@ interface GetCorporationsCorporationIdStructuresService {
 /*!
  * ESI endpoint: get:/corporations/{corporation_id}/titles/
  */
+
+/**
+ * Base role string for all roles and grantable roles.
+ */
+type GccIdTitlesBaseRole =
+  | "Account_Take_1"
+  | "Account_Take_2"
+  | "Account_Take_3"
+  | "Account_Take_4"
+  | "Account_Take_5"
+  | "Account_Take_6"
+  | "Account_Take_7"
+  | "Accountant"
+  | "Auditor"
+  | "Brand_Manager"
+  | "Communications_Officer"
+  | "Config_Equipment"
+  | "Config_Starbase_Equipment"
+  | "Container_Take_1"
+  | "Container_Take_2"
+  | "Container_Take_3"
+  | "Container_Take_4"
+  | "Container_Take_5"
+  | "Container_Take_6"
+  | "Container_Take_7"
+  | "Contract_Manager"
+  | "Deliveries_Container_Take"
+  | "Deliveries_Query"
+  | "Deliveries_Take"
+  | "Diplomat"
+  | "Director"
+  | "Factory_Manager"
+  | "Fitting_Manager"
+  | "Hangar_Query_1"
+  | "Hangar_Query_2"
+  | "Hangar_Query_3"
+  | "Hangar_Query_4"
+  | "Hangar_Query_5"
+  | "Hangar_Query_6"
+  | "Hangar_Query_7"
+  | "Hangar_Take_1"
+  | "Hangar_Take_2"
+  | "Hangar_Take_3"
+  | "Hangar_Take_4"
+  | "Hangar_Take_5"
+  | "Hangar_Take_6"
+  | "Hangar_Take_7"
+  | "Junior_Accountant"
+  | "Personnel_Manager"
+  | "Project_Manager"
+  | "Rent_Factory_Facility"
+  | "Rent_Office"
+  | "Rent_Research_Facility"
+  | "Security_Officer"
+  | "Skill_Plan_Manager"
+  | "Starbase_Defense_Operator"
+  | "Starbase_Fuel_Technician"
+  | "Station_Manager"
+  | "Trader";
+
+/**
+ * grantable_role string
+ */
+type GetCorporationsCorporationIdTitlesGrantableRole = GccIdTitlesBaseRole;
+
+/**
+ * grantable_roles array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesGrantableRoles = GccIdTitlesBaseRole[];
+
+/**
+ * grantable_roles_at_base string
+ */
+type GetCorporationsCorporationIdTitlesGrantableRolesAtBaseGrantableRolesAtBase = GccIdTitlesBaseRole;
+
+/**
+ * grantable_roles_at_base array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesGrantableRolesAtBase = GccIdTitlesBaseRole[];
+
+/**
+ * grantable_roles_at_hq string
+ */
+type GetCorporationsCorporationIdTitlesGrantableRolesAtHqGrantableRolesAtHq = GccIdTitlesBaseRole;
+
+/**
+ * grantable_roles_at_hq array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesGrantableRolesAtHq = GccIdTitlesBaseRole[];
+
+/**
+ * grantable_roles_at_other string
+ */
+type GetCorporationsCorporationIdTitlesGrantableRolesAtOtherGrantableRolesAtOther = GccIdTitlesBaseRole;
+
+/**
+ * grantable_roles_at_other array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesGrantableRolesAtOther = GccIdTitlesBaseRole[];
+
+/**
+ * role string
+ */
+type GetCorporationsCorporationIdTitlesRole = GccIdTitlesBaseRole;
+
+/**
+ * roles array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesRoles = GccIdTitlesBaseRole[];
+
+/**
+ * roles_at_base string
+ */
+type GetCorporationsCorporationIdTitlesRolesAtBaseRolesAtBase = GccIdTitlesBaseRole;
+
+/**
+ * roles_at_base array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesRolesAtBase = GccIdTitlesBaseRole[];
+
+/**
+ * roles_at_hq string
+ */
+type GetCorporationsCorporationIdTitlesRolesAtHqRolesAtHq = GccIdTitlesBaseRole;
+
+/**
+ * roles_at_hq array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesRolesAtHq = GccIdTitlesBaseRole[];
+
+/**
+ * roles_at_other string
+ */
+type GetCorporationsCorporationIdTitlesRolesAtOtherRolesAtOther = GccIdTitlesBaseRole;
+
+/**
+ * roles_at_other array
+ *
+ * @maxItems 50
+ */
+type GetCorporationsCorporationIdTitlesRolesAtOther = GccIdTitlesBaseRole[];
+
 /**
  * 200 ok array
  *
  * @maxItems 16
  */
 type GetCorporationsCorporationIdTitlesOk = GetCorporationsCorporationIdTitles_200Ok[];
-/**
- * grantable_role string
- */
-type GetCorporationsCorporationIdTitlesGrantableRole =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * grantable_roles array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesGrantableRoles = GetCorporationsCorporationIdTitlesGrantableRole[];
-/**
- * grantable_roles_at_base string
- */
-type GetCorporationsCorporationIdTitlesGrantableRolesAtBaseGrantableRolesAtBase =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * grantable_roles_at_base array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesGrantableRolesAtBase =
-  GetCorporationsCorporationIdTitlesGrantableRolesAtBaseGrantableRolesAtBase[];
-/**
- * grantable_roles_at_hq string
- */
-type GetCorporationsCorporationIdTitlesGrantableRolesAtHqGrantableRolesAtHq =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * grantable_roles_at_hq array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesGrantableRolesAtHq =
-  GetCorporationsCorporationIdTitlesGrantableRolesAtHqGrantableRolesAtHq[];
-/**
- * grantable_roles_at_other string
- */
-type GetCorporationsCorporationIdTitlesGrantableRolesAtOtherGrantableRolesAtOther =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * grantable_roles_at_other array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesGrantableRolesAtOther =
-  GetCorporationsCorporationIdTitlesGrantableRolesAtOtherGrantableRolesAtOther[];
-/**
- * role string
- */
-type GetCorporationsCorporationIdTitlesRole =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * roles array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesRoles = GetCorporationsCorporationIdTitlesRole[];
-/**
- * roles_at_base string
- */
-type GetCorporationsCorporationIdTitlesRolesAtBaseRolesAtBase =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * roles_at_base array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesRolesAtBase = GetCorporationsCorporationIdTitlesRolesAtBaseRolesAtBase[];
-/**
- * roles_at_hq string
- */
-type GetCorporationsCorporationIdTitlesRolesAtHqRolesAtHq =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * roles_at_hq array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesRolesAtHq = GetCorporationsCorporationIdTitlesRolesAtHqRolesAtHq[];
-/**
- * roles_at_other string
- */
-type GetCorporationsCorporationIdTitlesRolesAtOtherRolesAtOther =
-  | "Account_Take_1"
-  | "Account_Take_2"
-  | "Account_Take_3"
-  | "Account_Take_4"
-  | "Account_Take_5"
-  | "Account_Take_6"
-  | "Account_Take_7"
-  | "Accountant"
-  | "Auditor"
-  | "Brand_Manager"
-  | "Communications_Officer"
-  | "Config_Equipment"
-  | "Config_Starbase_Equipment"
-  | "Container_Take_1"
-  | "Container_Take_2"
-  | "Container_Take_3"
-  | "Container_Take_4"
-  | "Container_Take_5"
-  | "Container_Take_6"
-  | "Container_Take_7"
-  | "Contract_Manager"
-  | "Deliveries_Container_Take"
-  | "Deliveries_Query"
-  | "Deliveries_Take"
-  | "Diplomat"
-  | "Director"
-  | "Factory_Manager"
-  | "Fitting_Manager"
-  | "Hangar_Query_1"
-  | "Hangar_Query_2"
-  | "Hangar_Query_3"
-  | "Hangar_Query_4"
-  | "Hangar_Query_5"
-  | "Hangar_Query_6"
-  | "Hangar_Query_7"
-  | "Hangar_Take_1"
-  | "Hangar_Take_2"
-  | "Hangar_Take_3"
-  | "Hangar_Take_4"
-  | "Hangar_Take_5"
-  | "Hangar_Take_6"
-  | "Hangar_Take_7"
-  | "Junior_Accountant"
-  | "Personnel_Manager"
-  | "Project_Manager"
-  | "Rent_Factory_Facility"
-  | "Rent_Office"
-  | "Rent_Research_Facility"
-  | "Security_Officer"
-  | "Skill_Plan_Manager"
-  | "Starbase_Defense_Operator"
-  | "Starbase_Fuel_Technician"
-  | "Station_Manager"
-  | "Trader";
-/**
- * roles_at_other array
- *
- * @maxItems 50
- */
-type GetCorporationsCorporationIdTitlesRolesAtOther =
-  GetCorporationsCorporationIdTitlesRolesAtOtherRolesAtOther[];
 
 /**
  * 200 ok object

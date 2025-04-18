@@ -137,109 +137,37 @@ interface GetCorporationsCorporationIdFwStatsVictoryPoints {
  *
  * @maxItems 4
  */
-type GetFwLeaderboardsActiveTotal =
-  | []
-  | [GetFwLeaderboardsActiveTotalActiveTotal]
-  | [GetFwLeaderboardsActiveTotalActiveTotal, GetFwLeaderboardsActiveTotalActiveTotal]
-  | [
-      GetFwLeaderboardsActiveTotalActiveTotal,
-      GetFwLeaderboardsActiveTotalActiveTotal,
-      GetFwLeaderboardsActiveTotalActiveTotal
-    ]
-  | [
-      GetFwLeaderboardsActiveTotalActiveTotal,
-      GetFwLeaderboardsActiveTotalActiveTotal,
-      GetFwLeaderboardsActiveTotalActiveTotal,
-      GetFwLeaderboardsActiveTotalActiveTotal
-    ];
+type GetFwLeaderboardsActiveTotal = GetFwLeaderboardsActiveTotalActiveTotal[]
 /**
  * Top 4 ranking of factions by kills in the past week
  *
  * @maxItems 4
  */
-type GetFwLeaderboardsLastWeek =
-  | []
-  | [GetFwLeaderboardsLastWeekLastWeek]
-  | [GetFwLeaderboardsLastWeekLastWeek, GetFwLeaderboardsLastWeekLastWeek]
-  | [GetFwLeaderboardsLastWeekLastWeek, GetFwLeaderboardsLastWeekLastWeek, GetFwLeaderboardsLastWeekLastWeek]
-  | [
-      GetFwLeaderboardsLastWeekLastWeek,
-      GetFwLeaderboardsLastWeekLastWeek,
-      GetFwLeaderboardsLastWeekLastWeek,
-      GetFwLeaderboardsLastWeekLastWeek
-    ];
+type GetFwLeaderboardsLastWeek = GetFwLeaderboardsLastWeekLastWeek[];
 /**
  * Top 4 ranking of factions by kills in the past day
  *
  * @maxItems 4
  */
-type GetFwLeaderboardsYesterday =
-  | []
-  | [GetFwLeaderboardsYesterdayYesterday]
-  | [GetFwLeaderboardsYesterdayYesterday, GetFwLeaderboardsYesterdayYesterday]
-  | [GetFwLeaderboardsYesterdayYesterday, GetFwLeaderboardsYesterdayYesterday, GetFwLeaderboardsYesterdayYesterday]
-  | [
-      GetFwLeaderboardsYesterdayYesterday,
-      GetFwLeaderboardsYesterdayYesterday,
-      GetFwLeaderboardsYesterdayYesterday,
-      GetFwLeaderboardsYesterdayYesterday
-    ];
+type GetFwLeaderboardsYesterday = GetFwLeaderboardsYesterdayYesterday[];
 /**
  * Top 4 ranking of factions active in faction warfare by total victory points. A faction is considered "active" if they have participated in faction warfare in the past 14 days
  *
  * @maxItems 4
  */
-type GetFwLeaderboardsVictoryPointsActiveTotal =
-  | []
-  | [GetFwLeaderboardsActiveTotalActiveTotal_1]
-  | [GetFwLeaderboardsActiveTotalActiveTotal_1, GetFwLeaderboardsActiveTotalActiveTotal_1]
-  | [
-      GetFwLeaderboardsActiveTotalActiveTotal_1,
-      GetFwLeaderboardsActiveTotalActiveTotal_1,
-      GetFwLeaderboardsActiveTotalActiveTotal_1
-    ]
-  | [
-      GetFwLeaderboardsActiveTotalActiveTotal_1,
-      GetFwLeaderboardsActiveTotalActiveTotal_1,
-      GetFwLeaderboardsActiveTotalActiveTotal_1,
-      GetFwLeaderboardsActiveTotalActiveTotal_1
-    ];
+type GetFwLeaderboardsVictoryPointsActiveTotal = GetFwLeaderboardsActiveTotalActiveTotal_1[];
 /**
  * Top 4 ranking of factions by victory points in the past week
  *
  * @maxItems 4
  */
-type GetFwLeaderboardsVictoryPointsLastWeek =
-  | []
-  | [GetFwLeaderboardsLastWeekLastWeek_1]
-  | [GetFwLeaderboardsLastWeekLastWeek_1, GetFwLeaderboardsLastWeekLastWeek_1]
-  | [GetFwLeaderboardsLastWeekLastWeek_1, GetFwLeaderboardsLastWeekLastWeek_1, GetFwLeaderboardsLastWeekLastWeek_1]
-  | [
-      GetFwLeaderboardsLastWeekLastWeek_1,
-      GetFwLeaderboardsLastWeekLastWeek_1,
-      GetFwLeaderboardsLastWeekLastWeek_1,
-      GetFwLeaderboardsLastWeekLastWeek_1
-    ];
+type GetFwLeaderboardsVictoryPointsLastWeek = GetFwLeaderboardsLastWeekLastWeek_1[];
 /**
  * Top 4 ranking of factions by victory points in the past day
  *
  * @maxItems 4
  */
-type GetFwLeaderboardsVictoryPointsYesterday =
-  | []
-  | [GetFwLeaderboardsYesterdayYesterday_1]
-  | [GetFwLeaderboardsYesterdayYesterday_1, GetFwLeaderboardsYesterdayYesterday_1]
-  | [
-      GetFwLeaderboardsYesterdayYesterday_1,
-      GetFwLeaderboardsYesterdayYesterday_1,
-      GetFwLeaderboardsYesterdayYesterday_1
-    ]
-  | [
-      GetFwLeaderboardsYesterdayYesterday_1,
-      GetFwLeaderboardsYesterdayYesterday_1,
-      GetFwLeaderboardsYesterdayYesterday_1,
-      GetFwLeaderboardsYesterdayYesterday_1
-    ];
+type GetFwLeaderboardsVictoryPointsYesterday = GetFwLeaderboardsYesterdayYesterday_1[];
 
 /**
  * 200 ok object
