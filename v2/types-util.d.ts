@@ -12,112 +12,95 @@
  * @summary This file is auto-generated and defines version 3.2.0 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
-import "./index.d.ts"
+import type { PickPathParameters, UnionToTuple } from "./index.d.ts";
 
-// export type TMappingToNumber = { [key in string | number | symbol]: number };
+
 /**
  * @experimental
- *
- * InferNextEndpoint is an experimental utility type designed to verify and infer the "next" applicable
- * ESI endpoint based on an initial endpoint's result type. In essence, it inspects the URL pattern and
- * the inferred response type (Resut) associated with a given endpoint (EP) and then determines whether that
- * endpoint can be further chained to another ESI endpoint.
- *
- * **The type parameters are as follows**:
  * 
- * @param M - The HTTP method type (e.g. "get", "post", etc.), which must extend TESIEntryMethod.
- * @param EP - The current ESI endpoint under inspection; it extends ESIEndpointOf<M>.
- * @param Resut - Defaults to InferESIResponseResult<M, EP>; it is the inferred response result of the endpoint.
- *                This type is tested against acceptable response formats (either a number array or an object
- *                mapping keys to numbers).
- * @param Endpoints - Defaults to ESIEndpointOf<M>; represents the union of all endpoints for method M to be
- *                considered as potential next endpoints.
- *
- * The type works by iterating over each endpoint (EPOrigin) in the union Endpoints. For each EPOrigin:
- *  - It checks whether the original endpoint EP is assignable to Endpoints.
- *  - It then tests if EPOrigin extends the template literal type `${EP}{${string}}/${string}`—that is, if EPOrigin
- *    is a URL based on EP that includes a parameterized section (denoted by `{...}`) followed by some additional
- *    path segments.
- *  - Next, it ensures that the inferred response result type (Resut) conforms to one of the acceptable formats:
- *    either a number array or an object whose values are numbers. The object form uses `{ [x: infer T]: number }`
- *    for type inference (this version works as intended).
- *  - If all conditions are met, EPOrigin is retained in the union; otherwise, it is replaced with never.
- *
- * Finally, the mapped type is indexed over Endpoints to yield a union of all endpoint URLs that satisfy the above
- * conditions. This allows chaining or conditional logic in ESI client implementations based on response shape.
- *
- * @example
- * // Given:
- * // - M = "get"
- * // - EP = "/characters/{character_id}/"
- * // - And InferESIResponseResult<"get", "/characters/{character_id}/"> is inferred as number[] or a
- * //     valid mapping (e.g., { [x: string]: number })
- * // Then, InferNextEndpoint<"get", "/characters/{character_id}/"> computes to the union of endpoints like:
- * //   "/characters/{character_id}/assets"   // if it matches the template and response type constraint.
- *
+ * Resolves the next applicable ESI endpoint based on the current endpoint and its response type.
+ * 
+ * This utility type determines which endpoints can be chained after the current endpoint (`EP`),
+ * based on the response type (`BaseResut`) and the URL pattern of potential next endpoints.
+ * 
+ * @template M - The HTTP method type (e.g., "get", "post", etc.), which must extend `TESIEntryMethod`.
+ * @template EP - The current ESI endpoint under inspection; it extends `ESIEndpointOf<M>`.
+ * @template BaseResut - Defaults to `InferESIResponseResult<M, EP>`; it is the inferred response result of the endpoint.
+ * @template Endpoints - Defaults to `ESIEndpointOf<M>`; represents the union of all endpoints for method `M` to be considered as potential next endpoints.
+ * 
  * @remarks
- * This type is highly experimental and leverages advanced TypeScript features—including conditional types,
- * template literal types, and type inference—to perform non-trivial endpoint validation.
+ * This type uses advanced TypeScript features such as conditional types, template literal types, and type inference
+ * to perform endpoint validation and chaining.
+ * 
+ * @example
+ * ```typescript
+ * type NextEndpoint = ResolveNextEndpoint<"get", "/characters/{character_id}/">;
+ * // Result: Union of endpoints like "/characters/{character_id}/assets" if they match the template and response type constraint.
+ * ```
  */
-//* ctt ignore path parameter
-export type InferNextEndpoint<
+export type ResolveNextEndpoint<
   M extends TESIEntryMethod,
   EP extends Exclude<ESIEndpointOf<M>, symbol> = Exclude<ESIEndpointOf<M>, symbol>,
   BaseResut extends InferESIResponseResult<M, EP> = InferESIResponseResult<M, EP>,
+  // Endpoints extends ESIEndpointAll = ESIEndpointAll,
   Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
 > = {
   [NextEP in Endpoints]: NextEP extends `${EP}${string}{${string}}/${string}`
-    // ? BaseResut extends number[] | TMappingToNumber // does not works...("skipLibCheck=false")
-    // DEVNOTE: As it turns out, the behavior of this utility type is broken unless you use the "skipLibCheck=true".
-    ? BaseResut extends number[] | { [x: infer T]: number }
-    //* ctt
-    ? NextEP : never
-    /*/
-    ? __ShiftType extends 0
-      ? [EP, NextEP, BaseResut] : NextEP
-    : never
-    //*/
-  : never;
-}[Endpoints];
-
-/**
- * `InferNextEndpoint2` is a utility type that infers the next endpoint based on the current endpoint and method.
- * 
- * DONE: 2025/4/11 15:45:01 
- * ``` jsonc
- * // From the EP, infer the next parameterized endpoint to request.
- * // If the result of the EP is `number[] | { [x: infer T]: number }`, infer the next parameterized endpoint to request.
- * ```
- * 
- * @template M - The HTTP method to use for the request.
- * @template EP - The endpoint from which the next parameterized endpoint to request is inferred.
- * @template BaseResut - The base response result type.
- * @template Endpoints - The possible endpoints for the given method.
- * 
- * @example
- * ```ts
- * type NextEndpoint = InferNextEndpoint2<"post", "/fleets/{fleet_id}/wings/">;
- * // Result: "/fleets/{fleet_id}/wings/{wing_id}/squads/"
- * ```
- * @remarks
- * This type is useful for chaining requests or determining the next endpoint to call based on the current endpoint.
- */
-export type InferNextEndpoint2<
-  M extends TESIEntryMethod,
-  EP extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-  BaseResut extends InferESIResponseResultEX<`${M}:${EP}`> = InferESIResponseResultEX<`${M}:${EP}`>,
-  Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-> = {
-  [NextEP in Endpoints]: NextEP extends `${EP}{${string}}/${string}`
-    // ? BaseResut extends number[] | TMappingToNumber // does not works...("skipLibCheck=false")
-    // DEVNOTE: As it turns out, the behavior of this utility type is broken unless you use the "skipLibCheck=true".
-    ? BaseResut extends number[] | { [x: infer T]: number }
+    ? ValidateNextEndpoint<BaseResut, NextEP> extends 1
       ? NextEP : never
-  : never;
+      // ? [EP, NextEP, BaseResut] : never
+    : never;
 }[Endpoints];
 
 /**
- * `InferNextEndpointLoos` is a utility type that infers the next endpoint based on the current endpoint and method.
+ * Validates whether a given endpoint can be the next endpoint in a chain based on the response type of the current endpoint.
+ * 
+ * This utility type checks if the response type (`Entry`) of the current endpoint satisfies the requirements
+ * for the next endpoint (`NextEP`), such as having the necessary path parameters.
+ * 
+ * @template Entry - The response type of the current endpoint (e.g., `number[]` or an array of objects).
+ * @template NextEP - The next endpoint to validate.
+ * @template Debug - Optional debug flag; if set to `1`, additional debug information is returned.
+ * @template PathParams - Defaults to `UnionToTuple<PickPathParameters<NextEP>>`; represents the path parameters of the next endpoint.
+ * 
+ * @remarks
+ * This type assumes that if the response type is `number[]`, the next endpoint is always valid. For object arrays,
+ * it checks if the required path parameters can be inferred from the response type.
+ * 
+ * ```typescript
+ * type IsValid = ValidateNextEndpoint<GetCharactersCharacterIdMail_200Ok[], "/characters/{character_id}/mail/{mail_id}/">;
+ * // Result: 1 if valid, 0 otherwise.
+ * ```
+ */
+export type ValidateNextEndpoint<
+  Entry extends unknown, // number[] or SomeType[]
+  NextEP extends string,
+  Debug = 0,
+  PathParams = UnionToTuple<PickPathParameters<NextEP>>,
+> = 
+//* ctt
+  // development
+  // If it is simply a number[], it is unconditionally assumed that there is a next endpoint.
+  Entry extends number[]
+  ? 1
+  : Entry extends (infer O)[]
+    ? NonNullable<O[PathParams[1]]> extends number
+      ? Debug extends 1
+        ? [NextEP, O, PathParams]
+        : 1
+      : 0
+    : 0;
+/*/
+  // production
+  Entry extends number[] // If it is simply a number[], it is unconditionally assumed that there is a next endpoint.
+    ? 1 : Entry extends (infer O)[]
+      ? NonNullable<O[PathParams[1]]> extends number
+        ? 1: 0
+      : 0;
+//*/
+
+/**
+ * `ResolveNextEndpointLoos` is a utility type that infers the next endpoint based on the current endpoint and method.
  * 
  * DONE: 2025/4/11 15:45:01 
  * ``` jsonc
@@ -129,16 +112,15 @@ export type InferNextEndpoint2<
  * @template EP - The endpoint from which the next parameterized endpoint to request is inferred.
  * @template Endpoints - The possible endpoints for the given method.
  * 
- * @example
  * ```ts
- * type NextEndpoint = InferNextEndpointLoos<"get", "/markets/groups/">;
+ * type NextEndpoint = ResolveNextEndpointLoos<"get", "/markets/groups/">;
  * // Result: "/markets/groups/{market_group_id}/"
  * ```
  * @remarks
  * This type is useful for chaining requests or determining the next endpoint to call based on the current endpoint.
  * It does not validate the response type of the endpoint, only the URL pattern.
  */
-export type InferNextEndpointLoos<
+export type ResolveNextEndpointLoos<
   M extends TESIEntryMethod,
 //* ctt
   // DEVNOTE: As it turns out, the behavior of this utility type is broken unless you use the "skipLibCheck=true".
@@ -154,7 +136,7 @@ export type InferNextEndpointLoos<
 }[Endpoints];
 
 /**
- * @see For the meaning of this type of comment trick, see {@link InferNextEndpointLoos} line comment.
+ * @see For the meaning of this type of comment trick, see {@link ResolveNextEndpointLoos} line comment.
  */
 type ESIEndpointUnions = {
   [M in TESIEntryMethod]: `${M}:${
@@ -182,7 +164,6 @@ export type InferESIResponseResultEX<
  *
  * @template ActualOpt - The actual type of the options.
  *
- * @example
  * ```ts
  * // @ ts-expect-error
  * export const request: IESIRequestFunction2<ESIRequestOptions> = (method, endpoint, opt) => {

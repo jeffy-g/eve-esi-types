@@ -20,8 +20,6 @@ import type {
   // ESIEndpointUnions,
   // IESIRequestFunction2,
   // InferESIResponseResultEX,
-  // InferNextEndpoint2, InferNextEndpointLoos,
-  // InferNextEndpoint,
   // TESICachedSeconds, TESIRequestFunctionMethods2,
   // __IdentifyParameters, __InferESIResponseResult,
 } from "./types-util.d.ts";
