@@ -12,152 +12,7 @@
  * @summary This file is auto-generated and defines version 3.2.1 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
-import type { PickPathParameters, UnionToTuple } from "./index.d.ts";
 
-
-/**
- * @experimental
- * 
- * Resolves the next applicable ESI endpoint based on the current endpoint and its response type.
- * 
- * This utility type determines which endpoints can be chained after the current endpoint (`EP`),
- * based on the response type (`BaseResut`) and the URL pattern of potential next endpoints.
- * 
- * @template M - The HTTP method type (e.g., "get", "post", etc.), which must extend `TESIEntryMethod`.
- * @template EP - The current ESI endpoint under inspection; it extends `ESIEndpointOf<M>`.
- * @template BaseResut - Defaults to `InferESIResponseResult<M, EP>`; it is the inferred response result of the endpoint.
- * @template Endpoints - Defaults to `ESIEndpointOf<M>`; represents the union of all endpoints for method `M` to be considered as potential next endpoints.
- * 
- * @remarks
- * This type uses advanced TypeScript features such as conditional types, template literal types, and type inference
- * to perform endpoint validation and chaining.
- * 
- * @example
- * ```typescript
- * type NextEndpoint = ResolveNextEndpoint<"get", "/characters/{character_id}/">;
- * // Result: Union of endpoints like "/characters/{character_id}/assets" if they match the template and response type constraint.
- * ```
- */
-export type ResolveNextEndpoint<
-  M extends TESIEntryMethod,
-  EP extends Exclude<ESIEndpointOf<M>, symbol> = Exclude<ESIEndpointOf<M>, symbol>,
-  BaseResut extends InferESIResponseResult<M, EP> = InferESIResponseResult<M, EP>,
-  // Endpoints extends ESIEndpointAll = ESIEndpointAll,
-  Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-> = {
-  [NextEP in Endpoints]: NextEP extends `${EP}${string}{${string}}/${string}`
-    ? ValidateNextEndpoint<BaseResut, NextEP> extends 1
-      ? NextEP : never
-      // ? [EP, NextEP, BaseResut] : never
-    : never;
-}[Endpoints];
-
-/**
- * Validates whether a given endpoint can be the next endpoint in a chain based on the response type of the current endpoint.
- * 
- * This utility type checks if the response type (`Entry`) of the current endpoint satisfies the requirements
- * for the next endpoint (`NextEP`), such as having the necessary path parameters.
- * 
- * @template Entry - The response type of the current endpoint (e.g., `number[]` or an array of objects).
- * @template NextEP - The next endpoint to validate.
- * @template Debug - Optional debug flag; if set to `1`, additional debug information is returned.
- * @template PathParams - Defaults to `UnionToTuple<PickPathParameters<NextEP>>`; represents the path parameters of the next endpoint.
- * 
- * @remarks
- * This type assumes that if the response type is `number[]`, the next endpoint is always valid. For object arrays,
- * it checks if the required path parameters can be inferred from the response type.
- * 
- * ```typescript
- * type IsValid = ValidateNextEndpoint<GetCharactersCharacterIdMail_200Ok[], "/characters/{character_id}/mail/{mail_id}/">;
- * // Result: 1 if valid, 0 otherwise.
- * ```
- */
-export type ValidateNextEndpoint<
-  Entry extends unknown, // number[] or SomeType[]
-  NextEP extends string,
-  Debug = 0,
-  PathParams = UnionToTuple<PickPathParameters<NextEP>>,
-> = 
-//* ctt
-  // development
-  // If it is simply a number[], it is unconditionally assumed that there is a next endpoint.
-  Entry extends number[]
-  ? 1
-  : Entry extends (infer O)[]
-    ? NonNullable<O[PathParams[1]]> extends number
-      ? Debug extends 1
-        ? [NextEP, O, PathParams]
-        : 1
-      : 0
-    : 0;
-/*/
-  // production
-  Entry extends number[] // If it is simply a number[], it is unconditionally assumed that there is a next endpoint.
-    ? 1 : Entry extends (infer O)[]
-      ? NonNullable<O[PathParams[1]]> extends number
-        ? 1: 0
-      : 0;
-//*/
-
-/**
- * `ResolveNextEndpointLoos` is a utility type that infers the next endpoint based on the current endpoint and method.
- * 
- * DONE: 2025/4/11 15:45:01 
- * ``` jsonc
- * // Infer the next parameterized endpoint to request from the EP
- * // Does not validate the EP result, just infers the next endpoint to request
- * ```
- * 
- * @template M - The HTTP method to use for the request.
- * @template EP - The endpoint from which the next parameterized endpoint to request is inferred.
- * @template Endpoints - The possible endpoints for the given method.
- * 
- * ```ts
- * type NextEndpoint = ResolveNextEndpointLoos<"get", "/markets/groups/">;
- * // Result: "/markets/groups/{market_group_id}/"
- * ```
- * @remarks
- * This type is useful for chaining requests or determining the next endpoint to call based on the current endpoint.
- * It does not validate the response type of the endpoint, only the URL pattern.
- */
-export type ResolveNextEndpointLoos<
-  M extends TESIEntryMethod,
-//* ctt
-  // DEVNOTE: As it turns out, the behavior of this utility type is broken unless you use the "skipLibCheck=true".
-  EP extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-  Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-/*/
-  // This fix is required for skipLibCheck=false
-  EP extends Exclude<ESIEndpointOf<M>, symbol> = Exclude<ESIEndpointOf<M>, symbol>,
-  Endpoints extends Exclude<ESIEndpointOf<M>, symbol> = Exclude<ESIEndpointOf<M>, symbol>,
-//*/
-> = {
-  [NextEP in Endpoints]: NextEP extends `${EP}{${string}}${string}` ? NextEP : never
-}[Endpoints];
-
-/**
- * @see For the meaning of this type of comment trick, see {@link ResolveNextEndpointLoos} line comment.
- */
-type ESIEndpointUnions = {
-  [M in TESIEntryMethod]: `${M}:${
-    //* ctt
-    ESIEndpointOf<M>
-    /*/
-    Exclude<ESIEndpointOf<M>, symbol>
-    //*/
-  }`;
-}[TESIEntryMethod];
-export type InferESIResponseResultEX<
-  EP extends unknown
-  // EP extends ESIEndpointUnions
-> = EP extends `${infer M}:${infer EPRest}`
-  ? M extends TESIEntryMethod
-    ? EPRest extends ESIEndpointOf<M>
-      ? _ESIResponseType<M, EPRest> extends { result: infer U }
-        ? U : never
-      : never
-    : never
-  : never;
 
 /**
  * Represents a function that can make ESI requests with various HTTP methods.
@@ -250,7 +105,8 @@ export declare type TPathParamsNever = { /* pathParams?: never */ };
  * HTTP method and endpoint.
  * 
  * @template M - The HTTP method to use for the request.
- * @template EPx - The endpoint path.
+ * @template EPx - The endpoint path.  
+ *  include `string` in the `EPx` constraints to avoid breaking typescript inference.
  * 
  * @example
  * ```ts

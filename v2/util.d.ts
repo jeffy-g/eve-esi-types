@@ -51,3 +51,22 @@ export type UnionToTuple<T> = UnionToIntersection<
  * @date 2025/2/11 18:12:02
  */
 export type InferKeysLen<T> = UnionToTuple<T>["length"];
+
+/**
+ * Splits a string by a delimiter and returns a tuple of the resulting substrings.
+ * @example
+ * Split<"get:/characters/{character_id}/wallet/", ":">
+ * // Result: ["get", "/characters/{character_id}/wallet/"]
+ */
+export type Split<S extends string, D extends string = ":"> = 
+  S extends `${infer T}${D}${infer U}` 
+    ? [T, ...Split<U, D>] 
+    : [S];
+
+// // Test cases
+// type Test1 = Split<"get:/characters/{character_id}/wallet/">;
+// // Expected: ["get", "/characters/{character_id}/wallet/"]
+// type Test2 = Split<"a.b.c", ".">;
+// // Expected: ['a', 'b', 'c']
+// type Test3 = Split<"hello", ",">;
+// // Expected: ['hello']
