@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.2] - 2025-04-21
+
+### 🚜 Refactor
+
+- *(types)* Make `NoContentResponse` a branded type
+- Move experimental types to experimental-esi-types.d.ts
+
+### ⚙️ Miscellaneous Tasks
+
+- Bump version to v3.2.2
+
 ## [3.2.1] - 2025-04-19
 
 ### 🐛 Bug Fixes
