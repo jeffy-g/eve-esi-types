@@ -438,10 +438,14 @@ declare global {
   /*
   */
 
+  // declare const NO_CONTENT_RESPONSE: unique symbol;
+  // type NoContentResponse = {
+  //   [NO_CONTENT_RESPONSE]: never;
+  // };
   /**
    * Represents a response with no content (HTTP status 204).
    */
-  type NoContentResponse = { /* status: 204 */ };
+  type NoContentResponse = { /* status: 204 */ } & { __status: 204 };
 
   /**
    * Represents the HTTP methods supported by ESI.
