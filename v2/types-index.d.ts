@@ -41,4 +41,3 @@ import "./globals/universe.d.ts";
 import "./globals/wallet.d.ts";
 import "./globals/wars.d.ts";
 import "./globals/extra-types.d.ts";
-
