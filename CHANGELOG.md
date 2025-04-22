@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.4] - 2025-04-22
+
+### 🚜 Refactor
+
+- Ensure type check passes with `skipLibCheck: false`
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG.md
+- Bump version to v3.2.4
+
 ## [3.2.3] - 2025-04-22
 
 ### 🐛 Bug Fixes
