@@ -12,4 +12,7 @@ declare global {
  * @param {boolean} enable
  */
 export declare function defineColors(enable: boolean): void;
+/**
+ * @param {string} banner
+ */
 export declare function getLogger(banner: string, logSelector?: string): (...args: any[]) => void;
