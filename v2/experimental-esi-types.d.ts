@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/experimental-esi-types.d.ts
- * @summary This file is auto-generated and defines version 3.2.2 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.3 of the EVE Online ESI response types.
  */
 import type { _ESIResponseType, PickPathParameters, UnionToTuple, Split } from "./index.d.ts";
 
