@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.3] - 2025-04-22
+
+### 🐛 Bug Fixes
+
+- Remove duplicate union type reference
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG.md
+- Lint
+- Bump version to v3.2.3
+
 ## [3.2.2] - 2025-04-21
 
 ### 🚜 Refactor
