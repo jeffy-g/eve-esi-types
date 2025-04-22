@@ -249,7 +249,7 @@ export type ESIEndpointUnions = {
  * Filters ESI endpoints based on the response type.
  * 
  * This utility type iterates over all ESI endpoint unions (`ESIEndpointUnions`) and checks
- * if the inferred response type (`InferESIResponseResultEX<EPU>`) matches the specified type `T`.
+ * if the inferred response type (`InferESIResponseResultFromUnion<EPU>`) matches the specified type `T`.
  * If it matches, the endpoint is included; otherwise, it is excluded.
  * 
  * @template T - The response type to filter endpoints by.
@@ -280,8 +280,30 @@ export type FilterEndpointUnionsByResponse<T> = {
  * ```
  */
 export type ExtractValidNextEndpoints<
-  T = number[], EPUs = FilterEndpointUnionsByResponse<T>
+  T = number[], EPUs = FilterEndpointUnionsByResponse<T>,
+  Debug = 0
 > = {
-    [EPU in EPUs]: ResolveNextEndpointFromUnion<EPU>;
-    // [EPU in EPUs]: ResolveNextEndpointFromUnion<EPU> extends never ? never : EPU;
+    // [EPU in EPUs]: ResolveNextEndpointFromUnion<EPU>;
+    [EPU in EPUs]: Debug extends 1
+      ? ResolveNextEndpointFromUnion<EPU> extends never
+        ? never
+        : [EPU, ResolveNextEndpointFromUnion<EPU>] // array
+        // : { [X in EPU]: ResolveNextEndpointFromUnion<EPU> }  // map
+    : ResolveNextEndpointFromUnion<EPU>;
 }[EPUs];
+
+export type ExtractValidNextEndpointsOrMap<
+    T = number[],
+    EPUs = FilterEndpointUnionsByResponse<T>,
+    Debug = 0
+> = EPUs extends infer EPU
+  ? EPU extends EPUs
+    ? EPU extends ESIEndpointUnions
+        ? ResolveNextEndpointFromUnion<EPU> extends never
+          ? never
+          : Debug extends 1 ? { readonly [K in EPU]: UnionToTuple<ResolveNextEndpointFromUnion<EPU>> }
+          // : Debug extends 1 ? { readonly [K in EPU]: ResolveNextEndpointFromUnion<EPU> }
+        : ResolveNextEndpointFromUnion<EPU>
+      : never
+    : never
+  : never;
