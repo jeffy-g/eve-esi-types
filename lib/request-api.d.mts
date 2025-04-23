@@ -19,7 +19,7 @@ import type { IESIRequestFunction2 } from "../v2";
  * @type {IESIRequestFunction2}
  * @param method - The HTTP method to use for the request
  * @param endpoint - The Path of the ESI endpoint to send the request to
- * @param options - An object of options to include in the request
+ * @param opt - An object of options to include in the request
  * @returns A Promise object containing the response data
  * @throws {util.ESIRequestError}
  */

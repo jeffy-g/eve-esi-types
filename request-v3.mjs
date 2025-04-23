@@ -51,16 +51,16 @@ export const getRequestPending = () => ax;
  * @async
  */
 export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>} */ (async (mthd, endp, opt) => {
+    // When only options are provided
+    const actualOpt = /** @type {NonNullable<typeof opt> & ESIRequestOptions} */ (opt || {});
     /** @type {number[]=} */
     let pathParams;
-    if (opt && typeof opt.pathParams !== "undefined") {
-        pathParams = typeof opt.pathParams === "number" ? [opt.pathParams] : isArray(opt.pathParams) ? opt.pathParams : void 0;
+    if (actualOpt.pathParams) {
+        pathParams = typeof actualOpt.pathParams === "number" ? [actualOpt.pathParams] : isArray(actualOpt.pathParams) ? actualOpt.pathParams : void 0;
     }
     if (isArray(pathParams)) {
         endp = replaceCbt(endp, pathParams);
     }
-    // When only options are provided
-    const actualOpt = opt || /** @type {NonNullable<typeof opt>} */ ({});
     const { rqopt, qss } = initOptions(mthd, actualOpt);
     const endpointUrl = curl(endp);
     const up = new URLSearchParams(qss);

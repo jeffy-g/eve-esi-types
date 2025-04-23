@@ -8,7 +8,7 @@
     // This flag is required
     "strict": true,
     "noEmit": true,
-    "listFiles": true,
+    // "listFiles": true,
     // "skipDefaultLibCheck": true,
     // "target": "esnext",
     // "module": "esnext",

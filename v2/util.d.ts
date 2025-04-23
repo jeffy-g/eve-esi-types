@@ -16,10 +16,18 @@
  * @template Path The string representing the endpoint path.
  * @returns {string | never} The parameter name if the path is parameterized, otherwise `never`.
  */
+//* ctt
 export type PickPathParameters<Path extends string> =
   Path extends `${string}/{${infer Param}}/${infer Rest}`
   ? Param | PickPathParameters<`/${Rest}`>
   : never;
+/*/
+export type PickPathParameters<Path extends string> =
+  Path extends `${string}/{${infer Param}}/${string}/{${infer Param2}}/${string}`
+  ? Param | Param2 : Path extends `${string}/{${infer Param}}/${string}`
+    ? Param
+  : never;
+//*/
 
 /**
  * Convert a union type to an intersection type.
@@ -70,3 +78,10 @@ export type Split<S extends string, D extends string = ":"> =
 // // Expected: ['a', 'b', 'c']
 // type Test3 = Split<"hello", ",">;
 // // Expected: ['hello']
+
+//* ctt
+// export type CombineIntersection<IS> = IS extends infer O ? { [K in keyof O]: O[K] } : never;
+export type CombineIntersection<IS extends Record<string, unknown>> = { [K in keyof IS]: IS[K] };
+/*/
+export type CombineIntersection<IS> = IS;
+//*/

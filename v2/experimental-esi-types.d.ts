@@ -13,6 +13,18 @@
  */
 import type { _ESIResponseType, PickPathParameters, UnionToTuple, Split } from "./index.d.ts";
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - -
+//           TESIRequestFunctionWithContext
+// - - - - - - - - - - - - - - - - - - - - - - - - - -
+export type TESIRequestFunctionWithContext<
+  CTX extends TESIRequestFunctionContext,
+  Mtd extends TESIEntryMethod = CTX["method"],
+  // @ts-expect-error TODO: 2025/4/24
+  REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd> = CTX["endpoint"],
+  ActualOpt extends Record<string, unknown> = CTX["options"]
+> = (context: CTX) => Promise<NonNullable<CTX["result"]>>;
+
+
 /**
  * Infers the response result type of an ESI endpoint based on a union of HTTP method and endpoint.
  * 
@@ -93,6 +105,17 @@ export type ResolveNextEndpoint<
     : never;
 }[Endpoints];
 
+
+export type SplitEndpointUnion<
+  S extends ESIEndpointUnions, D extends string = ":",
+  AR extends any[] = Split<S, D>
+> = AR[0] extends TESIEntryMethod
+  ? AR[1] extends Exclude<ESIEndpointOf<AR[0]>, symbol>
+    ? AR: never
+  : never;
+// // Test cases
+// type Test1 = SplitEndpointUnion<"post:/universe/ids/">;
+
 /**
  * Resolves the next applicable ESI endpoint based on a union of HTTP method and endpoint.
  * 
@@ -117,10 +140,8 @@ export type ResolveNextEndpoint<
  */
 export type ResolveNextEndpointFromUnion<
   EPU extends ESIEndpointUnions,
-  SplitM_EP = Split<EPU>,
-  // @ts-expect-error
+  SplitM_EP extends [TESIEntryMethod, any] = SplitEndpointUnion<EPU>,
   M extends TESIEntryMethod = SplitM_EP[0],
-  // @ts-expect-error
   EP extends Exclude<ESIEndpointOf<M>, symbol> = SplitM_EP[1],
   BaseResut extends InferESIResponseResult<M, EP> = InferESIResponseResult<M, EP>,
   Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
@@ -219,7 +240,7 @@ type ValidateEndpointParamsInArray<
 export type ResolveNextEndpointLoos<
   M extends TESIEntryMethod,
   /* ctt
-  // DEVNOTE: As it turns out, the behavior of this utility type is broken unless you use the "skipLibCheck=true".
+  // DEVNOTE: By applying "skipLibCheck=true", typescript semantics error will not occur.
   EP extends ESIEndpointOf<M> = ESIEndpointOf<M>,
   Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
   /*/
