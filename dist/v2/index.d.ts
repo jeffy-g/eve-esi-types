@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.2.4 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.5 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 import type { PickPathParameters, InferKeysLen, CombineIntersection } from "./util.d.ts";
