@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.6] - 2025-04-24
+
+### 🐛 Bug Fixes
+
+- `normalizeOptions` bug
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG.md
+- Update "main" field in package.json to point to dist folder
+- Bump version to v3.2.6
+
 ## [3.2.5] - 2025-04-24
 
 ### 💼 Other
