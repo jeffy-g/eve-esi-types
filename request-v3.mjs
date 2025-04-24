@@ -5,6 +5,10 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+/**
+ * @file request-v3.mts
+ * @command node request-v3.mjs
+ */
 /// <reference types="./dist/v2"/>
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
@@ -19,7 +23,7 @@ const isArray = Array.isArray;
 /**
  * enable/disable console.log
  */
-let LOG = isDebug();
+const LOG = isDebug();
 /**
  * @typedef {import("./lib/rq-util.mjs").ESIRequestOptions} ESIRequestOptions
  * @typedef {import("./lib/rq-util.mjs").ESIRequestError} ESIRequestError
