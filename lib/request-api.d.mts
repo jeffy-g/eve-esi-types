@@ -6,10 +6,10 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 import * as util from "./rq-util.mjs";
-import type { IESIRequestFunction2 } from "../v2";
+import type { IESIRequestFunction2 } from "../dist/v2";
 /**
- * @typedef {import("../v2").IESIRequestFunction2<util.ESIRequestOptions>} IESIRequestFunction2
- * @typedef {import("../v2").TESIRequestFunctionMethods2<util.ESIRequestOptions>} TESIRequestFunctionMethods2
+ * @typedef {import("../dist/v2").IESIRequestFunction2<util.ESIRequestOptions>} IESIRequestFunction2
+ * @typedef {import("../dist/v2").TESIRequestFunctionMethods2<util.ESIRequestOptions>} TESIRequestFunctionMethods2
  */
 /** #### Sample of `TESIRequestFunctionSignature`
  *

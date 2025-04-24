@@ -5,7 +5,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-/// <reference types="../v2"/>
+/// <reference types="../dist/v2"/>
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
@@ -16,7 +16,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import type { TESIRequestFunctionMethods2 } from "../v2";
+import type { TESIRequestFunctionMethods2 } from "../dist/v2";
 import type { TESIErrorStats } from "./esi-error-types";
 export { isNode } from "./constants.mjs";
 /**
@@ -77,6 +77,12 @@ export declare class ESIErrorLimitReachedError extends ESIRequestError {
 /**
  * @typedef {import("./rq-util.mjs").ESIRequestOptions} ESIRequestOptions
  */
+/**
+ * @template T
+ * @param {[T] | [(T | undefined)?]} opt
+ * @returns {NonNullable<T>}
+ */
+export declare const normalizeOptions: <T extends unknown>(opt: [T] | [(T | undefined)?]) => NonNullable<T>;
 /**
  * #### status: 200 | 201 | 204
  *

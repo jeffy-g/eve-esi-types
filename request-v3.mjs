@@ -5,13 +5,11 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-/// <reference types="./v2"/>
+/// <reference types="./dist/v2"/>
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
-// import type { TESIResponseOKMap, TPathParamsNever } from "./v2";
-// import type { TESIResponseOKMap } from "eve-esi-types";
-import { is, curl, replaceCbt, getSDEVersion, initOptions, isDebug, fireRequestsDoesNotRequireAuth, isSuccess, handleESIError, handleSuccessResponse } from "./lib/rq-util.mjs";
+import { is, curl, replaceCbt, getSDEVersion, normalizeOptions, initOptions, isDebug, fireRequestsDoesNotRequireAuth, isSuccess, handleESIError, handleSuccessResponse, } from "./lib/rq-util.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -23,7 +21,6 @@ const isArray = Array.isArray;
  */
 let LOG = isDebug();
 /**
- * @typedef {import("./v2").TESIResponseOKMap} TESIResponseOKMap
  * @typedef {import("./lib/rq-util.mjs").ESIRequestOptions} ESIRequestOptions
  * @typedef {import("./lib/rq-util.mjs").ESIRequestError} ESIRequestError
  * @typedef {import("./lib/rq-util.mjs").Truthy} Truthy
@@ -50,9 +47,9 @@ export const getRequestPending = () => ax;
  * @throws {ESIRequestError}
  * @async
  */
-export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>} */ (async (mthd, endp, opt) => {
+export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>} */ (async (mthd, endp, ...opt) => {
     // When only options are provided
-    const actualOpt = /** @type {NonNullable<typeof opt> & ESIRequestOptions} */ (opt || {});
+    const actualOpt = normalizeOptions(opt);
     /** @type {number[]=} */
     let pathParams;
     if (actualOpt.pathParams) {

@@ -5,7 +5,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-/// <reference types="../v2/esi-tagged-types"/>
+/// <reference types="../dist/v2/esi-tagged-types"/>
 import type { ESIRequestOptions } from "./rq-util.mjs";
 /**
  * Decorates the ESI request body into a tagged ESI request map.
@@ -30,4 +30,4 @@ export declare function decoreateESIRequestBody<Opt extends Record<string, unkno
  * @since 2.x
  * @type {XESI.TaggedESIRequestMap2<ESIRequestOptions>}
  */
-export declare const esi: import("../v2/esi-tagged-types").TaggedESIRequestMap2<ESIRequestOptions>;
+export declare const esi: import("../dist/v2/esi-tagged-types").TaggedESIRequestMap2<ESIRequestOptions>;

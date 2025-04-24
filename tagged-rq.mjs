@@ -5,7 +5,7 @@
 //  https://opensource.org/licenses/mit-license.php
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-/// <reference types="./v2"/>
+/// <reference types="./dist/v2"/>
 /**
  * @file tagged-rq.mts
  * @command node tagged-rq.mjs -x -debug

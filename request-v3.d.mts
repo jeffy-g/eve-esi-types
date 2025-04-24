@@ -1,11 +1,4 @@
-/*!
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
-  Released under the MIT license
-  https://opensource.org/licenses/mit-license.php
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*/
-import { type ESIRequestOptions } from "./lib/rq-util.mjs";
+import type { ESIRequestOptions } from "./lib/rq-util.mjs";
 /**
  * @returns Get The Current ESI request pending count.
  */
