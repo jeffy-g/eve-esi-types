@@ -13,7 +13,7 @@
     "url": "git+ssh://git@github.com/jeffy-g/eve-esi-types.git"
   },
   "files": [
-    "v2",
+    "dist",
     "lib",
     "web",
     "*.d.mts",
