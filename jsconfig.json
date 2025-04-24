@@ -1,18 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    // This flag is required
+    // "skipDefaultLibCheck": true,
     // "skipLibCheck": true,
     // This flag is required
     "checkJs": true,
     // This flag is required
     "strict": true,
     "noEmit": true,
+    "allowJs": true,
     // "listFiles": true,
-    // "skipDefaultLibCheck": true,
     // "target": "esnext",
     // "module": "esnext",
-    // "diagnostics": true,
+    "diagnostics": true,
     // "moduleResolution": "node",
     "rootDirs": [
       "./"
@@ -22,7 +22,7 @@
     "./*.mjs",
     "./lib/*.mjs",
     // "./lib/*.d.mts",
-    "./v2/**/*.d.ts"
+    "./dist/v2/**/*.d.ts"
   ],
   "exclude": [
   ]
