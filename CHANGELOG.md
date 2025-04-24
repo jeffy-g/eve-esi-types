@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.5] - 2025-04-24
+
+### 💼 Other
+
+- Refactor v2/experimental-esi-types.d.ts
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG.md
+- Relocate v2 files to dist/v2 directory
+- Update import paths to reflect new structure
+- Update jsconfig.json for improved path resolution
+- Bump version to v3.2.5
+
 ## [3.2.4] - 2025-04-22
 
 ### 🚜 Refactor
