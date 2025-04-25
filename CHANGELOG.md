@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG.md
+- Update JSDoc (rename EPX to EPO and add acronym definition)
+
 ## [3.2.6] - 2025-04-24
 
 ### 🐛 Bug Fixes
