@@ -79,10 +79,11 @@ export declare class ESIErrorLimitReachedError extends ESIRequestError {
  */
 /**
  * @template T
+ * @template {Record<string, unknown>} O
  * @param {[T] | [(T | undefined)?]} opt
- * @returns {NonNullable<T>}
+ * @returns {NonNullable<T> & O}
  */
-export declare const normalizeOptions: <T extends unknown>(opt: [T] | [(T | undefined)?]) => NonNullable<T>;
+export declare const normalizeOptions: <T extends unknown, O extends Record<string, unknown> = ESIRequestOptions>(opt: [T] | [(T | undefined)?]) => (NonNullable<T> & O);
 /**
  * #### status: 200 | 201 | 204
  *

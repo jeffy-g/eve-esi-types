@@ -15,6 +15,17 @@ import type { TESIResponseOKMap } from "./response-map.d.ts";
 
 
 /**
+ * Defines the keys used in ESI entries for request parameters.  
+ * These keys represent the main categories of parameters that can be included in an ESI request.
+ */
+export type ESIEntryParamKeys = "auth" | "query" | "body" | "pathParams";
+/**
+ * Defines the keys that are not directly involved in ESI request parameters.  
+ * These keys represent metadata or additional information that is not part of the main request parameters.
+ */
+export type ESIEntryExtraKeys = "result" | "tag" | "cachedSeconds";
+
+/**
  * Represents a function that can make ESI requests with various HTTP methods.
  *
  * @template ActualOpt The actual type of the options.
@@ -166,6 +177,6 @@ export type __InferESIResponseResult<
  */
 export type __IdentifyParameters<
   Entry, Opt,
-  Keys = Exclude<keyof Entry, "result" | "tag" | "cachedSeconds">
+  Keys = Exclude<keyof Entry, ESIEntryExtraKeys>
   // @ts-expect-error 
 > = RequireThese<Opt, Keys> & Pick<Entry, Keys>;

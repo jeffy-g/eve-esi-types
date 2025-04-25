@@ -53,16 +53,16 @@ export const getRequestPending = () => ax;
  */
 export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>} */ (async (mthd, endp, ...opt) => {
     // When only options are provided
-    const actualOpt = normalizeOptions(opt);
+    const nOpt = normalizeOptions(opt);
     /** @type {number[]=} */
     let pathParams;
-    if (actualOpt.pathParams) {
-        pathParams = typeof actualOpt.pathParams === "number" ? [actualOpt.pathParams] : isArray(actualOpt.pathParams) ? actualOpt.pathParams : void 0;
+    if (nOpt.pathParams) {
+        pathParams = typeof nOpt.pathParams === "number"
+            ? [nOpt.pathParams] : isArray(nOpt.pathParams)
+            ? nOpt.pathParams : void 0;
     }
-    if (isArray(pathParams)) {
-        endp = replaceCbt(endp, pathParams);
-    }
-    const { rqopt, qss } = initOptions(mthd, actualOpt);
+    isArray(pathParams) && (endp = replaceCbt(endp, pathParams));
+    const { rqopt, qss } = initOptions(mthd, nOpt);
     const endpointUrl = curl(endp);
     const up = new URLSearchParams(qss);
     const url = `${endpointUrl}${up.size ? `?${up}` : ""}`;
@@ -76,7 +76,7 @@ export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>}
         }
         // else if (isError(status)) {}
         // Actually, throw Error
-        throw await handleESIError(res, endpointUrl, actualOpt.cancelable);
+        throw await handleESIError(res, endpointUrl, nOpt.cancelable);
     }
     catch (e) {
         throw e;
