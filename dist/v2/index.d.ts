@@ -40,10 +40,10 @@ type ESIEntryKeys = "auth" | "query" | "body" | "pathParams";
  *
  * This utility type is designed to enforce stricter semantics by marking unwanted keys as `never`.
  *
- * @template T - The original type to be constrained.
- * @template T2 - The type to merge with the constrained type.
- * @template RequireKeys - The keys to retain in the resulting type.
- * @template Extras - Automatically derived keys to exclude from the resulting type.
+ * @template T The original type to be constrained.
+ * @template T2 The type to merge with the constrained type.
+ * @template RequireKeys The keys to retain in the resulting type.
+ * @template Extras Automatically derived keys to exclude from the resulting type.
  *
  * @example
  * ```ts
@@ -91,8 +91,8 @@ declare global {
   /**
    * Marks specific properties of a type as required.
    * 
-   * @template T - The original type.
-   * @template K - The keys of the properties to mark as required.
+   * @template T The original type.
+   * @template K The keys of the properties to mark as required.
    * 
    * @example
    * ```ts
@@ -113,38 +113,44 @@ declare global {
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   /**
    * ### ESI request function with real endpoint signature
-   * 
-   * TESIRequestFunctionSignature2 is a type that defines the signature of an ESI request function
+   *
+   * TESIRequestFunctionSignature2 is a type that defines the signature of an ESI request function  
    * where the endpoint can be a real endpoint or a parameterized endpoint.
-   * 
+   *
    * This function sends a request to a specified endpoint and returns a response.
-   * 
-   * @template ActualOpt - The actual type of the option.
-   * @template Mtd - The HTTP method to use for the request
-   * @template REP - The real path of the ESI endpoint to send the request to
-   * @template EPX - The parameterized path of the ESI endpoint to send the request to
-   * @template PPM - Parameters to include in the request if the endpoint is parameterized
-   * @template Opt - Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`
-   * @template Ret - The response type
-   * 
-   * @param method - The HTTP method to use for the request (e.g., "get", "post").
-   * @param endpoint - The real path of the ESI endpoint to send the request to.
-   * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
-   * 
-   * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
-   * 
+   *
+   * @template ActualOpt The actual type of the option.
+   * @template Mtd The HTTP method to use for the request.
+   * @template REP The real path of the ESI endpoint to send the request to.
+   * @template EPO (Endpoint Path Origin)
+   *   The parameterized path of the ESI endpoint to send the request to.
+   *   e.g. `/characters/{character_id}/assets/`.
+   * @template PPM Parameters to include in the request if the endpoint is parameterized.
+   * @template Opt Options to include in the request. If there is a required parameter, its
+   *   type will be merged with `ActualOpt`.
+   * @template Ret The response type.
+   *
+   * @param method The HTTP method to use for the request (e.g., "get", "post").
+   * @param endpoint The real path of the ESI endpoint to send the request to.
+   * @param options An optional object containing additional options for the request. If the  
+   *   endpoint has required parameters, this parameter must be provided.
+   *
+   * @returns A Promise object containing the response data, with the type inferred based on the
+   *   method and endpoint.
+   *
    * @remarks
-   * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
-   * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
+   * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce  
+   * that if the endpoint has required parameters, the `options` parameter must be provided. If  
+   * there are no required parameters, the `options` parameter is optional.
    */
   type TESIRequestFunctionSignature2<ActualOpt extends Record<string, unknown>> = <
     Mtd extends TESIEntryMethod,
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-    EPX extends ResolvedEndpoint<REP, Mtd>,
-    PPM extends InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>,
-    Ret extends InferESIResponseResult<Mtd, EPX>,
-    HasOpt = HasRequireParams<Mtd, EPX, PPM>,
+    EPO extends ResolvedEndpoint<REP, Mtd>,
+    PPM extends InferPathParams<REP, EPO>,
+    Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPO>,
+    HasOpt = HasRequireParams<Mtd, EPO, PPM>,
   >(method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
   
@@ -153,11 +159,11 @@ declare global {
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd> = ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
     ActualOpt extends Record<string, unknown> = Record<string, unknown>,
 
-    EPX extends ResolvedEndpoint<REP, Mtd> = ResolvedEndpoint<REP, Mtd>,
-    PPM extends InferPathParams<REP, EPX> = InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM> = IdentifyParameters<Mtd, EPX, ActualOpt, PPM>,
-    Ret extends InferESIResponseResult<Mtd, EPX> = InferESIResponseResult<Mtd, EPX>,
-    HasOpt = HasRequireParams<Mtd, EPX, PPM>,
+    EPO extends ResolvedEndpoint<REP, Mtd> = ResolvedEndpoint<REP, Mtd>,
+    PPM extends InferPathParams<REP, EPO> = InferPathParams<REP, EPO>,
+    Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM> = IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPO> = InferESIResponseResult<Mtd, EPO>,
+    HasOpt = HasRequireParams<Mtd, EPO, PPM>,
   > = {
     method: Mtd; endpoint: REP;
   } & (HasOpt extends 1 ? { options: Opt } : { options?: Opt }) & {
@@ -172,25 +178,27 @@ declare global {
    * chosen endpoint method, endpoint configuration, and additional options, making it ideal for advanced API interactions.
    *
    * Generic Parameters:
-   * @template PrependParam - The type of the additional parameter that is injected at the beginning of the function call.
-   * @template ActualOpt - An object representing the default options (typically extending ESIRequestOptions) used for the request.
+   * @template PrependParam The type of the additional parameter that is injected at the beginning of the function call.
+   * @template ActualOpt An object representing the default options (typically extending ESIRequestOptions) used for the request.
    *
    * Function Generic Parameters:
-   * @template Mtd - The ESI request method type (e.g., GET, POST) as defined in TESIEntryMethod.
-   * @template REP - The endpoint type, which can be either a version with replaced path parameters (via ReplacePathParams)
+   * @template Mtd The ESI request method type (e.g., GET, POST) as defined in TESIEntryMethod.
+   * @template REP The endpoint type, which can be either a version with replaced path parameters (via ReplacePathParams)
    *                 or the raw ESIEndpointOf<Mtd> type.
-   * @template EPX - The resolved endpoint type derived from REP and Mtd.
-   * @template PPM - The type representing the inferred path parameters extracted from REP and EPX.
-   * @template Opt - The type for additional request options, identified based on the method (Mtd), endpoint (EPX), the
+   * @template EPO (Endpoint Path Origin)
+   *   The parameterized path of the ESI endpoint to send the request to.
+   *   e.g. `/characters/{character_id}/assets/`.
+   * @template PPM The type representing the inferred path parameters extracted from REP and EPO.
+   * @template Opt The type for additional request options, identified based on the method (Mtd), endpoint (EPO), the
    *                 default options (ActualOpt), and inferred path parameters (PPM).
-   * @template Ret - The type of the response result from the ESI request, inferred from the method and endpoint.
-   * @template HasOpt - An internal flag used to determine whether request options (Opt) are required (1) or optional.
+   * @template Ret The type of the response result from the ESI request, inferred from the method and endpoint.
+   * @template HasOpt An internal flag used to determine whether request options (Opt) are required (1) or optional.
    *
    * Parameters:
-   * @param {PrependParam} prependParam - A prepended parameter providing additional context or configuration for the request.
-   * @param {Mtd} method - The ESI request method.
-   * @param {REP} endpoint - The API endpoint, which might include path parameter replacements.
-   * @param {...(HasOpt extends 1 ? [Opt] : [Opt?])} options - Additional options for the request; required if HasOpt is 1,
+   * @param {PrependParam} prependParam A prepended parameter providing additional context or configuration for the request.
+   * @param {Mtd} method The ESI request method.
+   * @param {REP} endpoint The API endpoint, which might include path parameter replacements.
+   * @param {...(HasOpt extends 1 ? [Opt] : [Opt?])} options Additional options for the request; required if HasOpt is 1,
    *   otherwise optional.
    *
    * @returns {Promise<Ret>} A promise that resolves with the result type `Ret`, representing the response data from the ESI endpoint.
@@ -201,11 +209,11 @@ declare global {
   > = <
     Mtd extends TESIEntryMethod,
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-    EPX extends ResolvedEndpoint<REP, Mtd>,
-    PPM extends InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>,
-    Ret extends InferESIResponseResult<Mtd, EPX>,
-    HasOpt = HasRequireParams<Mtd, EPX, PPM>
+    EPO extends ResolvedEndpoint<REP, Mtd>,
+    PPM extends InferPathParams<REP, EPO>,
+    Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPO>,
+    HasOpt = HasRequireParams<Mtd, EPO, PPM>
   >(
     prependParam: PrependParam,
     method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]
@@ -216,17 +224,19 @@ declare global {
    *
    * This type is used to define functions that send requests to specific ESI endpoints using a given HTTP method.
    *
-   * @template Mtd - The HTTP method to use for the request.
-   * @template ActualOpt - The actual type of the options.
+   * @template Mtd The HTTP method to use for the request.
+   * @template ActualOpt The actual type of the options.
    *
-   * @template REP - The real path of the ESI endpoint to send the request to.
-   * @template EPX - The parameterized path of the ESI endpoint to send the request to.
-   * @template PPM - Parameters to include in the request if the endpoint is parameterized.
-   * @template Opt - Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`.
-   * @template Ret - The response type.
+   * @template REP The real path of the ESI endpoint to send the request to.
+   * @template EPO (Endpoint Path Origin)
+   *   The parameterized path of the ESI endpoint to send the request to.
+   *   e.g. `/characters/{character_id}/assets/`.
+   * @template PPM Parameters to include in the request if the endpoint is parameterized.
+   * @template Opt Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`.
+   * @template Ret The response type.
    *
-   * @param endpoint - The real path of the ESI endpoint to send the request to.
-   * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
+   * @param endpoint The real path of the ESI endpoint to send the request to.
+   * @param options An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
    *
    * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
    * 
@@ -236,17 +246,17 @@ declare global {
    */
   type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt extends Record<string, unknown>> = <
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-    EPX extends ResolvedEndpoint<REP, Mtd>,
-    PPM extends InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<Mtd, EPX, ActualOpt, PPM>,
-    Ret extends InferESIResponseResult<Mtd, EPX>,
-    HasOpt extends HasRequireParams<Mtd, EPX, PPM> = HasRequireParams<Mtd, EPX, PPM>,
+    EPO extends ResolvedEndpoint<REP, Mtd>,
+    PPM extends InferPathParams<REP, EPO>,
+    Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPO>,
+    HasOpt extends HasRequireParams<Mtd, EPO, PPM> = HasRequireParams<Mtd, EPO, PPM>,
   >(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
   /**
    * Replaces path parameters in a string with numbers.
    * 
-   * @template T - The string representing the endpoint path.
+   * @template T The string representing the endpoint path.
    * @type {string}
    * @example
    * ```ts
@@ -266,17 +276,17 @@ declare global {
   /**
    * Infers the path parameters based on the real endpoint and the resolved endpoint.
    * 
-   * @template RealEP - The real endpoint path.
-   * @template EPx - The resolved endpoint path.
-   * @returns {TPathParamsNever | _IfNeedPathParams<EPx>}
+   * @template RealEP The real endpoint path.
+   * @template EPO (Endpoint Path Origin) The resolved endpoint path.
+   * @returns {TPathParamsNever | _IfNeedPathParams<EPO>}
    * @see {@link _IfNeedPathParams}
    * @see {@link TPathParamsNever}
    * @see Documentation of [`InferPathParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/infer-path-params.md)
    * @date 2025/3/17
    */
   type InferPathParams<
-    RealEP extends unknown, EPx extends unknown
-  > = RealEP extends EPx ? _IfNeedPathParams<EPx> : TPathParamsNever;
+    RealEP extends unknown, EPO extends unknown
+  > = RealEP extends EPO ? _IfNeedPathParams<EPO> : TPathParamsNever;
 
   /**
    * Infers the original endpoint based on the real endpoint and the HTTP method.
@@ -284,9 +294,9 @@ declare global {
    * This type maps the real endpoint to its corresponding parameterized endpoint
    * by checking if the real endpoint matches the pattern of any parameterized endpoint.
    * 
-   * @template RealEP - The real endpoint path.
-   * @template M - The HTTP method to use for the request.
-   * @template Endpoints - The possible endpoints for the given method.
+   * @template RealEP The real endpoint path.
+   * @template M The HTTP method to use for the request.
+   * @template Endpoints The possible endpoints for the given method.
    * 
    * @example
    * ```ts
@@ -307,8 +317,8 @@ declare global {
   /**
    * Determines the resolved endpoint based on the real endpoint and the method.
    * 
-   * @template RealEP - The real endpoint path.
-   * @template M - The HTTP method to use for the request.
+   * @template RealEP The real endpoint path.
+   * @template M The HTTP method to use for the request.
    * 
    * @example
    * ```ts
@@ -328,10 +338,10 @@ declare global {
    * This type excludes the keys "result", "tag", and "cachedSeconds" from the entry type and the additional parameters,
    * and returns the remaining keys as the required parameters.
    * 
-   * @template M - The HTTP method to use for the request.
-   * @template EPx - The endpoint path.
-   * @template AdditionalParams - Additional parameters to include in the check.
-   * @template Entry - The entry type to pick parameters from.
+   * @template M The HTTP method to use for the request.
+   * @template EPx The endpoint path.
+   * @template AdditionalParams Additional parameters to include in the check.
+   * @template Entry The entry type to pick parameters from.
    * 
    * @example
    * ```ts
@@ -355,9 +365,9 @@ declare global {
    * This type checks if an entry has any required parameters by excluding the keys "result", "tag", and "cachedSeconds".
    * If any keys remain after this exclusion, it means the entry has required parameters.
    * 
-   * @template M - The HTTP method to use for the request.
-   * @template EPx - The endpoint path.
-   * @template AdditionalParams - Additional parameters to include in the check.
+   * @template M The HTTP method to use for the request.
+   * @template EPx The endpoint path.
+   * @template AdditionalParams Additional parameters to include in the check.
    * 
    * @example
    * ```ts
@@ -398,11 +408,11 @@ declare global {
    * This type combines the required parameters from the entry type and the additional options,
    * ensuring that all required parameters are marked as required.
    *
-   * @template M - The HTTP method to use for the request.
-   * @template EPx - The endpoint path.
-   * @template Opt - The type of the additional options.
-   * @template Entry - The entry type to identify parameters for.
-   * @template RequireKeys - The keys of the entry type that are required parameters.
+   * @template M The HTTP method to use for the request.
+   * @template EPx The endpoint path.
+   * @template Opt The type of the additional options.
+   * @template Entry The entry type to identify parameters for.
+   * @template RequireKeys The keys of the entry type that are required parameters.
    * 
    * @example
    * ```ts
@@ -439,8 +449,8 @@ declare global {
   /**
    * Infers the result type of an ESI response based on the method and endpoint.
    * 
-   * @template M - The HTTP method to use for the request.
-   * @template EPx - The endpoint path.
+   * @template M The HTTP method to use for the request.
+   * @template EPx The endpoint path.
    * 
    * @example
    * ```ts
@@ -511,25 +521,25 @@ declare global {
   /**
    * Represents the entry details for the "get" method.
    * 
-   * @template K - The endpoint key.
+   * @template K The endpoint key.
    */
   type TESIResponseGetEntry<K extends TEndPointGet> = TESIResponseOKMap["get"][K];
   /**
    * Represents the entry details for the "put" method.
    * 
-   * @template K - The endpoint key.
+   * @template K The endpoint key.
    */
   type TESIResponsePutEntry<K extends TEndPointPut> = TESIResponseOKMap["put"][K];
   /**
    * Represents the entry details for the "post" method.
    * 
-   * @template K - The endpoint key.
+   * @template K The endpoint key.
    */
   type TESIResponsePostEntry<K extends TEndPointPost> = TESIResponseOKMap["post"][K];
   /**
    * Represents the entry details for the "delete" method.
    * 
-   * @template K - The endpoint key.
+   * @template K The endpoint key.
    */
   type TESIResponseDeleteEntry<K extends TEndPointDelete> = TESIResponseOKMap["delete"][K];
 }

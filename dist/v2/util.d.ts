@@ -79,6 +79,16 @@ export type Split<S extends string, D extends string = ":"> =
 // type Test3 = Split<"hello", ",">;
 // // Expected: ['hello']
 
+/**
+ * Combines an intersection of object types into a single object type.
+ * 
+ * @template IS The intersection of object types to combine.
+ * @returns {Record<string, unknown>} A single object type with all properties from the intersection.
+ * 
+ * @example
+ * type Combined = CombineIntersection<{ a: string } & { b: number }>;
+ * // Result: { a: string; b: number }
+ */
 //* ctt
 // export type CombineIntersection<IS> = IS extends infer O ? { [K in keyof O]: O[K] } : never;
 export type CombineIntersection<IS extends Record<string, unknown>> = { [K in keyof IS]: IS[K] };

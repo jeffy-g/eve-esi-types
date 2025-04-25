@@ -31,7 +31,7 @@ export type TESIRequestFunctionWithContext<
  * This utility type takes an endpoint union (`EPU`) in the format `${TESIEntryMethod}:${ESIEndpointAll}`
  * and infers the response result type from the corresponding ESI response map.
  * 
- * @template EPU - A union of HTTP method and endpoint in the format `${TESIEntryMethod}:${ESIEndpointAll}`.
+ * @template EPU A union of HTTP method and endpoint in the format `${TESIEntryMethod}:${ESIEndpointAll}`.
  * 
  * @remarks
  * This type uses advanced TypeScript features such as template literal types and conditional types
@@ -76,10 +76,10 @@ export type InferESIResponseResultFromUnion<
  * This utility type determines which endpoints can be chained after the current endpoint (`EP`),
  * based on the response type (`BaseResut`) and the URL pattern of potential next endpoints.
  * 
- * @template M - The HTTP method type (e.g., "get", "post", etc.), which must extend `TESIEntryMethod`.
- * @template EP - The current ESI endpoint under inspection; it extends `ESIEndpointOf<M>`.
- * @template BaseResut - Defaults to `InferESIResponseResult<M, EP>`; it is the inferred response result of the endpoint.
- * @template Endpoints - Defaults to `ESIEndpointOf<M>`; represents the union of all endpoints for method `M` to be considered as potential next endpoints.
+ * @template M The HTTP method type (e.g., "get", "post", etc.), which must extend `TESIEntryMethod`.
+ * @template EP The current ESI endpoint under inspection; it extends `ESIEndpointOf<M>`.
+ * @template BaseResut Defaults to `InferESIResponseResult<M, EP>`; it is the inferred response result of the endpoint.
+ * @template Endpoints Defaults to `ESIEndpointOf<M>`; represents the union of all endpoints for method `M` to be considered as potential next endpoints.
  * 
  * @remarks
  * This type uses advanced TypeScript features such as conditional types, template literal types, and type inference
@@ -122,11 +122,11 @@ export type SplitEndpointUnion<
  * This utility type determines which endpoints can be chained after the current endpoint (`EP`),
  * based on the response type (`BaseResut`) and the URL pattern of potential next endpoints.
  * 
- * @template EPU - A union of HTTP method and endpoint in the format `${TESIEntryMethod}:${ESIEndpointAll}`.
- * @template M - The HTTP method extracted from `EPU`.
- * @template EP - The current endpoint extracted from `EPU`.
- * @template BaseResut - The inferred response result of the endpoint.
- * @template Endpoints - The union of all endpoints for the given method.
+ * @template EPU A union of HTTP method and endpoint in the format `${TESIEntryMethod}:${ESIEndpointAll}`.
+ * @template M The HTTP method extracted from `EPU`.
+ * @template EP The current endpoint extracted from `EPU`.
+ * @template BaseResut The inferred response result of the endpoint.
+ * @template Endpoints The union of all endpoints for the given method.
  * 
  * @remarks
  * This type uses advanced TypeScript features such as conditional types and template literal types
@@ -159,9 +159,9 @@ export type ResolveNextEndpointFromUnion<
  * This utility type checks if the response type (`Entry`) of the current endpoint satisfies the requirements
  * for the next endpoint (`NextEP`), such as having the necessary path parameters.
  * 
- * @template BaseResut - The response type of the current endpoint (e.g., `number[]` or an array of objects).
- * @template NextEP - The next endpoint to validate.
- * @template Debug - Optional debug flag; if set to `1`, additional debug information is returned.
+ * @template BaseResut The response type of the current endpoint (e.g., `number[]` or an array of objects).
+ * @template NextEP The next endpoint to validate.
+ * @template Debug Optional debug flag; if set to `1`, additional debug information is returned.
  * 
  * @remarks
  * This type assumes that if the response type is `number[]`, the next endpoint is always valid. For object arrays,
@@ -186,10 +186,10 @@ export type ValidateNextEndpoint<
  * Validates whether the elements of an object array satisfy the path parameter requirements
  * for a given endpoint.
  * 
- * @template BaseResut - The response type of the current endpoint (e.g., an array of objects).
- * @template NextEP - The next endpoint to validate.
- * @template Debug - Optional debug flag; if set to `1`, additional debug information is returned.
- * @template PathParams - Defaults to `UnionToTuple<PickPathParameters<NextEP>>`; represents the path parameters of the next endpoint.
+ * @template BaseResut The response type of the current endpoint (e.g., an array of objects).
+ * @template NextEP The next endpoint to validate.
+ * @template Debug Optional debug flag; if set to `1`, additional debug information is returned.
+ * @template PathParams Defaults to `UnionToTuple<PickPathParameters<NextEP>>`; represents the path parameters of the next endpoint.
  * 
  * @remarks
  * This type assumes that if the response type is an array of objects, it checks whether the required
@@ -225,9 +225,9 @@ type ValidateEndpointParamsInArray<
  * // Does not validate the EP result, just infers the next endpoint to request
  * ```
  * 
- * @template M - The HTTP method to use for the request.
- * @template EP - The endpoint from which the next parameterized endpoint to request is inferred.
- * @template Endpoints - The possible endpoints for the given method.
+ * @template M The HTTP method to use for the request.
+ * @template EP The endpoint from which the next parameterized endpoint to request is inferred.
+ * @template Endpoints The possible endpoints for the given method.
  * 
  * ```ts
  * type NextEndpoint = ResolveNextEndpointLoos<"get", "/markets/groups/">;
@@ -276,7 +276,7 @@ export type ESIEndpointUnions = {
  * if the inferred response type (`InferESIResponseResultFromUnion<EPU>`) matches the specified type `T`.
  * If it matches, the endpoint is included; otherwise, it is excluded.
  * 
- * @template T - The response type to filter endpoints by.
+ * @template T The response type to filter endpoints by.
  * 
  * @example
  * ``` ts
@@ -295,7 +295,7 @@ export type FilterEndpointUnionsByResponse<T> = {
  * `ResolveNextEndpoint2` to determine if the endpoint is valid. If valid, the endpoint
  * is included in the result; otherwise, it is excluded.
  * 
- * @template EPUs - The list of filtered endpoints to process.
+ * @template EPUs The list of filtered endpoints to process.
  * 
  * @example
  * ``` ts

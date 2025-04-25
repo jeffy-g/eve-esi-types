@@ -17,7 +17,7 @@ import type { TESIResponseOKMap } from "./response-map.d.ts";
 /**
  * Represents a function that can make ESI requests with various HTTP methods.
  *
- * @template ActualOpt - The actual type of the options.
+ * @template ActualOpt The actual type of the options.
  *
  * ```ts
  * // @ ts-expect-error
@@ -43,7 +43,7 @@ export interface IESIRequestFunction2<ActualOpt extends Record<string, unknown>>
  *  + This interface is used when you already have implementation code such as  
  *    TESIRequestFunctionSignature2 and you want to implement additional shorthand methods.
  *
- * @template ActualOpt - The actual type of the options.
+ * @template ActualOpt The actual type of the options.
  *
  * @example
  * ```ts
@@ -104,8 +104,8 @@ export declare type TPathParamsNever = { /* pathParams?: never */ };
  * This type extracts the response type from the `TESIResponseOKMap` based on the provided
  * HTTP method and endpoint.
  * 
- * @template M - The HTTP method to use for the request.
- * @template EPx - The endpoint path.  
+ * @template M The HTTP method to use for the request.
+ * @template EPx The endpoint path.  
  *  include `string` in the `EPx` constraints to avoid breaking typescript inference.
  * 
  * @example
@@ -124,7 +124,7 @@ export type _ESIResponseType<
 /**
  * Determines if the endpoint requires path parameters.
  * 
- * @template EP - The string representing the endpoint path.
+ * @template EP The string representing the endpoint path.
  * @returns {TPathParamsNever | { pathParams: IfParameterizedPath<EP> }}
  * Returns an object with `pathParams` if the endpoint requires parameters, otherwise returns `TPathParamsNever`.
  * @example
@@ -148,8 +148,8 @@ export type _IfNeedPathParams<
 /**
  * Infer the result type of an ESI response based on the method and endpoint.
  * 
- * @template M - The HTTP method (e.g., "get", "post").
- * @template EP - The endpoint path.
+ * @template M The HTTP method (e.g., "get", "post").
+ * @template EP The endpoint path.
  * @deprecated 2025/3/17
  */
 export type __InferESIResponseResult<
@@ -159,8 +159,8 @@ export type __InferESIResponseResult<
 /**
  * Identifies the required parameters for a given entry type.
  *
- * @template Entry - The entry type to identify parameters for.
- * @template Opt - The type of the parameters.
+ * @template Entry The entry type to identify parameters for.
+ * @template Opt The type of the parameters.
  * @type {Opt & Pick<Entry, Exclude<keyof Entry, "result">>}
  * @deprecated 2025/3/17
  */

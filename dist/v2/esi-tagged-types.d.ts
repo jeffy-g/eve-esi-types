@@ -17,7 +17,7 @@ export type * from "./index.d.ts";
 /**
  * Converts a string to lower camel case.
  * 
- * @template S - The string to convert.
+ * @template S The string to convert.
  * @example
  * // returns "assets"
  * LCamelCase<"Assets">
@@ -46,7 +46,7 @@ declare type InferSomethingBy<Tag, AsType extends InferSomethingByBrand = InferS
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Maps HTTP methods to their corresponding tags.
- * @template M - The HTTP method.
+ * @template M The HTTP method.
  * @date 2025/2/28
  */
 export declare type ESITags = InferSomethingBy<never, InferSomethingByTags>;
@@ -61,7 +61,7 @@ export declare type LESITags = LCamelCase<ESITags>;
 /**
  * Infers the HTTP method based on the provided tag.
  * 
- * @template Tag - The tag to infer the method for.
+ * @template Tag The tag to infer the method for.
  * @date 2025/2/28
  */
 export declare type InferMethod<Tag> = InferSomethingBy<Tag>;
@@ -80,11 +80,8 @@ type XPlanetary = InferMethod<"Planetary Interaction">;
  * 
  *  + Customed InferEndpointOrigin
  * 
- * @template RealEP - The real endpoint type.
- * @template Endpoints - The possible endpoints.
- * 
- * @typeParam RealEP - The type of the real endpoint.
- * @typeParam Endpoints - The type of the possible endpoints.
+ * @template RealEP The type of the real endpoint.
+ * @template Endpoints The type of the possible endpoints.
  * 
  * @returns The inferred endpoint origin.
  */
@@ -98,19 +95,21 @@ type _InferEndpointOrigin<
 /**
  * Creates a function type for making requests to tagged endpoints.
  * 
- * @template M - The HTTP method.
- * @template Tag - The tag associated with the endpoint.
- * @template ActualOpt - The actual options for the request.
- * @template EndPoints - The possible endpoints.
- * @template REP - The real endpoint path.
- * @template EPX - The inferred endpoint origin.
- * @template PPM - The path parameters.
- * @template Opt - The request options.
- * @template Ret - The response type.
- * @template HasOpt - Indicates if the endpoint has required parameters.
+ * @template M The HTTP method.
+ * @template Tag The tag associated with the endpoint.
+ * @template ActualOpt The actual options for the request.
+ * @template EndPoints The possible endpoints.
+ * @template REP The real endpoint path.
+ * @template EPO (Endpoint Path Origin)
+ *   The parameterized path of the ESI endpoint to send the request to.
+ *   e.g. `/characters/{character_id}/assets/`.
+ * @template PPM The path parameters.
+ * @template Opt The request options.
+ * @template Ret The response type.
+ * @template HasOpt Indicates if the endpoint has required parameters.
  * 
- * @param endpoint - The endpoint path.
- * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
+ * @param endpoint The endpoint path.
+ * @param options An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
  * @returns A promise that resolves to the response.
  * 
  * @remarks
@@ -123,11 +122,11 @@ export declare type TaggedEndpointRequestFunction2<
   EndPoints extends SelectEndpointByTag<Tag, M> = SelectEndpointByTag<Tag, M>,
 > = <
     REP extends ReplacePathParams<EndPoints> | EndPoints,
-    EPX extends _InferEndpointOrigin<REP, EndPoints> extends never ? REP: _InferEndpointOrigin<REP, EndPoints>,
-    PPM extends InferPathParams<REP, EPX>,
-    Opt extends IdentifyParameters<M, EPX, ActualOpt, PPM>,
-    Ret extends InferESIResponseResult<M, EPX>,
-    HasOpt = HasRequireParams<M, EPX, PPM>,
+    EPO extends _InferEndpointOrigin<REP, EndPoints> extends never ? REP: _InferEndpointOrigin<REP, EndPoints>,
+    PPM extends InferPathParams<REP, EPO>,
+    Opt extends IdentifyParameters<M, EPO, ActualOpt, PPM>,
+    Ret extends InferESIResponseResult<M, EPO>,
+    HasOpt = HasRequireParams<M, EPO, PPM>,
 >(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
 
 
@@ -137,8 +136,8 @@ export declare type TaggedEndpointRequestFunction2<
 /**
  * Maps tags to their corresponding endpoint request functions.
  * 
- * @template Tag - The tag to map.
- * @template ActualOpt - The actual options for the request.
+ * @template Tag The tag to map.
+ * @template ActualOpt The actual options for the request.
  * @date 2025/2/28
  */
 export declare type ESITaggedEndpointRequest2<Tag extends ESITags, ActualOpt extends Record<string, unknown> = {}> = {
@@ -153,9 +152,8 @@ export declare type ESITaggedEndpointRequest2<Tag extends ESITags, ActualOpt ext
 /**
  * Selects an endpoint by tag and method.
  * 
- * @template Tag - The tag associated with the endpoint.
- * @template M - The HTTP method.
- * @template EP - The endpoint path.
+ * @template Tag The tag associated with the endpoint.
+ * @template M The HTTP method.
  * @date 2025/2/28
  */
 export declare type SelectEndpointByTag<
@@ -175,7 +173,7 @@ type XAssetsEndpointPost = SelectEndpointByTag<"Assets", "post">;
 /**
  * Maps lower camel case tags to their corresponding endpoint request functions.
  * 
- * @template ActualOpt - The actual options for the request.
+ * @template ActualOpt The actual options for the request.
  * @date 2025/3/12
  */
 export declare type TaggedESIRequestMap2<ActualOpt extends Record<string, unknown> = {}> = {
@@ -189,9 +187,9 @@ export declare type TaggedESIRequestMap2<ActualOpt extends Record<string, unknow
  * const esiRq: TaggedESIRequestMapPartial2<"factionWarfare" | "wallet">;
  * ```
  * 
- * @template Props - The properties to require in the partial map.
+ * @template LowerTags The properties to require in the partial map.
  * @date 2025/2/28
  */
-export declare type TaggedESIRequestMapPartial2<Props extends LCamelCase<ESITags>> = RequireThese<Partial<TaggedESIRequestMap2>, Props>;
+export declare type TaggedESIRequestMapPartial2<LowerTags extends LCamelCase<ESITags>> = RequireThese<Partial<TaggedESIRequestMap2>, LowerTags>;
 
 export as namespace XESI;
