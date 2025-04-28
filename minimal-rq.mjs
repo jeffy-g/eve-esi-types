@@ -30,7 +30,7 @@ const esiMethods = /** @type {TESIRequestFunctionMethods2} */ ({});
 /** @satisfies {TESIEntryMethod[]} */ (["get", "post", "put", "delete"]).forEach((method) => {
     esiMethods[method] = /** @type {TESIRequestFunctionEachMethod2<typeof method, util.ESIRequestOptions>} */ ((endpoint, opt) => {
         // @ts-expect-error ts(2345)
-        return request2(method, endpoint, /** @type {Parameters<typeof request2>[2]} */ (opt));
+        return request2(method, endpoint, opt);
     });
 });
 // It should complete correctly.
