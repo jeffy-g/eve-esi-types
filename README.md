@@ -1,105 +1,129 @@
+
 # eve-esi-types
-Extracted main types of ESI. Used for ESI request response types.
+Extracted main types of ESI (EVE Swagger Interface). This package is designed to handle ESI request and response types effectively.
+
+---
+
+## Table of Contents
+1. [Overview](#overview)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [API Overview](#api-overview)
+5. [Version Highlights](#version-highlights)
+    - [v3.2.7](#v327)
+    - [v3.0.0](#v300)
+    - [v2.3.0](#v230)
+6. [References](#references)
+
+---
+
+## Overview
+`eve-esi-types` helps developers interact with the EVE Online ESI API while leveraging strong TypeScript typings.
+
+This package ensures type safety for ESI request parameters, response handling, and authentication requirements.
+
+---
+
+## Installation
+
+```bash
+npm install eve-esi-types
+```
+
+---
 
 ## Usage
 
-> This package is configured to use version 2 only.
+This package is configured to **use ESI version 2 by default**.  
+If you need to work with version 1, refer to the [v1 branch](https://github.com/jeffy-g/eve-esi-types/tree/version-1.x).
 
-  + If you need to use version 1, please refer to the following link:  
-    [eve-esi-types v1](https://github.com/jeffy-g/eve-esi-types/tree/version-1.x)
+### Example Usage
+A sample script, [`request-v3.mjs`](./request-v3.mjs), is provided.
 
-> Sample code is provided -> [`request-v3.mjs`](./request-v3.mjs)
-
-```shell
-$ node request-v3.mjs
+```bash
+node request-v3.mjs
 ```
 
-## API
+---
 
-> The following function signature allows you to benefit from `eve-esi-types`.  
-> By specifying the method (`get`, `post`, `put`, `delete`) for each `endpoint`,  
-> you can determine the result type of the ESI request, what query parameters are required,  
-> and whether OAuth authentication is necessary (`auth: true`).
+## API Overview
+
+The core export of this package is the `TESIRequestFunctionSignature2` type. It specifies the required endpoint,
+
+HTTP method, query parameters, OAuth requirement, and response type for ESI requests.
+
+### Main Function Signature
 
 ```ts
-// This function signature has been removed in version 3.x
-// export declare function fire<
-//     M extends TESIEntryMethod,
-//     EP extends keyof TESIResponseOKMap[M],
-//     P2 extends IfParameterizedPath<EP, Opt>,
-//     Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ESIRequestOptions>,
-//     R extends InferESIResponseResult<M, EP>
-// >(mthd: M, endp: EP, pathParams?: P2, opt?: Opt): Promise<R>;
+type TESIRequestFunctionSignature2<ActualOpt extends Record<string, unknown>> = <
+  Mtd extends TESIEntryMethod,
+  REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+  EPO extends ResolvedEndpoint<Mtd, REP>,
+  Params extends ResolveEndpointParameters<Mtd, REP, EPO, ActualOpt>,
+  Opt extends Params["finalOptions"]
+>(
+  method: Mtd,
+  endpoint: REP,
+  ...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]
+) => Promise<Params["result"]>;
 ```
 
-## New Features in v2.3.0
+### Authentication via Environment Variable (v3.2.7+)
 
-### ESI Tagged Types
+You can enable authenticated requests by setting the environment variable `OAUTH_TOKEN` (for testing):
 
-> Introduced intuitive ESI request handling using "tags" from the EVE Swagger JSON.
-
-### ~~injectESIRequestBody~~
-
-> Utilized ~~`injectESIRequestBody`~~ to generate ESI request API objects with narrowed endpoints by accessing camel-cased "tags".
-
-```ts
-import * as taggedApi from "eve-esi-types/lib/tagged-request-api.mjs";
-
-// `injectESIRequestBody` has been removed in version 3.x
-// const esiRequest = taggedApi.injectESIRequestBody(...);
-// const ret = await esiRequest.universe.get("/universe/structures/", { query: { filter: "market" }});
+```bash
+export OAUTH_TOKEN=<Your Access Token>
 ```
 
-+ or
+---
 
-```ts
-// Minimal default ESI request body implementation
-import { esi } from "eve-esi-types/lib/tagged-request-api.mjs";
+## Version Highlights
 
-const ret = await esi.universe.get("/universe/structures/", { query: { filter: "market" }});
-```
+### v3.2.7  
+- Added support for specifying the `OAUTH_TOKEN` environment variable.  
+- Allows authenticated tests to run successfully by providing an OAuth access token.
 
-## New Features in v3.0.0
+---
 
-### `TESIRequestFunctionSignature` has been renamed to `TESIRequestFunctionSignature2` and the generic parameters have been changed.
+### v3.0.0
+- Renamed `TESIRequestFunctionSignature` to `TESIRequestFunctionSignature2`.
+- Improved endpoint inference (`RealEP` and `EP`) for better TypeScript type safety.
 
-> `RealEP` and `EP` help maintain endpoint inference.  
-> With `RealEP`, TypeScript inference partially lists the possible endpoints while allowing for path parameter replacement.
-
-
-```ts
-type TESIRequestFunctionSignature2<ActualOpt> = <
-  M extends TESIEntryMethod,
-  RealEP extends ReplacePathParams<keyof TESIResponseOKMap[M] & string> | keyof TESIResponseOKMap[M],
-  EP extends InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]> extends never ? RealEP : InferEndpointOrigin<RealEP, keyof TESIResponseOKMap[M]>,
-  // If RealEP points to an endpoint origin (not a replaced endpoint), the path parameter is required
-  PathParams extends RealEP extends EP ? IfNeedPathParams<EP> : TPathParamsNever,
-  Opt extends IdentifyParameters<TESIResponseOKMap[M][EP], ActualOpt & PathParams>,
-  R extends InferESIResponseResult<M, EP>
->(method: M, endpoint: RealEP, options?: Opt) => Promise<R>;
-```
-
-+ NOTE: Accordingly, the generic parameters for other request function signatures have also been changed, with "2" appended to their names.
-
-  + `IESIRequestFunction` -> `IESIRequestFunction2`
-  + `TESIRequestFunctionMethods` -> `TESIRequestFunctionMethods2`
-  + `TESIRequestFunctionEachMethod` -> `TESIRequestFunctionEachMethod2`
-  + etc. Also, `v2/esi-tagged-types.d.ts` too
-
-### decoreateESIRequestBody
-
-> Utilized `decoreateESIRequestBody` to generate ESI request API objects with narrowed endpoints by accessing camel-cased "tags".
+#### New API Example
+Reusable, narrowing-focused API request using `decoreateESIRequestBody`:
 
 ```ts
 import * as taggedApi from "eve-esi-types/lib/tagged-request-api.mjs";
 
 const esiRequest = taggedApi.decoreateESIRequestBody(...);
-const ret = await esiRequest.universe.get("/universe/structures/", { query: { filter: "market" }});
+const response = await esiRequest.universe.get("/universe/structures/", { query: { filter: "market" } });
 ```
 
+#### Other Renamed Signatures
+- `IESIRequestFunction -> IESIRequestFunction2`
+- `TESIRequestFunctionMethods -> TESIRequestFunctionMethods2`
+
+---
+
+### v2.3.0
+- Introduced intuitive ESI request handling via **ESI Tagged Types**.
+- Deprecated `injectESIRequestBody` in favor of `decoreateESIRequestBody` in later versions.
+
+Minimal default implementation:
+
+```ts
+import { esi } from "eve-esi-types/lib/tagged-request-api.mjs";
+const response = await esi.universe.get("/universe/structures/", { query: { filter: "market" } });
+```
+
+---
 
 ## References
 
-- [`ESI Types Utility Definitions`](./docs/v3/esi-types-util3.md)
+- [ESI Types Utility Definitions](./docs/v3/esi-types-util3.md)
+- [ESI Tagged Types Utility Definitions](./docs/esi-tagged-types.md)
 
-- [`ESI Tagged Types Utility Definitions`](./docs/esi-tagged-types.md)
+---
+
+Have questions or issues? Feel free to explore the [GitHub repository](https://github.com/jeffy-g/eve-esi-types) or open an issue!
