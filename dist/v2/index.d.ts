@@ -111,36 +111,49 @@ declare global {
   //                                Version 3 types
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   /**
-   * ### ESI request function with real endpoint signature
+   * Defines the function signature for making ESI requests to specific endpoints.
    *
-   * TESIRequestFunctionSignature2 is a type that defines the signature of an ESI request function  
-   * where the endpoint can be a real endpoint or a parameterized endpoint.
+   * This utility type provides a strongly-typed function signature for interacting with ESI endpoints.  
+   * It ensures type safety by inferring the required parameters, options, and response types for the given endpoint.
    *
-   * This function sends a request to a specified endpoint and returns a response.
+   * @template ActualOpt - A record type representing additional options for the request.
+   * @template Mtd - The HTTP method (e.g., "get", "post") to use for the request.
+   * @template REP - The real path of the ESI endpoint to send the request to.
+   * @template EPO - The parameterized path of the ESI endpoint (e.g., `/characters/{character_id}/assets/`).
+   * @template Params - The resolved parameters for the endpoint, including path parameters and user-supplied options.
+   * @template Opt - The final options object to include in the request.
+   * @template Ret - The response type of the endpoint.
    *
-   * @template ActualOpt The actual type of the option.
-   * @template Mtd The HTTP method to use for the request.
-   * @template REP The real path of the ESI endpoint to send the request to.
-   * @template EPO (Endpoint Path Origin)
-   *   The parameterized path of the ESI endpoint to send the request to.
-   *   e.g. `/characters/{character_id}/assets/`.
-   * @template PPM Parameters to include in the request if the endpoint is parameterized.
-   * @template Opt Options to include in the request. If there is a required parameter, its
-   *   type will be merged with `ActualOpt`.
-   * @template Ret The response type.
+   * @param method - The HTTP method to use for the request (e.g., "get", "post").
+   * @param endpoint - The real path of the ESI endpoint to send the request to.
+   * @param options - An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
    *
-   * @param method The HTTP method to use for the request (e.g., "get", "post").
-   * @param endpoint The real path of the ESI endpoint to send the request to.
-   * @param options An optional object containing additional options for the request. If the  
-   *   endpoint has required parameters, this parameter must be provided.
-   *
-   * @returns A Promise object containing the response data, with the type inferred based on the
-   *   method and endpoint.
+   * @returns A `Promise` that resolves to the response type of the endpoint.
    *
    * @remarks
-   * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce  
-   * that if the endpoint has required parameters, the `options` parameter must be provided. If  
-   * there are no required parameters, the `options` parameter is optional.
+   * - The `...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]` parameter ensures that if the endpoint has required parameters,  
+   *   the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
+   * - This type leverages `ResolveEndpointParameters` to infer the required options and response type.
+   *
+   * @example
+   * ```ts
+   * // Example: Making a request to the "get" method for a specific endpoint
+   * type ESIRequest = TESIRequestFunctionSignature2<ESIRequestOptions>;
+   * const runRequest: ESIRequest = async (method, endpoint, ...options) => {
+   *     // Implementation here
+   *     throw new Error();
+   * };
+   * runRequest("get", "/characters/{character_id}/assets/", {
+   *     pathParams: 12345,
+   *     auth: true,
+   *     token: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+   * }).then(response => {
+   *     console.log(response);
+   * });
+   * ```
+   *
+   * @see {@link ResolveEndpointParameters}
+   * @see {@link InferESIResponseResult}
    */
   /* ctt
   type TESIRequestFunctionSignature2<ActualOpt extends Record<string, unknown>> = <
@@ -164,40 +177,57 @@ declare global {
   //*/
 
   /**
-   * A function signature type for making enhanced ESI requests.
+   * Defines an enhanced function signature for making ESI requests with an additional prepended parameter.
    *
-   * This type extends the base ESI request function signature by injecting a prepended parameter to allow for extra
-   * context or pre-processing before performing the request. It provides a highly generic interface that adapts to the
-   * chosen endpoint method, endpoint configuration, and additional options, making it ideal for advanced API interactions.
+   * This utility type extends the base ESI request function signature by adding a prepended parameter
+   * to allow for extra context or pre-processing before performing the request. It ensures type safety
+   * by inferring the required parameters, options, and response types for the given endpoint.
    *
-   * Generic Parameters:
-   * @template PrependParam The type of the additional parameter that is injected at the beginning of the function call.
-   * @template ActualOpt An object representing the default options (typically extending ESIRequestOptions) used for the request.
+   * @template PrependParam - The type of the additional parameter that is injected at the beginning of the function call.
+   * @template ActualOpt - A record type representing additional options for the request.
    *
-   * Function Generic Parameters:
-   * @template Mtd The ESI request method type (e.g., GET, POST) as defined in TESIEntryMethod.
-   * @template REP The endpoint type, which can be either a version with replaced path parameters (via ReplacePathParams)
-   *                 or the raw ESIEndpointOf<Mtd> type.
-   * @template EPO (Endpoint Path Origin)
-   *   The parameterized path of the ESI endpoint to send the request to.
-   *   e.g. `/characters/{character_id}/assets/`.
-   * @template PPM The type representing the inferred path parameters extracted from REP and EPO.
-   * @template Opt The type for additional request options, identified based on the method (Mtd), endpoint (EPO), the
-   *                 default options (ActualOpt), and inferred path parameters (PPM).
-   * @template Ret The type of the response result from the ESI request, inferred from the method and endpoint.
-   * @template HasOpt An internal flag used to determine whether request options (Opt) are required (1) or optional.
+   * @param prependParam - A prepended parameter providing additional context or configuration for the request.
+   * @param method - The HTTP method to use for the request (e.g., "get", "post").
+   * @param endpoint - The API endpoint, which might include path parameter replacements.
+   * @param options - Additional options for the request. If the endpoint has required parameters, this parameter must be provided.
    *
-   * Parameters:
-   * @param {PrependParam} prependParam A prepended parameter providing additional context or configuration for the request.
-   * @param {Mtd} method The ESI request method.
-   * @param {REP} endpoint The API endpoint, which might include path parameter replacements.
-   * @param {...(HasOpt extends 1 ? [Opt] : [Opt?])} options Additional options for the request; required if HasOpt is 1,
-   *   otherwise optional.
+   * @returns A `Promise` that resolves to the response type of the endpoint.
    *
-   * @returns {Promise<Ret>} A promise that resolves with the result type `Ret`, representing the response data from the ESI endpoint.
+   * @remarks
+   * - The `...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]` parameter ensures that if the endpoint has required parameters,  
+   *   the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
+   * - This type leverages `ResolveEndpointParameters` to infer the required options and response type.
+   *
+   * @example
+   * ```ts
+   * // Example: Making a request with an additional prepended parameter
+   * type EnhancedRequest = TESIEnhancedRequestFunctionSignature<
+   *     { userId: string },
+   *     ESIRequestOptions
+   * >;
+   * const fetchWithContext: EnhancedRequest = async (context, method, endpoint, ...options) => {
+   *     console.log(`User ID: ${context.userId}`);
+   *     // Implementation here
+   *     throw new Error();
+   * };
+   * fetchWithContext(
+   *     { userId: "12345" },
+   *     "get",
+   *     "/characters/{character_id}/assets/",
+   *     {
+   *         pathParams: 12345,
+   *         auth: true,
+   *         token: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+   *     }
+   * ).then(response => {
+   *     console.log(response);
+   * });
+   * ```
+   *
+   * @see {@link ResolveEndpointParameters}
+   * @see {@link InferESIResponseResult}
    * @see Documentation of [`TESIEnhancedRequestFunctionSignature`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/esi-enhanced-function-signature.md)
    */
-
   /* ctt
   type TESIEnhancedRequestFunctionSignature<
     PrependParam extends unknown, ActualOpt extends Record<string, unknown>
@@ -230,29 +260,44 @@ declare global {
   //*/
 
   /**
-   * Represents a function that can make ESI requests for a specific HTTP method.
+   * Defines the function signature for making ESI requests for a specific HTTP method.
    *
-   * This type is used to define functions that send requests to specific ESI endpoints using a given HTTP method.
+   * This utility type provides a strongly-typed function signature for interacting with ESI endpoints
+   * using a specific HTTP method. It ensures type safety by inferring the required parameters, options,
+   * and response types for the given endpoint.
    *
-   * @template Mtd The HTTP method to use for the request.
-   * @template ActualOpt The actual type of the options.
+   * @template Mtd - The HTTP method (e.g., "get", "post") to use for the request.
+   * @template ActualOpt - A record type representing additional options for the request.
    *
-   * @template REP The real path of the ESI endpoint to send the request to.
-   * @template EPO (Endpoint Path Origin)
-   *   The parameterized path of the ESI endpoint to send the request to.
-   *   e.g. `/characters/{character_id}/assets/`.
-   * @template PPM Parameters to include in the request if the endpoint is parameterized.
-   * @template Opt Options to include in the request. If there is a required parameter, its type will be merged with `ActualOpt`.
-   * @template Ret The response type.
+   * @param endpoint - The API endpoint, which might include path parameter replacements.
+   * @param options - Additional options for the request. If the endpoint has required parameters, this parameter must be provided.
    *
-   * @param endpoint The real path of the ESI endpoint to send the request to.
-   * @param options An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
+   * @returns A `Promise` that resolves to the response type of the endpoint.
    *
-   * @returns A Promise object containing the response data, with the type inferred based on the method and endpoint.
-   * 
    * @remarks
-   * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
-   * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
+   * - The `...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]` parameter ensures that if the endpoint has required parameters,  
+   *   the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
+   * - This type leverages `ResolveEndpointParameters` to infer the required options and response type.
+   *
+   * @example
+   * ```ts
+   * // Example: Making a request to the "get" method for a specific endpoint
+   * type GetRequest = TESIRequestFunctionEachMethod2<"get", ESIRequestOptions>;
+   * const fireGetRequest: GetRequest = async (endpoint, ...options) => {
+   *     // Implementation here
+   *     throw new Error();
+   * };
+   * fireGetRequest("/characters/{character_id}/assets/", {
+   *     pathParams: 12345,
+   *     auth: true,
+   *     token: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+   * }).then(response => {
+   *     console.log(response);
+   * });
+   * ```
+   *
+   * @see {@link ResolveEndpointParameters}
+   * @see {@link InferESIResponseResult}
    */
   /* ctt
   type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt extends Record<string, unknown>> = <

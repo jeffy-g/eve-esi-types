@@ -94,27 +94,47 @@ type _InferEndpointOrigin<
 
 /**
  * Creates a function type for making requests to tagged endpoints.
- * 
- * @template M The HTTP method.
- * @template Tag The tag associated with the endpoint.
- * @template ActualOpt The actual options for the request.
- * @template EndPoints The possible endpoints.
- * @template REP The real endpoint path.
- * @template EPO (Endpoint Path Origin)
- *   The parameterized path of the ESI endpoint to send the request to.
- *   e.g. `/characters/{character_id}/assets/`.
- * @template PPM The path parameters.
- * @template Opt The request options.
- * @template Ret The response type.
- * @template HasOpt Indicates if the endpoint has required parameters.
- * 
- * @param endpoint The endpoint path.
- * @param options An optional object containing additional options for the request. If the endpoint has required parameters, this parameter must be provided.
- * @returns A promise that resolves to the response.
- * 
+ *
+ * This utility type defines a function signature for interacting with ESI endpoints
+ * that are associated with specific tags and HTTP methods. It ensures type safety
+ * by inferring the required parameters, options, and response types for the given endpoint.
+ *
+ * @template M - The HTTP method (e.g., "get", "post").
+ * @template Tag - The tag associated with the endpoint (e.g., "Assets", "Skills").
+ * @template ActualOpt - A record type representing additional options for the request.
+ * @template EndPoints - The possible endpoints associated with the tag and method.
+ *
+ * @param endpoint - The endpoint path, which can be parameterized or resolved.
+ * @param options - An optional object containing additional options for the request.
+ *                  If the endpoint has required parameters, this parameter must be provided.
+ * @returns A promise that resolves to the response type of the endpoint.
+ *
  * @remarks
- * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
- * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
+ * - The `...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]` parameter ensures
+ *   that if the endpoint has required parameters, the `options` parameter must be provided.
+ *   If there are no required parameters, the `options` parameter is optional.
+ * - This type leverages `ResolveEndpointParameters` to infer the required options and response type.
+ *
+ * @example
+ * ```ts
+ * // Example: Making a request to the "Assets" tag with the "get" method
+ * type AssetsRequest = TaggedEndpointRequestFunction2<"get", "Assets", ESIRequestOptions>;
+ * const fetchAssets: AssetsRequest = async (endpoint, ...options) => {
+ *   // Implementation here
+ *   throw new Error();
+ * };
+ * fetchAssets("/characters/{character_id}/assets/", {
+ *     pathParams: 12345,
+ *     auth: true,
+ *     token: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+ * }).then(response => {
+ *     console.log(response);
+ * });
+ * ```
+ *
+ * @see {@link ResolveEndpointParameters}
+ * @see {@link SelectEndpointByTag}
+ * @see {@link InferESIResponseResult}
  */
 /* ctt
 export declare type TaggedEndpointRequestFunction2<

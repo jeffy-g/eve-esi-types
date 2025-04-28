@@ -26,6 +26,44 @@ export type ESIEntryParamKeys = "auth" | "query" | "body" | "pathParams";
  */
 export type ESIEntryExtraKeys = "result" | "tag" | "cachedSeconds";
 
+/**
+ * Resolves the parameters required for making an ESI request to a specific endpoint.
+ *
+ * This type combines the user-supplied options, path parameters, and the expected response type
+ * to produce a structured result that includes:
+ * - The actual response payload type (`result`).
+ * - The final options object (`finalOptions`) that should be passed to the request.
+ * - A flag (`optionIsRequire`) indicating whether the options object is mandatory.
+ *
+ * @template Mtd - The HTTP method (e.g., "get", "post") of the request.
+ * @template REP - The endpoint path, which can be parameterized or already resolved with numbers.
+ * @template EPO - The resolved endpoint type tied to `REP`.
+ * @template Opt - A record type representing user-supplied request options.
+ * @template PathParams - A record type representing path parameters for the endpoint.
+ * @template EntryWithParams - The merged type of the response payload and path parameters.
+ * @template RequireKeys - The keys from `EntryWithParams` that represent actual request parameters.
+ *
+ * @returns An object containing:
+ * - `result`: The actual response payload type.
+ * - `finalOptions`: The exact options object to pass in (e.g., pathParams, query, body, auth).
+ * - `optionIsRequire`: A flag (`1` or `0`) indicating whether the options object is required.
+ *
+ * @example
+ * ```ts
+ * // Example endpoint: /characters/{character_id}/attributes/
+ * type ExampleOpt = { auth: true; token: "eyJhbGciOiJSUzI1NiIsI..." };
+ * type ResolvedParams = ResolveEndpointParameters<
+ *   "get", `/characters/${123345}/attributes/`, "/characters/{character_id}/attributes/",
+ *   ExampleOpt
+ * >;
+ * // Result:
+ * // { auth: true, token: "eyJhbGciOiJSUzI1NiIsI..." }
+ * ```
+ *
+ * @see {@link CombineIntersection}
+ * @see {@link RestrictKeys}
+ * @see {@link _ESIResponseType}
+ */
 export type ResolveEndpointParameters<
   Mtd extends TESIEntryMethod,
   // REP is either a parameterized path or already number-filled:
