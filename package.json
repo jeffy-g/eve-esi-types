@@ -21,7 +21,7 @@
     "LICENSE",
     "*.md",
     "package.json",
-    "jsconfig.json"
+    "tsconfig.json"
   ],
   "keywords": [
     "api",
