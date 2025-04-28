@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/response-map.d.ts
- * @summary This file is auto-generated and defines version 3.2.5 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.7 of the EVE Online ESI response types.
  */
 import "./types-index.d.ts";
 

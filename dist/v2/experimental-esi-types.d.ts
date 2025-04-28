@@ -9,9 +9,98 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/experimental-esi-types.d.ts
- * @summary This file is auto-generated and defines version 3.2.5 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.7 of the EVE Online ESI response types.
  */
-import type { _ESIResponseType, PickPathParameters, UnionToTuple, Split } from "./index.d.ts";
+import type {
+  Split,
+  UnionToTuple,
+  RestrictKeys,
+  _ESIResponseType,
+  ESIEntryExtraKeys,
+  PickPathParameters,
+  ExtractPathParamKeys,
+  CombineIntersection,
+} from "./index.d.ts";
+
+
+/**
+ * Resolves the final request-parameter shape and response type for an ESI endpoint,
+ * and indicates whether any parameters are actually required.
+ *
+ * @template M             The HTTP method (e.g. `"get"`, `"post"`) of the request.
+ * @template EPx           The endpoint path, constrained to `ESIEndpointOf<M>` or a string.
+ * @template Opt           A record type of user-supplied options (e.g. query/body/path params).
+ * @template PathParams    A record type representing the path-parameter properties.
+ * @template EntryWithParams
+ *   By default, the merged type of the raw ESI response payload
+ *   (`_ESIResponseType<M, EPx>`) and `PathParams`.
+ * @template RequireKeys
+ *   The keys in `EntryWithParams` that represent actual request parameters,
+ *   i.e. all keys minus the built-in ESI metadata (`result`, `tag`, `cachedSeconds`).
+ * @template FinalOpt
+ *   The flattened intersection of:
+ *     - the subset of `Opt` whose keys are in `RequireKeys`, and
+ *     - a `Pick` of `EntryWithParams` over those same keys.
+ *
+ * @example
+ * ```ts
+ * // /characters/{character_id}/attributes/
+ * type ExampleEntry = {
+ *   result: GetCharactersCharacterIdAttributesOk;
+ *   tag: "Skills";
+ *   cachedSeconds: 120;
+ *   auth: true;
+ * };
+ * type ExampleOpt  = { auth: true; token: string };
+ * type ExamplePath = { character_id: number };
+ *
+ * // Suppose _ESIResponseType<"get", "/characters/{character_id}/attributes/"> = ExampleEntry
+ * type Desc = ResolveEndpointRequest<
+ *   "get",
+ *   "/characters/{character_id}/attributes/",
+ *   ExampleOpt,
+ *   ExamplePath
+ * >;
+ * // Desc resolves to:
+ * // [
+ * //   { auth: true; token: string; character_id: number; },
+ * //   GetCharactersCharacterIdAttributesOk,
+ * //   1
+ * // ]
+ * ```
+ *
+ * @see {@link ESIEndpointOf}
+ * @see {@link _ESIResponseType}
+ */
+export type ResolveEndpointRequest<
+  M extends TESIEntryMethod,
+  EPx extends ESIEndpointOf<M> | string,
+  Opt extends Record<string, unknown>,
+  PathParams extends Record<string, unknown>,
+  EntryWithParams = _ESIResponseType<M, EPx> & PathParams,
+  RequireKeys extends keyof EntryWithParams = Exclude<keyof EntryWithParams, ESIEntryExtraKeys>,
+  FinalOpt = CombineIntersection< RestrictKeys<Opt, RequireKeys> & Pick<EntryWithParams, RequireKeys> >
+> = [
+  [RequireKeys] extends [never] ? [FinalOpt?] : [FinalOpt],
+  EntryWithParams extends { result: infer R } ? R : never,
+];
+
+
+type TESIRequestFunctionContext<
+  Mtd extends TESIEntryMethod = TESIEntryMethod,
+  REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd> = ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+  ActualOpt extends Record<string, unknown> = Record<string, unknown>,
+
+  EPO extends ResolvedEndpoint<Mtd, REP> = ResolvedEndpoint<Mtd, REP>,
+  PPM extends InferPathParams<REP, EPO> = InferPathParams<REP, EPO>,
+  Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM> = IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
+  Ret extends InferESIResponseResult<Mtd, EPO> = InferESIResponseResult<Mtd, EPO>,
+  HasOpt = HasRequireParams<Mtd, EPO, PPM>,
+> = {
+  method: Mtd; endpoint: REP;
+} & (HasOpt extends 1 ? { options: Opt } : { options?: Opt }) & {
+  result?: Ret;
+};
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 //           TESIRequestFunctionWithContext
@@ -189,7 +278,7 @@ export type ValidateNextEndpoint<
  * @template BaseResut The response type of the current endpoint (e.g., an array of objects).
  * @template NextEP The next endpoint to validate.
  * @template Debug Optional debug flag; if set to `1`, additional debug information is returned.
- * @template PathParams Defaults to `UnionToTuple<PickPathParameters<NextEP>>`; represents the path parameters of the next endpoint.
+ * @template PathParams Defaults to `ExtractPathParamsTuple<NextEP>`; represents the path parameters of the next endpoint.
  * 
  * @remarks
  * This type assumes that if the response type is an array of objects, it checks whether the required
@@ -207,7 +296,7 @@ type ValidateEndpointParamsInArray<
   BaseResut extends unknown, // SomeType[]
   NextEP extends string,
   Debug = 0,
-  PathParams extends any[] = UnionToTuple<PickPathParameters<NextEP>>,
+  PathParams extends any[] = ExtractPathParamKeys<NextEP>,
 > = BaseResut extends (infer O)[]
   ? PathParams[1] extends keyof O ? NonNullable<O[PathParams[1]]> extends number
     ? Debug extends 1 // development

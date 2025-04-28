@@ -27,7 +27,7 @@ export type Truthy = string | number | boolean;
 /**
  * __{Header}.{Payload}.{Signature}__
  */
-export type TAcccessToken = `${string}.${string}.${string}`;
+export type TAccessToken = `${string}.${string}.${string}`;
 export type ESIRequestOptions = {
     /**
      * query params for ESI request.
@@ -53,14 +53,45 @@ export type ESIRequestOptions = {
     /**
      * Can be an empty object if no authentication is required.description
      */
-    token?: TAcccessToken;
+    token?: TAccessToken;
     /**
      * cancel request immediately
      */
     cancelable?: AbortController;
 };
 /**
- * @typedef {string | number | boolean} Truthy
+ * type of the JWT token `payload` section
+ */
+export declare type TJWTPayload = {
+    /** scopes. */
+    scp: string[];
+    /** uuid of the token */
+    jti: string;
+    /** jwt type */
+    kid: string;
+    /** contains EVE character ID.
+     * ```
+     * "CHARACTER:EVE:<character_id>"
+     * ```
+     */
+    sub: `CHARACTER:EVE:${number}`;
+    /** Application client ID. */
+    azp: string;
+    /** EVE character name. */
+    name: string;
+    /** owner hash. */
+    owner: string;
+    /** expire date as 1/1000. (UNIX timestamp) */
+    exp: number;
+    /** issuer host name. */
+    iss: string;
+};
+/**
+ * @import * as ESIUtil from "./rq-util.mjs";
+ * @typedef {ESIUtil.Truthy} Truthy
+ * @typedef {ESIUtil.TAccessToken} TAccessToken
+ * @typedef {ESIUtil.TJWTPayload} TJWTPayload
+ * @typedef {ESIUtil.ESIRequestOptions} ESIRequestOptions
  */
 /**
  * simple named error class.
@@ -74,9 +105,6 @@ export declare class ESIErrorLimitReachedError extends ESIRequestError {
     constructor();
     valueOf(): number;
 }
-/**
- * @typedef {import("./rq-util.mjs").ESIRequestOptions} ESIRequestOptions
- */
 /**
  * @template T
  * @template {Record<string, unknown>} O
@@ -93,10 +121,11 @@ export declare const normalizeOptions: <T extends unknown, O extends Record<stri
  * @param {string} endpointUrl
  * @param {RequestInit} requestOpt
  * @param {URLSearchParams} urlParams
- * @param {(minus?: Truthy) => void=} increment
+ * @param {(minus?: Truthy) => void=} progress
+ * @param {true=} allowFetchPages 2025/4/26
  * @returns {Promise<any>}
  */
-export declare const handleSuccessResponse: (response: Response, endpointUrl: string, requestOpt: RequestInit, urlParams: URLSearchParams, increment?: (minus?: Truthy) => void) => Promise<any>;
+export declare const handleSuccessResponse: (response: Response, endpointUrl: string, requestOpt: RequestInit, urlParams: URLSearchParams, progress?: (minus?: Truthy) => void, allowFetchPages?: true) => Promise<any>;
 /**
  * @import {
  *     TESIErrorStats,
@@ -153,11 +182,13 @@ export declare const initOptions: (method: string, opt: ESIRequestOptions) => {
  * @param {RequestInit} rqopt request options
  * @param {URLSearchParams} usp queries
  * @param {number} pc pageCount
- * @param {(minus?: number) => void=} increment
+ * @param {(minus?: number) => void=} progress
  * @returns {Promise<T | null>}
  */
-export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: RequestInit, usp: URLSearchParams, pc: number, increment?: (minus?: Truthy) => void) => Promise<T | null>;
+export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: RequestInit, usp: URLSearchParams, pc: number, progress?: (minus?: Truthy) => void) => Promise<T | null>;
 /** ### replace (C)urly (B)races (T)oken
+ *
+ * + Replace each `{…}` placeholder in the endpoint string with the corresponding ID.
  *
  * @example
  * "/characters/{character_id}/skills"
@@ -165,18 +196,39 @@ export declare const fetchP: <T extends unknown>(endpointUrl: string, rqopt: Req
  * "/characters/<char.character_id>/skills"
  *
  * @template {unknown} T
- * @param {T} endpoint e.g - "/characters/{character_id}/"
- * @param {number[]} ids
- * @returns {T} fragment of qualified endpoint uri or null.
+ * @param {T} endpoint An endpoint template, e.g. "/characters/{character_id}/skills"
+ * @param {number[]} ids An array of numbers to fill into each placeholder, in order of appearance
+ * @returns {T} A fully-qualified endpoint string with all `{…}` tokens replaced by their IDs
  */
 export declare const replaceCbt: <T extends unknown>(endpoint: T, ids: number[]) => T;
 /**
  * @template {unknown} T
- * @param {T} endp this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
+ * @param {T} endpoint this means endpoint url fragment like `/characters/{character_id}/` or `/characters/{character_id}/agents_research/`
  *   + The version parameter is forced to apply `latest`
  * @returns {string}
  */
-export declare const curl: <T extends unknown>(endp: T) => string;
+export declare const curl: <T extends unknown>(endpoint: T) => string;
+/**
+ * Type guard that checks whether the given object has a `pathParams` property
+ * of type `number` or `number[]`.
+ *
+ * @template {Record<string, unknown>} T - The type of the object being checked.
+ * @param {T} opt - The object to inspect.
+ * @returns {opt is (T & { pathParams: number | number[] })}
+ *   `true` if `opt` contains a `pathParams` property whose value is either
+ *   a single number or an array of numbers, otherwise `false`.
+ *
+ * @date 2025/4/28
+ */
+export declare function hasPathParams<T extends Record<string, unknown>>(opt: T): opt is (T & {
+    pathParams: number | number[];
+});
+/**
+ *
+ * @param {string} accessToken OAuth 2.0 access token
+ * @returns {TJWTPayload}
+ */
+export declare const getJWTPayload: (accessToken: string) => TJWTPayload;
 /**
  * @date 2020/03/31
  * @version 2.1
@@ -194,6 +246,8 @@ export declare function getLogger(): {
 type TPrependParams = TESIRequestFunctionSignature2<ESIRequestOptions> | TESIRequestFunctionMethods2<ESIRequestOptions>;
 /**
  * #### Fire a request that does not require authentication.
+ *
+ * + __CAVEAT:__ This function should only be used for testing.
  *
  * @param {TPrependParams} fn
  * @returns {Promise<void>}

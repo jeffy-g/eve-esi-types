@@ -9,9 +9,10 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/types-util.d.ts
- * @summary This file is auto-generated and defines version 3.2.5 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.7 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
+import type { RestrictKeys, CombineIntersection } from "./index.d.ts";
 
 
 /**
@@ -24,6 +25,32 @@ export type ESIEntryParamKeys = "auth" | "query" | "body" | "pathParams";
  * These keys represent metadata or additional information that is not part of the main request parameters.
  */
 export type ESIEntryExtraKeys = "result" | "tag" | "cachedSeconds";
+
+export type ResolveEndpointParameters<
+  Mtd extends TESIEntryMethod,
+  // REP is either a parameterized path or already number-filled:
+  REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+  // <— tie it directly to REP via ResolvedEndpoint:
+  EPO extends ResolvedEndpoint<Mtd, REP>,
+  // user-supplied options:
+  Opt extends Record<string, unknown>,
+
+  // now that EPO is fixed, these defaults all line up:
+  PathParams extends InferPathParams<REP, EPO> = InferPathParams<REP, EPO>,
+  EntryWithParams = _ESIResponseType<Mtd, EPO> & PathParams,
+  RequireKeys extends keyof EntryWithParams = Exclude<keyof EntryWithParams, ESIEntryExtraKeys>,
+  FinalOpt = CombineIntersection<
+    RestrictKeys<Opt, RequireKeys> & Pick<EntryWithParams, RequireKeys>
+  >
+> = {
+  // the actual `"result"` payload type
+  result: EntryWithParams extends { result: infer R } ? R : never;
+  // the exact options object you should pass in (pathParams/query/body/auth)
+  finalOptions: FinalOpt;
+  // 1 if you _must_ pass an options object, else 0
+  optionIsRequire: HasRequireParams<Mtd, EPO, PathParams>;
+};
+
 
 /**
  * Represents a function that can make ESI requests with various HTTP methods.
@@ -147,14 +174,48 @@ export type _ESIResponseType<
  * @see {@link IfParameterizedPath}
  * @see {@link ReplacePathParams}
  */
+//* ctt
 export type _IfNeedPathParams<
-  EP extends unknown,
-  // will be `never` when cached
-  // Parameterized extends IfParameterizedPath<EP> = IfParameterizedPath<EP>
-> = IfParameterizedPath<EP> extends never
+  EP extends PropertyKey,
+  Parameterized extends IfParameterizedPath<EP> = IfParameterizedPath<EP>
+> = Parameterized extends 0
   ? TPathParamsNever :
     EP extends ReplacePathParams<EP>
-      ? TPathParamsNever : { pathParams: IfParameterizedPath<EP> };
+      ? TPathParamsNever : { pathParams: Parameterized };
+/*/
+export type _IfNeedPathParams<
+  EP extends PropertyKey,
+  Parameterized extends IfParameterizedPath<EP> = IfParameterizedPath<EP>
+> = Parameterized extends 0
+  ? TPathParamsNever : { pathParams: Parameterized };
+//*/
+
+/**
+ * Picks the required parameters from an entry type, including additional parameters.
+ * 
+ * This type excludes the keys "result", "tag", and "cachedSeconds" from the entry type and the additional parameters,
+ * and returns the remaining keys as the required parameters.
+ * 
+ * @template M The HTTP method to use for the request.
+ * @template EPx The endpoint path.
+ * @template AdditionalParams Additional parameters to include in the check.
+ * 
+ * @example
+ * ```ts
+ * type ExampleEntry = { result: string, tag: string, cachedSeconds: number, auth: string };
+ * type RequiredParams = PickRequireParams<"get", "/example/endpoint", { auth: string }, ExampleEntry>;
+ * // Result: "auth"
+ * ```
+ * @see {@link ESIEndpointOf}
+ * @see {@link _ESIResponseType}
+ * @deprecated 2025/4/28
+ * @see Documentation of [`PickRequireParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/pick-require-params.md)
+ */
+export type __PickRequireParams<
+  M extends TESIEntryMethod,
+  EPx extends ESIEndpointOf<M> | string,
+  AdditionalParams,
+> = Exclude<keyof (_ESIResponseType<M, EPx> & AdditionalParams), ESIEntryExtraKeys>;
 
 /**
  * Infer the result type of an ESI response based on the method and endpoint.

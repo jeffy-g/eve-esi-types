@@ -9,9 +9,9 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/esi-tagged-types.d.ts
- * @summary This file is auto-generated and defines version 3.2.5 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.7 of the EVE Online ESI response types.
  */
-import type { TESIResponseOKMap } from "./index.d.ts";
+import type { TESIResponseOKMap, ResolveEndpointParameters } from "./index.d.ts";
 export type * from "./index.d.ts";
 
 /**
@@ -86,7 +86,7 @@ type XPlanetary = InferMethod<"Planetary Interaction">;
  * @returns The inferred endpoint origin.
  */
 type _InferEndpointOrigin<
-  RealEP extends unknown, Endpoints extends string | number | symbol
+  RealEP extends unknown, Endpoints extends PropertyKey
 > = {
   [EP in Endpoints]: RealEP extends ReplacePathParams<EP>
     ? EP : never;
@@ -116,6 +116,7 @@ type _InferEndpointOrigin<
  * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
  * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
  */
+/* ctt
 export declare type TaggedEndpointRequestFunction2<
   M extends TESIEntryMethod, Tag extends ESITags,
   ActualOpt extends Record<string, unknown> = {},
@@ -128,6 +129,20 @@ export declare type TaggedEndpointRequestFunction2<
     Ret extends InferESIResponseResult<M, EPO>,
     HasOpt = HasRequireParams<M, EPO, PPM>,
 >(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
+/*/
+export declare type TaggedEndpointRequestFunction2<
+  M extends TESIEntryMethod, Tag extends ESITags,
+  ActualOpt extends Record<string, unknown> = {},
+  EndPoints extends SelectEndpointByTag<Tag, M> = SelectEndpointByTag<Tag, M>,
+> = <
+    REP extends ReplacePathParams<EndPoints> | EndPoints,
+    EPO extends _InferEndpointOrigin<REP, EndPoints> extends never ? REP: _InferEndpointOrigin<REP, EndPoints>,
+    // @ts-expect-error TODO: 2025/4/28 TS2344: Type 'EPO' does not satisfy the constraint 'ResolvedEndpoint<M, REP>'
+    Params extends ResolveEndpointParameters<M, REP, EPO, ActualOpt>,
+    Opt extends Params["finalOptions"],
+    Ret extends Params["result"],
+  >(endpoint: REP, ...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
+//*/
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -159,11 +174,11 @@ export declare type ESITaggedEndpointRequest2<Tag extends ESITags, ActualOpt ext
 export declare type SelectEndpointByTag<
   Tag extends ESITags, M extends TESIEntryMethod
 > = {
-  [EP in keyof TESIResponseOKMap[M]]: TESIResponseOKMap[M][EP] extends { tag: infer ActualTag }
+  [EP in ESIEndpointOf<M>]: TESIResponseOKMap[M][EP] extends { tag: infer ActualTag }
     ? ActualTag extends Tag
       ? EP : never
     : never;
-}[keyof TESIResponseOKMap[M]];
+}[ESIEndpointOf<M>];
 /* ctt
 type XAssetsEndpointGet = SelectEndpointByTag<"Assets", "get">;
 type XAssetsEndpointPost = SelectEndpointByTag<"Assets", "post">;

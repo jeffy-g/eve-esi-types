@@ -42,8 +42,9 @@ if (util.is("withError")) {
     esi.assets.get(`/characters/${ID_CCP_Zoetrope}/assets/`, {
         auth: true
     }).then(console.log).catch(console.log);
-    esi.mail.post(`/characters/${ID_CCP_Zoetrope}/mail/`, /** @satisfies {Pick<TESIResponsePostEntry<"/characters/{character_id}/mail/">, "auth" | "body">} */ ({
+    esi.mail.post("/characters/{character_id}/mail/", ({
         auth: true,
+        pathParams: ID_CCP_Zoetrope, // ✅ At this point, the expected semantic error is successfully triggered as intended.
         body: {
             subject: "test!!",
             body: "",
@@ -52,7 +53,7 @@ if (util.is("withError")) {
                 }]
         },
         // token: "s.s.s"
-    })).then(console.log).catch(console.log);
+    }) /*  satisfies Pick<TESIResponsePostEntry<"/characters/{character_id}/mail/">, "auth" | "body"> & { pathParams: number } */).then(console.log).catch(console.log);
     esi.fittings.delete("/characters/1234/fittings/56789/", {
         // pathParams: [1234, 56789], // ✅ At this point, the expected semantic error is successfully triggered as intended.
         auth: true

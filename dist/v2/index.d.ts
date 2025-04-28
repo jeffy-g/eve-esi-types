@@ -9,15 +9,16 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.2.5 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.7 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
-import type { PickPathParameters, InferKeysLen, CombineIntersection } from "./util.d.ts";
+import type { PickPathParameters, InferKeysLen, CombineIntersection, ExtractPathParamKeys } from "./util.d.ts";
 import type {
   ESIEntryParamKeys, ESIEntryExtraKeys,
   _ESIResponseType,
   _IfNeedPathParams,
   TPathParamsNever,
+  ResolveEndpointParameters
   // ESIEndpointUnions,
   // IESIRequestFunction2,
   // InferESIResponseResultEX,
@@ -84,6 +85,7 @@ export type RestrictKeys2<
 
 declare global {
 
+  type ESIEndpointType = string | symbol;
   type __ShiftType = 1;
   /**
    * Marks specific properties of a type as required.
@@ -140,36 +142,26 @@ declare global {
    * that if the endpoint has required parameters, the `options` parameter must be provided. If  
    * there are no required parameters, the `options` parameter is optional.
    */
+  /* ctt
   type TESIRequestFunctionSignature2<ActualOpt extends Record<string, unknown>> = <
     Mtd extends TESIEntryMethod,
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-    EPO extends ResolvedEndpoint<REP, Mtd>,
+    EPO extends ResolvedEndpoint<Mtd, REP>,
     PPM extends InferPathParams<REP, EPO>,
-    Resolved extends ResolveEndpointRequest<Mtd, EPO, ActualOpt, PPM> = ResolveEndpointRequest<Mtd, EPO, ActualOpt, PPM>,
-    Opt = Resolved[0],
-    Ret = Resolved[1],
-    HasOpt = Resolved[2],
-    // Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
-    // Ret extends InferESIResponseResult<Mtd, EPO>,
-    // HasOpt = HasRequireParams<Mtd, EPO, PPM>,
-  >(method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
-
-  
-  type TESIRequestFunctionContext<
-    Mtd extends TESIEntryMethod = TESIEntryMethod,
-    REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd> = ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-    ActualOpt extends Record<string, unknown> = Record<string, unknown>,
-
-    EPO extends ResolvedEndpoint<REP, Mtd> = ResolvedEndpoint<REP, Mtd>,
-    PPM extends InferPathParams<REP, EPO> = InferPathParams<REP, EPO>,
-    Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM> = IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
-    Ret extends InferESIResponseResult<Mtd, EPO> = InferESIResponseResult<Mtd, EPO>,
+    Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
+    Ret extends InferESIResponseResult<Mtd, EPO>,
     HasOpt = HasRequireParams<Mtd, EPO, PPM>,
-  > = {
-    method: Mtd; endpoint: REP;
-  } & (HasOpt extends 1 ? { options: Opt } : { options?: Opt }) & {
-    result?: Ret;
-  };
+  >(method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
+  /*/
+  type TESIRequestFunctionSignature2<ActualOpt extends Record<string, unknown>> = <
+    Mtd extends TESIEntryMethod,
+    REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+    EPO extends ResolvedEndpoint<Mtd, REP>,
+    Params extends ResolveEndpointParameters<Mtd, REP, EPO, ActualOpt>,
+    Opt extends Params["finalOptions"],
+    // Ret extends Params["result"],
+  >(method: Mtd, endpoint: REP, ...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]) => Promise<Params["result"]>;
+  //*/
 
   /**
    * A function signature type for making enhanced ESI requests.
@@ -205,20 +197,37 @@ declare global {
    * @returns {Promise<Ret>} A promise that resolves with the result type `Ret`, representing the response data from the ESI endpoint.
    * @see Documentation of [`TESIEnhancedRequestFunctionSignature`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/esi-enhanced-function-signature.md)
    */
+
+  /* ctt
   type TESIEnhancedRequestFunctionSignature<
     PrependParam extends unknown, ActualOpt extends Record<string, unknown>
   > = <
     Mtd extends TESIEntryMethod,
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-    EPO extends ResolvedEndpoint<REP, Mtd>,
+    EPO extends ResolvedEndpoint<Mtd, REP>,
     PPM extends InferPathParams<REP, EPO>,
     Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
     Ret extends InferESIResponseResult<Mtd, EPO>,
-    HasOpt = HasRequireParams<Mtd, EPO, PPM>
+    HasOpt = HasRequireParams<Mtd, EPO, PPM>,
   >(
     prependParam: PrependParam,
     method: Mtd, endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]
   ) => Promise<Ret>;
+  /*/
+  type TESIEnhancedRequestFunctionSignature<
+    PrependParam extends unknown, ActualOpt extends Record<string, unknown>
+  > = <
+    Mtd extends TESIEntryMethod,
+    REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+    EPO extends ResolvedEndpoint<Mtd, REP>,
+    Params extends ResolveEndpointParameters<Mtd, REP, EPO, ActualOpt>,
+    Opt extends Params["finalOptions"],
+  >(
+    prependParam: PrependParam,
+    method: Mtd, endpoint: REP,
+    ...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]
+  ) => Promise<Params["result"]>;
+  //*/
 
   /**
    * Represents a function that can make ESI requests for a specific HTTP method.
@@ -245,14 +254,23 @@ declare global {
    * The `...options: HasOpt extends 1 ? [Opt] : [Opt?]` parameter is defined this way to enforce that if the endpoint has required parameters,  
    * the `options` parameter must be provided. If there are no required parameters, the `options` parameter is optional.
    */
+  /* ctt
   type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt extends Record<string, unknown>> = <
     REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-    EPO extends ResolvedEndpoint<REP, Mtd>,
+    EPO extends ResolvedEndpoint<Mtd, REP>,
     PPM extends InferPathParams<REP, EPO>,
     Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
     Ret extends InferESIResponseResult<Mtd, EPO>,
-    HasOpt extends HasRequireParams<Mtd, EPO, PPM> = HasRequireParams<Mtd, EPO, PPM>,
+    HasOpt = HasRequireParams<Mtd, EPO, PPM>,
   >(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
+  /*/
+  type TESIRequestFunctionEachMethod2<Mtd extends TESIEntryMethod, ActualOpt extends Record<string, unknown>> = <
+    REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
+    EPO extends ResolvedEndpoint<Mtd, REP>,
+    Params extends ResolveEndpointParameters<Mtd, REP, EPO, ActualOpt>,
+    Opt extends Params["finalOptions"],
+  >(endpoint: REP, ...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]) => Promise<Params["result"]>;
+  //*/
 
   /**
    * Replaces path parameters in a string with numbers.
@@ -286,7 +304,7 @@ declare global {
    * @date 2025/3/17
    */
   type InferPathParams<
-    RealEP extends unknown, EPO extends unknown
+    RealEP extends PropertyKey, EPO extends PropertyKey
   > = RealEP extends EPO ? _IfNeedPathParams<EPO> : TPathParamsNever;
 
   /**
@@ -309,7 +327,7 @@ declare global {
    * @see Documentation of [`InferEndpointOrigin`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/infer-endpoint-origin.md)
    */
   type InferEndpointOrigin<
-    RealEP extends unknown, M extends TESIEntryMethod,
+    M extends TESIEntryMethod, RealEP extends PropertyKey,
     Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>
   > = {
     [EP in Endpoints]: RealEP extends ReplacePathParams<EP>
@@ -330,34 +348,10 @@ declare global {
    * @see Documentation of [`ResolvedEndpoint`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/resolved-endpoint.md)
    */
   type ResolvedEndpoint<
-    RealEP extends unknown, M extends TESIEntryMethod,
-  > = InferEndpointOrigin<RealEP, M> extends never ? RealEP: InferEndpointOrigin<RealEP, M>;
-
-  /**
-   * Picks the required parameters from an entry type, including additional parameters.
-   * 
-   * This type excludes the keys "result", "tag", and "cachedSeconds" from the entry type and the additional parameters,
-   * and returns the remaining keys as the required parameters.
-   * 
-   * @template M The HTTP method to use for the request.
-   * @template EPx The endpoint path.
-   * @template AdditionalParams Additional parameters to include in the check.
-   * 
-   * @example
-   * ```ts
-   * type ExampleEntry = { result: string, tag: string, cachedSeconds: number, auth: string };
-   * type RequiredParams = PickRequireParams<"get", "/example/endpoint", { auth: string }, ExampleEntry>;
-   * // Result: "auth"
-   * ```
-   * @see {@link ESIEndpointOf}
-   * @see {@link _ESIResponseType}
-   * @see Documentation of [`PickRequireParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/pick-require-params.md)
-   */
-  type PickRequireParams<
     M extends TESIEntryMethod,
-    EPx extends ESIEndpointOf<M> | string,
-    AdditionalParams,
-  > = Exclude<keyof (_ESIResponseType<M, EPx> & AdditionalParams), ESIEntryExtraKeys>;
+    RealEP extends PropertyKey,
+  > = InferEndpointOrigin<M, RealEP> extends never ? RealEP: InferEndpointOrigin<M, RealEP>;
+
   /**
    * Determines if the given entry has required parameters, including additional options.
    * 
@@ -366,7 +360,7 @@ declare global {
    * 
    * @template M The HTTP method to use for the request.
    * @template EPx The endpoint path.
-   * @template AdditionalParams Additional parameters to include in the check.
+   * @template PathParams Path parameters to include in the check.
    * 
    * @example
    * ```ts
@@ -374,32 +368,64 @@ declare global {
    * type HasRequired = HasRequireParams<"get", "/example/endpoint", { auth: string }>; // 1
    * ```
    * @see {@link ESIEndpointOf}
-   * @see {@link PickRequireParams}
    * @see Documentation of [`HasRequireParams`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v3/has-require-params.md)
    */
+  /* ctt
   type HasRequireParams<
     M extends TESIEntryMethod,
     EPx extends ESIEndpointOf<M> | string,
     AdditionalParams,
   > = PickRequireParams<M, EPx, AdditionalParams> extends never ? 0 : 1;
+  /*/
+  type HasRequireParams<
+    M extends TESIEntryMethod,
+    EPx extends ESIEndpointOf<M> | string,
+    PathParams extends Record<string, unknown>,
+    RequireKeys = Exclude<keyof (_ESIResponseType<M, EPx> & PathParams), ESIEntryExtraKeys>
+  > = [RequireKeys] extends [never] ? 0 : 1;
+  //*/
 
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //                                Version 2 types
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   /**
-   * If `EP` (endpoint) is a parameterized path, determines the required number of replacements.
-   * 
-   * @template EP The string representing the endpoint path.
-   * @template Opt The type to return if `EP` is not parameterized.
-   * @returns {number | [number, number] | Opt} 
-   * Returns `number` if there is one parameter, `[number, number]` if there are two parameters, otherwise `Opt`.
-   * @see Documentation of [`IfParameterizedPath`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v2/if-parameterized-path.md)
+   * Determines the number of parameters in a parameterized endpoint path.
+   *
+   * This utility type checks if the given endpoint path contains parameters (e.g., `{param}`) and returns:
+   * - `number` if there is one parameter.
+   * - `[number, number]` if there are two parameters.
+   * - `never` if there are no parameters.
+   *
+   * @template EP - The string representing the endpoint path.
+   * @returns {number | [number, number] | never} The number of parameters in the path.
+   *
+   * @example
+   * ```ts
+   * type SingleParam = IfParameterizedPath<"/characters/{character_id}/">;
+   * // Result: number
+   *
+   * type TwoParams = IfParameterizedPath<"/characters/{character_id}/assets/{asset_id}/">;
+   * // Result: [number, number]
+   *
+   * type NoParams = IfParameterizedPath<"/characters/1234/">;
+   * // Result: 0
+   * ```
+   * @see {@link ExtractPathParamKeys}
    */
-  type IfParameterizedPath<EP extends unknown, Opt = never> = EP extends `${string}/{${string}}${string}`
+  /* ctt
+  type IfParameterizedPath<EP extends PropertyKey> = EP extends `${string}/{${string}}${string}`
     ? PickPathParameters<EP> extends never
-      ? Opt : InferKeysLen<PickPathParameters<EP>> extends 1
+      ? 0 : InferKeysLen<PickPathParameters<EP>> extends 1
         ? number : [number, number]
-      : Opt;
+      : 0;
+  /*/
+  export type IfParameterizedPath<EP extends PropertyKey> =
+    ExtractPathParamKeys<EP> extends []
+      ? 0 : ExtractPathParamKeys<EP> extends [any]
+      ? number : ExtractPathParamKeys<EP> extends [any, any]
+      ? [number, number]
+      : never;
+  //*/
 
   /**
    * Identifies and combines the required request parameters for a given ESI entry.
@@ -440,7 +466,6 @@ declare global {
    * @see {@link _ESIResponseType}
    * @see Documentation of [`IdentifyParameters`](https://github.com/jeffy-g/eve-esi-types/blob/master/docs/v2/identify-parameters.md)
    */
-  //* ctt
   type IdentifyParameters<
     M extends TESIEntryMethod,
     EPx extends ESIEndpointOf<M> | string,
@@ -451,79 +476,6 @@ declare global {
   > = CombineIntersection<
     RestrictKeys<Opt, RequireKeys> & Pick<EntryWithParams, RequireKeys>
   >;
-  /*/
-  type IdentifyParameters<
-    M extends TESIEntryMethod,
-    EPx extends ESIEndpointOf<M> | string,
-    Opt extends Record<string, unknown>,
-    PathParams,
-    EntryWithParams = _ESIResponseType<M, EPx> & PathParams,
-    RequireKeys extends keyof EntryWithParams = Exclude<keyof EntryWithParams, ESIEntryExtraKeys>
-  > = RestrictKeys<Opt, RequireKeys> & Pick<EntryWithParams, RequireKeys>;
-  //*/
-
-  /**
-   * Resolves the final request-parameter shape and response type for an ESI endpoint,
-   * and indicates whether any parameters are actually required.
-   *
-   * @template M             The HTTP method (e.g. `"get"`, `"post"`) of the request.
-   * @template EPx           The endpoint path, constrained to `ESIEndpointOf<M>` or a string.
-   * @template Opt           A record type of user-supplied options (e.g. query/body/path params).
-   * @template PathParams    A record type representing the path-parameter properties.
-   * @template EntryWithParams
-   *   By default, the merged type of the raw ESI response payload
-   *   (`_ESIResponseType<M, EPx>`) and `PathParams`.
-   * @template RequireKeys
-   *   The keys in `EntryWithParams` that represent actual request parameters,
-   *   i.e. all keys minus the built-in ESI metadata (`result`, `tag`, `cachedSeconds`).
-   * @template FinalOpt
-   *   The flattened intersection of:
-   *     - the subset of `Opt` whose keys are in `RequireKeys`, and
-   *     - a `Pick` of `EntryWithParams` over those same keys.
-   *
-   * @example
-   * ```ts
-   * // /characters/{character_id}/attributes/
-   * type ExampleEntry = {
-   *   result: GetCharactersCharacterIdAttributesOk;
-   *   tag: "Skills";
-   *   cachedSeconds: 120;
-   *   auth: true;
-   * };
-   * type ExampleOpt  = { auth: true; token: string };
-   * type ExamplePath = { character_id: number };
-   *
-   * // Suppose _ESIResponseType<"get", "/characters/{character_id}/attributes/"> = ExampleEntry
-   * type Desc = ResolveEndpointRequest<
-   *   "get",
-   *   "/characters/{character_id}/attributes/",
-   *   ExampleOpt,
-   *   ExamplePath
-   * >;
-   * // Desc resolves to:
-   * // [
-   * //   { auth: true; token: string; character_id: number; },
-   * //   GetCharactersCharacterIdAttributesOk,
-   * //   1
-   * // ]
-   * ```
-   *
-   * @see {@link ESIEndpointOf}
-   * @see {@link _ESIResponseType}
-   */
-  type ResolveEndpointRequest<
-    M extends TESIEntryMethod,
-    EPx extends ESIEndpointOf<M> | string,
-    Opt extends Record<string, unknown>,
-    PathParams extends Record<string, unknown>,
-    EntryWithParams = _ESIResponseType<M, EPx> & PathParams,
-    RequireKeys extends keyof EntryWithParams = Exclude<keyof EntryWithParams, ESIEntryExtraKeys>,
-    FinalOpt = CombineIntersection<RestrictKeys<Opt, RequireKeys> & Pick<EntryWithParams, RequireKeys>>
-  > = [
-    FinalOpt,
-    EntryWithParams extends { result: infer R } ? R : never,
-    [RequireKeys] extends [never] ? 0 : 1
-  ];
 
   /**
    * Infers the result type of an ESI response based on the method and endpoint.

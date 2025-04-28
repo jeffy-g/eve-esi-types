@@ -13,7 +13,7 @@
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
-import { is, curl, replaceCbt, getSDEVersion, normalizeOptions, initOptions, isDebug, fireRequestsDoesNotRequireAuth, isSuccess, handleESIError, handleSuccessResponse, } from "./lib/rq-util.mjs";
+import { is, curl, replaceCbt, hasPathParams, getSDEVersion, normalizeOptions, initOptions, isDebug, fireRequestsDoesNotRequireAuth, isSuccess, handleESIError, handleSuccessResponse, } from "./lib/rq-util.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -37,7 +37,7 @@ const LOG = isDebug();
  */
 let ax = 0;
 /** @type {function(Truthy=): number} */
-const incrementAx = (minus) => minus ? ax-- : ax++;
+const progress = (minus) => minus ? ax-- : ax++;
 /**
  * @returns Get The Current ESI request pending count.
  */
@@ -54,14 +54,10 @@ export const getRequestPending = () => ax;
 export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>} */ (async (mthd, endp, ...opt) => {
     // When only options are provided
     const nOpt = normalizeOptions(opt);
-    /** @type {number[]=} */
-    let pathParams;
-    if (nOpt.pathParams) {
-        pathParams = typeof nOpt.pathParams === "number"
-            ? [nOpt.pathParams] : isArray(nOpt.pathParams)
-            ? nOpt.pathParams : void 0;
+    if (hasPathParams(nOpt)) {
+        const pathParams = Array.isArray(nOpt.pathParams) ? nOpt.pathParams : [nOpt.pathParams];
+        endp = replaceCbt(endp, pathParams);
     }
-    isArray(pathParams) && (endp = replaceCbt(endp, pathParams));
     const { rqopt, qss } = initOptions(mthd, nOpt);
     const endpointUrl = curl(endp);
     const up = new URLSearchParams(qss);
@@ -72,7 +68,7 @@ export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>}
         const res = await fetch(url, rqopt).finally(() => ax--);
         // The parameters are different for successful and error responses.
         if (isSuccess(res.status)) {
-            return handleSuccessResponse(res, endpointUrl, rqopt, up, incrementAx);
+            return handleSuccessResponse(res, endpointUrl, rqopt, up, progress);
         }
         // else if (isError(status)) {}
         // Actually, throw Error

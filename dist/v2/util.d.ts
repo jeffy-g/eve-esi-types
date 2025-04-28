@@ -17,7 +17,7 @@
  * @returns {string | never} The parameter name if the path is parameterized, otherwise `never`.
  */
 //* ctt
-export type PickPathParameters<Path extends string> =
+export type PickPathParameters<Path extends PropertyKey> =
   Path extends `${string}/{${infer Param}}/${infer Rest}`
   ? Param | PickPathParameters<`/${Rest}`>
   : never;
@@ -28,6 +28,10 @@ export type PickPathParameters<Path extends string> =
     ? Param
   : never;
 //*/
+export type PathParamsToMap<EP extends PropertyKey> =
+  EP extends `${infer _Start}{${infer Param}}${infer Rest}`
+    ? { [K in Param | keyof PathParamsToMap<Rest>]: string }
+    : {};
 
 /**
  * Convert a union type to an intersection type.
@@ -36,7 +40,6 @@ export type PickPathParameters<Path extends string> =
  * @returns {I} The intersection type.
  */
 export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
-
 /**
  * Convert a union type to a tuple.
  * 
@@ -46,6 +49,56 @@ export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) ex
 export type UnionToTuple<T> = UnionToIntersection<
   T extends any ? () => T : never
 > extends () => infer R ? [...UnionToTuple<Exclude<T, R>>, R] : [];
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - -
+//              Implemented: 2025/4/28
+// - - - - - - - - - - - - - - - - - - - - - - - - - -
+/**
+ * Extracts parameter keys from a parameterized path string as a tuple.
+ *
+ * This utility type takes a parameterized path string (e.g., `"/foo/{a}/bar/{b}/baz/"`)
+ * and extracts the parameter keys (e.g., `["a", "b"]`) as a tuple.
+ *
+ * @template Path - The parameterized path string.
+ * @returns {string[]} A tuple of parameter keys extracted from the path.
+ *
+ * @example
+ * ```ts
+ * type Params = ExtractPathParamKeys<"/foo/{a}/bar/{b}/baz/">;
+ * // Result: ["a", "b"]
+ * ```
+ */
+export type ExtractPathParamKeys<
+  P extends PropertyKey
+> = P extends `${infer _Before}{${infer Param}}${infer Rest}`
+  ? [Param, ...ExtractPathParamKeys<Rest>]
+  : [];
+
+/**
+ * Extract parameter keys from either
+ *  - a single parameterized path string, or
+ *  - an array (or readonly array) of those strings,
+ * and return them as a union.
+ *
+ * @template Path
+ *   Either a string template or an (readonly) array of string templates.
+ * @returns A union of all parameter names.
+ *
+ * @example
+ * type U1 = ExtractPathParamUnion<"/foo/{a}/bar/{b}/baz/">;
+ * // -> "a" | "b"
+ *
+ * type U2 = ExtractPathParamUnion<
+ *   ["/foo/{a}/bar/{b}/baz/", "/users/{user_id}/posts/{post_id}"]
+ * >;
+ * // -> "a" | "b" | "user_id" | "post_id"
+ */
+export type ExtractPathParamUnion<Path extends string | readonly string[]> =
+  Path extends readonly any[]
+    ? ExtractPathParamKeys<Path[number]>[number]
+    : Path extends string
+      ? ExtractPathParamKeys<Path>[number] : never;
+
 
 /**
  * #### Build an array of elements from a flattened tuple of type "1" | "2" | "3" ...
@@ -59,7 +112,6 @@ export type UnionToTuple<T> = UnionToIntersection<
  * @date 2025/2/11 18:12:02
  */
 export type InferKeysLen<T> = UnionToTuple<T>["length"];
-
 /**
  * Splits a string by a delimiter and returns a tuple of the resulting substrings.
  * @example
