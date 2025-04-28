@@ -2,12 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [3.2.7] - 2025-04-28
+
+### 🚜 Refactor
+
+- Add ESIEntryParamKeys, ESIEntryExtraKeys & ResolveEndpointRequest types
 
 ### ⚙️ Miscellaneous Tasks
 
 - Update CHANGELOG.md
 - Update JSDoc (rename EPX to EPO and add acronym definition)
+- Update CHANGELOG.md
+- Bump version to v3.2.7
 
 ## [3.2.6] - 2025-04-24
 
