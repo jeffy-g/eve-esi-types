@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🐛 Bug Fixes
+
+- Resolve various errors
+- Resolved type error (ts(2322)) using the `TFireReturn` type assertion
+
+### 🚜 Refactor
+
+- Use `util.hasPathParams`
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG.md
+- Update jsdoc
+- Update README.md
+- Update "files" (jsconfig -> tsconfig)
+
 ## [3.2.7] - 2025-04-28
 
 ### 🚜 Refactor
