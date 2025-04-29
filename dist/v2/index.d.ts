@@ -85,7 +85,6 @@ export type RestrictKeys2<
 
 declare global {
 
-  type ESIEndpointType = string | symbol;
   type __ShiftType = 1;
   /**
    * Marks specific properties of a type as required.
