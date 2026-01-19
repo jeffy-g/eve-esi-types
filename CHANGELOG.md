@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.9] - 2026-01-19
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG.md
+- Bump version to v3.2.9
+
 ## [3.2.8] - 2026-01-03
 
 ### 🐛 Bug Fixes
