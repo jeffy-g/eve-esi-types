@@ -55,7 +55,7 @@ export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>}
     // When only options are provided
     const nOpt = normalizeOptions(opt);
     if (hasPathParams(nOpt)) {
-        const pathParams = Array.isArray(nOpt.pathParams) ? nOpt.pathParams : [nOpt.pathParams];
+        const pathParams = isArray(nOpt.pathParams) ? nOpt.pathParams : [nOpt.pathParams];
         endp = replaceCbt(endp, pathParams);
     }
     const { rqopt, qss } = initOptions(mthd, nOpt);
