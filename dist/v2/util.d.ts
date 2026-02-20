@@ -143,7 +143,8 @@ export type Split<S extends string, D extends string = ":"> =
  */
 //* ctt
 // export type CombineIntersection<IS> = IS extends infer O ? { [K in keyof O]: O[K] } : never;
-export type CombineIntersection<IS extends Record<string, unknown>> = { [K in keyof IS]: IS[K] };
+// export type CombineIntersection<IS extends Record<string, unknown>> = { [K in keyof IS]: IS[K] };
+export type CombineIntersection<IS> = true extends 0 ? { [K in keyof IS]: IS[K] } : { [K in keyof IS]: IS[K] };
 /*/
 export type CombineIntersection<IS> = IS;
 //*/

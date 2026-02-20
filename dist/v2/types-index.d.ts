@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/types-index.d.ts
- * @summary This file is auto-generated and defines version 3.2.9 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.11 of the EVE Online ESI response types.
  */
 import "./globals/alliance.d.ts";
 import "./globals/assets.d.ts";

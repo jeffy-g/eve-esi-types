@@ -9,7 +9,7 @@
  * THIS DTS IS AUTO GENERATED, DO NOT EDIT
  * 
  * @file eve-esi-types/v2/index.d.ts
- * @summary This file is auto-generated and defines version 3.2.9 of the EVE Online ESI response types.
+ * @summary This file is auto-generated and defines version 3.2.11 of the EVE Online ESI response types.
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 import type { PickPathParameters, InferKeysLen, CombineIntersection, ExtractPathParamKeys } from "./util.d.ts";
@@ -86,6 +86,7 @@ export type RestrictKeys2<
 declare global {
 
   type __ShiftType = 1;
+
   /**
    * Marks specific properties of a type as required.
    * 
@@ -105,6 +106,25 @@ declare global {
   } & {
     [P in keyof T as P extends K ? never : P]: T[P];
   };
+
+  /* cct
+  // this type are old version
+  type RequireThese2<T, K extends keyof T> = T & Required<Pick<T, K>>;
+  // type は "&" で分けられる
+  type TTOK0 = RequireThese<
+    { index?: "text"; source?: string} & { hask?: true; }, "hask" | "index"
+  >;
+  // type は "&" で分けられる(冗長な type 表現)
+  type TTOK = RequireThese2<
+    { index?: "text"; source?: string} & { hask?: true; }, "hask" | "index"
+  >;
+  // **完全に結合
+  type TTOK2 = CombineIntersection<
+    TTOK & TTOK0
+    // { index?: "text"; source?: string} & { hask?: true; }
+  >;
+  /*/
+  //*/
 
   //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //                                Version 3 types
