@@ -1,8 +1,4 @@
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//                    BODY TYPES
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /* (Character) post_characters_affiliation:body, type name: "characters" */
-
 /**
  * characters array
  *
@@ -10,9 +6,7 @@
  * @maxItems 1000
  */
 type PostCharactersAffiliationCharacters = [number, ...number[]];
-
 /* (Assets) post_characters_character_id_assets_locations:body, type name: "item_ids" */
-
 /**
  * item_ids array
  *
@@ -20,9 +14,7 @@ type PostCharactersAffiliationCharacters = [number, ...number[]];
  * @maxItems 1000
  */
 type PostCharactersCharacterIdAssetsLocationsItemIds = [number, ...number[]];
-
 /* (Assets) post_characters_character_id_assets_names:body, type name: "item_ids" */
-
 /**
  * item_ids array
  *
@@ -30,14 +22,11 @@ type PostCharactersCharacterIdAssetsLocationsItemIds = [number, ...number[]];
  * @maxItems 1000
  */
 type PostCharactersCharacterIdAssetsNamesItemIds = [number, ...number[]];
-
 /* (Calendar) put_characters_character_id_calendar_event_id:body, type name: "response" */
-
 /**
  * response string
  */
 type PutCharactersCharacterIdCalendarEventIdResponseResponse = "accepted" | "declined" | "tentative";
-
 /**
  * response object
  */
@@ -45,9 +34,7 @@ interface PutCharactersCharacterIdCalendarEventIdResponse {
   response: PutCharactersCharacterIdCalendarEventIdResponseResponse;
   [k: string]: unknown | undefined;
 }
-
 /* (Contacts) post_characters_character_id_contacts:body, type name: "contact_ids" */
-
 /**
  * contact_ids array
  *
@@ -55,9 +42,7 @@ interface PutCharactersCharacterIdCalendarEventIdResponse {
  * @maxItems 100
  */
 type PostCharactersCharacterIdContactsContactIds = [number, ...number[]];
-
 /* (Contacts) put_characters_character_id_contacts:body, type name: "contact_ids" */
-
 /**
  * contact_ids array
  *
@@ -65,9 +50,7 @@ type PostCharactersCharacterIdContactsContactIds = [number, ...number[]];
  * @maxItems 100
  */
 type PutCharactersCharacterIdContactsContactIds = [number, ...number[]];
-
 /* (Character) post_characters_character_id_cspa:body, type name: "characters" */
-
 /**
  * characters array
  *
@@ -75,9 +58,7 @@ type PutCharactersCharacterIdContactsContactIds = [number, ...number[]];
  * @maxItems 100
  */
 type PostCharactersCharacterIdCspaCharacters = [number, ...number[]];
-
 /* (Fittings) post_characters_character_id_fittings:body, type name: "fitting" */
-
 /**
  * items array
  *
@@ -132,7 +113,6 @@ type PostCharactersCharacterIdFittingsFlag =
   | "SubSystemSlot1"
   | "SubSystemSlot2"
   | "SubSystemSlot3";
-
 /**
  * fitting object
  */
@@ -161,9 +141,7 @@ interface PostCharactersCharacterIdFittingsItem {
   type_id: number;
   [k: string]: unknown | undefined;
 }
-
 /* (Mail) post_characters_character_id_mail:body, type name: "mail" */
-
 /**
  * recipients array
  *
@@ -175,7 +153,6 @@ type PostCharactersCharacterIdMailRecipients = [PostCharactersCharacterIdMailRec
  * recipient_type string
  */
 type PostCharactersCharacterIdMailRecipientType = "alliance" | "character" | "corporation" | "mailing_list";
-
 /**
  * mail object
  */
@@ -206,9 +183,7 @@ interface PostCharactersCharacterIdMailRecipient {
   recipient_type: PostCharactersCharacterIdMailRecipientType;
   [k: string]: unknown | undefined;
 }
-
 /* (Mail) post_characters_character_id_mail_labels:body, type name: "label" */
-
 /**
  * Hexadecimal string representing label color, in RGB format
  */
@@ -231,7 +206,6 @@ type PostCharactersCharacterIdMailLabelsColor =
   | "#ffff01"
   | "#ffffcd"
   | "#ffffff";
-
 /**
  * label object
  */
@@ -243,10 +217,7 @@ interface PostCharactersCharacterIdMailLabelsLabel {
   name: string;
   [k: string]: unknown | undefined;
 }
-
 /* (Mail) put_characters_character_id_mail_mail_id:body, type name: "contents" */
-
-
 /**
  * contents object
  */
@@ -263,9 +234,7 @@ interface PutCharactersCharacterIdMailMailIdContents {
   read?: boolean;
   [k: string]: unknown | undefined;
 }
-
 /* (Assets) post_corporations_corporation_id_assets_locations:body, type name: "item_ids" */
-
 /**
  * item_ids array
  *
@@ -273,9 +242,7 @@ interface PutCharactersCharacterIdMailMailIdContents {
  * @maxItems 1000
  */
 type PostCorporationsCorporationIdAssetsLocationsItemIds = [number, ...number[]];
-
 /* (Assets) post_corporations_corporation_id_assets_names:body, type name: "item_ids" */
-
 /**
  * item_ids array
  *
@@ -283,10 +250,7 @@ type PostCorporationsCorporationIdAssetsLocationsItemIds = [number, ...number[]]
  * @maxItems 1000
  */
 type PostCorporationsCorporationIdAssetsNamesItemIds = [number, ...number[]];
-
 /* (Fleets) put_fleets_fleet_id:body, type name: "new_settings" */
-
-
 /**
  * new_settings object
  */
@@ -301,14 +265,11 @@ interface PutFleetsFleetIdNewSettings {
   motd?: string;
   [k: string]: unknown | undefined;
 }
-
 /* (Fleets) post_fleets_fleet_id_members:body, type name: "invitation" */
-
 /**
  * If a character is invited with the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified. If a character is invited with the `wing_commander` role, only `wing_id` should be specified. If a character is invited with the `squad_commander` role, both `wing_id` and `squad_id` should be specified. If a character is invited with the `squad_member` role, `wing_id` and `squad_id` should either both be specified or not specified at all. If they aren’t specified, the invited character will join any squad with available positions.
  */
 type PostFleetsFleetIdMembersRole = "fleet_commander" | "wing_commander" | "squad_commander" | "squad_member";
-
 /**
  * invitation object
  */
@@ -328,9 +289,7 @@ interface PostFleetsFleetIdMembersInvitation {
   wing_id?: number;
   [k: string]: unknown | undefined;
 }
-
 /* (Fleets) put_fleets_fleet_id_members_member_id:body, type name: "movement" */
-
 /**
  * If a character is moved to the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified. If a character is moved to the `wing_commander` role, only `wing_id` should be specified. If a character is moved to the `squad_commander` role, both `wing_id` and `squad_id` should be specified. If a character is moved to the `squad_member` role, both `wing_id` and `squad_id` should be specified.
  */
@@ -339,7 +298,6 @@ type PutFleetsFleetIdMembersMemberIdRole =
   | "wing_commander"
   | "squad_commander"
   | "squad_member";
-
 /**
  * movement object
  */
@@ -355,10 +313,7 @@ interface PutFleetsFleetIdMembersMemberIdMovement {
   wing_id?: number;
   [k: string]: unknown | undefined;
 }
-
 /* (Fleets) put_fleets_fleet_id_squads_squad_id:body, type name: "naming" */
-
-
 /**
  * naming object
  */
@@ -369,10 +324,7 @@ interface PutFleetsFleetIdSquadsSquadIdNaming {
   name: string;
   [k: string]: unknown | undefined;
 }
-
 /* (Fleets) put_fleets_fleet_id_wings_wing_id:body, type name: "naming" */
-
-
 /**
  * naming object
  */
@@ -383,9 +335,7 @@ interface PutFleetsFleetIdWingsWingIdNaming {
   name: string;
   [k: string]: unknown | undefined;
 }
-
 /* (User Interface) post_ui_openwindow_newmail:body, type name: "new_mail" */
-
 /**
  * recipients array
  *
@@ -393,7 +343,6 @@ interface PutFleetsFleetIdWingsWingIdNaming {
  * @maxItems 50
  */
 type PostUiOpenwindowNewmailRecipients = [number, ...number[]];
-
 /**
  * new_mail object
  */
@@ -417,9 +366,7 @@ interface PostUiOpenwindowNewmailNewMail {
   to_mailing_list_id?: number;
   [k: string]: unknown | undefined;
 }
-
 /* (Universe) post_universe_ids:body, type name: "names" */
-
 /**
  * names array
  *
@@ -427,9 +374,7 @@ interface PostUiOpenwindowNewmailNewMail {
  * @maxItems 500
  */
 type PostUniverseIdsNames = [string, ...string[]];
-
 /* (Universe) post_universe_names:body, type name: "ids" */
-
 /**
  * ids array
  *
@@ -437,13 +382,7 @@ type PostUniverseIdsNames = [string, ...string[]];
  * @maxItems 1000
  */
 type PostUniverseNamesIds = [number, ...number[]];
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//                    QUERY TYPES
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /* (Contacts) delete_characters_character_id_contacts:query, parameter name: "contact_ids" */
-
 /**
  * A list of contacts to delete
  *
@@ -451,27 +390,21 @@ type PostUniverseNamesIds = [number, ...number[]];
  * @maxItems 20
  */
 type DeleteCharactersCharacterIdContactsContactIds = [number, ...number[]];
-
 /* (Contacts) post_characters_character_id_contacts:query, parameter name: "label_ids" */
-
 /**
  * Add custom labels to the new contact
  *
  * @maxItems 63
  */
 type PostCharactersCharacterIdContactsLabelIds = number[];
-
 /* (Contacts) put_characters_character_id_contacts:query, parameter name: "label_ids" */
-
 /**
  * Add custom labels to the contact
  *
  * @maxItems 63
  */
 type PutCharactersCharacterIdContactsLabelIds = number[];
-
 /* (Mail) get_characters_character_id_mail:query, parameter name: "labels" */
-
 /**
  * Fetch only mails that match one or more of the given labels
  *
@@ -479,7 +412,6 @@ type PutCharactersCharacterIdContactsLabelIds = number[];
  * @maxItems 25
  */
 type GetCharactersCharacterIdMailLabels = [number, ...number[]];
-
 /* get_characters_character_id_search, categories query type */
 type GetCharactersCharacterIdSearchCategory =
   | "agent"
@@ -493,10 +425,7 @@ type GetCharactersCharacterIdSearchCategory =
   | "solar_system"
   | "station"
   | "structure";
-
-
 /* (Search) get_characters_character_id_search:query, parameter name: "categories" */
-
 /**
  * Type of entities to search for
  *
@@ -504,48 +433,36 @@ type GetCharactersCharacterIdSearchCategory =
  * @maxItems 11
  */
 type GetCharactersCharacterIdSearchCategories = [GetCharactersCharacterIdSearchCategory, ...GetCharactersCharacterIdSearchCategory[]];
-
 /* (Search) get_characters_character_id_search:query, parameter name: "search" */
-
 /**
  * The string to search on
  */
 type GetCharactersCharacterIdSearchSearch = string;
-
 /* get_markets_region_id_orders, order_type query type */
-
 /**
  * Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders
  */
 type GetMarketsRegionIdOrdersOrderType = "buy" | "sell" | "all";
-
 /* (Routes) get_route_origin_destination:query, parameter name: "avoid" */
-
 /**
  * avoid solar system ID(s)
  *
  * @maxItems 100
  */
 type GetRouteOriginDestinationAvoid = number[];
-
 /* (Routes) get_route_origin_destination:query, parameter name: "connections" */
-
 /**
  * connected solar system pairs
  *
  * @maxItems 100
  */
 type GetRouteOriginDestinationConnections = [number, number][];
-
 /* (Routes) get_route_origin_destination:query, parameter name: "flag" */
-
 /**
  * route security preference
  */
 type GetRouteOriginDestinationFlag = "shortest" | "secure" | "insecure";
-
 /* get_universe_structures, filter query type */
-
 /**
  * Only list public structures that have this service online
  */

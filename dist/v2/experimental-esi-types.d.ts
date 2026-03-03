@@ -21,8 +21,6 @@ import type {
   ExtractPathParamKeys,
   CombineIntersection,
 } from "./index.d.ts";
-
-
 /**
  * Resolves the final request-parameter shape and response type for an ESI endpoint,
  * and indicates whether any parameters are actually required.
@@ -84,13 +82,10 @@ export type ResolveEndpointRequest<
   [RequireKeys] extends [never] ? [FinalOpt?] : [FinalOpt],
   EntryWithParams extends { result: infer R } ? R : never,
 ];
-
-
 type TESIRequestFunctionContext<
   Mtd extends TESIEntryMethod = TESIEntryMethod,
   REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd> = ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
   ActualOpt extends Record<string, unknown> = Record<string, unknown>,
-
   EPO extends ResolvedEndpoint<Mtd, REP> = ResolvedEndpoint<Mtd, REP>,
   PPM extends InferPathParams<REP, EPO> = InferPathParams<REP, EPO>,
   Opt extends IdentifyParameters<Mtd, EPO, ActualOpt, PPM> = IdentifyParameters<Mtd, EPO, ActualOpt, PPM>,
@@ -101,10 +96,6 @@ type TESIRequestFunctionContext<
 } & (HasOpt extends 1 ? { options: Opt } : { options?: Opt }) & {
   result?: Ret;
 };
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//           TESIRequestFunctionWithContext
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 export type TESIRequestFunctionWithContext<
   CTX extends TESIRequestFunctionContext,
   Mtd extends TESIEntryMethod = CTX["method"],
@@ -112,8 +103,6 @@ export type TESIRequestFunctionWithContext<
   REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd> = CTX["endpoint"],
   ActualOpt extends Record<string, unknown> = CTX["options"]
 > = (context: CTX) => Promise<NonNullable<CTX["result"]>>;
-
-
 /**
  * Infers the response result type of an ESI endpoint based on a union of HTTP method and endpoint.
  * 
@@ -134,9 +123,7 @@ export type TESIRequestFunctionWithContext<
  */
 export type InferESIResponseResultFromUnion<
   EP extends unknown
-  // EP extends ESIEndpointUnions
 > = EP extends `${infer M}:${infer EPRest}`
-  //* ctt
   ? M extends TESIEntryMethod
     ? EPRest extends ESIEndpointOf<M>
       ? _ESIResponseType<M, EPRest> extends { result: infer U }
@@ -144,19 +131,6 @@ export type InferESIResponseResultFromUnion<
       : never
     : never
   : never;
-  /*/
-  ? EPRest extends (
-      M extends TESIEntryMethod ? ESIEndpointOf<M> : never
-    )
-    ? _ESIResponseType<M, EPRest> extends { result: infer U }
-      ? U : never
-    : never
-  : never;
-  //*/
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//                    Next Endpoint
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @experimental
  * 
@@ -184,17 +158,13 @@ export type ResolveNextEndpoint<
   M extends TESIEntryMethod,
   EP extends Exclude<ESIEndpointOf<M>, symbol> = Exclude<ESIEndpointOf<M>, symbol>,
   BaseResut extends InferESIResponseResult<M, EP> = InferESIResponseResult<M, EP>,
-  // Endpoints extends ESIEndpointAll = ESIEndpointAll,
   Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
 > = {
   [NextEP in Endpoints]: NextEP extends `${EP}${string}{${string}}/${string}`
     ? ValidateNextEndpoint<BaseResut, NextEP> extends 1
       ? NextEP : never
-      // ? [EP, NextEP, BaseResut] : never
     : never;
 }[Endpoints];
-
-
 export type SplitEndpointUnion<
   S extends ESIEndpointUnions, D extends string = ":",
   AR extends any[] = Split<S, D>
@@ -202,9 +172,6 @@ export type SplitEndpointUnion<
   ? AR[1] extends Exclude<ESIEndpointOf<AR[0]>, symbol>
     ? AR: never
   : never;
-// // Test cases
-// type Test1 = SplitEndpointUnion<"post:/universe/ids/">;
-
 /**
  * Resolves the next applicable ESI endpoint based on a union of HTTP method and endpoint.
  * 
@@ -238,10 +205,8 @@ export type ResolveNextEndpointFromUnion<
   [NextEP in Endpoints]: NextEP extends `${EP}${string}{${string}}/${string}`
     ? ValidateNextEndpoint<BaseResut, NextEP> extends 1
       ? NextEP : never
-      // ? [EP, NextEP, BaseResut] : never
     : never;
 }[Endpoints];
-
 /**
  * Validates whether a given endpoint can be the next endpoint in a chain based on the response type of the current endpoint.
  * 
@@ -264,13 +229,11 @@ export type ResolveNextEndpointFromUnion<
  * ```
  */
 export type ValidateNextEndpoint<
-  BaseResut extends unknown, // number[] or SomeType[]
+  BaseResut extends unknown,
   NextEP extends string,
   Debug = 0,
-> = 
-  // If it is simply a number[], it is unconditionally assumed that there is a next endpoint.
+> =
   BaseResut extends number[] ? 1 : ValidateEndpointParamsInArray<BaseResut, NextEP, Debug>;
-
 /**
  * Validates whether the elements of an object array satisfy the path parameter requirements
  * for a given endpoint.
@@ -293,18 +256,17 @@ export type ValidateNextEndpoint<
  * ```
  */
 type ValidateEndpointParamsInArray<
-  BaseResut extends unknown, // SomeType[]
+  BaseResut extends unknown,
   NextEP extends string,
   Debug = 0,
   PathParams extends any[] = ExtractPathParamKeys<NextEP>,
 > = BaseResut extends (infer O)[]
   ? PathParams[1] extends keyof O ? NonNullable<O[PathParams[1]]> extends number
-    ? Debug extends 1 // development
+    ? Debug extends 1
       ? [O, PathParams] : 1
     : 0
   : 0
 : 0;
-
 /**
  * `ResolveNextEndpointLoos` is a utility type that infers the next endpoint based on the current endpoint and method.
  * 
@@ -328,36 +290,21 @@ type ValidateEndpointParamsInArray<
  */
 export type ResolveNextEndpointLoos<
   M extends TESIEntryMethod,
-  /* ctt
-  // DEVNOTE: By applying "skipLibCheck=true", typescript semantics error will not occur.
-  EP extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-  Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-  /*/
-  // This fix is required for skipLibCheck=false
   EP extends Exclude<ESIEndpointOf<M>, symbol> = Exclude<ESIEndpointOf<M>, symbol>,
   Endpoints extends ESIEndpointOf<M> = ESIEndpointOf<M>,
-  //*/
 > = {
   [NextEP in Endpoints]: NextEP extends `${EP}{${string}}${string}` ? NextEP : never
 }[Endpoints];
-
 /**
  * @see For the meaning of this type of comment trick, see {@link ResolveNextEndpointLoos} line comment.
  */
 export type ESIEndpointUnions = {
   [M in TESIEntryMethod]: `${M}:${
-    /* ctt
-    ESIEndpointOf<M>
-    /*/
+    
     Exclude<ESIEndpointOf<M>, symbol>
-    //*/
+    
   }`;
 }[TESIEntryMethod];
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//                  Filter Endpoint
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Filters ESI endpoints based on the response type.
  * 
@@ -376,7 +323,6 @@ export type ESIEndpointUnions = {
 export type FilterEndpointUnionsByResponse<T> = {
   [EPU in ESIEndpointUnions]: InferESIResponseResultFromUnion<EPU> extends T ? EPU : never;
 }[ESIEndpointUnions];
-
 /**
  * Extracts valid next ESI endpoints from a filtered list of endpoints.
  * 
@@ -396,15 +342,12 @@ export type ExtractValidNextEndpoints<
   T = number[], EPUs extends ESIEndpointUnions = FilterEndpointUnionsByResponse<T>,
   Debug = 0
 > = {
-    // [EPU in EPUs]: ResolveNextEndpointFromUnion<EPU>;
     [EPU in EPUs]: Debug extends 1
       ? ResolveNextEndpointFromUnion<EPU> extends never
         ? never
-        : [EPU, ResolveNextEndpointFromUnion<EPU>] // array
-        // : { [X in EPU]: ResolveNextEndpointFromUnion<EPU> }  // map
+        : [EPU, ResolveNextEndpointFromUnion<EPU>]
     : ResolveNextEndpointFromUnion<EPU>;
 }[EPUs];
-
 export type ExtractValidNextEndpointsOrMap<
     T = number[],
     EPUs = FilterEndpointUnionsByResponse<T>,
@@ -415,7 +358,6 @@ export type ExtractValidNextEndpointsOrMap<
         ? ResolveNextEndpointFromUnion<EPU> extends never
           ? never
           : Debug extends 1 ? { readonly [K in EPU]: UnionToTuple<ResolveNextEndpointFromUnion<EPU>> }
-          // : Debug extends 1 ? { readonly [K in EPU]: ResolveNextEndpointFromUnion<EPU> }
         : ResolveNextEndpointFromUnion<EPU>
       : never
     : never

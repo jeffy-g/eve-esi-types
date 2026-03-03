@@ -12,8 +12,6 @@
  * @summary This file is auto-generated and defines version 3.2.11 of the EVE Online ESI response types.
  */
 import "./types-index.d.ts";
-
-
 export type TESIResponseOKMap = {
   get: {
     "/alliances/": {

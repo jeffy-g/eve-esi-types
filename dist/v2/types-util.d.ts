@@ -13,8 +13,6 @@
  */
 import type { TESIResponseOKMap } from "./response-map.d.ts";
 import type { RestrictKeys, CombineIntersection } from "./index.d.ts";
-
-
 /**
  * Defines the keys used in ESI entries for request parameters.  
  * These keys represent the main categories of parameters that can be included in an ESI request.
@@ -25,7 +23,6 @@ export type ESIEntryParamKeys = "auth" | "query" | "body" | "pathParams";
  * These keys represent metadata or additional information that is not part of the main request parameters.
  */
 export type ESIEntryExtraKeys = "result" | "tag" | "cachedSeconds";
-
 /**
  * Resolves the parameters required for making an ESI request to a specific endpoint.
  *
@@ -66,14 +63,9 @@ export type ESIEntryExtraKeys = "result" | "tag" | "cachedSeconds";
  */
 export type ResolveEndpointParameters<
   Mtd extends TESIEntryMethod,
-  // REP is either a parameterized path or already number-filled:
   REP extends ReplacePathParams<ESIEndpointOf<Mtd>> | ESIEndpointOf<Mtd>,
-  // <— tie it directly to REP via ResolvedEndpoint:
   EPO extends ResolvedEndpoint<Mtd, REP>,
-  // user-supplied options:
   Opt extends Record<string, unknown>,
-
-  // now that EPO is fixed, these defaults all line up:
   PathParams extends InferPathParams<REP, EPO> = InferPathParams<REP, EPO>,
   EntryWithParams = _ESIResponseType<Mtd, EPO> & PathParams,
   RequireKeys extends keyof EntryWithParams = Exclude<keyof EntryWithParams, ESIEntryExtraKeys>,
@@ -81,15 +73,10 @@ export type ResolveEndpointParameters<
     RestrictKeys<Opt, RequireKeys> & Pick<EntryWithParams, RequireKeys>
   >
 > = {
-  // the actual `"result"` payload type
   result: EntryWithParams extends { result: infer R } ? R : never;
-  // the exact options object you should pass in (pathParams/query/body/auth)
   finalOptions: FinalOpt;
-  // 1 if you _must_ pass an options object, else 0
   optionIsRequire: HasRequireParams<Mtd, EPO, PathParams>;
 };
-
-
 /**
  * Represents a function that can make ESI requests with various HTTP methods.
  *
@@ -112,7 +99,6 @@ export type ResolveEndpointParameters<
 export interface IESIRequestFunction2<ActualOpt extends Record<string, unknown>>
   extends TESIRequestFunctionSignature2<ActualOpt>, TESIRequestFunctionMethods2<ActualOpt> {
 }
-
 /**
  * Represents the methods available for making ESI requests.
  * 
@@ -139,7 +125,6 @@ export interface IESIRequestFunction2<ActualOpt extends Record<string, unknown>>
 export type TESIRequestFunctionMethods2<ActualOpt extends Record<string, unknown>> = {
   [method in TESIEntryMethod]: TESIRequestFunctionEachMethod2<method, ActualOpt>;
 }
-
 /**
  * List of "x-cached-seconds"
  * 
@@ -164,7 +149,6 @@ export declare type TESICachedSeconds<
       : never
   }[ESIEndpointOf<M>];
 }[Method];
-
 /**
  * Indicates that no path parameters are allowed.
  *
@@ -172,8 +156,6 @@ export declare type TESICachedSeconds<
  * By using this type, it is clear that no path parameters should be provided.
  */
 export declare type TPathParamsNever = { /* pathParams?: never */ };
-
-// local types
 /**
  * Infers the response type of an ESI request based on the HTTP method and endpoint.
  * 
@@ -196,7 +178,6 @@ export type _ESIResponseType<
   M extends TESIEntryMethod,
   EPx extends ESIEndpointOf<M> | string,
 > = TESIResponseOKMap[M][Extract<EPx, ESIEndpointOf<M>>];
-// type XOK = _ESIResponseType<"get", "/status/"> extends global._ESIResponseType<"get", "/status/"> ? 1 : 0;
 /**
  * Determines if the endpoint requires path parameters.
  * 
@@ -212,7 +193,6 @@ export type _ESIResponseType<
  * @see {@link IfParameterizedPath}
  * @see {@link ReplacePathParams}
  */
-//* ctt
 export type _IfNeedPathParams<
   EP extends PropertyKey,
   Parameterized extends IfParameterizedPath<EP> = IfParameterizedPath<EP>
@@ -220,14 +200,6 @@ export type _IfNeedPathParams<
   ? TPathParamsNever :
     EP extends ReplacePathParams<EP>
       ? TPathParamsNever : { pathParams: Parameterized };
-/*/
-export type _IfNeedPathParams<
-  EP extends PropertyKey,
-  Parameterized extends IfParameterizedPath<EP> = IfParameterizedPath<EP>
-> = Parameterized extends 0
-  ? TPathParamsNever : { pathParams: Parameterized };
-//*/
-
 /**
  * Picks the required parameters from an entry type, including additional parameters.
  * 
@@ -254,7 +226,6 @@ export type __PickRequireParams<
   EPx extends ESIEndpointOf<M> | string,
   AdditionalParams,
 > = Exclude<keyof (_ESIResponseType<M, EPx> & AdditionalParams), ESIEntryExtraKeys>;
-
 /**
  * Infer the result type of an ESI response based on the method and endpoint.
  * 

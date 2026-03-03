@@ -13,7 +13,6 @@
  */
 import type { TESIResponseOKMap, ResolveEndpointParameters } from "./index.d.ts";
 export type * from "./index.d.ts";
-
 /**
  * Converts a string to lower camel case.
  * 
@@ -28,8 +27,6 @@ export type * from "./index.d.ts";
  */
 export declare type LCamelCase<S extends string> = S extends `${infer P1} ${infer P2}`
   ? `${Lowercase<P1>}${Capitalize<P2>}` : Lowercase<S>;
-
-
 declare type InferSomethingByBrand<N = number> = N & { __enum: "InferSomethingBy" };
 declare type InferSomethingByMethod  = InferSomethingByBrand<0>;
 declare type InferSomethingByTags    = InferSomethingByBrand<1>;
@@ -41,9 +38,6 @@ declare type InferSomethingBy<Tag, AsType extends InferSomethingByBrand = InferS
       : never
     : never;
 }[TESIEntryMethod];
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//               Utility Type `ESITags`
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Maps HTTP methods to their corresponding tags.
  * @template M The HTTP method.
@@ -54,10 +48,6 @@ export declare type ESITags = InferSomethingBy<never, InferSomethingByTags>;
  * @date 2025/4/12
  */
 export declare type LESITags = LCamelCase<ESITags>;
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//            Utility Type `InferMethod`
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Infers the HTTP method based on the provided tag.
  * 
@@ -65,16 +55,6 @@ export declare type LESITags = LCamelCase<ESITags>;
  * @date 2025/2/28
  */
 export declare type InferMethod<Tag> = InferSomethingBy<Tag>;
-/* ctt
-type XAssets = InferMethod<"Assets">;
-type XContacts = InferMethod<"Contacts">;
-type XPlanetary = InferMethod<"Planetary Interaction">;
-/*/
-//*/
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//    Utility Type `TaggedEndpointRequestFunction2`
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Infers the endpoint origin based on the provided endpoints.
  * 
@@ -91,7 +71,6 @@ type _InferEndpointOrigin<
   [EP in Endpoints]: RealEP extends ReplacePathParams<EP>
     ? EP : never;
 }[Endpoints];
-
 /**
  * Creates a function type for making requests to tagged endpoints.
  *
@@ -136,20 +115,6 @@ type _InferEndpointOrigin<
  * @see {@link SelectEndpointByTag}
  * @see {@link InferESIResponseResult}
  */
-/* ctt
-export declare type TaggedEndpointRequestFunction2<
-  M extends TESIEntryMethod, Tag extends ESITags,
-  ActualOpt extends Record<string, unknown> = {},
-  EndPoints extends SelectEndpointByTag<Tag, M> = SelectEndpointByTag<Tag, M>,
-> = <
-    REP extends ReplacePathParams<EndPoints> | EndPoints,
-    EPO extends _InferEndpointOrigin<REP, EndPoints> extends never ? REP: _InferEndpointOrigin<REP, EndPoints>,
-    PPM extends InferPathParams<REP, EPO>,
-    Opt extends IdentifyParameters<M, EPO, ActualOpt, PPM>,
-    Ret extends InferESIResponseResult<M, EPO>,
-    HasOpt = HasRequireParams<M, EPO, PPM>,
->(endpoint: REP, ...options: HasOpt extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
-/*/
 export declare type TaggedEndpointRequestFunction2<
   M extends TESIEntryMethod, Tag extends ESITags,
   ActualOpt extends Record<string, unknown> = {},
@@ -162,12 +127,6 @@ export declare type TaggedEndpointRequestFunction2<
     Opt extends Params["finalOptions"],
     Ret extends Params["result"],
   >(endpoint: REP, ...options: Params["optionIsRequire"] extends 1 ? [Opt] : [Opt?]) => Promise<Ret>;
-//*/
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//    Utility Type `ESITaggedEndpointRequest2`
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Maps tags to their corresponding endpoint request functions.
  * 
@@ -180,10 +139,6 @@ export declare type ESITaggedEndpointRequest2<Tag extends ESITags, ActualOpt ext
     [method in InferMethod<Tag>]: TaggedEndpointRequestFunction2<method, tag, ActualOpt>;
   };
 }[Tag];
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
-//        Utility Type `SelectEndpointByTag`
-// - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * Selects an endpoint by tag and method.
  * 
@@ -199,12 +154,6 @@ export declare type SelectEndpointByTag<
       ? EP : never
     : never;
 }[ESIEndpointOf<M>];
-/* ctt
-type XAssetsEndpointGet = SelectEndpointByTag<"Assets", "get">;
-type XAssetsEndpointPost = SelectEndpointByTag<"Assets", "post">;
-/*/
-//*/
-
 /**
  * Maps lower camel case tags to their corresponding endpoint request functions.
  * 
@@ -214,7 +163,6 @@ type XAssetsEndpointPost = SelectEndpointByTag<"Assets", "post">;
 export declare type TaggedESIRequestMap2<ActualOpt extends Record<string, unknown> = {}> = {
   [tag in ESITags as LCamelCase<tag>]: ESITaggedEndpointRequest2<tag, ActualOpt>;
 };
-
 /**
  * Creates a partial map of lower camel case tags to their corresponding endpoint request functions.
  * ```ts
@@ -226,5 +174,4 @@ export declare type TaggedESIRequestMap2<ActualOpt extends Record<string, unknow
  * @date 2025/2/28
  */
 export declare type TaggedESIRequestMapPartial2<LowerTags extends LCamelCase<ESITags>> = RequireThese<Partial<TaggedESIRequestMap2>, LowerTags>;
-
 export as namespace XESI;
