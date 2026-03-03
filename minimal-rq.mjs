@@ -38,7 +38,7 @@ const esiMethods = /** @type {TESIRequestFunctionMethods2} */ ({});
  * @param {IESIRequestFunction2} fn
  */
 async function getEVEStatus2(fn) {
-    await util.getSDEVersion().then(sdeVersion => log(`sdeVersion: ${sdeVersion}`.blue));
+    await util.getSDEVersionLegacy().then(sdeVersion => log(`sdeVersion: ${sdeVersion}`.blue));
     const { clog, rlog } = util.getLogger();
     rlog("- - - - - - - > run as IESIRequestFunction2<ESIRequestOptions>".red, fn);
     await util.fireRequestsDoesNotRequireAuth(fn);

@@ -13,7 +13,9 @@
 // - - - - - - - - - - - - - - - - - - - -
 //               imports
 // - - - - - - - - - - - - - - - - - - - -
-import { is, curl, replaceCbt, hasPathParams, getSDEVersion, normalizeOptions, initOptions, isDebug, fireRequestsDoesNotRequireAuth, isSuccess, handleESIError, handleSuccessResponse, } from "./lib/rq-util.mjs";
+import { is, curl, replaceCbt, hasPathParams, getSDEVersion, 
+// getSDEVersionLegacy,
+normalizeOptions, initOptions, isDebug, fireRequestsDoesNotRequireAuth, isSuccess, handleESIError, handleSuccessResponse, } from "./lib/rq-util.mjs";
 // - - - - - - - - - - - - - - - - - - - -
 //           constants, types
 // - - - - - - - - - - - - - - - - - - - -
@@ -36,8 +38,10 @@ const LOG = isDebug();
  * Get the number of currently executing ESI requests
  */
 let ax = 0;
-/** @type {function(Truthy=): number} */
-const progress = (minus) => minus ? ax-- : ax++;
+/** @type {function(Truthy=): void} */
+const progress = (minus) => {
+    minus ? ax-- : ax++;
+};
 /**
  * @returns Get The Current ESI request pending count.
  */
@@ -46,7 +50,7 @@ export const getRequestPending = () => ax;
 //            main functions
 // - - - - - - - - - - - - - - - - - - - -
 /**
- * fire ESI request ESIRequestOptions
+ * Executes an HTTP request to the EVE ESI endpoint (OpenAPI-based).
  *
  * @throws {ESIRequestError}
  * @async
@@ -78,11 +82,15 @@ export const fire = /** @type {TESIRequestFunctionSignature2<ESIRequestOptions>}
         throw e;
     }
 });
+//
+// 2026/03/03 18:31:36 - To a generic name
+//
+export const request = fire;
 // It should complete correctly.
 /**
  * @param {TESIRequestFunctionSignature2<ESIRequestOptions>} fn
  */
-async function getEVEStatus(fn) {
+async function runESIRequestTest(fn) {
     const sdeVersion = await getSDEVersion();
     log(`sdeVersion: ${sdeVersion}`.blue);
     await fireRequestsDoesNotRequireAuth(fn);
@@ -90,9 +98,10 @@ async function getEVEStatus(fn) {
 }
 // type following and run
 // node request-v3.mjs
+// tsx publish/request-v3.mts
 // or yarn test
-if (!is("x")) {
-    getEVEStatus(fire).then(eveStatus => log(eveStatus));
+if (is("x")) {
+    runESIRequestTest(fire).then(eveStatus => log(eveStatus));
 }
 // {
 //     "players": 16503,

@@ -19,6 +19,7 @@
 import type { TESIRequestFunctionMethods2 } from "../dist/v2";
 import type { TESIErrorStats } from "./esi-error-types";
 export { isNode } from "./constants.mjs";
+export { getSDEVersion } from "./sde-util.mjs";
 /**
  * this always `https://esi.evetech.net`
  */
@@ -28,6 +29,23 @@ export type Truthy = string | number | boolean;
  * __{Header}.{Payload}.{Signature}__
  */
 export type TAccessToken = `${string}.${string}.${string}`;
+/**
+ * + Endpoint: {@link https://esi.evetech.net/meta/compatibility-dates Get compatibility dates}
+ *
+ * + {@link https://developers.eveonline.com/api-explorer#/operations/GetMetaCompatibilityDates API Explorer}
+ */
+export type TEOICompatibilityDates = [
+    "2025-12-16",
+    "2025-11-06",
+    "2025-09-30",
+    "2025-09-26",
+    "2025-08-26",
+    "2020-01-01"
+];
+/**
+ * @see {@link TEOICompatibilityDates}
+ */
+export type TEOICompatiDateValue = TEOICompatibilityDates[number];
 export type ESIRequestOptions = {
     /**
      * query params for ESI request.
@@ -58,6 +76,18 @@ export type ESIRequestOptions = {
      * cancel request immediately
      */
     cancelable?: AbortController;
+    /**
+     * + This parameter is set in the query parameter to avoid a browser preflight request (mandatory)
+     *
+     * ```
+     * headers: {
+     *   "X-Compatibility-Date"?: "" | "2025-12-16" | "2025-11-06" | "2025-09-30" | "2025-09-26" | "2025-08-26" | "2020-01-01"
+     * }
+     * ```
+     * @see {@link TEOICompatibilityDates}
+     * @date 2026/02/18 18:44:55
+     */
+    compatDate?: TEOICompatiDateValue | "";
 };
 /**
  * type of the JWT token `payload` section
@@ -122,10 +152,9 @@ export declare const normalizeOptions: <T extends unknown, O extends Record<stri
  * @param {RequestInit} requestOpt
  * @param {URLSearchParams} urlParams
  * @param {(minus?: Truthy) => void=} progress
- * @param {true=} allowFetchPages 2025/4/26
  * @returns {Promise<any>}
  */
-export declare const handleSuccessResponse: (response: Response, endpointUrl: string, requestOpt: RequestInit, urlParams: URLSearchParams, progress?: (minus?: Truthy) => void, allowFetchPages?: true) => Promise<any>;
+export declare const handleSuccessResponse: (response: Response, endpointUrl: string, requestOpt: RequestInit, urlParams: URLSearchParams, progress?: (minus?: Truthy) => void) => Promise<any>;
 /**
  * @import {
  *     TESIErrorStats,
@@ -230,11 +259,15 @@ export declare function hasPathParams<T extends Record<string, unknown>>(opt: T)
  */
 export declare const getJWTPayload: (accessToken: string) => TJWTPayload;
 /**
+ * ### This feature is legacy
+ *
+ * + Use {@link getSDEVersion __`Get EVE OpenApi Static Data version`__}
+ *
  * @date 2020/03/31
  * @version 2.1
  * @type {() => Promise<string>}
  */
-export declare function getSDEVersion(): Promise<string>;
+export declare function getSDEVersionLegacy(): Promise<string>;
 /**
  * @param {string} banner
  */

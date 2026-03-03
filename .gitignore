@@ -9,3 +9,6 @@ esi-request*.mts
 auth-token*
 scripts/
 node_modules
+.github
+cliff*
+.codex
