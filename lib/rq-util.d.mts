@@ -6,9 +6,6 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /// <reference types="../dist/v2"/>
-// - - - - - - - - - - - - - - - - - - - -
-//               imports
-// - - - - - - - - - - - - - - - - - - - -
 /*!
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //  Copyright (C) 2025 jeffy-g <hirotom1107@gmail.com>
@@ -190,7 +187,16 @@ export declare const isDebug: () => boolean;
  * @param {string} opt
  * @returns {boolean}
  */
-export declare const is: (opt: string) => boolean;
+export declare function is(opt: string): boolean;
+/**
+ * @template [T=undefined] - A specific string literal type to allow for type-safe return values.
+ * @template {(select?: T) => unknown} [CB=(select?: T) => unknown]
+ * @param {string} key
+ * @param {CB} cb
+ * @returns {ReturnType<CB>}
+ */
+export declare const selectFromEnv: <T = undefined,
+CB extends (select?: T) => unknown = (select?: T) => unknown>(key: string, cb: CB) => ReturnType<CB>;
 /**
  * NOTE: In `initOptions`, if `auth=true`, then `token` can be set to a valid `accessToken` to successfully complete an authenticated request.
  *
@@ -254,10 +260,10 @@ export declare function hasPathParams<T extends Record<string, unknown>>(opt: T)
 });
 /**
  *
- * @param {string} accessToken OAuth 2.0 access token
+ * @param {TAccessToken} accessToken OAuth 2.0 access token
  * @returns {TJWTPayload}
  */
-export declare const getJWTPayload: (accessToken: string) => TJWTPayload;
+export declare const getJWTPayload: (accessToken: TAccessToken) => TJWTPayload;
 /**
  * ### This feature is legacy
  *

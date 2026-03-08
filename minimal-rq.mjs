@@ -6,26 +6,13 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /// <reference types="./dist/v2"/>
-// - - - - - - - - - - - - - - - - - - - -
-//               imports
-// - - - - - - - - - - - - - - - - - - - -
 import * as util from "./lib/rq-util.mjs";
 import { request2 } from "./lib/request-api.mjs";
-// - - - - - - - - - - - - - - - - - - - -
-//           constants, types
-// - - - - - - - - - - - - - - - - - - - -
-// shorthands
-const log = util.getUniversalLogger("[request-mini]: ");
+export const log = util.getUniversalLogger("[request-mini]: ");
 /**
  * @typedef {import("./dist/v2").IESIRequestFunction2<util.ESIRequestOptions>} IESIRequestFunction2
  * @typedef {import("./dist/v2").TESIRequestFunctionMethods2<util.ESIRequestOptions>} TESIRequestFunctionMethods2
  */
-// - - - - - - - - - - - - - - - - - - - -
-//            main functions
-// - - - - - - - - - - - - - - - - - - - -
-//
-// Delegates implementation to `request` (TESIRequestFunctionMethods2)
-//
 const esiMethods = /** @type {TESIRequestFunctionMethods2} */ ({});
 /** @satisfies {TESIEntryMethod[]} */ (["get", "post", "put", "delete"]).forEach((method) => {
     esiMethods[method] = /** @type {TESIRequestFunctionEachMethod2<typeof method, util.ESIRequestOptions>} */ ((endpoint, opt) => {
@@ -33,26 +20,21 @@ const esiMethods = /** @type {TESIRequestFunctionMethods2} */ ({});
         return request2(method, endpoint, opt);
     });
 });
-// It should complete correctly.
 /**
  * @param {IESIRequestFunction2} fn
  */
 async function getEVEStatus2(fn) {
-    await util.getSDEVersionLegacy().then(sdeVersion => log(`sdeVersion: ${sdeVersion}`.blue));
+    await util.getSDEVersion().then(sdeVersion => log(`sdeVersion: ${sdeVersion}`.blue));
     const { clog, rlog } = util.getLogger();
-    rlog("- - - - - - - > run as IESIRequestFunction2<ESIRequestOptions>".red, fn);
+    rlog("- - - - - - - > run as IESIRequestFunction2".magenta, fn.name.yellow);
     await util.fireRequestsDoesNotRequireAuth(fn);
     CaseIESIRequestFunctionMethods: {
-        rlog("- - - - - - - > run as TESIRequestFunctionMethods2<ESIRequestOptions>".red, esiMethods);
+        rlog("- - - - - - - > run as TESIRequestFunctionMethods2".magenta, "esiMethods".yellow);
         await util.fireRequestsDoesNotRequireAuth(esiMethods);
     }
     CaseIESIRequestFunction2: {
         const ID_CCP_Zoetrope = 2112625428;
-        // - - - - - - - - - - - -
-        //       Character
-        // - - - - - - - - - - - -
-        // Here, I borrow data from "CCP Zoetrope".
-        rlog("- - - - - - - > run as IESIRequestFunction2::TESIRequestFunctionMethods2<ESIRequestOptions>".red, fn);
+        rlog("- - - - - - - > run as IESIRequestFunction2::TESIRequestFunctionMethods2".magenta, fn.name.yellow);
         clog();
         await fn.get("/characters/{character_id}/", { pathParams: ID_CCP_Zoetrope }).then(log);
         clog('(portrait)');
@@ -64,9 +46,6 @@ async function getEVEStatus2(fn) {
         await fn.get(`/corporations/${affiliation[0].corporation_id}/`).then(log);
         rlog("get:/incursions/".green);
         await fn.get("/incursions/").then(log);
-        // - - - - - - - - - - - -
-        //     Miscellaneous
-        // - - - - - - - - - - - -
         rlog("post:/universe/ids/".green);
         const ids = await fn.post("/universe/ids/", { body: ["the forge", "plex"] });
         log(ids.inventory_types, ids.regions);
@@ -74,7 +53,6 @@ async function getEVEStatus2(fn) {
         const orders = await fn.get("/markets/{region_id}/orders/", {
             pathParams: ids?.regions?.[0].id || 0,
             query: {
-                // page: 1,
                 order_type: "sell",
                 type_id: ids?.inventory_types?.[0].id
             }
@@ -86,9 +64,7 @@ async function getEVEStatus2(fn) {
 const runTest = () => {
     getEVEStatus2(request2).then(eveStatus => log(eveStatus));
 };
-// type following and run
-// node minimal-rq.mjs -debug
-if (!util.is("x")) {
+if (util.is("x")) {
     runTest();
 }
 else {
@@ -101,8 +77,3 @@ else {
         }
     }
 }
-// {
-//     "players": 16503,
-//     "server_version": "2794925",
-//     "start_time": "2025-01-21T11:02:34Z"
-// }

@@ -24,7 +24,11 @@ export type TRedirectStats = 304;
 export type TClientErrorStats = 400 | 401 | 403 | 404 | 420 | 422;
 export type TServerErrorStats = 500 | 503 | 504 | 520;
 export type TESIErrorStats = TClientErrorStats | TServerErrorStats;
-export type TStatsAll = TSuccessStats | TRedirectStats | TClientErrorStats | TServerErrorStats;
+export type TStatsAll =
+  | TSuccessStats
+  | TRedirectStats
+  | TClientErrorStats
+  | TServerErrorStats;
 export type TESIErrorStatMap = {
   // status 400
   400: BadRequest;
@@ -53,10 +57,12 @@ export type TESIErrorStatMap = {
  *   throw new Error(`message="${res.statusText}", status=${status}`);
  * }
  * ```
- * 
+ *
  * @date 2025/3/3
  */
-export type TESIErrorWithStat<Stat extends TClientErrorStats | TServerErrorStats> = {
+export type TESIErrorWithStat<
+  Stat extends TClientErrorStats | TServerErrorStats,
+> = {
   status: Stat;
 } & TESIErrorStatMap[Stat];
 // declare const bad: TESIErrorWithStat<400>;

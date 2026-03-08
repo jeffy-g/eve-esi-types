@@ -10,10 +10,10 @@
     "noEmit": true,
     "allowJs": true,
     // "listFiles": true,
-    // "target": "esnext",
-    // "module": "esnext",
+    "target": "esnext",
+    "module": "esnext",
     "diagnostics": true,
-    // "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "rootDirs": [
       "./"
     ]

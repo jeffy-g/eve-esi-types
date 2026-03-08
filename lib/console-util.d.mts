@@ -7,6 +7,7 @@ declare global {
         magenta: string;
         cyan: string;
     }
+    type THtmlTag = string;
 }
 /**
  * @param {boolean} enable
